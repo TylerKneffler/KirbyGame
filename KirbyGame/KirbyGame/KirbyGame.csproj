@@ -44,6 +44,11 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprite\Isprite.cs" />
+    <Compile Include="Sprite\Sprite.cs" />
+    <Compile Include="Sprite\SpriteData.cs" />
+    <Compile Include="Sprite\SpriteFactory.cs" />
+    <Compile Include="Sprite\TextureDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
