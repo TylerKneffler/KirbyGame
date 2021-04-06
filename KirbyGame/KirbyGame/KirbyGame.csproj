@@ -41,11 +41,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collision\Collision.cs" />
+    <Compile Include="Collision\TileMap.cs" />
     <Compile Include="Command Handling\Command.cs" />
     <Compile Include="Command Handling\ConcreteCommands.cs" />
     <Compile Include="Command Handling\ControllerKeyboard.cs" />
     <Compile Include="Command Handling\ICommand.cs" />
     <Compile Include="Command Handling\IController.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="KirbyGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
