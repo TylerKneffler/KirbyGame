@@ -41,6 +41,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command Handling\Command.cs" />
+    <Compile Include="Command Handling\ConcreteCommands.cs" />
+    <Compile Include="Command Handling\ControllerGamepad.cs" />
+    <Compile Include="Command Handling\ControllerKeyboard.cs" />
+    <Compile Include="Command Handling\ICommand.cs" />
+    <Compile Include="Command Handling\IController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
