@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 
-namespace BlankMonoGameProject
+namespace KirbyGame
 {
     public class Sprite : Isprite
     {

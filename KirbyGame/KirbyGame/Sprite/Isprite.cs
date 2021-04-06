@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using System.Diagnostics;
 
 
-namespace BlankMonoGameProject
+namespace KirbyGame
 {
     interface Isprite
     {
