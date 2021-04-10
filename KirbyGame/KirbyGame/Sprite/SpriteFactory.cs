@@ -9,11 +9,11 @@ namespace KirbyGame
 {
     abstract class SpriteFactory
     {
-        private KirbyGame game;
+        private Game1 game;
 
         public abstract Sprite createSprite(int type, Vector2 location);
 
-        public SpriteFactory(KirbyGame game)
+        public SpriteFactory(Game1 game)
         {
             this.game = game;
         }

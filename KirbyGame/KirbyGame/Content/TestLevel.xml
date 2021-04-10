@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level1>
+  <Entities>
+	<Mario Xpos ="1" Ypos = "1"></Mario>
+
+    <StairBlock Xpos = "3" Ypos = "3"/>
+    <FloorBlock Xpos = "6" Ypos = "3"></FloorBlock>
+    <BrickBlock Xpos = "9" Ypos = "3" Coins ="1" PowerUp ="0"/>
+	<QuestionBlock Xpos ="12" Ypos ="3" Coins ="1" PowerUp ="0"/>
+    <HiddenBlock Xpos = "15" Ypos = "3" Coins ="1" PowerUp ="0"/>
+    <UsedBlock Xpos = "18" Ypos = "3"></UsedBlock>
+    
+    <OneUp Xpos = "3" Ypos = "7"/>
+    <FireFlower Xpos = "6" Ypos = "7"/>
+    <Star Xpos = "9" Ypos = "7"></Star>
+    <SuperMushroom Xpos = "12" Ypos = "7"/>
+    <Coin Xpos = "15" Ypos = "7"></Coin>
+    
+    
+    <Koopa Xpos = "3" Ypos = "12"/>
+    <Goomba Xpos = "6" Ypos = "12"/>
+  </Entities>
+</Level1>

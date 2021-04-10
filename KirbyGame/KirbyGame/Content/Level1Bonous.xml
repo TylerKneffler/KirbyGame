@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <Size XBound ="210" YBound ="10"/>
+  <Entities>
+    <Floor Xpos = "1" Ypos = "13" Length ="26"/>
+
+    <Mario Xpos ="3" Ypos = "11"></Mario>
+
+    <BrickBlock Xpos ="1" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="8" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="7" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="6" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="5" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="4" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="3" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="2" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="1" Ypos ="1" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlock Xpos ="6" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="7" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="8" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="9" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="10" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="11" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="12" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="13" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="14" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="15" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="16" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="17" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="18" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="19" Ypos ="1" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlock Xpos ="6" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="7" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="8" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="9" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="10" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="11" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="12" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="13" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="14" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="15" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="16" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="17" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="18" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="19" Ypos ="11" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlock Xpos ="6" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="7" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="8" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="9" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="10" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="11" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="12" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="13" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="14" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="15" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="16" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="17" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="18" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="19" Ypos ="10" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlock Xpos ="6" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="7" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="8" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="9" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="10" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="11" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="12" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="13" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="14" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="15" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="16" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="17" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="18" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <BrickBlock Xpos ="19" Ypos ="9" Coins ="0" PowerUp ="0"/>
+
+
+    <Coin Xpos ="7" Ypos ="8"/>
+    <Coin Xpos ="9" Ypos ="8"/>
+    <Coin Xpos ="11" Ypos ="8"/>
+    <Coin Xpos ="13" Ypos ="8"/>
+    <Coin Xpos ="15" Ypos ="8"/>
+    <Coin Xpos ="17" Ypos ="8"/>
+    <Coin Xpos ="19" Ypos ="8"/>
+
+    <Coin Xpos ="7" Ypos ="6"/>
+    <Coin Xpos ="9" Ypos ="6"/>
+    <Coin Xpos ="11" Ypos ="6"/>
+    <Coin Xpos ="13" Ypos ="6"/>
+    <Coin Xpos ="15" Ypos ="6"/>
+    <Coin Xpos ="17" Ypos ="6"/>
+    <Coin Xpos ="19" Ypos ="6"/>
+
+    <Coin Xpos ="8" Ypos ="4"/>
+    <Coin Xpos ="10" Ypos ="4"/>
+    <Coin Xpos ="12" Ypos ="4"/>
+    <Coin Xpos ="14" Ypos ="4"/>
+    <Coin Xpos ="16" Ypos ="4"/>
+    <Coin Xpos ="18" Ypos ="4"/>
+    
+
+    <PipeSidways Xpos ="23" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <PipeMiddleSidways Xpos ="24" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="11" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="10" Coins ="0" PowerUp ="0"/>
+    <PipeRot Xpos ="25" Ypos ="10" Coins ="0" PowerUp ="0"/>\
+    <PipeMiddle Xpos ="25" Ypos ="9" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="8" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="7" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="6" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="5" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="4" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="3" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="2" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="1" Coins ="0" PowerUp ="0"/>
+    
+  </Entities>
+</Level>

@@ -41,7 +41,7 @@ namespace KirbyGame
         public Color boundingColor;
         public Color defaultColor;
 
-        public KirbyGame game;
+        public Game1 game;
 
         public Sprite Sprite
         {
@@ -102,7 +102,7 @@ namespace KirbyGame
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);
-            if (//game.boundingBoxToggle)
+            if (game.boundingBoxToggle)
             {
                 if (_texture == null)
                     _texture = new Texture2D(game.GraphicsDevice, 1, 1);

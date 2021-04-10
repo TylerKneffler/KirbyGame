@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <Size XBound ="235" YBound ="32"/>
+  <Entities>
+    <Floor Xpos = "1" Ypos = "13" Length ="69"/>
+    <Mario Xpos ="2" Ypos = "11"></Mario>
+    
+    <Koopa  Xpos ="7" Ypos ="11"/>
+	  <OneUp  Xpos ="22" Ypos ="11"/>
+
+	  <Goomba  Xpos ="22" Ypos ="11"/>
+		<Goomba  Xpos ="40" Ypos ="11"/>
+		<Goomba  Xpos ="52" Ypos ="11"/>
+		<Goomba  Xpos ="54" Ypos ="11"/>
+
+    <Parana Xpos ="28" Ypos ="10"/>
+    
+		<QuestionBlock Xpos ="17" Ypos ="8" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="21" Ypos ="8" Coins ="1" PowerUp ="5"/>
+		<QuestionBlock Xpos ="23" Ypos ="8" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="22" Ypos ="4" Coins ="1" PowerUp ="0"/>
+
+		<BrickBlock Xpos ="20" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="22" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="24" Ypos ="8" Coins ="0" PowerUp ="0"/>
+
+    <PipeTeleTop  Xpos ="28" Ypos ="10" XTele = "46" YTele = "9"/>
+		<PipeMiddle  Xpos ="28" Ypos ="11"/>
+
+		<PipeTop  Xpos ="38" Ypos ="9" PowerUp="2" Enemy ="0"/>
+		<PipeMiddle  Xpos ="38" Ypos ="10"/>
+		<PipeMiddle  Xpos ="38" Ypos ="11"/>
+
+		<PipeTop  Xpos ="46" Ypos ="8"  PowerUp="0" Enemy ="2"/>
+		<PipeMiddle  Xpos ="46" Ypos ="9"/>
+		<PipeMiddle  Xpos ="46" Ypos ="10"/>
+		<PipeMiddle  Xpos ="46" Ypos ="11"/>
+
+		<PipeTeleTopBonus  Xpos ="57" Ypos ="8"  XTele = "3" YTele = "18"/>
+		<PipeMiddle  Xpos ="57" Ypos ="9"/>
+		<PipeMiddle  Xpos ="57" Ypos ="10"/>
+		<PipeMiddle  Xpos ="57" Ypos ="11"/>
+
+		<HiddenBlock Xpos ="65" Ypos ="6" Coins ="1" PowerUp ="1"/>
+
+		<Floor Xpos = "72" Ypos = "13" Length ="15"/>
+
+		<QuestionBlock Xpos ="79" Ypos ="8" Coins ="1" PowerUp ="5"/>
+
+		<Goomba  Xpos ="81" Ypos ="11"/>
+		<Goomba  Xpos ="84" Ypos ="11"/>
+
+
+		<BrickBlock Xpos ="78" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="80" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="81" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="82" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="83" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="84" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="85" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="86" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="87" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="88" Ypos ="4" Coins ="0" PowerUp ="0"/>
+
+		<Floor Xpos = "90" Ypos = "13" Length ="65"/>
+
+		<Goomba  Xpos ="98" Ypos ="11"/>
+		<Goomba  Xpos ="100" Ypos ="11"/>
+		<Koopa  Xpos ="108" Ypos ="11"/>
+		<Goomba  Xpos ="115" Ypos ="11"/>
+		<Goomba  Xpos ="117" Ypos ="11"/>
+		<Goomba  Xpos ="128" Ypos ="11"/>
+		<Goomba  Xpos ="130" Ypos ="11"/>
+		<Goomba  Xpos ="133" Ypos ="11"/>
+		<Goomba  Xpos ="135" Ypos ="11"/>
+
+		<QuestionBlock Xpos ="95" Ypos ="4" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="107" Ypos ="8" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="110" Ypos ="8" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="110" Ypos ="4" Coins ="1" PowerUp ="5"/>
+		<QuestionBlock Xpos ="113" Ypos ="8" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="131" Ypos ="4" Coins ="1" PowerUp ="0"/>
+		<QuestionBlock Xpos ="132" Ypos ="4" Coins ="1" PowerUp ="0"/>
+
+		<BrickBlock Xpos ="92" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="93" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="94" Ypos ="4" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="95" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="101" Ypos ="8" Coins ="0" PowerUp ="0"/>
+		<BrickBlock Xpos ="102" Ypos ="8" Coins = "0" PowerUp ="4"/>
+		<BrickBlock Xpos ="119" Ypos ="8" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="122" Ypos ="4" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="123" Ypos ="4" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="124" Ypos ="4" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="130" Ypos ="4" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="131" Ypos ="8" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="132" Ypos ="8" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="133" Ypos ="4" Coins = "0" PowerUp ="0"/>
+
+		<RightStair Xpos = "136" Ypos = "11" Length ="4" Height ="4"/>
+
+		<LeftStair Xpos = "142" Ypos = "11" Length ="4" Height ="4"/>
+
+		<RightStair Xpos = "150" Ypos = "11" Length ="5" Height ="4"/>
+
+		<Floor Xpos = "157" Ypos = "13" Length ="55"/>
+
+		<LeftStair Xpos = "157" Ypos = "11" Length ="4" Height ="4"/>
+
+		<PipeTop  Xpos ="165" Ypos ="10" PowerUp="0" Enemy ="0"/>
+		<PipeMiddle  Xpos ="165" Ypos ="11"/>
+
+		<BrickBlock Xpos ="171" Ypos ="8" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="172" Ypos ="8" Coins = "0" PowerUp ="0"/>
+		<BrickBlock Xpos ="174" Ypos ="8" Coins = "0" PowerUp ="0"/>
+
+		<Goomba  Xpos ="176" Ypos ="11"/>
+		<Goomba  Xpos ="178" Ypos ="11"/>
+
+		<PipeTop  Xpos ="181" Ypos ="10" PowerUp="0" Enemy ="0"/>
+		<PipeMiddle  Xpos ="181" Ypos ="11"/>
+
+		<QuestionBlock Xpos ="173" Ypos ="8" Coins ="1" PowerUp ="0"/>
+
+		<RightStair Xpos = "184" Ypos = "11" Length ="9" Height ="8"/>
+
+		<StairBlock Xpos = "201" Ypos = "11"/>
+		<Pole Xpos = "201" Ypos = "10"/>
+		<Pole Xpos = "201" Ypos = "9"/>
+		<Pole Xpos = "201" Ypos = "8"/>
+		<Pole Xpos = "201" Ypos = "7"/>
+		<Pole Xpos = "201" Ypos = "6"/>
+		<Pole Xpos = "201" Ypos = "5"/>
+		<Pole Xpos = "201" Ypos = "4"/>
+		<Pole Xpos = "201" Ypos = "3"/>
+		<Pole Xpos = "201" Ypos = "2"/>
+		<Flag Xpos = "201" Ypos = "1"/>
+		<PoleTop Xpos = "201" Ypos = "0"/>
+		<Castle Xpos = "205" Ypos = "7"/>
+
+
+
+    <FloorBlue Xpos = "1" Ypos = "32" Length ="26"/>
+
+    <BrickBlockBlue Xpos ="1" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="27" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="26" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="25" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="24" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="23" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="22" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="21" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="1" Ypos ="20" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlockBlue Xpos ="6" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="7" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="8" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="9" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="10" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="11" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="12" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="13" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="14" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="15" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="16" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="17" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="18" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="19" Ypos ="20" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlockBlue Xpos ="6" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="7" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="8" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="9" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="10" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="11" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="12" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="13" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="14" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="15" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="16" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="17" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="18" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="19" Ypos ="30" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlockBlue Xpos ="6" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="7" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="8" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="9" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="10" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="11" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="12" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="13" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="14" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="15" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="16" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="17" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="18" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="19" Ypos ="29" Coins ="0" PowerUp ="0"/>
+
+    <BrickBlockBlue Xpos ="6" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="7" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="8" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="9" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="10" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="11" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="12" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="13" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="14" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="15" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="16" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="17" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="18" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <BrickBlockBlue Xpos ="19" Ypos ="28" Coins ="0" PowerUp ="0"/>
+
+
+    <Coin Xpos ="7" Ypos ="27"/>
+    <Coin Xpos ="9" Ypos ="27"/>
+    <Coin Xpos ="11" Ypos ="27"/>
+    <Coin Xpos ="13" Ypos ="27"/>
+    <Coin Xpos ="15" Ypos ="27"/>
+    <Coin Xpos ="17" Ypos ="27"/>
+    <Coin Xpos ="19" Ypos ="27"/>
+
+    <Coin Xpos ="7" Ypos ="25"/>
+    <Coin Xpos ="9" Ypos ="25"/>
+    <Coin Xpos ="11" Ypos ="25"/>
+    <Coin Xpos ="13" Ypos ="25"/>
+    <Coin Xpos ="15" Ypos ="25"/>
+    <Coin Xpos ="17" Ypos ="25"/>
+    <Coin Xpos ="19" Ypos ="25"/>
+
+    <Coin Xpos ="8" Ypos ="23"/>
+    <Coin Xpos ="10" Ypos ="23"/>
+    <Coin Xpos ="12" Ypos ="23"/>
+    <Coin Xpos ="14" Ypos ="23"/>
+    <Coin Xpos ="16" Ypos ="23"/>
+    <Coin Xpos ="18" Ypos ="23"/>
+
+
+    <PipeTeleSide Xpos ="23" Ypos ="29" XTele = "165" YTele = "11"/>
+    <PipeMiddleSidways Xpos ="24" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="30" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="29" Coins ="0" PowerUp ="0"/>
+    <PipeRot Xpos ="25" Ypos ="29" Coins ="0" PowerUp ="0"/>\
+    <PipeMiddle Xpos ="25" Ypos ="28" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="27" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="26" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="25" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="24" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="23" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="22" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="21" Coins ="0" PowerUp ="0"/>
+    <PipeMiddle Xpos ="25" Ypos ="20" Coins ="0" PowerUp ="0"/>
+    
+    
+    
+	</Entities>
+	<Layers>
+		<MountainLayer Xpos = "0" Ypos = "-220" Paral = "0.2"/>
+		<BushLayer Xpos = "0" Ypos = "325" Paral = "0.95"/>
+		<CloudLayer Xpos = "0" Ypos = "-30" Paral = "0.25"/>
+	</Layers>
+	<Hud>
+		<TimeLeft Time ="400" />
+		<PlayerSpritePos Xpos = "450" Ypos = "50" />
+		<CoinSpritePos Xpos = "100" Ypos = "50"/>
+		<CoinSpritePos Xpos = "225" Ypos = "55"/>
+		<CoinNumPos Xpos = "250" Ypos = "50"/>
+		<PlayerNamePos Xpos = "16" Ypos = "10" />
+		<LivesLeftPos Xpos = "480" Ypos = "50" />
+		<TimeStringPos Xpos = "640" Ypos = "10" />
+		<ScorePos Xpos = "16" Ypos = "50" />
+		<TimeRemainingPos Xpos = "650" Ypos = "50" />
+		<GameOverPos Xpos = "300" Ypos = "190" />
+		<ExitPos Xpos = "250" Ypos = "250" />
+		<RetryPos Xpos = "250" Ypos = "300" />
+	</Hud>
+</Level>
