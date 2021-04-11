@@ -279,6 +279,12 @@
 /processorParam:TextureFormat=Color
 /build:items.png
 
+#begin Kirby dream land theme song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Kirby dream land theme song.mp3
+
 #begin koopa.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -783,6 +789,12 @@
 /processorParam:TextureFormat=Color
 /build:SmileyWalk.png
 
+#begin SoundEffects/Kirby dream land theme song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Kirby dream land theme song.mp3
+
 #begin SoundEffects/smb_1-up.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -902,12 +914,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Star.png
-
-#begin Super Mario Bros. Theme Song.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Super Mario Bros. Theme Song.mp3
 
 #begin SuperMushroom.png
 /importer:TextureImporter

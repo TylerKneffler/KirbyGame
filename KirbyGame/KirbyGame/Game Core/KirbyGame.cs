@@ -106,7 +106,7 @@ namespace KirbyGame
             checkpoints = new Checkpoints(mario, this);
             //levelLoader.Hud.NumberOfLives = mario.numLives;
             //hud = new Hud(mario);
-            soundtrack = Content.Load<Song>("Super Mario Bros. Theme Song");
+            soundtrack = Content.Load<Song>("Kirby dream land theme song");
             MediaPlayer.Play(soundtrack);
             MediaPlayer.IsRepeating = true;
 
