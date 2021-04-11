@@ -53,6 +53,8 @@
     <Compile Include="Entities\Avatar\ActionStates.cs" />
     <Compile Include="Entities\Avatar\Avatar.cs" />
     <Compile Include="Entities\Avatar\AvatarData.cs" />
+    <Compile Include="Entities\Avatar\KirbySpriteFactory.cs" />
+    <Compile Include="Entities\Avatar\KirbyTexturesFactory.cs" />
     <Compile Include="Entities\Avatar\MarioSpriteFactory.cs" />
     <Compile Include="Entities\Avatar\MarioTexturesFactory.cs" />
     <Compile Include="Entities\Avatar\PowerStates.cs" />
