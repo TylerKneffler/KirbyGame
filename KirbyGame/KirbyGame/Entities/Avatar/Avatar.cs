@@ -13,16 +13,14 @@ namespace KirbyGame
 {
 
 
-    public class
-        Avatar : Entity
+    public class Avatar : Entity
     {
         public PowerState powerState;
         public ActionState actionState;
+        public Entity swallowed;
         private marioState combinedState;
         public Vector2 startingLocation;
         private MarioSpriteFactory factory;
-        private FireBallFactory fireBallFactory;
-        public int fireBallNum = 0;
         //public int numLives;
         private SoundEffect player;
        
@@ -43,7 +41,6 @@ namespace KirbyGame
             this.startingLocation = location;
 
             factory = new MarioSpriteFactory(this);
-            fireBallFactory = new FireBallFactory(game);
             powerState = new MarioSmallState(this);
             actionState = new MarioIdleState(this);
             actionState.IdleTransition();
@@ -58,8 +55,6 @@ namespace KirbyGame
             this.game = avatar.game;
             this.startingLocation = new Vector2(avatar.X, avatar.Y);
 
-            factory = new MarioSpriteFactory(this);
-            fireBallFactory = new FireBallFactory(game);
             powerState = avatar.powerState;
             actionState = avatar.actionState;
             this.updateState();
@@ -132,22 +127,6 @@ namespace KirbyGame
         public void releaseRight()
         {
             actionState.releaseRight();
-        }
-        public void marioFireBall()
-        {
-            if (fireBallNum < 2 && (combinedState == marioState.FIRE_CROUCHING || combinedState == marioState.FIRE_FALLING || combinedState == marioState.FIRE_IDLE || combinedState == marioState.FIRE_JUMPING || combinedState == marioState.FIRE_RUNNING))
-            {
-                if (Sprite.Direction == Sprite.eDirection.Right)
-                {
-                    fireBallNum++;
-                    game.levelLoader.list.Add(fireBallFactory.createFireball(new Vector2(base.position.X + 16, base.position.Y), (int)Sprite.Direction));
-                }
-                else
-                {
-                    fireBallNum++;
-                    game.levelLoader.list.Add(fireBallFactory.createFireball(new Vector2(base.position.X - 16, base.position.Y), (int)Sprite.Direction));
-                }
-            }
         }
 
         public void releaseLeft()

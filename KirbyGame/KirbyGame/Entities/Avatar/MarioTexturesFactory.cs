@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace KirbyGame
 {
@@ -32,7 +33,10 @@ namespace KirbyGame
             {
                 case Avatar.marioState.SMALL_IDLE:
                     {
-                        textureList.Add(type, new TextureDetails(game.Content.Load<Texture2D>("mario/marioIdleSmall"), 1));
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(6, 24, 16, 16), 1);
+                        details.AddFrame(new Rectangle(26, 24, 16, 16));
+                        textureList.Add(type, details);
+
                         break;
                     }
                 case Avatar.marioState.SUPER_IDLE:
