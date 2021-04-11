@@ -108,6 +108,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Windows\x86\Debug\Level1.xml" />
+    <Content Include="bin\Windows\x86\Debug\Level1Bonous.xml" />
+    <Content Include="bin\Windows\x86\Debug\TestLevel.xml" />
+    <Content Include="Content\Level1.xml" />
+    <Content Include="Content\Level1Bonous.xml" />
+    <Content Include="Content\TestLevel.xml" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

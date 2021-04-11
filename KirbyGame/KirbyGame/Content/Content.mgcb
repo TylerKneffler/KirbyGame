@@ -327,16 +327,6 @@
 /processorParam:TextureFormat=Color
 /build:koopashell.png
 
-#begin Level1.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Level1.xml
-
-#begin Level1Bonous.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Level1Bonous.xml
-
 #begin mario.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -793,6 +783,102 @@
 /processorParam:TextureFormat=Color
 /build:SmileyWalk.png
 
+#begin SoundEffects/smb_1-up.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_1-up.wav
+
+#begin SoundEffects/smb_breakblock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_breakblock.wav
+
+#begin SoundEffects/smb_bump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_bump.wav
+
+#begin SoundEffects/smb_coin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_coin.wav
+
+#begin SoundEffects/smb_fireball.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_fireball.wav
+
+#begin SoundEffects/smb_flagpole.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_flagpole.wav
+
+#begin SoundEffects/smb_gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_gameover.wav
+
+#begin SoundEffects/smb_jump-small.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_jump-small.wav
+
+#begin SoundEffects/smb_jump-super.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_jump-super.wav
+
+#begin SoundEffects/smb_kick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_kick.wav
+
+#begin SoundEffects/smb_mariodie.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_mariodie.wav
+
+#begin SoundEffects/smb_pipe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_pipe.wav
+
+#begin SoundEffects/smb_powerup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_powerup.wav
+
+#begin SoundEffects/smb_powerup_appears.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_powerup_appears.wav
+
+#begin SoundEffects/smb_stomp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_stomp.wav
+
+#begin SoundEffects/smb_warning.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/smb_warning.wav
+
 #begin squishedKoopa.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -834,11 +920,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SuperMushroom.png
-
-#begin TestLevel.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:TestLevel.xml
 
 #begin UsedQuestion_Block.png
 /importer:TextureImporter
