@@ -234,7 +234,7 @@ namespace KirbyGame
         }
         public override void Execute()
         {
-            control.marioFireBall();
+            //control.marioFireBall();
         }
     }
 
