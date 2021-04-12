@@ -15,7 +15,7 @@ namespace KirbyGame
 
         public enum spriteType
         {
-            EMPTY_IDLE, EMPTY_RUNNING, EMPTY_JUMPING, EMPTY_FLIPPING, EMPTY_FALLING, EMPTY_SUCKING_AIR, EMPTY_SUCKING_POWER,
+            EMPTY_IDLE, EMPTY_RUNNING, EMPTY_JUMPING, EMPTY_FLIPPING, EMPTY_FALLING, EMPTY_FLYING, EMPTY_SUCKING_POWER,
             FULL_IDLE, FULL_RUNNING, FULL_FLOATING, FULL_FLYING, FULL_EMPTYING
         }
 
@@ -74,6 +74,15 @@ namespace KirbyGame
                         textureList.Add(type, details);
                         break;
                     }
+                case spriteType.EMPTY_FLYING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(6, 83, 16, 16), 1);
+                        details.AddFrame(new Rectangle(26, 83, 16, 16));
+                        details.AddFrame(new Rectangle(46, 75, 16, 24));
+                        details.AddFrame(new Rectangle(66, 75, 24, 24));
+                        textureList.Add(type, details);
+                        break;
+                    }
 
                 default: break;
             }
@@ -101,6 +110,10 @@ namespace KirbyGame
                 else if (action is FlippingState)
                 {
                     ret = spriteType.EMPTY_FLIPPING;
+                }
+                else if (action is FlyingState)
+                {
+                    ret = spriteType.EMPTY_FLYING;
                 }
             }
             else

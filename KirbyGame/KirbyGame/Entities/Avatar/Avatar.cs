@@ -84,9 +84,19 @@ namespace KirbyGame
          * avatar commands (setting to small, reg, fire are done directly using state getters and setters and as such included in next section). 
          */
         #region Commands
-        public void pressUp()
+        public void pressFloat()
         {
-            actionState.Up();
+            actionState.Float();
+        }
+
+        public void releaseFloat()
+        {
+            actionState.ReleaseFloat();
+        }
+
+        public void pressJump()
+        {
+            actionState.Jump();
         }
         public void pressDown()
         {
@@ -101,10 +111,10 @@ namespace KirbyGame
             actionState.Left();
         }
 
-        public void releaseUp()
+        public void releaseJump()
         {
 
-            actionState.releaseUp();
+            actionState.releaseJump();
         }
 
         public void releaseDown()

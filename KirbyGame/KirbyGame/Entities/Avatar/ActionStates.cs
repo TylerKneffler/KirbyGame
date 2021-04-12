@@ -36,12 +36,15 @@ namespace KirbyGame
         }
         public abstract void Left();
         public abstract void Right();
-        public abstract void Up();
+        public abstract void Jump();
         public abstract void Down();
+        public abstract void Float();
+
+        public abstract void ReleaseFloat();
 
         public abstract void releaseLeft();
         public abstract void releaseRight();
-        public abstract void releaseUp();
+        public abstract void releaseJump();
         public abstract void releaseDown();
         public abstract void Update(GameTime gameTime);
         public abstract void HandleBlockCollision(Collision collision);
@@ -79,6 +82,13 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new FlippingState(avatar);
+            CurrentState.Enter(this);
+        }
+
+        public void FlyingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new FlyingState(avatar);
             CurrentState.Enter(this);
         }
 
@@ -125,7 +135,7 @@ namespace KirbyGame
 
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
 
         }
@@ -139,7 +149,7 @@ namespace KirbyGame
         }
 
 
-        public override void Up()
+        public override void Jump()
         {
             this.JumpingTransition();
         }
@@ -155,6 +165,15 @@ namespace KirbyGame
             avatar.acceleration = new Vector2();
         }
 
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+            
+        }
     }
 
 
@@ -204,7 +223,7 @@ namespace KirbyGame
             avatar.acceleration.X = 0;
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
         }
 
@@ -214,7 +233,7 @@ namespace KirbyGame
                 this.IdleTransition();
         }
 
-        public override void Up()
+        public override void Jump()
         {
             this.JumpingTransition();
         }
@@ -242,17 +261,20 @@ namespace KirbyGame
         {
             base.Enter(prevState);
 
-            if (avatar.Sprite.Direction == Sprite.eDirection.Right)
+            if (!(previousState is FallingState) && !(previousState is JumpingState) && !(previousState is FlippingState))
             {
-                avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
-                if (avatar.velocity.X < AvatarData.INIT_RUN_VELOCITY)
-                    avatar.velocity.X = AvatarData.INIT_RUN_VELOCITY;
-            }
-            else
-            {
-                avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
-                if (avatar.velocity.X > -AvatarData.INIT_RUN_VELOCITY)
-                    avatar.velocity.X = -AvatarData.INIT_RUN_VELOCITY;
+                if (avatar.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                    if (avatar.velocity.X < AvatarData.INIT_RUN_VELOCITY)
+                        avatar.velocity.X = AvatarData.INIT_RUN_VELOCITY;
+                }
+                else
+                {
+                    avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                    if (avatar.velocity.X > -AvatarData.INIT_RUN_VELOCITY)
+                        avatar.velocity.X = -AvatarData.INIT_RUN_VELOCITY;
+                }
             }
 
 
@@ -264,6 +286,15 @@ namespace KirbyGame
         protected override void Exit()
         {
             base.Exit();
+        }
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+
         }
 
     }
@@ -302,7 +333,7 @@ namespace KirbyGame
         {
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
         }
 
@@ -311,7 +342,7 @@ namespace KirbyGame
 
         }
 
-        public override void Up()
+        public override void Jump()
         {
         }
 
@@ -326,6 +357,16 @@ namespace KirbyGame
             avatar.velocity = new Vector2();
             avatar.acceleration = new Vector2();
             transition.Enter();
+        }
+
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+
         }
 
     }
@@ -375,7 +416,7 @@ namespace KirbyGame
             avatar.acceleration.X = 0;
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
             //this.FallingTransition();
         }
@@ -385,7 +426,7 @@ namespace KirbyGame
             avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
         }
 
-        public override void Up()
+        public override void Jump()
         {
         }
 
@@ -431,6 +472,16 @@ namespace KirbyGame
         protected override void Exit()
         {
             base.Exit();
+        }
+
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+
         }
 
 
@@ -490,7 +541,7 @@ namespace KirbyGame
             avatar.acceleration.X = 0;
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
         }
 
@@ -499,7 +550,7 @@ namespace KirbyGame
             avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
         }
 
-        public override void Up()
+        public override void Jump()
         {
         }
 
@@ -527,6 +578,16 @@ namespace KirbyGame
         protected override void Exit()
         {
             base.Exit();
+        }
+
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+
         }
 
 
@@ -591,7 +652,7 @@ namespace KirbyGame
             avatar.acceleration.X = 0;
         }
 
-        public override void releaseUp()
+        public override void releaseJump()
         {
         }
 
@@ -600,7 +661,7 @@ namespace KirbyGame
             avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
         }
 
-        public override void Up()
+        public override void Jump()
         {
         }
 
@@ -623,7 +684,7 @@ namespace KirbyGame
                 Time -= SpriteData.DEFAULT_DELAY;
                 textCount--;
             }
-            if(textCount == 0)
+            if (textCount == 0)
             {
                 this.FallingTransition();
             }
@@ -638,6 +699,112 @@ namespace KirbyGame
         protected override void Exit()
         {
             base.Exit();
+        }
+
+        public override void Float()
+        {
+            this.FlyingTransition();
+        }
+
+        public override void ReleaseFloat()
+        {
+
+        }
+
+    }
+    class FlyingState : ActionState
+    {
+        private int Time;
+        int textCount;
+        public FlyingState(Avatar avatar) : base(avatar)
+        {
+            Time = 0;
+            textCount = 4;
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+
+        }
+
+        public override void Left()
+        {
+            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseRight()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseJump()
+        {
+        }
+
+        public override void Right()
+        {
+            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void Jump()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+            Time += gameTime.ElapsedGameTime.Milliseconds;
+            if (Time > SpriteData.DEFAULT_DELAY)
+            {
+                Time -= SpriteData.DEFAULT_DELAY;
+                textCount--;
+            }
+            if (textCount == 0)
+            {
+                this.IdleTransition();
+            }
+        }
+
+        protected override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.acceleration.Y = AvatarData.GRAVITY;
+        }
+
+        protected override void Exit()
+        {
+            base.Exit();
+        }
+
+        public override void Float()
+        {
+        }
+
+        public override void ReleaseFloat()
+        {
         }
     }
 }

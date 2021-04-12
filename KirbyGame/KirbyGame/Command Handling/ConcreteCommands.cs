@@ -96,16 +96,16 @@ namespace KirbyGame
         }
     }*/
 
-    class MarioPressUp : Command<Avatar>
+    class MarioPressJump : Command<Avatar>
     {
-        public MarioPressUp(Avatar control)
+        public MarioPressJump(Avatar control)
             : base(control)
         {
 
         }
         public override void Execute()
         {
-            control.pressUp();
+            control.pressJump();
         }
     }
 
@@ -148,16 +148,16 @@ namespace KirbyGame
         }
     }
 
-    class MarioReleaseUp : Command<Avatar>
+    class MarioReleaseJump : Command<Avatar>
     {
-        public MarioReleaseUp(Avatar control)
+        public MarioReleaseJump(Avatar control)
             : base(control)
         {
 
         }
         public override void Execute()
         {
-            control.releaseUp();
+            control.releaseJump();
         }
     }
 
@@ -197,6 +197,32 @@ namespace KirbyGame
         public override void Execute()
         {
             control.releaseRight();
+        }
+    }
+
+    class MarioPressFloat : Command<Avatar>
+    {
+        public MarioPressFloat(Avatar control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.pressFloat();
+        }
+    }
+
+    class MarioReleaseFloat : Command<Avatar>
+    {
+        public MarioReleaseFloat(Avatar control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.releaseFloat();
         }
     }
 

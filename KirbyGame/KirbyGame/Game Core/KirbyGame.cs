@@ -107,23 +107,18 @@ namespace KirbyGame
 
 
             //load commands to controller
-            KInput.addPressCommand(Keys.W, new MarioPressUp(mario));
-            KInput.addPressCommand(Keys.A, new MarioPressLeft(mario));
-            KInput.addPressCommand(Keys.S, new MarioPressDown(mario));
-            KInput.addPressCommand(Keys.D, new MarioPressRight(mario));
-            KInput.addReleaseCommand(Keys.W, new MarioReleaseUp(mario));
-            KInput.addReleaseCommand(Keys.A, new MarioReleaseLeft(mario));
-            KInput.addReleaseCommand(Keys.S, new MarioReleaseDown(mario));
-            KInput.addReleaseCommand(Keys.D, new MarioReleaseRight(mario));
 
-            KInput.addPressCommand(Keys.Up, new MarioPressUp(mario));
+
+            KInput.addPressCommand(Keys.X, new MarioPressJump(mario));
             KInput.addPressCommand(Keys.Left, new MarioPressLeft(mario));
             KInput.addPressCommand(Keys.Down, new MarioPressDown(mario));
             KInput.addPressCommand(Keys.Right, new MarioPressRight(mario));
-            KInput.addReleaseCommand(Keys.Up, new MarioReleaseUp(mario));
+            KInput.addPressCommand(Keys.Up, new MarioPressFloat(mario));
+            KInput.addReleaseCommand(Keys.X, new MarioReleaseJump(mario));
             KInput.addReleaseCommand(Keys.Left, new MarioReleaseLeft(mario));
             KInput.addReleaseCommand(Keys.Down, new MarioReleaseDown(mario));
             KInput.addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
+            KInput.addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
 
             KInput.addPressCommand(Keys.Y, new MakeMarioSmall(mario));
             KInput.addPressCommand(Keys.U, new MakeMarioSuper(mario));
