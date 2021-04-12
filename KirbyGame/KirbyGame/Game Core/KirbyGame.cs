@@ -120,10 +120,6 @@ namespace KirbyGame
             KInput.addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
             KInput.addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
 
-            KInput.addPressCommand(Keys.Y, new MakeMarioSmall(mario));
-            KInput.addPressCommand(Keys.U, new MakeMarioSuper(mario));
-            KInput.addPressCommand(Keys.I, new MakeMarioFire(mario));
-
 
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
 

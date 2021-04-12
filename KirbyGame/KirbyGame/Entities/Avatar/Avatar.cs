@@ -15,10 +15,8 @@ namespace KirbyGame
 
     public class Avatar : Entity
     {
-        public PowerState powerState;
+        public SwallowState swallowed;
         public ActionState actionState;
-        public bool full;
-        public Entity swallowed;
         public Vector2 startingLocation;
         private KirbySpriteFactory factory;
         //public int numLives;
@@ -31,10 +29,8 @@ namespace KirbyGame
             this.startingLocation = location;
 
             factory = new KirbySpriteFactory(this);
-            powerState = new MarioSmallState(this);
             actionState = new IdleState(this);
-            swallowed = null;
-            full = false;
+            swallowed = new EmptySwallowState(this);
             this.Sprite = factory.createSprite(actionState, swallowed, location, Sprite.eDirection.Right);
 
             //numLives = AvatarData.INIT_NUM_LIVES;
@@ -45,8 +41,6 @@ namespace KirbyGame
         {
             this.game = avatar.game;
             this.startingLocation = new Vector2(avatar.X, avatar.Y);
-
-            powerState = avatar.powerState;
             actionState = avatar.actionState;
             this.UpdateSprite();
         }
@@ -56,12 +50,6 @@ namespace KirbyGame
         {
             base.Update(gameTime);
             actionState.Update(gameTime);
-            if (this.BoundingBox.Bottom > this.game.gameBounds.Y + TileMap.CELL_SIZE)
-            {
-                this.powerState.DeadTransition();
-                //this.actionState.IdleTransition();
-                this.Y = (int)this.game.gameBounds.Y +TileMap.CELL_SIZE- this.BoundingBox.Size.Y;
-            }
 
             Debug.WriteLine(this.X);
 
@@ -73,7 +61,7 @@ namespace KirbyGame
 
         public bool canBreakBlocks()
         {
-            return (!(powerState is MarioSmallState || powerState is MarioDeadState));
+            return false;
         }
         public void MarioTeleport(Point final)
         {
@@ -130,26 +118,6 @@ namespace KirbyGame
         public void releaseLeft()
         {
             actionState.releaseLeft();
-        }
-
-        public void setStateSmall()
-        {
-            powerState.SmallTransition();
-        }
-
-        public void setStateSuper()
-        {
-            powerState.SuperTransition();
-        }
-
-        public void setStateFire()
-        {
-            powerState.FireTransition();
-        }
-
-        public void TakeDamage()
-        {
-            powerState.TakeDamage();
         }
 
         //not sure what this does 

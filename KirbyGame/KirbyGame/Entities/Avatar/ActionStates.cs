@@ -785,6 +785,9 @@ namespace KirbyGame
             if (textCount == 0)
             {
                 this.IdleTransition();
+            } else if (textCount == 2)
+            {
+                avatar.Y = avatar.Y-8;
             }
         }
 
@@ -797,6 +800,7 @@ namespace KirbyGame
         protected override void Exit()
         {
             base.Exit();
+            avatar.swallowed.AirTransition();
         }
 
         public override void Float()

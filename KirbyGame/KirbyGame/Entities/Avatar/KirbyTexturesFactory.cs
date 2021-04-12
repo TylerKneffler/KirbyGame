@@ -25,7 +25,7 @@ namespace KirbyGame
             textureList = new Dictionary<int, TextureDetails>();
         }
 
-        public TextureDetails createTextureDetails(ActionState action, Entity swallowed)
+        public TextureDetails createTextureDetails(ActionState action, SwallowState swallowed)
         {
             int type = (int)generateSpriteEnum(action, swallowed);
             if (!textureList.ContainsKey(type))
@@ -83,15 +83,30 @@ namespace KirbyGame
                         textureList.Add(type, details);
                         break;
                     }
+                case spriteType.FULL_FLOATING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(99, 75, 24, 24), 1);
+                        details.AddFrame(new Rectangle(26, 83, 16, 16));
+                        textureList.Add(type, details);
+                        break;
+                    }
+                case spriteType.FULL_FLYING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(99, 75, 24, 24), 1);
+                        details.AddFrame(new Rectangle(26, 83, 16, 16));
+                        details.Delay = details.Delay / 2;
+                        textureList.Add(type, details);
+                        break;
+                    }
 
                 default: break;
             }
         }
 
-        public static spriteType generateSpriteEnum(ActionState action, Entity swallowed)
+        public static spriteType generateSpriteEnum(ActionState action, SwallowState swallowed)
         {
             spriteType ret = 0;
-            if(swallowed == null)
+            if(swallowed is EmptySwallowState)
             {
                 if (action is IdleState)
                 {
@@ -116,9 +131,24 @@ namespace KirbyGame
                     ret = spriteType.EMPTY_FLYING;
                 }
             }
-            else
+            else if(swallowed is AirSwallowState)
             {
-
+                if (action is IdleState)
+                {
+                    ret = spriteType.FULL_FLOATING;
+                }
+                else if (action is RunningState)
+                {
+                    ret = spriteType.FULL_FLOATING;
+                }
+                else if (action is JumpingState)
+                {
+                    ret = spriteType.FULL_FLYING;
+                }
+                else if (action is FlyingState)
+                {
+                    ret = spriteType.FULL_FLYING;
+                }
             }
             return ret;
         }

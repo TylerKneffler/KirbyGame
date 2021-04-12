@@ -51,39 +51,7 @@ namespace KirbyGame
         }
     }*/
 
-    class MakeMarioSmall : Command<Avatar>
-    {
-        public MakeMarioSmall(Avatar control)
-            : base(control)
-        {
-        }
-        public override void Execute()
-        {
-            control.setStateSmall();
-        }
-    }
-    class MakeMarioSuper : Command<Avatar>
-    {
-        public MakeMarioSuper(Avatar control)
-            : base(control)
-        {
-        }
-        public override void Execute()
-        {
-            control.setStateSuper();
-        }
-    }
-    class MakeMarioFire : Command<Avatar>
-    {
-        public MakeMarioFire(Avatar control)
-            : base(control)
-        {
-        }
-        public override void Execute()
-        {
-            control.setStateFire();
-        }
-    }
+   
     /*class MarioTakeDamage : Command<Avatar>
     {
         public MarioTakeDamage(Avatar control)

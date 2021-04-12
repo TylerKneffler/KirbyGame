@@ -18,7 +18,7 @@ namespace KirbyGame
 
         private Point frameSize;
         private int Time;
-        private int Delay;
+        public int Delay;
         int mod;
 
         public Point size
