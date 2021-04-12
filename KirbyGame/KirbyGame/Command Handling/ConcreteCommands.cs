@@ -11,31 +11,6 @@ using System.Diagnostics;
 namespace KirbyGame
 {
 
-    class PauseCommand : Command<Game1>
-    {
-        public PauseCommand(Game1 control)
-            : base(control)
-        {
-
-        }
-        public override void Execute()
-        {
-            control.pause();
-        }
-    }
-    class ExitCommand : Command<Game1>
-    {
-        public ExitCommand(Game1 control)
-            : base(control)
-        {
-
-        }
-        public override void Execute()
-        {
-            control.ExitCommand();
-        }
-    }
-
     class CoinBlockBump : Command<Block>
     {
         public CoinBlockBump(Block control)
@@ -237,62 +212,4 @@ namespace KirbyGame
             //control.marioFireBall();
         }
     }
-
-    class ToggleBoxes : Command<Game1>
-    {
-        public ToggleBoxes(Game1 control)
-            : base(control)
-        {
-
-        }
-
-        public override void Execute()
-        {
-            control.ToggleBoxesCommand();
-        }
-    }
-
-    class ResetLevel : Command<Game1>
-    {
-        public ResetLevel(Game1 control)
-            : base(control)
-        {
-
-        }
-
-        public override void Execute()
-        {
-            control.resetLevel();
-        }
-    }
-
-    class HardReset : Command<Game1>
-    {
-        public HardReset(Game1 control)
-            : base(control)
-        {
-
-        }
-
-        public override void Execute()
-        {
-            control.hardReset();
-        }
-    }
-
-    class ToggleMute : Command<Game1>
-    {
-        public ToggleMute(Game1 control)
-            : base(control)
-        {
-
-        }
-
-        public override void Execute()
-        {
-            control.ToggleMuteCommand();
-        }
-    }
-
-
 }

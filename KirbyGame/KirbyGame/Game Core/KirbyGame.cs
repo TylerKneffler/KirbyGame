@@ -23,7 +23,6 @@ namespace KirbyGame
 
         public LevelLoader levelLoader;
 
-        public Checkpoints checkpoints;
 
         public TileMap map;
 
@@ -42,12 +41,10 @@ namespace KirbyGame
         public Vector2 gameBounds;
 
         public Viewport _viewport;
-        public Hud Hud { get; set; }
         private bool isMuted = false;
         private Song soundtrack;
         public Boolean boundingBoxToggle;
         private Boolean isPaused = false;
-        public Points points;
 
 
 
@@ -75,8 +72,7 @@ namespace KirbyGame
 
             boundingBoxToggle = false;
             camera.Limits = new Rectangle(new Point(36, -32), new Point(210 * 32, 15 * 32));
-            Hud = new Hud(this);
-            points = new Points(Hud);
+
 
 
             base.Initialize();
@@ -103,7 +99,6 @@ namespace KirbyGame
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
 
-            checkpoints = new Checkpoints(mario, this);
             //levelLoader.Hud.NumberOfLives = mario.numLives;
             //hud = new Hud(mario);
             soundtrack = Content.Load<Song>("Super Mario Bros. Theme Song");
@@ -133,16 +128,9 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Y, new MakeMarioSmall(mario));
             KInput.addPressCommand(Keys.U, new MakeMarioSuper(mario));
             KInput.addPressCommand(Keys.I, new MakeMarioFire(mario));
-            KInput.addPressCommand(Keys.C, new ToggleBoxes(this));
-            KInput.addPressCommand(Keys.R, new ResetLevel(this));
 
-            //TEST COMMAND BELOW!!!
-            KInput.addPressCommand(Keys.Q, new HardReset(this));
 
-            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
-            KInput.addPressCommand(Keys.P, new PauseCommand(this));
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
-            KInput.addPressCommand(Keys.M, new ToggleMute(this));
 
             //Enemies
 
@@ -171,8 +159,7 @@ namespace KirbyGame
                 map.updateTileMap(levelLoader.list);
                 Collision.PotentialCollisions(levelLoader.list, map);
                 levelLoader.LevelUpdate(gameTime, camera, map);
-                Hud.Update(gameTime);
-                checkpoints.Update();
+
                 //Update entities
 
 
@@ -197,106 +184,8 @@ namespace KirbyGame
                 //Drawing Sprites
                 levelLoader.LevelDraw(spriteBatch);
                 spriteBatch.End();
-                Hud.Draw(spriteBatch);
                 base.Draw(gameTime);
             }
-        }
-        /// <summary>
-        ///Controller methods called when the player initiates a keypress linked to 
-        ///the associated view method which updates the sprite view value to appear onscreen
-        /// </summary
-
-        public void ExitCommand()
-        {
-            if (Hud.IsGameOver())
-            {
-                Exit();
-            }
-        }
-
-        public void ToggleBoxesCommand()
-        {
-            boundingBoxToggle = !boundingBoxToggle;
-        }
-
-        public void ToggleMuteCommand()
-        {
-            isMuted = !isMuted;
-            if (isMuted)
-            {
-                MediaPlayer.IsMuted = true;
-            }
-            else
-            {
-                MediaPlayer.IsMuted = false; ;
-            }
-        }
-
-        public void resetLevel()
-        {
-
-            if (Hud.IsGameOver())
-            {
-                // Put everything below in this if statement when ready to lose reset functionality except when game is over
-
-            }
-
-            levelLoader = new LevelLoader(this);
-
-            levelLoader.LevelInit(levelLoader.reader, this);
-
-
-            mario.position = levelLoader.getMario().position;
-            levelLoader.list.Remove(levelLoader.getMario());
-            levelLoader.list.Add(mario);
-
-            mario.setStateSmall();
-            mario.IsDead = false;
-            Hud.ResetTime();
-
-            map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
-            if (mario.Y > 12)
-                camera.Limits = new Rectangle(new Point(36, -32), new Point(210 * 32, 15 * 32));
-            else
-                camera.Limits = new Rectangle(new Point(32, 18 * 32), new Point(20 * 32, 13 * 32));
-            //mario = levelLoader.getMario();
-            map.Insert(levelLoader.list);
-            checkpoints.resetFromCheckpoint();
-
-        }
-
-        public void hardReset()
-        {
-            if (Hud.IsGameOver())
-            {
-                levelLoader = new LevelLoader(this);
-
-                levelLoader.LevelInit(levelLoader.reader, this);
-
-                mario.position = levelLoader.getMario().position;
-                levelLoader.list.Remove(levelLoader.getMario());
-                levelLoader.list.Add(mario);
-
-                mario.setStateSmall();
-                mario.IsDead = false;
-
-                map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
-                map.Insert(levelLoader.list);
-
-                checkpoints = new Checkpoints(mario, this);
-
-                Hud.ResetHud();
-
-                pause();
-            }
-        }
-        public void pause()
-        {
-            if (isPaused)
-                MediaPlayer.Resume();
-            else
-                MediaPlayer.Pause();
-            isPaused = !isPaused;
         }
 
     }

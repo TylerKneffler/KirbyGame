@@ -27,7 +27,7 @@ namespace KirbyGame
         {
             //CurrentState = this;
             this.previousState = prevState;
-            avatar.updateState();
+            avatar.UpdateSprite();
         }
 
         protected virtual void Exit()
@@ -49,56 +49,44 @@ namespace KirbyGame
         public void IdleTransition()
         {
             CurrentState.Exit();
-            CurrentState = new MarioIdleState(avatar);
+            CurrentState = new IdleState(avatar);
             CurrentState.Enter(this);
         }
 
-        public void CrouchingTransition()
+
+        public void RunningTransition()
         {
             CurrentState.Exit();
-            CurrentState = new MarioCrouchingState(avatar);
+            CurrentState = new RunningState(avatar);
             CurrentState.Enter(this);
         }
 
         public void JumpingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new MarioJumpingState(avatar);
+            CurrentState = new JumpingState(avatar);
             CurrentState.Enter(this);
         }
 
-        public void RunningTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new MarioRunningState(avatar);
-            CurrentState.Enter(this);
-        }
         public void FallingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new MarioFallingState(avatar);
+            CurrentState = new FallingState(avatar);
             CurrentState.Enter(this);
         }
 
-        public void TransitioningTransition(Transition transition)
+        public void FlippingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new MarioTransitioningState(avatar, transition);
-            CurrentState.Enter(this);
-        }
-
-        public void TransitionToPreviouState()
-        {
-            CurrentState.Exit();
-            CurrentState = this.previousState;
+            CurrentState = new FlippingState(avatar);
             CurrentState.Enter(this);
         }
 
     }
 
-    class MarioIdleState : ActionState
+    class IdleState : ActionState
     {
-        public MarioIdleState(Avatar avatar) : base(avatar)
+        public IdleState(Avatar avatar) : base(avatar)
         {
 
         }
@@ -106,51 +94,50 @@ namespace KirbyGame
 
         public override void Down()
         {
-            this.CrouchingTransition();
         }
 
         public override void HandleBlockCollision(Collision collision)
         {
-            
+
         }
 
         public override void Left()
         {
             if (avatar.Sprite.Direction == Sprite.eDirection.Right)
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
-            
+
             this.RunningTransition();
-            
+
         }
 
         public override void releaseDown()
         {
-            
+
         }
 
         public override void releaseLeft()
         {
-            
+
         }
 
         public override void releaseRight()
         {
-            
+
         }
 
         public override void releaseUp()
         {
-            
+
         }
 
         public override void Right()
         {
             if (avatar.Sprite.Direction == Sprite.eDirection.Left)
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
-            
+
             this.RunningTransition();
         }
-        
+
 
         public override void Up()
         {
@@ -170,308 +157,27 @@ namespace KirbyGame
 
     }
 
-    class MarioCrouchingState : ActionState
+
+
+    class RunningState : ActionState
     {
-        public MarioCrouchingState(Avatar avatar) : base(avatar)
+        public RunningState(Avatar avatar) : base(avatar)
         {
 
         }
 
         public override void Down()
         {
+
         }
 
         public override void HandleBlockCollision(Collision collision)
         {
             if (collision.CollisionDirection == Collision.Direction.Left || collision.CollisionDirection == Collision.Direction.Right)
             {
-                avatar.velocity.X = 0;
-                avatar.acceleration.X = 0;
-            }
-                
-        }
-
-        public override void Left()
-        {
-            avatar.Sprite.Direction = Sprite.eDirection.Left;
-        }
-
-        public override void releaseDown()
-        {
-            if (Math.Abs(avatar.velocity.X) < .1)
                 this.IdleTransition();
-            else
-                this.RunningTransition();
-        }
-
-        public override void releaseLeft()
-        {
-        }
-
-        public override void releaseRight()
-        {
-        }
-
-        public override void releaseUp()
-        {
-        }
-
-        public override void Right()
-        {
-            avatar.Sprite.Direction = Sprite.eDirection.Right;
-        }
-
-        public override void Up()
-        {
-            this.IdleTransition();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (avatar.velocity.Y > 0)
-            {
-                this.FallingTransition();
             }
-            if (Math.Abs(avatar.acceleration.X) == 0)
-            {
-                avatar.velocity.X = avatar.velocity.X *AvatarData.AVATAR_FRICTION;
-                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
-                    avatar.velocity.X = 0;
-            }
-            avatar.velocity.Y = 1;
-        }
-
-        protected override void Enter(ActionState prevState)
-        {
-            base.Enter(prevState);
-            if (avatar.powerState is MarioSuperState || avatar.powerState is MarioFireState)
-                avatar.Y = avatar.Y + AvatarData.LARGE_CROUCH_ADJUST;
-            avatar.acceleration.X = 0;
-        }
-
-        protected override void Exit()
-        {
-            base.Exit();
-            if (avatar.powerState is MarioSuperState || avatar.powerState is MarioFireState)
-                avatar.Y = avatar.Y - AvatarData.LARGE_CROUCH_ADJUST;
-        }
-    }
-
-    class MarioJumpingState : ActionState
-    {
-        private int Timer;
-        public MarioJumpingState(Avatar avatar) : base(avatar)
-        {
-            Timer = AvatarData.JUMP_MAX_TIME;
-        }
-
-        public override void Down()
-        {
-        }
-
-        public override void HandleBlockCollision(Collision collision)
-        {
-            if (collision.CollisionDirection == Collision.Direction.Down)
-            {
-                this.FallingTransition();
-                avatar.velocity.Y = 0;
-            } else if(collision.CollisionDirection != Collision.Direction.Up)
-            {
-                avatar.velocity.X = 0;
-                avatar.acceleration.X = 0;
-            }
-        }
-
-        public override void Left()
-        {
-            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
-        }
-
-        public override void releaseDown()
-        {
-        }
-
-        public override void releaseLeft()
-        {
-            avatar.acceleration.X = 0;
-        }
-
-        public override void releaseRight()
-        {
-            avatar.acceleration.X = 0;
-        }
-
-        public override void releaseUp()
-        {
-            this.FallingTransition();
-        }
-
-        public override void Right()
-        {
-            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
-        }
-
-        public override void Up()
-        {
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            
-            if (Math.Abs(avatar.acceleration.X) == 0)
-            {
-                avatar.velocity.X = avatar.velocity.X *AvatarData.AVATAR_FRICTION;
-                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
-                    avatar.velocity.X = 0;
-            }
-
-            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
-                avatar.Sprite.Direction = Sprite.eDirection.Left;
-            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
-                avatar.Sprite.Direction = Sprite.eDirection.Right;
-            if (Timer > 0)
-            {
-                Timer -= gameTime.ElapsedGameTime.Milliseconds;
-                if (Timer < 0)
-                {
-                    Timer = 0;
-                    this.FallingTransition();
-                }
-            }
-
-        }
-
-        protected override void Enter(ActionState prevState)
-        {
-            base.Enter(prevState);
-            avatar.velocity.Y = AvatarData.INIT_JUMP_VELOCITY;
-            if (this.avatar.powerState is MarioSmallState)
-            {
-                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-small");
-            }
-            else
-            {
-                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-super");
-            }
-            this.player.Play();
-        }
-        protected override void Exit()
-        {
-            base.Exit();
-        }
-
-    }
-
-    class MarioFallingState : ActionState
-    {
-        public MarioFallingState(Avatar avatar) : base (avatar)
-        {
-
-        }
-
-        public override void Down()
-        {
-        }
-
-        public override void HandleBlockCollision(Collision collision)
-        {
-            if(collision.CollisionDirection == Collision.Direction.Up)
-            {
-                if(Math.Abs(avatar.velocity.X) == 0)
-                {
-                    this.IdleTransition();
-                } else
-                {
-                    this.RunningTransition();
-                }
-            } else if(collision.CollisionDirection == Collision.Direction.Down)
-            {
-                avatar.velocity.Y = 0;
-            } else
-            {
-                avatar.velocity.X = 0;
-                avatar.acceleration.X = 0;
-            }
-        }
-
-        public override void Left()
-        {
-            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
-        }
-
-        public override void releaseDown()
-        {
-        }
-
-        public override void releaseLeft()
-        {
-            avatar.acceleration.X = 0;
-        }
-
-        public override void releaseRight()
-        {
-            avatar.acceleration.X = 0;
-        }
-
-        public override void releaseUp()
-        {
-        }
-
-        public override void Right()
-        {
-            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
-        }
-
-        public override void Up()
-        {
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (Math.Abs(avatar.acceleration.X) == 0)
-            {
-                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
-                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
-                    avatar.velocity.X = 0;
-            }
-
-            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
-                avatar.Sprite.Direction = Sprite.eDirection.Left;
-            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
-                avatar.Sprite.Direction = Sprite.eDirection.Right;
-        }
-
-        protected override void Enter(ActionState prevState)
-        {
-            base.Enter(prevState);
-            avatar.acceleration.Y = AvatarData.GRAVITY;
-        }
-
-        protected override void Exit()
-        {
-            base.Exit();
-        }
-
-    }
-
-    class MarioRunningState : ActionState
-    {
-        public MarioRunningState(Avatar avatar) : base(avatar)
-        {
-
-        }
-
-        public override void Down()
-        {
-            this.CrouchingTransition();
-        }
-
-        public override void HandleBlockCollision(Collision collision)
-        {
-            if(collision.CollisionDirection == Collision.Direction.Left || collision.CollisionDirection == Collision.Direction.Right)
-            {
-                this.IdleTransition();
-            } else if (collision.CollisionDirection == Collision.Direction.Up)
+            else if (collision.CollisionDirection == Collision.Direction.Up)
             {
                 /*avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;*/
@@ -517,7 +223,7 @@ namespace KirbyGame
         {
             if (avatar.velocity.Y > 0)
             {
-                this.FallingTransition();
+                //this.FallingTransition();
             }
             else if (Math.Abs(avatar.acceleration.X) == 0)
             {
@@ -525,7 +231,7 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
                     this.IdleTransition();
             }
-            avatar.velocity.Y = 1;
+            //avatar.velocity.Y = 1;
             if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
             else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
@@ -535,22 +241,21 @@ namespace KirbyGame
         protected override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
-            if(!(previousState is MarioFallingState) && !(previousState is MarioJumpingState))
+
+            if (avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
-                if (avatar.Sprite.Direction == Sprite.eDirection.Right)
-                {
-                    avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
-                    if (avatar.velocity.X < AvatarData.INIT_RUN_VELOCITY)
-                        avatar.velocity.X = AvatarData.INIT_RUN_VELOCITY;
-                }
-                else
-                {
-                    avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
-                    if (avatar.velocity.X > -AvatarData.INIT_RUN_VELOCITY)
-                        avatar.velocity.X = -AvatarData.INIT_RUN_VELOCITY;
-                }
+                avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                if (avatar.velocity.X < AvatarData.INIT_RUN_VELOCITY)
+                    avatar.velocity.X = AvatarData.INIT_RUN_VELOCITY;
             }
-            
+            else
+            {
+                avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                if (avatar.velocity.X > -AvatarData.INIT_RUN_VELOCITY)
+                    avatar.velocity.X = -AvatarData.INIT_RUN_VELOCITY;
+            }
+
+
             avatar.velocity.Y = 0;
             avatar.acceleration.Y = 0;
 
@@ -625,5 +330,314 @@ namespace KirbyGame
 
     }
 
+    class JumpingState : ActionState
+    {
+        private int Timer;
+        public JumpingState(Avatar avatar) : base(avatar)
+        {
+            Timer = AvatarData.JUMP_MAX_TIME;
+        }
 
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            if (collision.CollisionDirection == Collision.Direction.Down)
+            {
+                //this.FallingTransition();
+                avatar.velocity.Y = 0;
+            }
+            else if (collision.CollisionDirection != Collision.Direction.Up)
+            {
+                avatar.velocity.X = 0;
+                avatar.acceleration.X = 0;
+            }
+        }
+
+        public override void Left()
+        {
+            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseRight()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseUp()
+        {
+            //this.FallingTransition();
+        }
+
+        public override void Right()
+        {
+            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void Up()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+            if (Timer > 0)
+            {
+                Timer -= gameTime.ElapsedGameTime.Milliseconds;
+                if (Timer < 0)
+                {
+                    Timer = 0;
+                    this.FlippingTransition();
+                }
+            }
+
+        }
+        protected override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.velocity.Y = AvatarData.INIT_JUMP_VELOCITY;
+            /*if (this.avatar.powerState is MarioSmallState)
+            {
+                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-small");
+            }
+            else
+            {
+                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-super");
+            }
+            this.player.Play();*/
+        }
+        protected override void Exit()
+        {
+            base.Exit();
+        }
+
+
+    }
+
+    class FallingState : ActionState
+    {
+        public FallingState(Avatar avatar) : base(avatar)
+        {
+
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            if (collision.CollisionDirection == Collision.Direction.Up)
+            {
+                if (Math.Abs(avatar.velocity.X) == 0)
+                {
+                    this.IdleTransition();
+                }
+                else
+                {
+                    this.RunningTransition();
+                }
+            }
+            else if (collision.CollisionDirection == Collision.Direction.Down)
+            {
+                avatar.velocity.Y = 0;
+            }
+            else
+            {
+                avatar.velocity.X = 0;
+                avatar.acceleration.X = 0;
+            }
+        }
+
+        public override void Left()
+        {
+            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseRight()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseUp()
+        {
+        }
+
+        public override void Right()
+        {
+            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void Up()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+        }
+
+        protected override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.acceleration.Y = AvatarData.GRAVITY;
+        }
+
+        protected override void Exit()
+        {
+            base.Exit();
+        }
+
+
+
+    }
+
+
+    class FlippingState : ActionState
+    {
+        private int Time;
+        int textCount;
+        public FlippingState(Avatar avatar) : base(avatar)
+        {
+            Time = 0;
+            textCount = 3;
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            if (collision.CollisionDirection == Collision.Direction.Up)
+            {
+                if (Math.Abs(avatar.velocity.X) == 0)
+                {
+                    this.IdleTransition();
+                }
+                else
+                {
+                    this.RunningTransition();
+                }
+            }
+            else if (collision.CollisionDirection == Collision.Direction.Down)
+            {
+                avatar.velocity.Y = 0;
+            }
+            else
+            {
+                avatar.velocity.X = 0;
+                avatar.acceleration.X = 0;
+            }
+        }
+
+        public override void Left()
+        {
+            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseRight()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseUp()
+        {
+        }
+
+        public override void Right()
+        {
+            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void Up()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+            Time += gameTime.ElapsedGameTime.Milliseconds;
+            if (Time > SpriteData.DEFAULT_DELAY)
+            {
+                Time -= SpriteData.DEFAULT_DELAY;
+                textCount--;
+            }
+            if(textCount == 0)
+            {
+                this.FallingTransition();
+            }
+        }
+
+        protected override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.acceleration.Y = AvatarData.GRAVITY;
+        }
+
+        protected override void Exit()
+        {
+            base.Exit();
+        }
+    }
 }
