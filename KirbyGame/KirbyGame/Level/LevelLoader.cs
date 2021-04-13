@@ -11,7 +11,7 @@ namespace KirbyGame
 {
     public class LevelLoader
     {
-        private string level = @"C:\Users\Jackson Jiang\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml"; 
+        private string level = @"C:\Users\Tyler Kneffler\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml"; 
         public XmlTextReader reader;
         public List<Entity> list;
         private BlockFactory blockFactory;
@@ -135,23 +135,29 @@ namespace KirbyGame
                             location = new Vector2(int.Parse(Xpos), int.Parse(Ypos));
                             game.Hud.ExitPos = location;
                             break;
-                        case "MountainLayer":
+                        case "Level_1-1":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             Paral = reader.GetAttribute("Paral");
-                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("MountainLayer"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby Tree level 1-1"), new Vector2(int.Parse(Xpos)  , int.Parse(Ypos)  ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
-                        case "BushLayer":
+                        case "Level_1-2":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             Paral = reader.GetAttribute("Paral");
-                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("BushLayer"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby Tree level 1-2"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
-                        case "CloudLayer":
+                        case "Level_1-3":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             Paral = reader.GetAttribute("Paral");
-                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("CloudLayer"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby Tree level 1-3"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            break;
+                        case "Level_1-4":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            Paral = reader.GetAttribute("Paral");
+                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby Tree level 1-4"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
                         case "Size":
                             this.Xbound = int.Parse(reader.GetAttribute("XBound")) * 32;
@@ -165,30 +171,7 @@ namespace KirbyGame
                             list.Add(mario);
                             Debug.WriteLine("Creating mario at:" + Xpos + ", " + Ypos);
                             break;
-                        case "BrickBlock":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Coins = reader.GetAttribute("Coins");
-                            PowerUp = reader.GetAttribute("PowerUp");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.BRICK, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), int.Parse(Coins), int.Parse(PowerUp), 0));
-                            Debug.WriteLine("Creating BRICK at:" + Xpos + ", " + Ypos + "Coins: " + Coins + "PowerUp: " + PowerUp);
-                            break;
-                        case "QuestionBlock":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Coins = reader.GetAttribute("Coins");
-                            PowerUp = reader.GetAttribute("PowerUp");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.QUESTION, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), int.Parse(Coins), int.Parse(PowerUp),0));
-                            Debug.WriteLine("Creating QUESTION at:" + Xpos + ", " + Ypos + "Coins: " + Coins + "PowerUp: " + PowerUp);
-                            break;
-                        case "HiddenBlock":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Coins = reader.GetAttribute("Coins");
-                            PowerUp = reader.GetAttribute("PowerUp");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.HIDDEN, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), int.Parse(Coins), int.Parse(PowerUp),0));
-                            Debug.WriteLine("Creating HIDDEN at:" + Xpos + ", " + Ypos + "Coins: " + Coins + "PowerUp: " + PowerUp);
-                            break;
+                       
                         case "FloorBlock":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
@@ -206,105 +189,7 @@ namespace KirbyGame
                             }
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
-                        case "FloorBlue":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Length = reader.GetAttribute("Length");
-                            for (int i = 0; i < int.Parse(Length); i++)
-                            {
-                                list.Add(blockFactory.createBlock(Block.blocktypes.FLOORBLUE, new Vector2((int.Parse(Xpos) + i) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                                list.Add(blockFactory.createBlock(Block.blocktypes.FLOORBLUE, new Vector2((int.Parse(Xpos) + i) * 32, (int.Parse(Ypos) - 1) * 32), 0, 0,0));
-                            }
-                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "BrickBlockBlue":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Coins = reader.GetAttribute("Coins");
-                            PowerUp = reader.GetAttribute("PowerUp");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.BRICKBlUE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), int.Parse(Coins), int.Parse(PowerUp),0));
-                            Debug.WriteLine("Creating BRICK at:" + Xpos + ", " + Ypos + "Coins: " + Coins + "PowerUp: " + PowerUp);
-                            break;
-                        case "StairBlock":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating STAIR at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "UsedBlock":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.USED, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating Usedblock at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "OneUp":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Entity item = itemFactory.createItem(Item.eItemType.ONE_UP_MUSHROOM, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32));
-                            item.remove = false;
-                            list.Add(item);
-                            Debug.WriteLine("Creating Oneup at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Coin":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.COIN, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Coin at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "FireFlower":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.FIRE_FLOWER, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating FireFlower at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Star":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.STAR, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Star at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "SuperMushroom":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.SUPER_MUSHROOM, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Super at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Flag":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.FLAG, new Vector2(int.Parse(Xpos) * 32 - 17, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Flag at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Pole":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.POLE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Pole at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PoleTop":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(itemFactory.createItem(Item.eItemType.POLETOP, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Poletop at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Koopa":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.KOOPA, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32 - 16)));
-                            Debug.WriteLine("Creating Koopa at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Goomba":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.GOOMBA, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
-                            Debug.WriteLine("Creating Goomba at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Parana":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.PARANA, new Vector2(int.Parse(Xpos) * 32 +16, int.Parse(Ypos) * 32 )));
-                            Debug.WriteLine("Creating Goomba at:" + Xpos + ", " + Ypos);
-                            break;
+                        
                         case "RightStair":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
@@ -339,78 +224,7 @@ namespace KirbyGame
                             }
                             Debug.WriteLine("Creating Stair at:" + Xpos + ", " + Ypos);
                             break;
-                        case "PipeTop":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            PowerUp = reader.GetAttribute("PowerUp");
-                            Enemy = reader.GetAttribute("Enemy");
-                            Block pipe = blockFactory.createBlock(Block.blocktypes.PIPETOP, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, int.Parse(PowerUp), int.Parse(Enemy));
-                            list.Add(pipe);
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeTeleTop":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Block pipeteletop = blockFactory.createBlock(Block.blocktypes.PIPETELEPORTTOP, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0);
-                            pipeteletop.blocktype.Teleportation.X = int.Parse(reader.GetAttribute("XTele")) * 32 + 8;
-                            pipeteletop.blocktype.Teleportation.Y = int.Parse(reader.GetAttribute("YTele")) * 32;
-                            list.Add(pipeteletop);
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeTeleTopBonus":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Block pipeteletopbonus = blockFactory.createBlock(Block.blocktypes.PIPETELEPORTTOPBONUS, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0);
-                            pipeteletopbonus.blocktype.Teleportation.X = int.Parse(reader.GetAttribute("XTele")) * 32 + 8;
-                            pipeteletopbonus.blocktype.Teleportation.Y = int.Parse(reader.GetAttribute("YTele")) * 32;
-                            list.Add(pipeteletopbonus);
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeTeleSide":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Block pipeteleside = blockFactory.createBlock(Block.blocktypes.PIPETELEPORTSIDE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0);
-                            pipeteleside.blocktype.Teleportation.X = int.Parse(reader.GetAttribute("XTele")) * 32 + 8;
-                            pipeteleside.blocktype.Teleportation.Y = int.Parse(reader.GetAttribute("YTele")) * 32;
-                            list.Add(pipeteleside);
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeMiddle":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.PIPEMIDDLE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeSidways":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.PIPESIDWAYS, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeMiddleSidways":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.PIPEMIDDLESIDWAYS, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeRot":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.PIPEROT, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "PipeRightSide":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.PIPERIGHTSIDE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating PIPE at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "Castle":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.CASTLE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                            Debug.WriteLine("Creating Castle at:" + Xpos + ", " + Ypos);
-                            break;
+                        
                     }
                 }
             }

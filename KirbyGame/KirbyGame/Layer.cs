@@ -23,7 +23,6 @@ public class Layer
         _viewport = viewport;
         _layerSprites.Add(new Sprite(texture, location, 1));
         location.X += texture.Width * 2;//multipy by 2 to get full texture width
-        _layerSprites.Add(new Sprite(texture, location, 1));
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -37,23 +36,6 @@ public class Layer
     public void Update()
     {
 
-        for (int i = 0; i < _layerSprites.Count; i++)
-        {
-            float camDistTravRelToSprite = _camera.Position.X * Parallax.X;
-
-            int index = i - 1;
-            if (index < 0)
-            {
-                index = _layerSprites.Count - 1;
-            }
-            if (camDistTravRelToSprite + _viewport.Width > _layerSprites[i].location.X + _layerSprites[i].texture.size.X)//if right side of camera hits right edge of layer sprite
-            {
-                _layerSprites[index].location.X = _layerSprites[i].location.X + _layerSprites[i].texture.size.X;//move other layer sprite's left edge to current layer sprites right edge
-            }
-            else if (camDistTravRelToSprite < _layerSprites[i].location.X)//if left side of camera hits left edge of layer sprite
-            {
-                _layerSprites[index].location.X = _layerSprites[i].location.X - _layerSprites[i].texture.size.X;//move other layer sprite's right edge to current layer sprites left edge
-            }
-        }
+        
     }
 }

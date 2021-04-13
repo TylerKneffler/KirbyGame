@@ -111,6 +111,14 @@
     <Content Include="bin\Windows\x86\Debug\Level1.xml" />
     <Content Include="bin\Windows\x86\Debug\Level1Bonous.xml" />
     <Content Include="bin\Windows\x86\Debug\TestLevel.xml" />
+    <Content Include="Content\Kirby Tree level 1-1.png" />
+    <Content Include="Content\Kirby Tree level 1-2.png" />
+    <Content Include="Content\Kirby Tree level 1-3.png" />
+    <Content Include="Content\KirbyTreelevel_1-1.png" />
+    <Content Include="Content\KirbyTreelevel_1-2.png" />
+    <Content Include="Content\KirbyTreelevel_1-3.png" />
+    <Content Include="Content\KirbyTreelevel_1-4.png" />
+    <Content Include="Content\Level 1, Act 4 - Mephea.png" />
     <Content Include="Content\Level1.xml" />
     <Content Include="Content\Level1Bonous.xml" />
     <Content Include="Content\TestLevel.xml" />
