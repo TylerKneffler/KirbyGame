@@ -135,6 +135,12 @@ namespace KirbyGame
                             location = new Vector2(int.Parse(Xpos), int.Parse(Ypos));
                             game.Hud.ExitPos = location;
                             break;
+                        case "BackgroundHud":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            Paral = reader.GetAttribute("Paral");
+                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby hud"), new Vector2(int.Parse(Xpos), int.Parse(Ypos)), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            break;
                         case "Level_1-1":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");

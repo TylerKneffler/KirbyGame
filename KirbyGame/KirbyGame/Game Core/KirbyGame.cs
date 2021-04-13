@@ -54,6 +54,7 @@ namespace KirbyGame
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 496;
             Content.RootDirectory = "Content";
         }
 
@@ -67,7 +68,6 @@ namespace KirbyGame
         {
             // TODO: Add your initialization logic here
             KInput = new ControllerKeyboard();
-
             _viewport = GraphicsDevice.Viewport;
 
             camera = new Camera(_viewport);

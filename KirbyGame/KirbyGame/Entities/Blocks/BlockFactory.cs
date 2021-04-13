@@ -11,13 +11,10 @@ namespace KirbyGame
     class BlockFactory
     {
         private Game1 game;
-        private BlockImg blockTexture;
 
         public BlockFactory(Game1 game)
         {
             this.game = game;
-            blockTexture = new BlockImg();
-            blockTexture.load(game);
         }
 
         public Block createBlock(Block.blocktypes type, Vector2 location, int coins, int item, int enemy)

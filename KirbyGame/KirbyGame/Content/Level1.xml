@@ -74,18 +74,6 @@
     <Level_1-2 Xpos = "4064" Ypos = "0" Paral = "1"/>
 	</Layers>
 	<Hud>
-		<TimeLeft Time ="400" />
-		<PlayerSpritePos Xpos = "450" Ypos = "50" />
-		<CoinSpritePos Xpos = "100" Ypos = "50"/>
-		<CoinSpritePos Xpos = "225" Ypos = "55"/>
-		<CoinNumPos Xpos = "250" Ypos = "50"/>
-		<PlayerNamePos Xpos = "16" Ypos = "10" />
-		<LivesLeftPos Xpos = "480" Ypos = "50" />
-		<TimeStringPos Xpos = "640" Ypos = "10" />
-		<ScorePos Xpos = "16" Ypos = "50" />
-		<TimeRemainingPos Xpos = "650" Ypos = "50" />
-		<GameOverPos Xpos = "300" Ypos = "190" />
-		<ExitPos Xpos = "250" Ypos = "250" />
-		<RetryPos Xpos = "250" Ypos = "300" />
+    <BackgroundHud Xpos = "0" Ypos = "280" Paral = "0"/>
 	</Hud>
 </Level>
