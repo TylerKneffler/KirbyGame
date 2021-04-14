@@ -97,6 +97,18 @@
 /processorParam:TextureFormat=Color
 /build:BushLayer.png
 
+#begin CannonBall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:CannonBall.png
+
 #begin Castle1.gif
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -795,17 +807,11 @@
 /processorParam:TextureFormat=Color
 /build:SmileyWalk.png
 
-#begin SoundEffects/50 - Gunshot.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin SoundEffects/50 - Gunshot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundEffects/50 - Gunshot.mp3
-
-#begin SoundEffects/51 - Hit.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/51 - Hit.mp3
+/build:SoundEffects/50 - Gunshot.wav
 
 #begin SoundEffects/Kirby dream land theme song.mp3
 /importer:Mp3Importer

@@ -11,7 +11,6 @@ namespace KirbyGame
 {
     public class Fireball : Entity
     {
-        Random rand = new Random();
         bool explode;
         int delay;
         public Fireball(Sprite sprite, int direction, Game1 game) : base(sprite)
@@ -20,15 +19,15 @@ namespace KirbyGame
             defaultColor = Color.Yellow;
             boundingColor = defaultColor;
             explode = false;
-            base.acceleration = new Vector2(0, 1);
+            acceleration = new Vector2(0, 0);
             if (direction == 0)
             {
-                base.velocity = new Vector2(-5, -2);
+                velocity = new Vector2(-5, 0);
 
             }
             else
             {
-                base.velocity = new Vector2(5, -2);
+                velocity = new Vector2(5, 0);
             }
         }
 
@@ -45,7 +44,7 @@ namespace KirbyGame
         {
             if (explode && delay == 15)
             {
-                base.remove = true;
+                remove = true;
             }
             base.Update(gameTime);
         }
@@ -56,83 +55,24 @@ namespace KirbyGame
             collision.B.Timer = 180;
             collision.A.boundingColor = Color.Orange;
             collision.B.boundingColor = Color.Orange;
-            Rectangle intersection = Rectangle.Intersect(this.BoundingBox, collision.B.BoundingBox);
+            Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-            if (collider is Block)
+            if (collider is Block || collider is  EnemyTest || collider is Avatar)
             {
-                if (CollisionDirection == Collision.Direction.Down && !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
+               if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                 {
-                    base.velocity.Y = 0;
-                    Y = this.BoundingBox.Bottom;
+                    X = collision.B.BoundingBox.Left;
                 }
-                else if (CollisionDirection == Collision.Direction.Up && !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
+                if (collider is Avatar && CollisionDirection == Collision.Direction.Right)
                 {
-                    base.velocity.Y = base.velocity.Y * -1;
-                    Y = this.BoundingBox.Top - this.BoundingBox.Height + 1;
+                    X = collision.B.BoundingBox.Right;
                 }
-                else if (CollisionDirection == Collision.Direction.Right && !collision.collidedFromTop && !collision.collidedFromBottom && !(((Block)collider).blocktype is HiddenBlock) && !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
-                {
-                    if (rand.Next(1, 3) == 2)
-                    {
-
-                        base.velocity.X = base.velocity.X * -1;
-                        X = this.BoundingBox.Right;
-                    }
-                    else
-                    {
-                        explode = true;
-                        base.velocity = new Vector2(0, 0);
-                        base.acceleration = new Vector2(0, 0);
-                        base.boundingBoxSize = new Point(0, 0);
-                        this.Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
-                    }
-                }
-               else  if (CollisionDirection == Collision.Direction.Left && !collision.collidedFromTop && !collision.collidedFromBottom && !(((Block)collider).blocktype is HiddenBlock) && !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
-                {
-                    if (rand.Next(1, 3) == 2)
-                    {
-
-                        base.velocity.X = base.velocity.X * -1;
-                        X = collider.BoundingBox.Left;
-                    }
-                    else
-                    {
-                        explode = true;
-                        base.velocity = new Vector2(0, 0);
-                        base.acceleration = new Vector2(0, 0);
-                        base.boundingBoxSize = new Point(0, 0);
-                        this.Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
-                    }
-
-                }
-            }
-            else if (collider is EnemyTest)
-            {
+                boundingBoxSize = new Point(0, 0);
                 explode = true;
-                base.velocity = new Vector2(0, 0);
-                base.acceleration = new Vector2(0, 0);
-
-                base.boundingBoxSize = new Point(0, 0);
-                this.Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
-            }
-            else if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
-            {
-                explode = true;
-                base.velocity = new Vector2(0, 0);
-                base.acceleration = new Vector2(0, 0);
-                base.boundingBoxSize = new Point(0, 0);
-                base.X = collision.B.BoundingBox.Left;
-                this.Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
-            }
-            else if (collider is Avatar && CollisionDirection == Collision.Direction.Right)
-            {
-                explode = true;
-                base.velocity = new Vector2(0, 0);
-                base.acceleration = new Vector2(0, 0);
-                base.boundingBoxSize = new Point(0, 0);
-                base.X = collision.B.BoundingBox.Right;
-                this.Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
-            }
+                velocity = new Vector2(0, 0);
+                acceleration = new Vector2(0, 0);
+                Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
+            }        
         }
     }
 }

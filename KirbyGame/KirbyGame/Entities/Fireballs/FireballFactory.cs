@@ -21,9 +21,9 @@ namespace KirbyGame
 
         public Fireball createFireball(Vector2 location, int direction)
         {
-            this.player = this.game.Content.Load<SoundEffect>("SoundEffects/smb_fireball");
+            this.player = this.game.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
             this.player.Play();
-            return new Fireball(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("Fireball"), 4) , location), direction, game);
+            return new Fireball(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("CannonBall"), 1) , location), direction, game);
         }
 
 

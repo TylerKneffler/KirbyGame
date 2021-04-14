@@ -154,7 +154,7 @@ namespace KirbyGame
         {
             game.levelLoader.list.Add(itemFactory.createItem((Item.eItemType)item-1, new Vector2(this.anchor.X, this.anchor.Y-16)));
             this.player = this.game.Content.Load<SoundEffect>("SoundEffects/smb_powerup_appears");
-            this.player.Play();
+            //this.player.Play();
         //}
             if (base.boundingBoxSize.X > 32)
             {

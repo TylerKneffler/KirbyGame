@@ -35,7 +35,7 @@ namespace KirbyGame
             this.mario.game.camera.Limits = new Rectangle(new Point(36, -32), new Point(210 * 32, 15 * 32));
             this.mario.game.camera.LookAt(new Vector2(mario.position.X, mario.position.Y));
             tele = true;
-            this.player = this.mario.game.Content.Load<SoundEffect>("SoundEffects/smb_pipe");
+            //this.player = this.mario.game.Content.Load<SoundEffect>("SoundEffects/smb_pipe");
             this.player.Play();
         }
 
@@ -45,7 +45,7 @@ namespace KirbyGame
             mario.game.updateCamera = true;
             mario.actionState.FallingTransition();
             mario.game.checkpoints.currentRespawn = new Vector2(mario.X, mario.Y - 2);
-            this.player = this.mario.game.Content.Load<SoundEffect>("SoundEffects/smb_pipe");
+            //this.player = this.mario.game.Content.Load<SoundEffect>("SoundEffects/smb_pipe");
             this.player.Play();
             mario.Y -= 15;
         }
