@@ -55,6 +55,7 @@ namespace KirbyGame
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 496;
+            graphics.PreferredBackBufferHeight = graphics.PreferredBackBufferHeight-64;
             Content.RootDirectory = "Content";
         }
 
@@ -74,7 +75,7 @@ namespace KirbyGame
             levelLoader = new LevelLoader(this);
 
             boundingBoxToggle = false;
-            camera.Limits = new Rectangle(new Point(36, -32), new Point(210 * 32, 15 * 32));
+            camera.Limits = new Rectangle(new Point(36, -32), new Point(500 * 32, graphics.PreferredBackBufferHeight - 64));
             Hud = new Hud(this);
             points = new Points(Hud);
 

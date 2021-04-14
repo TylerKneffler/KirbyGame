@@ -166,8 +166,8 @@ namespace KirbyGame
                             _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby Tree level 1-4"), new Vector2(int.Parse(Xpos) , int.Parse(Ypos) ), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
                         case "Size":
-                            this.Xbound = int.Parse(reader.GetAttribute("XBound")) * 32;
-                            this.Ybound = int.Parse(reader.GetAttribute("YBound")) * 32;
+                            this.Xbound = int.Parse(reader.GetAttribute("XBound")) * 16;
+                            this.Ybound = int.Parse(reader.GetAttribute("YBound")) * 16;
                             Debug.WriteLine("Creating :" + Xbound + ", " + Ybound);
                             break;
                         case "Mario":
@@ -181,7 +181,7 @@ namespace KirbyGame
                         case "FloorBlock":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.FLOOR, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
+                            list.Add(blockFactory.createBlock(Block.blocktypes.FLOOR, new Vector2(int.Parse(Xpos), int.Parse(Ypos)), 0, 0,0));
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
                         case "Floor":
@@ -191,46 +191,9 @@ namespace KirbyGame
                             for (int i = 0; i < int.Parse(Length); i++)
                             {
                                 list.Add(blockFactory.createBlock(Block.blocktypes.FLOOR, new Vector2((int.Parse(Xpos) + i) * 32, int.Parse(Ypos) * 32), 0, 0,0));
-                                list.Add(blockFactory.createBlock(Block.blocktypes.FLOOR, new Vector2((int.Parse(Xpos) + i) * 32, (int.Parse(Ypos) - 1) * 32), 0, 0,0));
                             }
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
-                        
-                        case "RightStair":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Length = reader.GetAttribute("Length");
-                            Height = reader.GetAttribute("Height");
-                            for (int i = 0; i < int.Parse(Length); i++)
-                            { 
-                                for (int j = 0; j < int.Parse(Height); j++)
-                                {
-                                    if (j <= i)
-                                    {
-                                        list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2((int.Parse(Xpos) + i) * 32, (int.Parse(Ypos) - j) * 32), 0, 0,0));
-                                    }
-                                }
-                            }
-                            Debug.WriteLine("Creating Stair at:" + Xpos + ", " + Ypos);
-                            break;
-                        case "LeftStair":
-                            Xpos = reader.GetAttribute("Xpos");
-                            Ypos = reader.GetAttribute("Ypos");
-                            Length = reader.GetAttribute("Length");
-                            Height = reader.GetAttribute("Height");
-                            for (int i = 0; i < int.Parse(Length); i++)
-                            {
-                                for (int j = 0; j < int.Parse(Height); j++)
-                                {
-                                    if ( j < (int.Parse(Length) - i))
-                                    {
-                                        list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2((int.Parse(Xpos) + i) * 32, (int.Parse(Ypos) - j) * 32), 0, 0,0));
-                                    }
-                                }
-                            }
-                            Debug.WriteLine("Creating Stair at:" + Xpos + ", " + Ypos);
-                            break;
-                        
                     }
                 }
             }

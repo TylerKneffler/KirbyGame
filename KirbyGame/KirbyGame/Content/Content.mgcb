@@ -297,6 +297,18 @@
 /processorParam:TextureFormat=Color
 /build:Kirby hud.png
 
+#begin Kirby hud_32.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Kirby hud_32.png
+
 #begin Kirby Tree level 1-1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -308,6 +320,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-1.png
+
+#begin Kirby Tree level 1-1_32.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Kirby Tree level 1-1_32.png
 
 #begin Kirby Tree level 1-2.png
 /importer:TextureImporter
@@ -321,6 +345,18 @@
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-2.png
 
+#begin Kirby Tree level 1-2_32.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Kirby Tree level 1-2_32.png
+
 #begin Kirby Tree level 1-3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -333,6 +369,18 @@
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-3.png
 
+#begin Kirby Tree level 1-3_32.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Kirby Tree level 1-3_32.png
+
 #begin Kirby Tree level 1-4.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -344,6 +392,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-4.png
+
+#begin Kirby Tree level 1-4_32.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Kirby Tree level 1-4_32.png
 
 #begin koopa.png
 /importer:TextureImporter

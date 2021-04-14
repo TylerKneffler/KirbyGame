@@ -1,77 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-  <Size XBound ="235" YBound ="32"/>
+  <Size XBound ="350" YBound ="32"/>
   <Entities>
-    <Floor Xpos = "1" Ypos = "13" Length ="69"/>
-    <Mario Xpos ="2" Ypos = "11"></Mario>
+    <Mario Xpos ="2" Ypos = "3"></Mario>
+
+    <Floor Xpos = "1" Ypos = "8" Length ="20"/>
     
-    
-
-    <Parana Xpos ="28" Ypos ="10"/>
-    
-		<QuestionBlock Xpos ="17" Ypos ="8" Coins ="1" PowerUp ="0"/>
-		<QuestionBlock Xpos ="21" Ypos ="8" Coins ="1" PowerUp ="5"/>
-		<QuestionBlock Xpos ="23" Ypos ="8" Coins ="1" PowerUp ="0"/>
-		<QuestionBlock Xpos ="22" Ypos ="4" Coins ="1" PowerUp ="0"/>
-
-		<BrickBlock Xpos ="20" Ypos ="8" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="22" Ypos ="8" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="24" Ypos ="8" Coins ="0" PowerUp ="0"/>
-
-    
-
-		<HiddenBlock Xpos ="65" Ypos ="6" Coins ="1" PowerUp ="1"/>
-
-		<Floor Xpos = "72" Ypos = "13" Length ="15"/>
-
-		<QuestionBlock Xpos ="79" Ypos ="8" Coins ="1" PowerUp ="5"/>
-
-		<Goomba  Xpos ="81" Ypos ="11"/>
-		<Goomba  Xpos ="84" Ypos ="11"/>
+    <FloorBlock Xpos = "624" Ypos = "224"/>
+		<Floor Xpos = "20" Ypos = "7" Length ="45"/>
 
 
-		<BrickBlock Xpos ="78" Ypos ="8" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="80" Ypos ="8" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="81" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="82" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="83" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="84" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="85" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="86" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="87" Ypos ="4" Coins ="0" PowerUp ="0"/>
-		<BrickBlock Xpos ="88" Ypos ="4" Coins ="0" PowerUp ="0"/>
-
-		<Floor Xpos = "90" Ypos = "13" Length ="65"/>
+    <FloorBlock Xpos = "976" Ypos = "192"/>
+    <Floor Xpos = "31" Ypos = "6" Length ="10"/>
+    <FloorBlock Xpos = "1296" Ypos = "192"/>
 
 
-		<RightStair Xpos = "136" Ypos = "11" Length ="4" Height ="4"/>
+    <Floor Xpos = "60" Ypos = "8" Length ="20"/>
 
-		<LeftStair Xpos = "142" Ypos = "11" Length ="4" Height ="4"/>
 
-		<RightStair Xpos = "150" Ypos = "11" Length ="5" Height ="4"/>
+    <Floor Xpos = "79" Ypos = "7" Length ="28"/>
+    <FloorBlock Xpos = "3408" Ypos = "192" Length ="1"/>
+    <Floor Xpos = "107" Ypos = "6" Length ="12"/>
+    <FloorBlock Xpos = "3824" Ypos = "192" Length ="1"/>
+    <FloorBlock Xpos = "3824" Ypos = "160" Length ="1"/>
+    <Floor Xpos = "120" Ypos = "5" Length ="12"/>
+    <FloorBlock Xpos = "4208" Ypos = "160" Length ="1"/>
+    <FloorBlock Xpos = "4240" Ypos = "224" Length ="1"/>
+    <Floor Xpos = "133" Ypos = "7" Length ="6"/>
+    <FloorBlock Xpos = "4432" Ypos = "224" Length ="1"/>
+    <FloorBlock Xpos = "4496" Ypos = "192" Length ="1"/>
+    <Floor Xpos = "141" Ypos = "6" Length ="6"/>
+    <FloorBlock Xpos = "4688" Ypos = "192" Length ="1"/>
+    <FloorBlock Xpos = "4752" Ypos = "224" Length ="1"/>
+    <Floor Xpos = "149" Ypos = "7" Length ="9"/>
 
-		<Floor Xpos = "157" Ypos = "13" Length ="55"/>
-
-		<LeftStair Xpos = "157" Ypos = "11" Length ="4" Height ="4"/>
-
-		
-		
-		
-
-		
-
-		<RightStair Xpos = "184" Ypos = "11" Length ="9" Height ="8"/>
-
-		<StairBlock Xpos = "201" Ypos = "11"/>
-		
-
-    <FloorBlue Xpos = "1" Ypos = "32" Length ="26"/>
-    
+    <Floor Xpos = "159" Ypos = "8" Length ="15"/>
     
 	</Entities>
 	<Layers>
-		<Level_1-1 Xpos = "0" Ypos = "-48" Paral = "1"/>
-    <Level_1-2 Xpos = "4064" Ypos = "0" Paral = "1"/>
+		<Level_1-1 Xpos = "0" Ypos = "-32" Paral = "1"/>
+    <Level_1-2 Xpos = "2032" Ypos = "-768" Paral = "1"/>
+    <Level_1-3 Xpos = "2528" Ypos = "-32" Paral = "1"/>
+    <Level_1-4 Xpos = "5086" Ypos = "-436" Paral = "1"/>
 	</Layers>
 	<Hud>
     <BackgroundHud Xpos = "0" Ypos = "280" Paral = "0"/>
