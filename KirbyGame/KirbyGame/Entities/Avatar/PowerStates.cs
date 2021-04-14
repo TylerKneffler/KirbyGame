@@ -146,7 +146,7 @@ namespace KirbyGame
 
         protected override void Enter(PowerState previousState)
         {
-            this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_mariodie");
+            this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/kirby-death-sound");
             this.player.Play();
             base.Enter(previousState);
             if (previousState is MarioSuperState || previousState is MarioFireState)

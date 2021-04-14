@@ -285,6 +285,12 @@
 /processorParam:Quality=Best
 /build:Kirby dream land theme song.mp3
 
+#begin kirby-death-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:kirby-death-sound.wav
+
 #begin koopa.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -789,11 +795,29 @@
 /processorParam:TextureFormat=Color
 /build:SmileyWalk.png
 
+#begin SoundEffects/50 - Gunshot.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/50 - Gunshot.mp3
+
+#begin SoundEffects/51 - Hit.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/51 - Hit.mp3
+
 #begin SoundEffects/Kirby dream land theme song.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/Kirby dream land theme song.mp3
+
+#begin SoundEffects/kirby-death-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/kirby-death-sound.wav
 
 #begin SoundEffects/smb_1-up.wav
 /importer:WavImporter

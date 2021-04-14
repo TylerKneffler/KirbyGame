@@ -347,13 +347,13 @@ namespace KirbyGame
             avatar.velocity.Y = AvatarData.INIT_JUMP_VELOCITY;
             if (this.avatar.powerState is MarioSmallState)
             {
-                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-small");
+                //this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-small");
             }
             else
             {
-                this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-super");
+                //this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-super");
             }
-            this.player.Play();
+            //this.player.Play();
         }
         protected override void Exit()
         {
