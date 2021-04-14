@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace KirbyGame
 {
@@ -147,6 +148,7 @@ namespace KirbyGame
         protected override void Enter(PowerState previousState)
         {
             this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/kirby-death-sound");
+            MediaPlayer.IsMuted = true;
             this.player.Play();
             base.Enter(previousState);
             if (previousState is MarioSuperState || previousState is MarioFireState)

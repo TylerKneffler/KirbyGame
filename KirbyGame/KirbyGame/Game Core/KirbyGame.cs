@@ -262,6 +262,7 @@ namespace KirbyGame
             //mario = levelLoader.getMario();
             map.Insert(levelLoader.list);
             checkpoints.resetFromCheckpoint();
+            MediaPlayer.IsMuted = false;
 
         }
 
