@@ -10,6 +10,8 @@ namespace KirbyGame
 
         protected EnemyTest enemy;
         protected int points;
+        
+
 
         public EnemytypeTest(EnemyTest enemy)
         {

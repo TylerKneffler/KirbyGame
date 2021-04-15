@@ -97,7 +97,7 @@ namespace KirbyGame
                 }
             }
             //Fireball + Enemy Collisions
-            else if ((collision.A is Fireball || collision.B is Fireball) && (collision.A is EnemyTest || collision.B is EnemyTest))
+            else if ((collision.A is Cannonball || collision.B is Cannonball) && (collision.A is EnemyTest || collision.B is EnemyTest))
             {
                 hud.pointTotal += 100;
             }
