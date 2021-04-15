@@ -9,6 +9,19 @@
     <FloorBlock Xpos = "624" Ypos = "224"/>
 		<Floor Xpos = "20" Ypos = "7" Length ="45"/>
 
+    <FloorBlock Xpos = "32" Ypos = "32"/>
+    <FloorBlock Xpos = "48" Ypos = "32"/>
+
+    <FloorBlock Xpos = "32" Ypos = "192"/>
+    <FloorBlock Xpos = "16" Ypos = "224"/>
+
+    <FloorBlock Xpos = "112" Ypos = "160"/>
+    <FloorBlock Xpos = "112" Ypos = "192"/>
+    <FloorBlock Xpos = "112" Ypos = "224"/>
+    <FloorBlock Xpos = "144" Ypos = "192"/>
+    <FloorBlock Xpos = "176" Ypos = "192"/>
+    <FloorBlock Xpos = "176" Ypos = "224"/>
+    <FloorBlock Xpos = "208" Ypos = "224"/>
 
     <FloorBlock Xpos = "976" Ypos = "192"/>
     <Floor Xpos = "31" Ypos = "6" Length ="10"/>
@@ -17,6 +30,17 @@
 
     <Floor Xpos = "60" Ypos = "8" Length ="20"/>
 
+    <FloorBlock Xpos = "1746" Ypos = "192"/>
+    <FloorBlock Xpos = "1778" Ypos = "160"/>
+    <FloorBlock Xpos = "1810" Ypos = "128"/>
+    <FloorBlock Xpos = "1842" Ypos = "128"/>
+    <FloorBlock Xpos = "1874" Ypos = "128"/>
+    <FloorBlock Xpos = "1874" Ypos = "160"/>
+    <FloorBlock Xpos = "1874" Ypos = "192"/>
+
+    <FloorBlock Xpos = "1938" Ypos = "160"/>
+    <FloorBlock Xpos = "1938" Ypos = "192"/>
+    <FloorBlock Xpos = "1970" Ypos = "192"/>
 
     <Floor Xpos = "79" Ypos = "7" Length ="28"/>
     <FloorBlock Xpos = "3408" Ypos = "192" Length ="1"/>

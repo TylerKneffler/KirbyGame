@@ -75,7 +75,7 @@ namespace KirbyGame
             levelLoader = new LevelLoader(this);
 
             boundingBoxToggle = false;
-            camera.Limits = new Rectangle(new Point(36, -32), new Point(500 * 32, graphics.PreferredBackBufferHeight - 64));
+            camera.Limits = new Rectangle(new Point(36, -32), new Point(62 * 32, graphics.PreferredBackBufferHeight - 64));
             Hud = new Hud(this);
             points = new Points(Hud);
 
