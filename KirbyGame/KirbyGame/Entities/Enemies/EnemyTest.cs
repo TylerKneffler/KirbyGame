@@ -20,7 +20,7 @@ namespace KirbyGame
 
         public enum enemytypes
         {
-            GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA
+            GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO
         }
 
         public EnemyTest(enemytypes enemyType, Vector2 location, Game1 game)
@@ -43,9 +43,9 @@ namespace KirbyGame
             {
                 enemytype = new KoopaTest(this, location, direction); 
             }
-            else if (enemyType == enemytypes.PARANA)
+            else if (enemyType == enemytypes.SHOTZO)
             {
-                enemytype = new ParanaTest(this, location);
+                enemytype = new ShotzoTest(this, location, direction, game);
             }
             else if (enemyType == enemytypes.DEAD_PARANA)
             {

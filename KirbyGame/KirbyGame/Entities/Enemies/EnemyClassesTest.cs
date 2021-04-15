@@ -23,42 +23,42 @@ namespace KirbyGame
             //Avatar collision
             if (collider is Avatar)
             {
-                if(CollisionDirection == Collision.Direction.Down)
+                if (CollisionDirection == Collision.Direction.Down)
                 {
                     this.enemy.SquishGoombaStateChange();
-                    
+
                 }
             }
 
             //Block collision
-            else if(collider is Block)
+            else if (collider is Block)
             {
-                if(CollisionDirection == Collision.Direction.Left)
+                if (CollisionDirection == Collision.Direction.Left)
                 {
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
 
                 }
-                else if(CollisionDirection == Collision.Direction.Right)
+                else if (CollisionDirection == Collision.Direction.Right)
                 {
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
 
                 }
             }
             //Enemies NOT Shell
-            else if(collider is EnemyTest && !(((EnemyTest)collider).enemytype is KoopaShellTest))
+            else if (collider is EnemyTest && !(((EnemyTest)collider).enemytype is KoopaShellTest))
             {
-                if(CollisionDirection == Collision.Direction.Left)
+                if (CollisionDirection == Collision.Direction.Left)
                 {
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
                 }
-                else if(CollisionDirection == Collision.Direction.Right)
-                    {
-                        this.enemy.velocity.X = this.enemy.velocity.X * -1;
-                    }
+                else if (CollisionDirection == Collision.Direction.Right)
+                {
+                    this.enemy.velocity.X = this.enemy.velocity.X * -1;
+                }
             }
 
             //Enemies Shell
-            else if(collider is EnemyTest && ((EnemyTest)collider).enemytype is KoopaShellTest)
+            else if (collider is EnemyTest && ((EnemyTest)collider).enemytype is KoopaShellTest)
             {
                 if (collider.velocity.X == 0 && CollisionDirection == Collision.Direction.Left)
                 {
@@ -79,9 +79,9 @@ namespace KirbyGame
                     this.enemy.DeadGoombaStateChange();
                 }
             }
-            
+
             //Fireball Collision
-            else if(collider is Cannonball)
+            else if (collider is Cannonball)
             {
                 this.enemy.DeadGoombaStateChange();
             }
@@ -111,7 +111,7 @@ namespace KirbyGame
             {
                 base.Update(gameTime);
 
-               if(enemy.Y < startY - 40)
+                if (enemy.Y < startY - 40)
                 {
                     enemy.Y = startY - 40;
                 }
@@ -140,7 +140,7 @@ namespace KirbyGame
         public override void HandleCollision(Collision collision, Entity collider)
         {
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this.enemy);
-           
+
             //Enemies NOT Shell
             if (collider is EnemyTest && !(((EnemyTest)collider).enemytype is KoopaShellTest))
             {
@@ -241,7 +241,7 @@ namespace KirbyGame
             {
                 if (CollisionDirection == Collision.Direction.Left)
                 {
- 
+
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
                     if (this.enemy.Sprite.Direction == Sprite.eDirection.Left)
                     {
@@ -252,7 +252,7 @@ namespace KirbyGame
                         this.enemy.Sprite.Direction = Sprite.eDirection.Left;
                     }
                 }
-                else if (CollisionDirection  == Collision.Direction.Right)
+                else if (CollisionDirection == Collision.Direction.Right)
                 {
 
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
@@ -314,7 +314,7 @@ namespace KirbyGame
 
         private int timer = 0;
         private int secondTimer = 0;
-   
+
 
         public KoopaShellTest(EnemyTest enemy, Vector2 location, Sprite.eDirection direction) : base(enemy)
         {
@@ -330,7 +330,7 @@ namespace KirbyGame
             if (collider is Avatar)
             {
                 Debug.WriteLine("Velocity is " + this.enemy.velocity.X);
-                if(CollisionDirection == Collision.Direction.Right && this.enemy.velocity.X == 0)
+                if (CollisionDirection == Collision.Direction.Right && this.enemy.velocity.X == 0)
                 {
                     Debug.WriteLine("Increasing velocity");
                     base.enemy.velocity.X = -2;
@@ -360,7 +360,7 @@ namespace KirbyGame
             }
 
             //Fireball Collisions
-            else if(collider is Cannonball)
+            else if (collider is Cannonball)
             {
                 this.enemy.DeadKoopaShellStateChange();
             }
@@ -369,23 +369,23 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
-            if(timer > 500 && this.enemy.velocity.X == 0)
+            if (timer > 500 && this.enemy.velocity.X == 0)
             {
                 this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("koopaemerging"), 1), new Vector2(this.enemy.X, this.enemy.Y - 1));
-                if(secondTimer > 150)
+                if (secondTimer > 150)
                 {
                     this.enemy.ShellStateChange();
                     this.enemy.velocity.X = -1;
                 }
                 secondTimer++;
-                if(this.enemy.velocity.X != 0)
+                if (this.enemy.velocity.X != 0)
                 {
                     timer = 0;
                     secondTimer = 0;
                 }
             }
             timer++;
-            if(this.enemy.velocity.X != 0)
+            if (this.enemy.velocity.X != 0)
             {
                 timer = 0;
             }
@@ -653,7 +653,72 @@ namespace KirbyGame
             }
         }
 
+
+
+
+
     }
+    class ShotzoTest : EnemytypeTest
+    {
+        public int timer = 0;
+        public int delay = 0;
+        public bool shoot = false;
+        int startY;
+        private Vector2 _location;
+        private Game1 kirbyGame;
+        CannonballFactory cannonballFactory;
+        public ShotzoTest(EnemyTest enemy, Vector2 location, Sprite.eDirection direction,Game1 game) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoright"), 1), location);
+            enemy.velocity.X = 0;
+            enemy.updateNull = false;
+            cannonballFactory = new CannonballFactory(game);
+            kirbyGame = game;
+            //startY = enemy.Y;
+            _location = location;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            delay++;
+            if(delay > 100)
+            {
+                kirbyGame.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X + 16, _location.Y), (int)Sprite.eDirection.Right));
+                delay = 0;
+            }
+            timer += gameTime.ElapsedGameTime.Milliseconds;
+            enemy.acceleration.Y = 0;
+            if (enemy.seen)
+            {
+                base.Update(gameTime);
+
+                //if (enemy.Y < startY - 40)
+                //{
+                //    enemy.Y = startY - 40;
+                //}
+                //if (enemy.Y > startY)
+                //{
+                //    enemy.Y = startY;
+                //}
+                //if (timer > 5000)
+                //    if (enemy.game.levelLoader.getMario().X - enemy.X > 50 || enemy.game.levelLoader.getMario().X - enemy.X < -50)
+                //    {
+                //        {
+                //            if (enemy.velocity.Y == -1)
+                //                enemy.velocity.Y = 1;
+                //            else if (enemy.velocity.Y == 1)
+                //            {
+                //                enemy.velocity.Y = -1;
+                //            }
+                //            timer = 0;
+                //        }
+                    //}
+            }
+            
+        }
+     
+    
 
 
+    }
 }

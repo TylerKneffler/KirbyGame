@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System;
+using System.Linq;
 
 namespace KirbyGame
 {
@@ -16,6 +17,9 @@ namespace KirbyGame
         public List<Entity> list;
         private BlockFactory blockFactory;
         private ItemFactory itemFactory;
+        private CannonballFactory cannonballFactory;
+        private int delay = 0;
+
         //private EnemyFactory enemyFactory;
         private EnemyFactoryTest enemyFactoryTest;
         public int Xbound;
@@ -38,6 +42,7 @@ namespace KirbyGame
             reader.WhitespaceHandling = WhitespaceHandling.None;
             list = new List<Entity>();
             blockFactory = new BlockFactory(game);
+            cannonballFactory = new CannonballFactory(game);
             itemFactory = new ItemFactory(game);
             //enemyFactory = new EnemyFactory(game);
             enemyFactoryTest = new EnemyFactoryTest(game);
@@ -302,7 +307,7 @@ namespace KirbyGame
                         case "Parana":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
-                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.PARANA, new Vector2(int.Parse(Xpos) * 32 +16, int.Parse(Ypos) * 32 )));
+                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.SHOTZO, new Vector2(int.Parse(Xpos) * 32 +16, int.Parse(Ypos) * 32 )));
                             Debug.WriteLine("Creating Goomba at:" + Xpos + ", " + Ypos);
                             break;
                         case "RightStair":
@@ -421,7 +426,7 @@ namespace KirbyGame
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
             List<Entity> copy = new List<Entity>();
-            foreach (Entity entity in list){
+            foreach (Entity entity in list.ToList()){
                 entity.Update(gameTime);
                 copy.Add(entity);
             }
@@ -445,7 +450,7 @@ namespace KirbyGame
                     {
                         ((EnemyTest)entity).seen = true;
                     }
-
+                    
                 }
                 else if(entity is Block)
                 {
@@ -473,6 +478,8 @@ namespace KirbyGame
 
             //Hud.Update(gameTime);
         }
+
+       
 
         public void LevelDraw(SpriteBatch spriteBatch)
         {
