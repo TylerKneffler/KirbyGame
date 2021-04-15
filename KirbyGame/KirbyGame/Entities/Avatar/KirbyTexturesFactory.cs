@@ -16,7 +16,7 @@ namespace KirbyGame
         public enum spriteType
         {
             EMPTY_IDLE, EMPTY_RUNNING, EMPTY_JUMPING, EMPTY_FLIPPING, EMPTY_FALLING, EMPTY_FLYING, EMPTY_SUCKING_POWER,
-            FULL_IDLE, FULL_RUNNING, FULL_FLOATING, FULL_FLYING, FULL_EMPTYING
+            FULL_IDLE, FULL_RUNNING, FULL_FLOATING, FULL_FLYING, FULL_EMPTYING, FULL_JUMPING
         }
 
         public KirbyTexturesFactory(Avatar kirby)
@@ -86,15 +86,29 @@ namespace KirbyGame
                 case spriteType.FULL_FLOATING:
                     {
                         TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(99, 75, 24, 24), 1);
-                        details.AddFrame(new Rectangle(26, 83, 16, 16));
+                        details.AddFrame(new Rectangle(127, 75, 24, 24));
                         textureList.Add(type, details);
                         break;
                     }
                 case spriteType.FULL_FLYING:
                     {
                         TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(99, 75, 24, 24), 1);
-                        details.AddFrame(new Rectangle(26, 83, 16, 16));
+                        details.AddFrame(new Rectangle(127, 75, 24, 24));
                         details.Delay = details.Delay / 2;
+                        textureList.Add(type, details);
+                        break;
+                    }
+                case spriteType.FULL_JUMPING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(96, 107, 24, 24), 1);
+                        details.AddFrame(new Rectangle(124, 107, 24, 24));
+                        details.AddFrame(new Rectangle(152, 107, 24, 24));
+                        textureList.Add(type, details);
+                        break;
+                    }
+                case spriteType.FULL_IDLE:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(63, 107, 24, 24), 1);
                         textureList.Add(type, details);
                         break;
                     }
@@ -106,48 +120,51 @@ namespace KirbyGame
         public static spriteType generateSpriteEnum(ActionState action, SwallowState swallowed)
         {
             spriteType ret = 0;
-            if(swallowed is EmptySwallowState)
+            if (swallowed is EmptySwallowState)
             {
-                if (action is IdleState)
+                if (action is EmptyIdleState)
                 {
                     ret = spriteType.EMPTY_IDLE;
-                } else if (action is RunningState)
+                } else if (action is EmptyRunningState)
                 {
                     ret = spriteType.EMPTY_RUNNING;
-                } else if (action is JumpingState)
+                } else if (action is EmptyJumpingState)
                 {
                     ret = spriteType.EMPTY_JUMPING;
                 }
-                else if (action is FallingState)
+                else if (action is EmptyFallingState)
                 {
                     ret = spriteType.EMPTY_FALLING;
                 }
-                else if (action is FlippingState)
+                else if (action is EmptyFlippingState)
                 {
                     ret = spriteType.EMPTY_FLIPPING;
                 }
-                else if (action is FlyingState)
+                else if (action is EmptyFlyingState)
                 {
                     ret = spriteType.EMPTY_FLYING;
                 }
-            }
-            else if(swallowed is AirSwallowState)
+            } else if (swallowed is AirSwallowState)
             {
-                if (action is IdleState)
+                if (action is AirFloatingState)
                 {
                     ret = spriteType.FULL_FLOATING;
-                }
-                else if (action is RunningState)
-                {
-                    ret = spriteType.FULL_FLOATING;
-                }
-                else if (action is JumpingState)
+                } else if (action is AirFlyingState)
                 {
                     ret = spriteType.FULL_FLYING;
                 }
-                else if (action is FlyingState)
+            } else if(swallowed is FullSwallowState)
+            {
+                if(action is FullIdleState)
                 {
-                    ret = spriteType.FULL_FLYING;
+                    ret = spriteType.FULL_IDLE;
+                } else if(action is FullRunningState)
+                {
+                    //Running and Jumping Sprites are the same
+                    ret = spriteType.FULL_JUMPING;
+                } else if(action is FullJumpingState)
+                {
+                    ret = spriteType.FULL_JUMPING;
                 }
             }
             return ret;

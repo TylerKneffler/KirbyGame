@@ -10,49 +10,18 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    abstract public class ActionState
+
+    public abstract class EmptyActionState : ActionState
     {
-        public Avatar avatar;
-        protected ActionState previousState;
-        protected ActionState CurrentState { get { return avatar.actionState; } set { avatar.actionState = value; } }
-        protected SoundEffect player;
-
-
-        public ActionState(Avatar avatar)
-        {
-            this.avatar = avatar;
-        }
-
-        protected virtual void Enter(ActionState prevState)
-        {
-            //CurrentState = this;
-            this.previousState = prevState;
-            avatar.UpdateSprite();
-        }
-
-        protected virtual void Exit()
+        public EmptyActionState(SwallowState owner) : base(owner)
         {
 
         }
-        public abstract void Left();
-        public abstract void Right();
-        public abstract void Jump();
-        public abstract void Down();
-        public abstract void Float();
-
-        public abstract void ReleaseFloat();
-
-        public abstract void releaseLeft();
-        public abstract void releaseRight();
-        public abstract void releaseJump();
-        public abstract void releaseDown();
-        public abstract void Update(GameTime gameTime);
-        public abstract void HandleBlockCollision(Collision collision);
 
         public void IdleTransition()
         {
             CurrentState.Exit();
-            CurrentState = new IdleState(avatar);
+            CurrentState = new EmptyIdleState(owner);
             CurrentState.Enter(this);
         }
 
@@ -60,43 +29,41 @@ namespace KirbyGame
         public void RunningTransition()
         {
             CurrentState.Exit();
-            CurrentState = new RunningState(avatar);
+            CurrentState = new EmptyRunningState(owner);
             CurrentState.Enter(this);
         }
 
         public void JumpingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new JumpingState(avatar);
+            CurrentState = new EmptyJumpingState(owner);
             CurrentState.Enter(this);
         }
 
         public void FallingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new FallingState(avatar);
+            CurrentState = new EmptyFallingState(owner);
             CurrentState.Enter(this);
         }
 
         public void FlippingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new FlippingState(avatar);
+            CurrentState = new EmptyFlippingState(owner);
             CurrentState.Enter(this);
         }
 
         public void FlyingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new FlyingState(avatar);
+            CurrentState = new EmptyFlyingState(owner);
             CurrentState.Enter(this);
         }
-
     }
-
-    class IdleState : ActionState
+    class EmptyIdleState : EmptyActionState
     {
-        public IdleState(Avatar avatar) : base(avatar)
+        public EmptyIdleState(SwallowState owner) : base(owner)
         {
 
         }
@@ -158,7 +125,7 @@ namespace KirbyGame
         {
         }
 
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
             avatar.velocity = new Vector2();
@@ -178,9 +145,9 @@ namespace KirbyGame
 
 
 
-    class RunningState : ActionState
+    class EmptyRunningState : EmptyActionState
     {
-        public RunningState(Avatar avatar) : base(avatar)
+        public EmptyRunningState(SwallowState owner) : base(owner)
         {
 
         }
@@ -257,11 +224,11 @@ namespace KirbyGame
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
         }
 
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
 
-            if (!(previousState is FallingState) && !(previousState is JumpingState) && !(previousState is FlippingState))
+            if (!(previousState is EmptyFallingState) && !(previousState is EmptyJumpingState) && !(previousState is EmptyFlippingState))
             {
                 if (avatar.Sprite.Direction == Sprite.eDirection.Right)
                 {
@@ -283,7 +250,7 @@ namespace KirbyGame
 
         }
 
-        protected override void Exit()
+        public override void Exit()
         {
             base.Exit();
         }
@@ -299,7 +266,7 @@ namespace KirbyGame
 
     }
 
-    class MarioTransitioningState : ActionState
+    /*class MarioTransitioningState : ActionState
     {
         private Transition transition;
         public MarioTransitioningState(Avatar avatar, Transition transition) : base(avatar)
@@ -369,12 +336,12 @@ namespace KirbyGame
 
         }
 
-    }
+    }*/
 
-    class JumpingState : ActionState
+    class EmptyJumpingState : EmptyActionState
     {
         private int Timer;
-        public JumpingState(Avatar avatar) : base(avatar)
+        public EmptyJumpingState(SwallowState owner) : base(owner)
         {
             Timer = AvatarData.JUMP_MAX_TIME;
         }
@@ -418,6 +385,7 @@ namespace KirbyGame
 
         public override void releaseJump()
         {
+            //add flip transition
             //this.FallingTransition();
         }
 
@@ -455,7 +423,7 @@ namespace KirbyGame
             }
 
         }
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
             avatar.velocity.Y = AvatarData.INIT_JUMP_VELOCITY;
@@ -469,7 +437,7 @@ namespace KirbyGame
             }
             this.player.Play();*/
         }
-        protected override void Exit()
+        public override void Exit()
         {
             base.Exit();
         }
@@ -487,9 +455,9 @@ namespace KirbyGame
 
     }
 
-    class FallingState : ActionState
+    class EmptyFallingState : EmptyActionState
     {
-        public FallingState(Avatar avatar) : base(avatar)
+        public EmptyFallingState(SwallowState owner) : base(owner)
         {
 
         }
@@ -569,13 +537,13 @@ namespace KirbyGame
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
         }
 
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
             avatar.acceleration.Y = AvatarData.GRAVITY;
         }
 
-        protected override void Exit()
+        public override void Exit()
         {
             base.Exit();
         }
@@ -595,11 +563,11 @@ namespace KirbyGame
     }
 
 
-    class FlippingState : ActionState
+    class EmptyFlippingState : EmptyActionState
     {
         private int Time;
         int textCount;
-        public FlippingState(Avatar avatar) : base(avatar)
+        public EmptyFlippingState(SwallowState owner) : base(owner)
         {
             Time = 0;
             textCount = 3;
@@ -690,13 +658,13 @@ namespace KirbyGame
             }
         }
 
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
             avatar.acceleration.Y = AvatarData.GRAVITY;
         }
 
-        protected override void Exit()
+        public override void Exit()
         {
             base.Exit();
         }
@@ -712,11 +680,11 @@ namespace KirbyGame
         }
 
     }
-    class FlyingState : ActionState
+    class EmptyFlyingState : EmptyActionState
     {
         private int Time;
         int textCount;
-        public FlyingState(Avatar avatar) : base(avatar)
+        public EmptyFlyingState(SwallowState owner) : base(owner)
         {
             Time = 0;
             textCount = 4;
@@ -784,23 +752,23 @@ namespace KirbyGame
             }
             if (textCount == 0)
             {
-                this.IdleTransition();
+                owner.AirTransition();
             } else if (textCount == 2)
             {
                 avatar.Y = avatar.Y-8;
             }
         }
 
-        protected override void Enter(ActionState prevState)
+        public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
             avatar.acceleration.Y = AvatarData.GRAVITY;
         }
 
-        protected override void Exit()
+        public override void Exit()
         {
             base.Exit();
-            avatar.swallowed.AirTransition();
+            //avatar.swallowed.AirTransition();
         }
 
         public override void Float()

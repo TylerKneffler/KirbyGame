@@ -19,6 +19,7 @@ namespace KirbyGame
         private Point frameSize;
         private int Time;
         public int Delay;
+        public Color currentColor;
         int mod;
 
         public Point size
@@ -40,6 +41,7 @@ namespace KirbyGame
             Time = 0;
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
+            currentColor = Color.White;
         }
 
         public TextureDetails(Texture2D texture, Rectangle textureLocation, int numFrames)
@@ -56,6 +58,7 @@ namespace KirbyGame
             Time = 0;
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
+            currentColor = Color.White;
         }
 
         public void AddFrame(Rectangle textureLocation)
@@ -67,9 +70,9 @@ namespace KirbyGame
         {
 
             if (direction == Sprite.eDirection.Left)
-                spriteBatch.Draw(texture, location, textureLocations[currentTexture], Color.White, 0, new Vector2(0, 0),mod, SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, location, textureLocations[currentTexture], currentColor, 0, new Vector2(0, 0),mod, SpriteEffects.FlipHorizontally, 0);
             else
-                spriteBatch.Draw(texture, location, textureLocations[currentTexture], Color.White, 0, new Vector2(0, 0),mod,  SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, location, textureLocations[currentTexture], currentColor, 0, new Vector2(0, 0),mod,  SpriteEffects.None, 0);
         }
 
         public void Update(GameTime gameTime)

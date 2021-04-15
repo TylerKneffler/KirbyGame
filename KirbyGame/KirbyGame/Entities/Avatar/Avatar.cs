@@ -16,7 +16,6 @@ namespace KirbyGame
     public class Avatar : Entity
     {
         public SwallowState swallowed;
-        public ActionState actionState;
         public Vector2 startingLocation;
         private KirbySpriteFactory factory;
         //public int numLives;
@@ -29,9 +28,9 @@ namespace KirbyGame
             this.startingLocation = location;
 
             factory = new KirbySpriteFactory(this);
-            actionState = new IdleState(this);
-            swallowed = new EmptySwallowState(this);
-            this.Sprite = factory.createSprite(actionState, swallowed, location, Sprite.eDirection.Right);
+
+            swallowed = new FullSwallowState(this);
+            this.Sprite = factory.createSprite(swallowed, location, Sprite.eDirection.Right);
 
             //numLives = AvatarData.INIT_NUM_LIVES;
             IsDead = false;
@@ -41,7 +40,7 @@ namespace KirbyGame
         {
             this.game = avatar.game;
             this.startingLocation = new Vector2(avatar.X, avatar.Y);
-            actionState = avatar.actionState;
+
             this.UpdateSprite();
         }
         
@@ -49,9 +48,8 @@ namespace KirbyGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            actionState.Update(gameTime);
+            swallowed.Update(gameTime);
 
-            Debug.WriteLine(this.X);
 
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -74,68 +72,68 @@ namespace KirbyGame
         #region Commands
         public void pressFloat()
         {
-            actionState.Float();
+            swallowed.PressFloat();
         }
 
         public void releaseFloat()
         {
-            actionState.ReleaseFloat();
+            swallowed.ReleaseFloat();
         }
 
         public void pressJump()
         {
-            actionState.Jump();
+            swallowed.PressJump();
         }
         public void pressDown()
         {
-            actionState.Down();
+            swallowed.PressDown();
         }
         public void pressRight()
         {
-            actionState.Right();
+            swallowed.PressRight();
         }
         public void pressLeft()
         {
-            actionState.Left();
+            swallowed.PressLeft();
         }
 
         public void releaseJump()
         {
 
-            actionState.releaseJump();
+            swallowed.ReleaseJump();
         }
 
         public void releaseDown()
         {
-            actionState.releaseDown();
+            swallowed.ReleaseDown();
         }
 
         public void releaseRight()
         {
-            actionState.releaseRight();
+            swallowed.ReleaseRight();
         }
 
         public void releaseLeft()
         {
-            actionState.releaseLeft();
+            swallowed.ReleaseLeft();
         }
 
         //not sure what this does 
-        public void HitBlock()
+        /*public void HitBlock()
         {
-            actionState.Down();
-        }
+            swallowed.Down();
+        }*/
         
         public void UpdateSprite()
         {
-            this.Sprite = factory.createSprite(actionState, swallowed, new Vector2(X, Y), Sprite.Direction);
+            this.Sprite = factory.createSprite(swallowed, new Vector2(X, Y), Sprite.Direction);
         }
         #endregion
         //UNTESTED
         public override void HandleCollision(Collision collision, Entity collider)
         {
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-            actionState.HandleBlockCollision(collision);
+            swallowed.HandleBlockCollision(collision);
             if(collider is Block)
             {
                 if(CollisionDirection is Collision.Direction.Up)
@@ -145,10 +143,6 @@ namespace KirbyGame
                     Y = collider.Y - this.BoundingBox.Height;
                 }
             }
-        }
-        public void updateSprite()
-        {
-            this.Sprite = factory.createSprite(actionState, swallowed, new Vector2(X, Y), Sprite.Direction);
         }
     }
 }

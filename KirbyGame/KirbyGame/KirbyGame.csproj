@@ -49,7 +49,10 @@
     <Compile Include="Command Handling\ControllerKeyboard.cs" />
     <Compile Include="Command Handling\ICommand.cs" />
     <Compile Include="Command Handling\IController.cs" />
-    <Compile Include="Entities\Avatar\ActionStates.cs" />
+    <Compile Include="Entities\Avatar\ActionStates\AirStates.cs" />
+    <Compile Include="Entities\Avatar\ActionStates\FullStates.cs" />
+    <Compile Include="Entities\Avatar\ActionStates\EmptyStates.cs" />
+    <Compile Include="Entities\Avatar\ActionStates\ActionState.cs" />
     <Compile Include="Entities\Avatar\Avatar.cs" />
     <Compile Include="Entities\Avatar\AvatarData.cs" />
     <Compile Include="Entities\Avatar\KirbySpriteFactory.cs" />

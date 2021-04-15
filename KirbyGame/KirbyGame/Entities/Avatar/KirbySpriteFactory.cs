@@ -17,9 +17,9 @@ namespace KirbyGame
             this.kirby = avatar;
         }
       
-        public Sprite createSprite(ActionState actionState, SwallowState swallowed, Vector2 location, Sprite.eDirection direction)
+        public Sprite createSprite(SwallowState swallowed, Vector2 location, Sprite.eDirection direction)
         {
-            return new Sprite(textureFactory.createTextureDetails(actionState, swallowed), location, direction);
+            return new Sprite(textureFactory.createTextureDetails(swallowed.actionState, swallowed), location, direction);
         }
 
         /*public Sprite createSprite(Vector2 location)
