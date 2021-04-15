@@ -297,7 +297,7 @@
 /processorParam:Quality=Best
 /build:Kirby dream land theme song.mp3
 
-<<<<<<< HEAD
+
 #begin Kirby hud.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -417,13 +417,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-4_32.png
-=======
+
 #begin kirby-death-sound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:kirby-death-sound.wav
->>>>>>> f7336a3946f6cac693fd3efdd9a9bcc8dba81ed5
 
 #begin koopa.png
 /importer:TextureImporter

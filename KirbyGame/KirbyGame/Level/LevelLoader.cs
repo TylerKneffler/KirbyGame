@@ -12,7 +12,7 @@ namespace KirbyGame
 {
     public class LevelLoader
     {
-        private string level = @"C:\Users\Tyler Kneffler\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml"; 
+        private string level = @"C:\Users\Jackson Jiang\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml"; 
         public XmlTextReader reader;
         public List<Entity> list;
         private BlockFactory blockFactory;
@@ -199,8 +199,8 @@ namespace KirbyGame
                             }
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
                         case "BrickBlockBlue":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
@@ -395,7 +395,7 @@ namespace KirbyGame
                             list.Add(blockFactory.createBlock(Block.blocktypes.CASTLE, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32), 0, 0,0));
                             Debug.WriteLine("Creating Castle at:" + Xpos + ", " + Ypos);
                             break;
->>>>>>> f7336a3946f6cac693fd3efdd9a9bcc8dba81ed5
+//>>>>>>> f7336a3946f6cac693fd3efdd9a9bcc8dba81ed5
                     }
                 }
             }
