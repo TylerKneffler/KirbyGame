@@ -283,7 +283,7 @@ namespace KirbyGame
                             list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.GOOMBA, new Vector2(int.Parse(Xpos) * 32, int.Parse(Ypos) * 32)));
                             Debug.WriteLine("Creating Goomba at:" + Xpos + ", " + Ypos);
                             break;
-                        case "Parana":
+                        case "Shotzo":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.SHOTZO, new Vector2(int.Parse(Xpos) * 32 +16, int.Parse(Ypos) * 32 )));

@@ -297,7 +297,6 @@
 /processorParam:Quality=Best
 /build:Kirby dream land theme song.mp3
 
-
 #begin Kirby hud.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -891,6 +890,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Question_Block.png
+
+#begin shotzoleft.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:shotzoleft.png
 
 #begin shotzoright.png
 /importer:TextureImporter
