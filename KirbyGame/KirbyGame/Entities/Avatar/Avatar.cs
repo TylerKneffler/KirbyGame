@@ -21,8 +21,8 @@ namespace KirbyGame
         private marioState combinedState;
         public Vector2 startingLocation;
         private MarioSpriteFactory factory;
-        private FireBallFactory fireBallFactory;
-        public int fireBallNum = 0;
+        private CannonballFactory cannonBallFactory;
+        //public int fireBallNum = 0;
         //public int numLives;
         private SoundEffect player;
        
@@ -43,7 +43,7 @@ namespace KirbyGame
             this.startingLocation = location;
 
             factory = new MarioSpriteFactory(this);
-            fireBallFactory = new FireBallFactory(game);
+            cannonBallFactory = new CannonballFactory(game);
             powerState = new MarioSmallState(this);
             actionState = new MarioIdleState(this);
             actionState.IdleTransition();
@@ -59,7 +59,7 @@ namespace KirbyGame
             this.startingLocation = new Vector2(avatar.X, avatar.Y);
 
             factory = new MarioSpriteFactory(this);
-            fireBallFactory = new FireBallFactory(game);
+            cannonBallFactory = new CannonballFactory(game);
             powerState = avatar.powerState;
             actionState = avatar.actionState;
             this.updateState();
@@ -135,17 +135,17 @@ namespace KirbyGame
         }
         public void marioFireBall()
         {
-            if (fireBallNum < 2 && (combinedState == marioState.FIRE_CROUCHING || combinedState == marioState.FIRE_FALLING || combinedState == marioState.FIRE_IDLE || combinedState == marioState.FIRE_JUMPING || combinedState == marioState.FIRE_RUNNING))
+            if (/*fireBallNum < 2 && */(combinedState == marioState.FIRE_CROUCHING || combinedState == marioState.FIRE_FALLING || combinedState == marioState.FIRE_IDLE || combinedState == marioState.FIRE_JUMPING || combinedState == marioState.FIRE_RUNNING))
             {
                 if (Sprite.Direction == Sprite.eDirection.Right)
                 {
-                    fireBallNum++;
-                    game.levelLoader.list.Add(fireBallFactory.createFireball(new Vector2(base.position.X + 16, base.position.Y), (int)Sprite.Direction));
+                    //fireBallNum++;
+                    game.levelLoader.list.Add(cannonBallFactory.CreateCannonball(new Vector2(base.position.X + 16, base.position.Y), (int)Sprite.Direction));
                 }
                 else
                 {
-                    fireBallNum++;
-                    game.levelLoader.list.Add(fireBallFactory.createFireball(new Vector2(base.position.X - 16, base.position.Y), (int)Sprite.Direction));
+                    //fireBallNum++;
+                    game.levelLoader.list.Add(cannonBallFactory.CreateCannonball(new Vector2(base.position.X - 16, base.position.Y), (int)Sprite.Direction));
                 }
             }
         }
@@ -365,7 +365,7 @@ namespace KirbyGame
                         collider.velocity.X = 0;
                     }
                 }
-                else if (collider is Fireball)
+                else if (collider is Cannonball)
                 {
                     this.TakeDamage();
 

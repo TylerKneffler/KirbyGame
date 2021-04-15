@@ -81,7 +81,7 @@ namespace KirbyGame
             }
             
             //Fireball Collision
-            else if(collider is Fireball)
+            else if(collider is Cannonball)
             {
                 this.enemy.DeadGoombaStateChange();
             }
@@ -178,7 +178,7 @@ namespace KirbyGame
             }
 
             //Fireball Collision
-            else if (collider is Fireball)
+            else if (collider is Cannonball)
             {
                 this.enemy.DeadParanaStateChange();
             }
@@ -303,7 +303,7 @@ namespace KirbyGame
                     this.enemy.DeadKoopaStateChange();
                 }
             }
-            else if (collider is Fireball)
+            else if (collider is Cannonball)
             {
                 this.enemy.DeadKoopaStateChange();
             }
@@ -360,7 +360,7 @@ namespace KirbyGame
             }
 
             //Fireball Collisions
-            else if(collider is Fireball)
+            else if(collider is Cannonball)
             {
                 this.enemy.DeadKoopaShellStateChange();
             }

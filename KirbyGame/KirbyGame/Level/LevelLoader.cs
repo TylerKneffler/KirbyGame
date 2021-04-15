@@ -427,7 +427,7 @@ namespace KirbyGame
             }
             foreach (Entity entity in copy)
             {
-                if (entity.GetType().Name == "Fireball")
+                if (entity.GetType().Name == "Cannonball")
                 {
                     if (entity.position.X > this.Xbound || entity.position.X < 0 || entity.position.Y > this.Ybound || entity.position.Y < 0 || entity.position.X < camera.Position.X
                     || entity.position.X > (camera.Position.X + 25 * 32) || entity.position.Y < camera.Position.Y || entity.position.Y > (camera.Position.Y + 13 * 32) || entity.remove)
@@ -435,7 +435,7 @@ namespace KirbyGame
 
                         list.Remove(entity);
                         map.Remove(entity);
-                        mario.fireBallNum--;
+                        //mario.fireBallNum--;
                     }
                 }
                 else if(entity is EnemyTest)

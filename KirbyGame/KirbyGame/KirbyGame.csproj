@@ -73,8 +73,8 @@
     <Compile Include="Entities\Enemies\EnemytypeTest.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityData.cs" />
-    <Compile Include="Entities\Fireballs\Fireball.cs" />
-    <Compile Include="Entities\Fireballs\FireballFactory.cs" />
+    <Compile Include="Entities\Cannonballs\Cannonball.cs" />
+    <Compile Include="Entities\Cannonballs\CannonballFactory.cs" />
     <Compile Include="Entities\Items\1UpMushroom.cs" />
     <Compile Include="Entities\Items\Coin.cs" />
     <Compile Include="Entities\Items\FireFlower.cs" />
