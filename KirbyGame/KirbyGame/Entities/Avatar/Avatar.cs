@@ -357,6 +357,7 @@ namespace KirbyGame
                         collider.velocity.X = -5;
                         this.player = this.game.Content.Load<SoundEffect>("SoundEffects/smb_kick");
                         this.player.Play();
+
                     }
                     else if (((EnemyTest)collider).enemytype is KoopaShellTest && collider.velocity.X != 0 && CollisionDirection == Collision.Direction.Up)
                     {

@@ -679,8 +679,10 @@ namespace KirbyGame
         {
             Follow();
             enemy.acceleration.Y = 0; 
-            base.Update(gameTime); 
-            if (enemy.game.levelLoader.getMario().position.X - _location.X + enemy.Sprite.texture.size.X < 300 && enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X - _location.X > -300)
+            base.Update(gameTime);
+            int displacement = (int)(enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2);
+            Console.WriteLine("dis" + (enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2));
+            if (displacement < 300 && displacement > -300)
             {
                 delay++;
                 if (delay > 100)
@@ -710,6 +712,19 @@ namespace KirbyGame
             {
                 this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoleft"), 1), _location);
                 right = false;
+            }
+        }
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this.enemy);
+            //Avatar collision
+            if (collider is Avatar)
+            {
+                if (CollisionDirection == Collision.Direction.Down)
+                {
+                    this.enemy.SquishGoombaStateChange();
+
+                }
             }
         }
     }
