@@ -147,7 +147,6 @@ namespace KirbyGame
         public override void HandleCollision(Collision collision, Entity collider)
         {
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-            swallowed.HandleBlockCollision(collision);
             if(collider is Block)
             {
                 if(CollisionDirection is Collision.Direction.Up && !(((Block)collider).blocktype is HiddenBlock))
@@ -155,8 +154,10 @@ namespace KirbyGame
                     velocity.Y = 0;
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
+                    swallowed.HandleBlockCollision(collision);
                 } else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
                 {
+                    swallowed.HandleBlockCollision(collision);
                     if (((Block)collider).blocktype is HiddenBlock)
                     {
                         StageChange(((Block)collider).stage);
@@ -164,9 +165,11 @@ namespace KirbyGame
                     Y = collider.Y + collider.BoundingBox.Height;
                 } else if (CollisionDirection is Collision.Direction.Right && !(((Block)collider).blocktype is StairBlock) && !(((Block)collider).blocktype is HiddenBlock))
                 {
+                    swallowed.HandleBlockCollision(collision);
                     X = collider.BoundingBox.Right;
                 } else if (CollisionDirection is Collision.Direction.Left && !(((Block)collider).blocktype is StairBlock) && !(((Block)collider).blocktype is HiddenBlock))
                 {
+                    swallowed.HandleBlockCollision(collision);
                     X = collider.BoundingBox.Left - this.BoundingBox.Width;
                 }
 
