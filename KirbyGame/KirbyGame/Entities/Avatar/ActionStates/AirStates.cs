@@ -104,7 +104,7 @@ namespace KirbyGame
         {
             base.Enter(prevState);
             avatar.velocity.Y = 2;
-            avatar.acceleration = new Vector2();
+            avatar.acceleration.Y = 0;
         }
 
         public override void Float()
@@ -178,7 +178,7 @@ namespace KirbyGame
         {
             base.Enter(prevState);
             avatar.velocity.Y = -3;
-            avatar.acceleration = new Vector2();
+            avatar.acceleration.Y = 0;
         }
 
         public override void Float()
