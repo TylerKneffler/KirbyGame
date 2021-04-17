@@ -20,6 +20,7 @@ namespace KirbyGame
         public int coins;
         public int item;
         public int enemy;
+        public int stage;
 
         public Point anchor;
         public Boolean bumping;
@@ -176,16 +177,14 @@ namespace KirbyGame
 
         public virtual void HiddenStateChange()
         {
-            //Debug.WriteLine("change is occuring" + coins);
+            /*
             if (type == 4)
             {
                 type = 1;
                 this.blocktype = new QuestionBlock(this, new Vector2(this.X, this.Y));
             }
-
-            blocktype.Bump();
-            this.player = this.game.Content.Load<SoundEffect>("SoundEffects/smb_bump");
             this.player.Play();
+            */
         }
 
         public virtual void BrickStateChange(Avatar mario)

@@ -12,7 +12,7 @@ namespace KirbyGame
 {
     public class LevelLoader
     {
-        private string level = @"C:\Users\johnw\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml";
+        private string level = @".\Level1.xml";
         public XmlTextReader reader;
         public List<Entity> list;
         private BlockFactory blockFactory;
@@ -197,6 +197,21 @@ namespace KirbyGame
                             {
                                 list.Add(blockFactory.createBlock(Block.blocktypes.FLOOR, new Vector2((int.Parse(Xpos) + i) * 32, int.Parse(Ypos) * 32), 0, 0,0));
                             }
+                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
+                            break;
+                        case "Platform":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2((int.Parse(Xpos)) * 16, int.Parse(Ypos) * 16), 0, 0, 0));
+                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
+                            break;
+                        case "Door":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            string Stage = reader.GetAttribute("Stage");
+                            Block temp = blockFactory.createBlock(Block.blocktypes.HIDDEN, new Vector2((int.Parse(Xpos)) * 16, int.Parse(Ypos) * 32), 0, 0, 0);
+                            temp.stage = int.Parse(Stage);
+                            list.Add(temp);
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
                     }

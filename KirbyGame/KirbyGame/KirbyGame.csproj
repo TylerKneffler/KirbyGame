@@ -109,6 +109,7 @@
     <Content Include="bin\Windows\x86\Debug\Level1Bonous.xml" />
     <Content Include="bin\Windows\x86\Debug\TestLevel.xml" />
     <Content Include="Content\Floor_Block.png" />
+    <Content Include="Content\Hidden_Block.png" />
     <Content Include="Content\Kirby hud.png" />
     <Content Include="Content\Kirby hud_32.png" />
     <Content Include="Content\Kirby Tree level 1-1.png" />
@@ -122,6 +123,7 @@
     <Content Include="Content\Level 1, Act 4 - Mephea.png" />
     <Content Include="Content\Level1.xml" />
     <Content Include="Content\Level1Bonous.xml" />
+    <Content Include="Content\Pyramid_Block.png" />
     <Content Include="Content\TestLevel.xml" />
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -131,6 +133,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)Content\Level1.xml" "$(TargetDir)"
+copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
