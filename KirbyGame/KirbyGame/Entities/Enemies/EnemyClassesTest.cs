@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
@@ -660,65 +661,71 @@ namespace KirbyGame
     }
     class ShotzoTest : EnemytypeTest
     {
-        public int timer = 0;
-        public int delay = 0;
-        public bool shoot = false;
-        int startY;
+        private int delay = 0;
+        private SoundEffect player;
         private Vector2 _location;
-        private Game1 kirbyGame;
-        CannonballFactory cannonballFactory;
+        private readonly CannonballFactory cannonballFactory;
+        private bool right = true;
         public ShotzoTest(EnemyTest enemy, Vector2 location, Sprite.eDirection direction,Game1 game) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoright"), 1), location);
             enemy.velocity.X = 0;
-            enemy.updateNull = false;
             cannonballFactory = new CannonballFactory(game);
-            kirbyGame = game;
-            //startY = enemy.Y;
             _location = location;
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoright"), 1), _location);
+            Follow();
         }
 
         public override void Update(GameTime gameTime)
         {
-            delay++;
-            if(delay > 100)
+            Follow();
+            enemy.acceleration.Y = 0; 
+            base.Update(gameTime);
+            int displacement = (int)(enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2);
+            Console.WriteLine("dis" + (enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2));
+            if (displacement < 300 && displacement > -300)
             {
-                kirbyGame.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X + 16, _location.Y), (int)Sprite.eDirection.Right));
-                delay = 0;
+                delay++;
+                if (delay > 100)
+                {
+                    if (right)
+                    {
+                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X+ enemy.Sprite.texture.size.X , _location.Y + 10), (int)Sprite.eDirection.Right));
+                    }
+                    else
+                    {
+                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X , _location.Y + 10), (int)Sprite.eDirection.Left));
+                    }
+                    this.player = this.enemy.game.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
+                    this.player.Play();
+                    delay = 0;
+                }
             }
-            timer += gameTime.ElapsedGameTime.Milliseconds;
-            enemy.acceleration.Y = 0;
-            if (enemy.seen)
-            {
-                base.Update(gameTime);
-
-                //if (enemy.Y < startY - 40)
-                //{
-                //    enemy.Y = startY - 40;
-                //}
-                //if (enemy.Y > startY)
-                //{
-                //    enemy.Y = startY;
-                //}
-                //if (timer > 5000)
-                //    if (enemy.game.levelLoader.getMario().X - enemy.X > 50 || enemy.game.levelLoader.getMario().X - enemy.X < -50)
-                //    {
-                //        {
-                //            if (enemy.velocity.Y == -1)
-                //                enemy.velocity.Y = 1;
-                //            else if (enemy.velocity.Y == 1)
-                //            {
-                //                enemy.velocity.Y = -1;
-                //            }
-                //            timer = 0;
-                //        }
-                    //}
-            }
-            
         }
-     
-    
+        private void Follow()
+        {
+            if (enemy.game.levelLoader.getMario().position.X > _location.X + enemy.Sprite.texture.size.X / 2)
+            {
+                this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoright"), 1), _location);
+                right = true;
+            }
+            else
+            {
+                this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("shotzoleft"), 1), _location);
+                right = false;
+            }
+        }
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this.enemy);
+            //Avatar collision
+            if (collider is Avatar)
+            {
+                if (CollisionDirection == Collision.Direction.Down)
+                {
+                    this.enemy.SquishGoombaStateChange();
 
-
+                }
+            }
+        }
     }
 }

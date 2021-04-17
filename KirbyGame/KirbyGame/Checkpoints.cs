@@ -43,7 +43,7 @@ namespace KirbyGame
             game.map.Remove(mario);
             mario.X = (int)currentRespawn.X;
             mario.Y = (int)currentRespawn.Y;
-            mario.actionState.FallingTransition();
+            //mario.actionState.FallingTransition();
             game.map.Insert(mario);
         }
     }

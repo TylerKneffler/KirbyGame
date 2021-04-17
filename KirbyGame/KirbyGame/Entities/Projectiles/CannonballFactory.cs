@@ -21,8 +21,7 @@ namespace KirbyGame
 
         public Cannonball CreateCannonball(Vector2 location, int direction)
         {
-            this.player = this.game.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
-            this.player.Play();
+            //this.player.Play();
             return new Cannonball(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("CannonBall"), 1) , location), direction, game);
         }
 
