@@ -12,7 +12,7 @@ namespace KirbyGame
 {
     public class LevelLoader
     {
-        private string level = @"C:\Users\johnw\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml";
+        private string level = @"C:\Users\Tyler Kneffler\Source\Repos\KirbyGame\KirbyGame\KirbyGame\Content\Level1.xml";
         public XmlTextReader reader;
         public List<Entity> list;
         private BlockFactory blockFactory;

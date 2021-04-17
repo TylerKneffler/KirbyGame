@@ -69,7 +69,15 @@ namespace KirbyGame
         {
             if(stage == 0)
             {
-
+                this.X = 69 * 32;
+                this.Y = 6;
+                this.game.camera.Limits = new Rectangle(new Point(64 * 32 -16, -32), new Point(78 * 32, this.game.graphics.PreferredBackBufferHeight - 64));
+            }
+            if (stage == 1)
+            {
+                this.X = 145 * 32;
+                this.Y = 6;
+                this.game.camera.Limits = new Rectangle(new Point(144 * 32 - 18, -32), new Point(0, this.game.graphics.PreferredBackBufferHeight - 64));
             }
         } 
         /**
@@ -142,22 +150,22 @@ namespace KirbyGame
             swallowed.HandleBlockCollision(collision);
             if(collider is Block)
             {
-                if(CollisionDirection is Collision.Direction.Up && !(((Block)collider).blocktype is StairBlock))
+                if(CollisionDirection is Collision.Direction.Up && !(((Block)collider).blocktype is HiddenBlock))
                 {
-                    if(((Block)collider).blocktype is HiddenBlock)
-                    {
-                        StageChange(((Block)collider).stage);
-                    }
                     velocity.Y = 0;
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
-                } else if (CollisionDirection is Collision.Direction.Down)
+                } else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
                 {
+                    if (((Block)collider).blocktype is HiddenBlock)
+                    {
+                        StageChange(((Block)collider).stage);
+                    }
                     Y = collider.Y + collider.BoundingBox.Height;
-                } else if (CollisionDirection is Collision.Direction.Right && !(((Block)collider).blocktype is StairBlock))
+                } else if (CollisionDirection is Collision.Direction.Right && !(((Block)collider).blocktype is StairBlock) && !(((Block)collider).blocktype is HiddenBlock))
                 {
                     X = collider.BoundingBox.Right;
-                } else if (CollisionDirection is Collision.Direction.Left && !(((Block)collider).blocktype is StairBlock))
+                } else if (CollisionDirection is Collision.Direction.Left && !(((Block)collider).blocktype is StairBlock) && !(((Block)collider).blocktype is HiddenBlock))
                 {
                     X = collider.BoundingBox.Left - this.BoundingBox.Width;
                 }

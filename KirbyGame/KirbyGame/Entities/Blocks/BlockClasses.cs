@@ -42,8 +42,6 @@ namespace KirbyGame
     }
     class HiddenBlock : Blocktype
     {
-        public int Xtel;
-        public int Ytel;
         public HiddenBlock(Block block, Vector2 location) : base(block)
         {
             this.block.Sprite = new Sprite(new TextureDetails(this.block.game.Content.Load<Texture2D>("Hidden_Block"), 1), location);

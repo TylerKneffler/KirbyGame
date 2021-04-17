@@ -29,7 +29,7 @@ namespace KirbyGame
         //perhaps used for reset?
         public TileMap initialMap;
 
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
         internal ControllerKeyboard KInput { get; set; }
