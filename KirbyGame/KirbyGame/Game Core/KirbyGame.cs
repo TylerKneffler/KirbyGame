@@ -45,6 +45,9 @@ namespace KirbyGame
         private Song soundtrack;
         public Boolean boundingBoxToggle;
         private Boolean isPaused = false;
+        public Hud Hud;
+        public Points points;
+        public Checkpoints checkpoints;
 
 
 
@@ -200,7 +203,7 @@ namespace KirbyGame
             levelLoader.list.Remove(levelLoader.getMario());
             levelLoader.list.Add(mario);
 
-            mario.setStateSmall();
+            //mario.setStateSmall();
             mario.IsDead = false;
             Hud.ResetTime();
 
@@ -228,7 +231,7 @@ namespace KirbyGame
                 levelLoader.list.Remove(levelLoader.getMario());
                 levelLoader.list.Add(mario);
 
-                mario.setStateSmall();
+                //mario.setStateSmall();
                 mario.IsDead = false;
 
                 map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);

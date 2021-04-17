@@ -36,7 +36,7 @@ namespace KirbyGame
         private Camera _camera;
         private int counter;
         private readonly char[] score = new char[] { '0', '0', '0', '0', '0', '0' };
-        private MarioSpriteFactory marioSpriteFactory;
+        //private MarioSpriteFactory marioSpriteFactory;
         private ItemFactory itemFactory;
 
         private readonly Sprite playerSprite;
@@ -74,8 +74,8 @@ namespace KirbyGame
             DisplayWinner = false;
 
             //counter = 0;
-            marioSpriteFactory = new MarioSpriteFactory(new Avatar(marioGame, new Vector2(0,0)));
-            playerSprite = marioSpriteFactory.createSprite(new Vector2(0,0));
+            //marioSpriteFactory = new MarioSpriteFactory(new Avatar(marioGame, new Vector2(0,0)));
+            //playerSprite = marioSpriteFactory.createSprite(new Vector2(0,0));
             itemFactory = new ItemFactory(marioGame);
             itemSprite = itemFactory.createItem(Item.eItemType.COIN, new Vector2(0,0));
         }
@@ -164,7 +164,7 @@ namespace KirbyGame
 
         private void TestTimer_ZeroTime(object sender, EventArgs e)
         {
-            marioGame.mario.powerState.DeadTransition();
+            //marioGame.mario.powerState.DeadTransition();
             testTimer.Set(STARTING_TIME);
         }
         public void ResetTime()
