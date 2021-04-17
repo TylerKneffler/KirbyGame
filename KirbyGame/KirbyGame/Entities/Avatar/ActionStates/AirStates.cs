@@ -51,7 +51,7 @@ namespace KirbyGame
 
         public override void Left()
         {
-            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+            avatar.acceleration.X = -AvatarData.DEFAULT_FLOATING_ACCELERATION;
         }
 
         public override void releaseDown()
@@ -76,7 +76,7 @@ namespace KirbyGame
 
         public override void Right()
         {
-            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+            avatar.acceleration.X = AvatarData.DEFAULT_FLOATING_ACCELERATION;
         }
 
 
@@ -137,7 +137,7 @@ namespace KirbyGame
 
         public override void Left()
         {
-            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+            avatar.acceleration.X = -AvatarData.DEFAULT_FLOATING_ACCELERATION;
         }
 
         public override void releaseDown()
@@ -162,7 +162,7 @@ namespace KirbyGame
 
         public override void Right()
         {
-            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+            avatar.acceleration.X = AvatarData.DEFAULT_FLOATING_ACCELERATION;
         }
 
 
