@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-  <Size XBound ="350" YBound ="32"/>
+  <Size XBound ="320" YBound ="32"/>
   <Entities>
     <Mario Xpos ="2" Ypos = "3"></Mario>
 
@@ -25,8 +25,13 @@
     <FloorBlock Xpos = "208" Ypos = "224"/>
 
     <FloorBlock Xpos = "976" Ypos = "192"/>
+    <Platform Xpos = "57" Ypos = "8"/>
+    <Platform Xpos = "59" Ypos = "8"/>
     <Floor Xpos = "31" Ypos = "6" Length ="10"/>
     <FloorBlock Xpos = "1296" Ypos = "192"/>
+
+    <Platform Xpos = "75" Ypos = "8"/>
+    <Platform Xpos = "77" Ypos = "8"/>
 
 
     <Floor Xpos = "45" Ypos = "8" Length ="20"/>
@@ -43,9 +48,22 @@
     <FloorBlock Xpos = "1938" Ypos = "192"/>
     <FloorBlock Xpos = "1970" Ypos = "192"/>
 
-    <Door Xpos = "58" Ypos = "2" Stage ="0"/>
+    <Platform Xpos = "115" Ypos = "2"/>
+    <Platform Xpos = "117" Ypos = "2"/>
 
+    <Door Xpos = "115" Ypos = "2" Stage ="0"/>
+
+    
+    
     <Floor Xpos = "64" Ypos = "7" Length ="28"/>
+    
+    <Floor Xpos = "63" Ypos = "6" Length ="1"/>
+    <Floor Xpos = "63" Ypos = "5" Length ="1"/>
+    <Floor Xpos = "66" Ypos = "6" Length ="1"/>
+    <Floor Xpos = "73" Ypos = "6" Length ="1"/>
+    <Floor Xpos = "83" Ypos = "6" Length ="1"/>
+    <Floor Xpos = "83" Ypos = "5" Length ="1"/>
+    
     <FloorBlock Xpos = "2912" Ypos = "192" Length ="1"/>
     <Floor Xpos = "92" Ypos = "6" Length ="12"/>
     <FloorBlock Xpos = "3328" Ypos = "192" Length ="1"/>
@@ -54,6 +72,16 @@
     <FloorBlock Xpos = "3713" Ypos = "160" Length ="1"/>
     <FloorBlock Xpos = "3744" Ypos = "224" Length ="1"/>
     <Floor Xpos = "117" Ypos = "7" Length ="6"/>
+
+    <Floor Xpos = "118" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "118" Ypos = "2" Length ="1"/>
+    <Floor Xpos = "119" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "120" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "120" Ypos = "2" Length ="1"/>
+    <Floor Xpos = "121" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "122" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "122" Ypos = "2" Length ="1"/>
+    
     <FloorBlock Xpos = "3936" Ypos = "224" Length ="1"/>
     <FloorBlock Xpos = "4000" Ypos = "192" Length ="1"/>
     <Floor Xpos = "125" Ypos = "6" Length ="6"/>
@@ -61,7 +89,12 @@
     <FloorBlock Xpos = "4256" Ypos = "224" Length ="1"/>
     <Floor Xpos = "133" Ypos = "7" Length ="9"/>
 
-    <Door Xpos = "138" Ypos = "5" Stage ="1"/>
+    <Floor Xpos = "134" Ypos = "6" Length ="1"/>
+    <Floor Xpos = "135" Ypos = "3" Length ="1"/>
+    <Floor Xpos = "135" Ypos = "2" Length ="1"/>
+    <FloorBlock Xpos = "4336" Ypos = "96" Length ="1"/>
+    
+    <Door Xpos = "276" Ypos = "5" Stage ="1"/>
     
     <Floor Xpos = "143" Ypos = "8" Length ="20"/>
     

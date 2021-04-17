@@ -199,17 +199,17 @@ namespace KirbyGame
                             }
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
-                        case "PlatForm":
+                        case "Platform":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
-                            list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32), 0, 0, 0));
+                            list.Add(blockFactory.createBlock(Block.blocktypes.STAIR, new Vector2((int.Parse(Xpos)) * 16, int.Parse(Ypos) * 16), 0, 0, 0));
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
                         case "Door":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             string Stage = reader.GetAttribute("Stage");
-                            Block temp = blockFactory.createBlock(Block.blocktypes.HIDDEN, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32), 0, 0, 0);
+                            Block temp = blockFactory.createBlock(Block.blocktypes.HIDDEN, new Vector2((int.Parse(Xpos)) * 16, int.Parse(Ypos) * 32), 0, 0, 0);
                             temp.stage = int.Parse(Stage);
                             list.Add(temp);
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
