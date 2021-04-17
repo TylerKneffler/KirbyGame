@@ -30,6 +30,22 @@ namespace KirbyGame
             CurrentState = new AirFlyingState(owner);
             CurrentState.Enter(this);
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            avatar.velocity.X = MathHelper.Clamp(avatar.velocity.X, -AvatarData.MAX_FLOAT_SPEED, AvatarData.MAX_FLOAT_SPEED);
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+        }
     }
 
     class AirFloatingState : AirActionState
@@ -83,21 +99,6 @@ namespace KirbyGame
         public override void Jump()
         {
             this.FlappingTransition();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (Math.Abs(avatar.acceleration.X) == 0)
-            {
-                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
-                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
-                    avatar.velocity.X = 0;
-            }
-
-            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
-                avatar.Sprite.Direction = Sprite.eDirection.Left;
-            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
-                avatar.Sprite.Direction = Sprite.eDirection.Right;
         }
 
         public override void Enter(ActionState prevState)
@@ -167,10 +168,6 @@ namespace KirbyGame
 
 
         public override void Jump()
-        {
-        }
-
-        public override void Update(GameTime gameTime)
         {
         }
 

@@ -18,6 +18,7 @@ namespace KirbyGame
 
         public const float DEFAULT_RUNNING_ACCELERATION = .2F;
         public const float DEFAULT_FLOATING_ACCELERATION = .1F;
+        public const float MAX_FLOAT_SPEED = 2;
         public const int INIT_JUMP_VELOCITY = -6;
         public const float INIT_RUN_VELOCITY = 1F;
 
