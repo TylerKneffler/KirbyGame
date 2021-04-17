@@ -689,8 +689,10 @@ namespace KirbyGame
     {
         private int Time;
         int textCount;
+        bool check;
         public EmptyFlyingState(SwallowState owner) : base(owner)
         {
+            check = false;
             Time = 0;
             textCount = 4;
         }
@@ -758,9 +760,10 @@ namespace KirbyGame
             if (textCount == 0)
             {
                 owner.AirTransition();
-            } else if (textCount == 2)
+            } else if (textCount == 2 && !check)
             {
-                avatar.Y = avatar.Y-8;
+                avatar.Y = avatar.Y-12;
+                check = true;
             }
         }
 
