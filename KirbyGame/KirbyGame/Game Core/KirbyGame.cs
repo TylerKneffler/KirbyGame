@@ -125,7 +125,7 @@ namespace KirbyGame
             KInput.addReleaseCommand(Keys.Down, new MarioReleaseDown(mario));
             KInput.addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
             KInput.addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
-
+            KInput.addPressCommand(Keys.C, new BoundingBoxToggle(this));
 
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
 
@@ -251,6 +251,11 @@ namespace KirbyGame
             else
                 MediaPlayer.Pause();
             isPaused = !isPaused;
+        }
+
+        public void ToggleBoundingBoxes()
+        {
+            this.boundingBoxToggle = !boundingBoxToggle;
         }
 
     }

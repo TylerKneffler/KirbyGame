@@ -206,4 +206,17 @@ namespace KirbyGame
             //control.marioFireBall();
         }
     }
+
+    class BoundingBoxToggle : Command<Game1>
+    {
+        public BoundingBoxToggle(Game1 control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.ToggleBoundingBoxes();
+        }
+    }
 }
