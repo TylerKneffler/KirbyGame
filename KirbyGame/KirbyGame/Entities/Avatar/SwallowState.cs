@@ -85,7 +85,10 @@ namespace KirbyGame
         }
         #endregion
 
-        public abstract void Update(GameTime gameTime);
+        public void Update(GameTime gameTime)
+        {
+            actionState.Update(gameTime);
+        }
 
         public void EmptyTransition(EmptyActionState actionState)
         {
@@ -113,11 +116,6 @@ namespace KirbyGame
         {
             this.actionState = new EmptyIdleState(this);
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            actionState.Update(gameTime);
-        }
     }
 
     class AirSwallowState : SwallowState
@@ -130,11 +128,6 @@ namespace KirbyGame
         public AirSwallowState(Avatar avatar) : base(avatar)
         {
             this.actionState = new AirFloatingState(this);
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            actionState.Update(gameTime);
         }
     }
 
@@ -150,10 +143,6 @@ namespace KirbyGame
             this.actionState = new FullIdleState(this);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            actionState.Update(gameTime);
-        }
     }
 
 }

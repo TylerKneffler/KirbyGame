@@ -141,7 +141,17 @@ namespace KirbyGame
                     velocity.Y = 0;
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
+                } else if (CollisionDirection is Collision.Direction.Down)
+                {
+                    Y = collider.Y + collider.BoundingBox.Height;
+                } else if (CollisionDirection is Collision.Direction.Right)
+                {
+                    X = collider.BoundingBox.Right;
+                } else if (CollisionDirection is Collision.Direction.Left)
+                {
+                    X = collider.BoundingBox.Left - this.BoundingBox.Width;
                 }
+
             }
         }
     }
