@@ -20,6 +20,7 @@ namespace KirbyGame
         public int coins;
         public int item;
         public int enemy;
+        public int stage;
 
         public Point anchor;
         public Boolean bumping;

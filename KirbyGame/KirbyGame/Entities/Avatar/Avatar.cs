@@ -65,7 +65,13 @@ namespace KirbyGame
         {
             this.position = final;
         }
+        public void StageChange(int stage) 
+        {
+            if(stage == 0)
+            {
 
+            }
+        } 
         /**
          * avatar commands (setting to small, reg, fire are done directly using state getters and setters and as such included in next section). 
          */
@@ -136,18 +142,22 @@ namespace KirbyGame
             swallowed.HandleBlockCollision(collision);
             if(collider is Block)
             {
-                if(CollisionDirection is Collision.Direction.Up)
+                if(CollisionDirection is Collision.Direction.Up && !(((Block)collider).blocktype is StairBlock))
                 {
+                    if(((Block)collider).blocktype is HiddenBlock)
+                    {
+                        StageChange(((Block)collider).stage);
+                    }
                     velocity.Y = 0;
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
                 } else if (CollisionDirection is Collision.Direction.Down)
                 {
                     Y = collider.Y + collider.BoundingBox.Height;
-                } else if (CollisionDirection is Collision.Direction.Right)
+                } else if (CollisionDirection is Collision.Direction.Right && !(((Block)collider).blocktype is StairBlock))
                 {
                     X = collider.BoundingBox.Right;
-                } else if (CollisionDirection is Collision.Direction.Left)
+                } else if (CollisionDirection is Collision.Direction.Left && !(((Block)collider).blocktype is StairBlock))
                 {
                     X = collider.BoundingBox.Left - this.BoundingBox.Width;
                 }
