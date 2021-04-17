@@ -29,7 +29,7 @@ namespace KirbyGame
 
             factory = new KirbySpriteFactory(this);
 
-            swallowed = new EmptySwallowState(this);
+            swallowed = new FullSwallowState(this);
             this.Sprite = factory.createSprite(swallowed, location, Sprite.eDirection.Right);
 
             //numLives = AvatarData.INIT_NUM_LIVES;

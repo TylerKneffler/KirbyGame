@@ -12,9 +12,10 @@ namespace KirbyGame
 {
     public abstract class FullActionState : ActionState
     {
+        protected int ColorTimer;
         public FullActionState(SwallowState owner) : base(owner)
         {
-
+            ColorTimer = 0;
         }
 
         public void IdleTransition()
@@ -36,6 +37,13 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new FullJumpingState(owner);
+            CurrentState.Enter(this);
+        }
+
+        public void FallingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new FullFallingState(owner);
             CurrentState.Enter(this);
         }
     }
@@ -102,6 +110,25 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
+            if (avatar.velocity.Y > 0)
+            {
+                this.FallingTransition();
+            }
+            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if(ColorTimer > 200)
+            {
+                if (avatar.Sprite.texture.currentColor == Color.White)
+                {
+                    avatar.Sprite.texture.currentColor = Color.Pink;
+                }
+                else
+                {
+                    avatar.Sprite.texture.currentColor = Color.White;
+                }
+                ColorTimer -= 250;
+            }
+            avatar.velocity.Y = 1;
+            
         }
 
         public override void Enter(ActionState prevState)
@@ -185,7 +212,7 @@ namespace KirbyGame
         {
             if (avatar.velocity.Y > 0)
             {
-                //this.FallingTransition();
+                this.FallingTransition();
             }
             else if (Math.Abs(avatar.acceleration.X) == 0)
             {
@@ -193,16 +220,44 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
                     this.IdleTransition();
             }
-            //avatar.velocity.Y = 1;
+            avatar.velocity.Y = 1;
             if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
             else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
+            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (ColorTimer > 200)
+            {
+                if (avatar.Sprite.texture.currentColor == Color.White)
+                {
+                    avatar.Sprite.texture.currentColor = Color.Pink;
+                }
+                else
+                {
+                    avatar.Sprite.texture.currentColor = Color.White;
+                }
+                ColorTimer -= 250;
+            }
         }
 
         public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
+            if (!(previousState is FullJumpingState) && !(previousState is FullFallingState))
+            {
+                if (avatar.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                    if (avatar.velocity.X < AvatarData.INIT_RUN_VELOCITY)
+                        avatar.velocity.X = AvatarData.INIT_RUN_VELOCITY;
+                }
+                else
+                {
+                    avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+                    if (avatar.velocity.X > -AvatarData.INIT_RUN_VELOCITY)
+                        avatar.velocity.X = -AvatarData.INIT_RUN_VELOCITY;
+                }
+            }
             avatar.velocity.Y = 0;
             avatar.acceleration.Y = 0;
 
@@ -237,16 +292,25 @@ namespace KirbyGame
 
         public override void HandleBlockCollision(Collision collision)
         {
-            if (collision.CollisionDirection == Collision.Direction.Down)
+            if (collision.CollisionDirection == Collision.Direction.Up)
             {
-                //this.FallingTransition();
-                avatar.velocity.Y = 0;
-                Timer = 0;
-                avatar.acceleration.Y = AvatarData.GRAVITY;
+                if (Math.Abs(avatar.velocity.X) == 0)
+                {
+                    this.IdleTransition();
+                }
+                else
+                {
+                    this.RunningTransition();
+                }
             }
-            else if (collision.CollisionDirection != Collision.Direction.Up)
+            else if (collision.CollisionDirection == Collision.Direction.Down)
             {
-                this.RunningTransition();
+                avatar.velocity.Y = 0;
+            }
+            else
+            {
+                avatar.velocity.X = 0;
+                avatar.acceleration.X = 0;
             }
         }
 
@@ -286,7 +350,7 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
-
+            Timer -= gameTime.ElapsedGameTime.Milliseconds;
             if (Math.Abs(avatar.acceleration.X) == 0)
             {
                 avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
@@ -303,9 +367,21 @@ namespace KirbyGame
                 Timer -= gameTime.ElapsedGameTime.Milliseconds;
                 if (Timer < 0)
                 {
-                    Timer = 0;
-                    avatar.acceleration.Y = AvatarData.GRAVITY;
+                    this.FallingTransition();
                 }
+            }
+            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (ColorTimer > 200)
+            {
+                if (avatar.Sprite.texture.currentColor == Color.White)
+                {
+                    avatar.Sprite.texture.currentColor = Color.Pink;
+                }
+                else
+                {
+                    avatar.Sprite.texture.currentColor = Color.White;
+                }
+                ColorTimer -= 250;
             }
 
         }
@@ -336,6 +412,126 @@ namespace KirbyGame
         {
 
         }
+
+
+    }
+
+    class FullFallingState : FullActionState
+    {
+        public FullFallingState(SwallowState owner) : base(owner)
+        {
+
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            if (collision.CollisionDirection == Collision.Direction.Up)
+            {
+                if (Math.Abs(avatar.velocity.X) == 0)
+                {
+                    this.IdleTransition();
+                }
+                else
+                {
+                    this.RunningTransition();
+                }
+            }
+            else if (collision.CollisionDirection == Collision.Direction.Down)
+            {
+                avatar.velocity.Y = 0;
+            }
+            else
+            {
+                avatar.velocity.X = 0;
+                avatar.acceleration.X = 0;
+            }
+        }
+
+        public override void Left()
+        {
+            avatar.acceleration.X = -AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseRight()
+        {
+            avatar.acceleration.X = 0;
+        }
+
+        public override void releaseJump()
+        {
+        }
+
+        public override void Right()
+        {
+            avatar.acceleration.X = AvatarData.DEFAULT_RUNNING_ACCELERATION;
+        }
+
+        public override void Jump()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+
+            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (ColorTimer > 200)
+            {
+                if (avatar.Sprite.texture.currentColor == Color.White)
+                {
+                    avatar.Sprite.texture.currentColor = Color.Pink;
+                }
+                else
+                {
+                    avatar.Sprite.texture.currentColor = Color.White;
+                }
+                ColorTimer -= 250;
+            }
+        }
+
+        public override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.acceleration.Y = AvatarData.GRAVITY;
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+        public override void Float()
+        {
+        }
+
+        public override void ReleaseFloat()
+        {
+
+        }
+
 
 
     }
