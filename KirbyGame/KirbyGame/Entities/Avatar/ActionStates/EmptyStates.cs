@@ -123,6 +123,11 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
+            if(avatar.velocity.Y > 0)
+            {
+                this.FallingTransition();
+            }
+            avatar.velocity.Y = 1;
         }
 
         public override void Enter(ActionState prevState)
@@ -209,7 +214,7 @@ namespace KirbyGame
         {
             if (avatar.velocity.Y > 0)
             {
-                //this.FallingTransition();
+                this.FallingTransition();
             }
             else if (Math.Abs(avatar.acceleration.X) == 0)
             {
@@ -217,7 +222,7 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
                     this.IdleTransition();
             }
-            //avatar.velocity.Y = 1;
+            avatar.velocity.Y = 1;
             if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
             else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
