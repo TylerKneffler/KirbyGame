@@ -288,11 +288,11 @@ namespace KirbyGame
                     // Handle the collision and update entities
                     collisions[index].A.HandleCollision(collisions[index], collisions[index].B);
                     collisions[index].B.HandleCollision(collisions[index], collisions[index].A);
-                    collisions[index].AddPoints += collisions[index].A.game.points.OnAddPoints;
+                    //collisions[index].AddPoints += collisions[index].A.game.points.OnAddPoints;
                     //Notify
                     collisions[index].OnAddPoints(collisions[index]);
 
-                    collisions[index].AddPoints -= collisions[index].A.game.points.OnAddPoints;
+                    //collisions[index].AddPoints -= collisions[index].A.game.points.OnAddPoints;
 
                     collisions.RemoveAt(index);
                 }

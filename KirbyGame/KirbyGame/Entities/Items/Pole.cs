@@ -19,8 +19,8 @@ namespace KirbyGame
         {
             if(collider is Avatar)
             {
-                if (!(((Avatar)collider).actionState is MarioTransitioningState))
-                    ((Avatar)collider).actionState.TransitioningTransition(new FlagpoleTransition((Avatar)collider, (int)this.BoundingBox.Right));
+                //if (!(((Avatar)collider).actionState is MarioTransitioningState)) ;
+                    //((Avatar)collider).actionState.TransitioningTransition(new FlagpoleTransition((Avatar)collider, (int)this.BoundingBox.Right));
             }
         }
 

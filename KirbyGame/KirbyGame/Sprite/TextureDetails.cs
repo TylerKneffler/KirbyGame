@@ -13,12 +13,13 @@ namespace KirbyGame
     {
         private Texture2D texture;
 
-        private Rectangle textureLocation;
-        private int maxFrames;
-        private int currentFrame;
+        private List<Rectangle> textureLocations;
+        private int currentTexture;
+
         private Point frameSize;
         private int Time;
-        private int Delay;
+        public int Delay;
+        public Color currentColor;
         int mod;
 
         public Point size
@@ -29,40 +30,54 @@ namespace KirbyGame
         public TextureDetails(Texture2D texture, int numFrames)
         {
             this.texture = texture;
-            textureLocation = new Rectangle(new Point(0, 0), new Point(texture.Width, texture.Height));
-            maxFrames = numFrames;
-            currentFrame = 0;
-            frameSize = new Point(textureLocation.Width / maxFrames, textureLocation.Height);
+            textureLocations = new List<Rectangle>();
+            currentTexture = 0;            
+            for(int i = 0; i < numFrames; i++)
+            {
+                textureLocations.Add(new Rectangle(texture.Width/numFrames*i, 0, texture.Width/numFrames, texture.Height));
+            }
+
+            frameSize = textureLocations[0].Size;
             Time = 0;
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
+            currentColor = Color.White;
         }
 
         public TextureDetails(Texture2D texture, Rectangle textureLocation, int numFrames)
         {
             this.texture = texture;
-            this.textureLocation = textureLocation;
-            maxFrames = numFrames;
-            currentFrame = 0;
-            frameSize = new Point(textureLocation.Width / maxFrames, textureLocation.Height);
+            textureLocations = new List<Rectangle>();
+            currentTexture = 0;
+            for (int i = 0; i < numFrames; i++)
+            {
+                textureLocations.Add(new Rectangle(textureLocation.X + textureLocation.Width / numFrames * i, textureLocation.Y, textureLocation.Width / numFrames, textureLocation.Height));
+            }
+
+            frameSize = textureLocations[0].Size;
             Time = 0;
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
+            currentColor = Color.White;
+        }
+
+        public void AddFrame(Rectangle textureLocation)
+        {
+            textureLocations.Add(textureLocation);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, Sprite.eDirection direction)
         {
-            Rectangle sourceRectangle = new Rectangle(textureLocation.X + frameSize.X * currentFrame, textureLocation.Y, frameSize.X, frameSize.Y);
 
             if (direction == Sprite.eDirection.Left)
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 0, new Vector2(0, 0),mod, SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(texture, location, textureLocations[currentTexture], currentColor, 0, new Vector2(0, 0),mod, SpriteEffects.FlipHorizontally, 0);
             else
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 0, new Vector2(0, 0),mod,  SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, location, textureLocations[currentTexture], currentColor, 0, new Vector2(0, 0),mod,  SpriteEffects.None, 0);
         }
 
         public void Update(GameTime gameTime)
         {
-            if(maxFrames > 1)
+            /*if(maxFrames > 1)
             {
                 Time += gameTime.ElapsedGameTime.Milliseconds;
                 if (Time > Delay)
@@ -72,12 +87,24 @@ namespace KirbyGame
                 }
                 if (currentFrame == maxFrames)
                     currentFrame = 0;
-            }          
+            }*/
+            if (textureLocations.Count > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentTexture++;
+                }
+                if (currentTexture == textureLocations.Count)
+                    currentTexture = 0;
+                frameSize = textureLocations[currentTexture].Size;
+            }
         }
 
         public void SetCurrentFrame(int frame)
         {
-            currentFrame = frame;
+            currentTexture = frame;
         }
     }
 

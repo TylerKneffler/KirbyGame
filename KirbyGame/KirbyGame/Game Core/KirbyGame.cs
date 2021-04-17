@@ -23,7 +23,6 @@ namespace KirbyGame
 
         public LevelLoader levelLoader;
 
-        public Checkpoints checkpoints;
 
         public TileMap map;
 
@@ -42,12 +41,10 @@ namespace KirbyGame
         public Vector2 gameBounds;
 
         public Viewport _viewport;
-        public Hud Hud { get; set; }
         private bool isMuted = false;
         private Song soundtrack;
         public Boolean boundingBoxToggle;
         private Boolean isPaused = false;
-        public Points points;
 
 
 
@@ -80,6 +77,7 @@ namespace KirbyGame
             points = new Points(Hud);
 
 
+
             base.Initialize();
         }
 
@@ -104,7 +102,6 @@ namespace KirbyGame
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
 
-            checkpoints = new Checkpoints(mario, this);
             //levelLoader.Hud.NumberOfLives = mario.numLives;
             //hud = new Hud(mario);
             soundtrack = Content.Load<Song>("Kirby dream land theme song");
@@ -113,37 +110,21 @@ namespace KirbyGame
 
 
             //load commands to controller
-            KInput.addPressCommand(Keys.W, new MarioPressUp(mario));
-            KInput.addPressCommand(Keys.A, new MarioPressLeft(mario));
-            KInput.addPressCommand(Keys.S, new MarioPressDown(mario));
-            KInput.addPressCommand(Keys.D, new MarioPressRight(mario));
-            KInput.addReleaseCommand(Keys.W, new MarioReleaseUp(mario));
-            KInput.addReleaseCommand(Keys.A, new MarioReleaseLeft(mario));
-            KInput.addReleaseCommand(Keys.S, new MarioReleaseDown(mario));
-            KInput.addReleaseCommand(Keys.D, new MarioReleaseRight(mario));
 
-            KInput.addPressCommand(Keys.Up, new MarioPressUp(mario));
+
+            KInput.addPressCommand(Keys.X, new MarioPressJump(mario));
             KInput.addPressCommand(Keys.Left, new MarioPressLeft(mario));
             KInput.addPressCommand(Keys.Down, new MarioPressDown(mario));
             KInput.addPressCommand(Keys.Right, new MarioPressRight(mario));
-            KInput.addReleaseCommand(Keys.Up, new MarioReleaseUp(mario));
+            KInput.addPressCommand(Keys.Up, new MarioPressFloat(mario));
+            KInput.addReleaseCommand(Keys.X, new MarioReleaseJump(mario));
             KInput.addReleaseCommand(Keys.Left, new MarioReleaseLeft(mario));
             KInput.addReleaseCommand(Keys.Down, new MarioReleaseDown(mario));
             KInput.addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
+            KInput.addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
 
-            KInput.addPressCommand(Keys.Y, new MakeMarioSmall(mario));
-            KInput.addPressCommand(Keys.U, new MakeMarioSuper(mario));
-            KInput.addPressCommand(Keys.I, new MakeMarioFire(mario));
-            KInput.addPressCommand(Keys.C, new ToggleBoxes(this));
-            KInput.addPressCommand(Keys.R, new ResetLevel(this));
 
-            //TEST COMMAND BELOW!!!
-            KInput.addPressCommand(Keys.Q, new HardReset(this));
-
-            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
-            KInput.addPressCommand(Keys.P, new PauseCommand(this));
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
-            KInput.addPressCommand(Keys.M, new ToggleMute(this));
 
             //Enemies
 
@@ -172,8 +153,7 @@ namespace KirbyGame
                 map.updateTileMap(levelLoader.list);
                 Collision.PotentialCollisions(levelLoader.list, map);
                 levelLoader.LevelUpdate(gameTime, camera, map);
-                Hud.Update(gameTime);
-                checkpoints.Update();
+
                 //Update entities
 
 
@@ -198,38 +178,7 @@ namespace KirbyGame
                 //Drawing Sprites
                 levelLoader.LevelDraw(spriteBatch);
                 spriteBatch.End();
-                Hud.Draw(spriteBatch);
                 base.Draw(gameTime);
-            }
-        }
-        /// <summary>
-        ///Controller methods called when the player initiates a keypress linked to 
-        ///the associated view method which updates the sprite view value to appear onscreen
-        /// </summary
-
-        public void ExitCommand()
-        {
-            if (Hud.IsGameOver())
-            {
-                Exit();
-            }
-        }
-
-        public void ToggleBoxesCommand()
-        {
-            boundingBoxToggle = !boundingBoxToggle;
-        }
-
-        public void ToggleMuteCommand()
-        {
-            isMuted = !isMuted;
-            if (isMuted)
-            {
-                MediaPlayer.IsMuted = true;
-            }
-            else
-            {
-                MediaPlayer.IsMuted = false; ;
             }
         }
 

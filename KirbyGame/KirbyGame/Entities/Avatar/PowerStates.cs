@@ -27,7 +27,7 @@ namespace KirbyGame
         protected virtual void Enter(PowerState previousState)
         {
             this.previousState = previousState;
-            avatar.updateState();
+            avatar.UpdateSprite();
         }
         protected virtual void Exit()
         {
@@ -160,7 +160,6 @@ namespace KirbyGame
             avatar.IsDead = true;
             Debug.WriteLine("Mario lost a life!");
             //Debug.WriteLine("Number of lives remaining: " + avatar.numLives);
-            avatar.actionState.TransitioningTransition(new DyingTransition(avatar));
         }
     }
 }
