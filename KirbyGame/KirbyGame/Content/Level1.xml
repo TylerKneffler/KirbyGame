@@ -63,7 +63,7 @@
 
     <Door Xpos = "138" Ypos = "5" Stage ="1"/>
     
-    <Floor Xpos = "143" Ypos = "8" Length ="15"/>
+    <Floor Xpos = "143" Ypos = "8" Length ="20"/>
     
 	</Entities>
 	<Layers>

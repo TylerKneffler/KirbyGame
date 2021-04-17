@@ -133,6 +133,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)Content\Level1.xml" "$(TargetDir)"
+copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
