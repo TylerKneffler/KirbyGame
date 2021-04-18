@@ -72,6 +72,8 @@
     <Compile Include="Entities\Enemies\EnemytypeTest.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityData.cs" />
+    <Compile Include="Entities\Projectiles\Boomerang.cs" />
+    <Compile Include="Entities\Projectiles\BoomerangFactory.cs" />
     <Compile Include="Entities\Projectiles\Cannonball.cs" />
     <Compile Include="Entities\Projectiles\CannonballFactory.cs" />
     <Compile Include="Entities\Items\1UpMushroom.cs" />

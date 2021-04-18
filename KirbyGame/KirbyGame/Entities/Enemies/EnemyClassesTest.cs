@@ -1271,16 +1271,6 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this.enemy);
-            //Avatar collision
-            if (collider is Avatar)
-            {
-                if (CollisionDirection == Collision.Direction.Down)
-                {
-                    this.enemy.SquishGoombaStateChange();
-
-                }
-            }
         }
     }
 }
