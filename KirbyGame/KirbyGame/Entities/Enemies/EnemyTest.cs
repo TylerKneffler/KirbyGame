@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    class EnemyTest : Entity/*, IPointable*/
+    class EnemyTest : Entity
     {
         public EnemytypeTest enemytype;
         public int type;
@@ -20,7 +20,8 @@ namespace KirbyGame
 
         public enum enemytypes
         {
-            GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO
+            GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO, WADDLE_DEE, WADDLE_DOO, SIR_KIBBLE, APPLE,
+            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE
         }
 
         public EnemyTest(enemytypes enemyType, Vector2 location, Game1 game)
@@ -70,6 +71,22 @@ namespace KirbyGame
             else if (enemyType == enemytypes.SQUISH_GOOMBA)
             {
                 enemytype = new SquishGoombaTest(this, location);
+            }
+            else if (enemyType == enemytypes.WADDLE_DEE)
+            {
+                enemytype = new WaddleDeeTest(this, location);
+            }
+            else if (enemyType == enemytypes.WADDLE_DOO)
+            {
+                enemytype = new WaddleDooTest(this, location);
+            }
+            else if (enemyType == enemytypes.SIR_KIBBLE)
+            {
+                enemytype = new SirKibbleTest(this, location);
+            }
+            else if (enemyType == enemytypes.APPLE)
+            {
+                enemytype = new AppleTest(this, location);
             }
 
         }
@@ -153,11 +170,61 @@ namespace KirbyGame
             }
         }
 
+        //Handling all dead state changes in one method
+        public virtual void DeadStateChange()
+        {
+            if(type == 10)
+            {
+                type = 14;
+                this.enemytype = new DeadWaddleDeeTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 11)
+            {
+                type = 15;
+                this.enemytype = new DeadWaddleDooTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 12)
+            {
+                type = 16;
+                this.enemytype = new DeadSirKibbleTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 13)
+            {
+                type = 17;
+                this.enemytype = new DeadAppleTest(this, new Vector2(this.X, this.Y - 19));
+            }
+        }
+
+        public virtual void SuckStateChange(int direction)
+        {
+            if (type == 10)
+            {
+                type = 18;
+                this.enemytype = new SuckWaddleDeeTest(this, new Vector2(this.X, this.Y /*- 19*/), direction);
+            }
+            else if (type == 11)
+            {
+                type = 19;
+                this.enemytype = new SuckWaddleDooTest(this, new Vector2(this.X, this.Y), direction);
+            }
+            else if (type == 12)
+            {
+                type = 20;
+                this.enemytype = new SuckSirKibbleTest(this, new Vector2(this.X, this.Y), direction);
+            }
+            else if (type == 13)
+            {
+                type = 21;
+                this.enemytype = new SuckAppleTest(this, new Vector2(this.X, this.Y), direction);
+            }
+
+        }
+
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-
-            if (collider is Block && collision.CollisionDirection == Collision.Direction.Up && !(this.enemytype is ParanaTest))
+            //Apple is special case, need to make it's velocity be -4 if it hits a block
+            if (collider is Block && collision.CollisionDirection == Collision.Direction.Up)
             {
                 if (collision.CollisionDirection == Collision.Direction.Up && !(((Block)collider).blocktype is HiddenBlock) &&
                     !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
@@ -166,8 +233,12 @@ namespace KirbyGame
                     acceleration.Y = 0;
                     Y = collider.BoundingBox.Top - this.BoundingBox.Height;
                 }
+                if(enemytype is AppleTest)
+                {
+                    velocity.X = -4;
+                }
 
-            }   else 
+            } else
             {
                 enemytype.HandleCollision(collision, collider);
             }
@@ -192,7 +263,7 @@ namespace KirbyGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!(enemytype is DeadGoombaTest || enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
+            if (!(enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
             {
                 base.Draw(spriteBatch);
             }

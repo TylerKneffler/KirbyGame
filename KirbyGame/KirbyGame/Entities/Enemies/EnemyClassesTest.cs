@@ -10,6 +10,561 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
+    class WaddleDeeTest : EnemytypeTest
+    {
+        public WaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDee"), 2), location);
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if(collider is Avatar /* or is projectile */)
+            {
+                this.enemy.DeadStateChange();
+            }
+            else if(collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Succ)
+            // this.enemy.SuckStateChange(getdirection (check collision for left or right);
+        }
+    }
+
+    class WaddleDooTest : EnemytypeTest
+    {
+        public WaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDoo"), 2), location);
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar /*or is projectile */)
+            {
+                this.enemy.DeadStateChange();
+            }
+            else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Succ)
+        }
+    }
+
+    class SirKibbleTest : EnemytypeTest
+    {
+        public SirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibble"), 2), location);
+            this.enemy.velocity.X = 0;
+        }
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar /* or is projectile */)
+            {
+                this.enemy.DeadStateChange();
+            }
+            else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Succ)
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //check if Kirby in range, then throw boomerang on CD
+        }
+    }
+
+    class AppleTest : EnemytypeTest
+    {
+        
+        private bool hitGround = false;
+        public AppleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("Apple"), 2), location);
+            this.enemy.seen = true;
+            this.enemy.velocity.X = 0;
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar /* or is projectile */)
+            {
+                this.enemy.DeadStateChange();
+            }
+            //else if(collider is Succ)
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+
+        }
+    }
+
+    //Next 4 classes are for when enemies run into kirby or are hit by a projectile.
+    class DeadWaddleDeeTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+
+        public DeadWaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.enemy.acceleration = new Vector2(0, 1);
+            this.enemy.velocity.Y = 1;
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.FlipHorizontally, 0);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.Y += this.enemy.velocity.Y;
+        }
+    }
+
+    class DeadWaddleDooTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+
+        public DeadWaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDoo");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.enemy.acceleration = new Vector2(0, 1);
+            this.enemy.velocity.Y = 1;
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.FlipHorizontally, 0);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.Y += this.enemy.velocity.Y;
+        }
+    }
+
+    class DeadSirKibbleTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+
+        public DeadSirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.enemy.acceleration = new Vector2(0, 1);
+            this.enemy.velocity.Y = 1;
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.FlipHorizontally, 0);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.Y += this.enemy.velocity.Y;
+        }
+    }
+    class DeadAppleTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+
+        public DeadAppleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("Apple");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.enemy.acceleration = new Vector2(0, 1);
+            this.enemy.velocity.Y = 1;
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.FlipHorizontally, 0);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.Y += this.enemy.velocity.Y;
+        }
+    }
+
+    //These classes are for when an enemy gets sucked into Kirby. direction will be 1 for left, 2 for right.
+    class SuckWaddleDeeTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+        private int Direction;
+        private int check = 0;
+
+        public SuckWaddleDeeTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.Direction = direction;
+            
+
+            if (Direction == 1)
+            {
+                this.enemy.acceleration = new Vector2(-1, 0);
+                this.enemy.velocity.X = -1;
+
+            }
+            else if(Direction == 2)
+            {
+                this.enemy.acceleration = new Vector2(1, 0);
+                this.enemy.velocity.X = 1;
+            }
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            while (check < 50)
+            {
+                Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1 && check < 50)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.X += this.enemy.velocity.X;
+            check++;
+        }
+    }
+
+    class SuckWaddleDooTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+        private int Direction;
+        private int check = 0;
+
+        public SuckWaddleDooTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.Direction = direction;
+
+
+            if (Direction == 1)
+            {
+                this.enemy.acceleration = new Vector2(-1, 0);
+                this.enemy.velocity.X = -1;
+
+            }
+            else if (Direction == 2)
+            {
+                this.enemy.acceleration = new Vector2(1, 0);
+                this.enemy.velocity.X = 1;
+            }
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            while (check < 50)
+            {
+                Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1 && check < 50)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.X += this.enemy.velocity.X;
+            check++;
+        }
+    }
+
+    class SuckSirKibbleTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+        private int Direction;
+        private int check = 0;
+
+        public SuckSirKibbleTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.Direction = direction;
+
+
+            if (Direction == 1)
+            {
+                this.enemy.acceleration = new Vector2(-1, 0);
+                this.enemy.velocity.X = -1;
+
+            }
+            else if (Direction == 2)
+            {
+                this.enemy.acceleration = new Vector2(1, 0);
+                this.enemy.velocity.X = 1;
+            }
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            while (check < 50)
+            {
+                Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1 && check < 50)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.X += this.enemy.velocity.X;
+            check++;
+        }
+    }
+    class SuckAppleTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+        private int Direction;
+        private int check = 0;
+
+        public SuckAppleTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.Direction = direction;
+
+
+            if (Direction == 1)
+            {
+                this.enemy.acceleration = new Vector2(-1, 0);
+                this.enemy.velocity.X = -1;
+
+            }
+            else if (Direction == 2)
+            {
+                this.enemy.acceleration = new Vector2(1, 0);
+                this.enemy.velocity.X = 1;
+            }
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            while (check < 50)
+            {
+                Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1 && check < 50)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.X += this.enemy.velocity.X;
+            check++;
+        }
+    }
+
     class GoombaTest : EnemytypeTest
     {
         public GoombaTest(EnemyTest enemy, Vector2 location) : base(enemy)
