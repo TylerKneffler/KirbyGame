@@ -12,7 +12,7 @@ namespace KirbyGame
     public class Boomerang : Entity
     {
         private int delay;
-        private bool hurtKirby;
+        public bool hurtKirby;
         private bool explode;
         private int startingLoc;
         private int direction;

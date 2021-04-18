@@ -17,6 +17,7 @@ namespace KirbyGame
         public BoomerangFactory(Game1 game)
         {
             this.game = game;
+
         }
 
         public Boomerang CreateBoomerang(Vector2 location, int direction, bool canHurtKirby)

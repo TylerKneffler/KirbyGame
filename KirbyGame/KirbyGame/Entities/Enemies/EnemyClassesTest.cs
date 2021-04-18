@@ -19,13 +19,22 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if(collider is Avatar /* or is projectile */)
+            if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
             {
                 this.enemy.DeadStateChange();
             }
             else if(collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
             {
                 this.enemy.velocity.X = this.enemy.velocity.X * -1;
+
+                if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Left;
+                }
+                else
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Right;
+                }
             }
             //else if(collider is Succ)
             // this.enemy.SuckStateChange(getdirection (check collision for left or right);
@@ -41,13 +50,22 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar /*or is projectile */)
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
             {
                 this.enemy.DeadStateChange();
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
             {
                 this.enemy.velocity.X = this.enemy.velocity.X * -1;
+
+                if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Left;
+                }
+                else
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Right;
+                }
             }
             //else if(collider is Succ)
         }
@@ -55,27 +73,69 @@ namespace KirbyGame
 
     class SirKibbleTest : EnemytypeTest
     {
+        private BoomerangFactory factory;
+        private int cooldown;
+        private int delay;
         public SirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibbleFixed"), 2), location);
             this.enemy.velocity.X = 0;
+            factory = new BoomerangFactory(this.enemy.game);
+            cooldown = 0;
+            delay = 0;
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar /* or is projectile */)
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
             {
                 this.enemy.DeadStateChange();
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
             {
                 this.enemy.velocity.X = this.enemy.velocity.X * -1;
+
+                if(this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Left;
+                }
+                else
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Right;
+                }
+                
             }
+
             //else if(collider is Succ)
         }
 
         public override void Update(GameTime gameTime)
         {
-            //check if Kirby in range, then throw boomerang on CD
+            int rangeCheck = enemy.game.levelLoader.getMario().position.X;
+
+            base.Update(gameTime);
+            if(this.enemy.position.X - rangeCheck <= 200 && this.enemy.position.X - rangeCheck >= 0 && cooldown == 0)
+            {
+                throwCutter();
+                cooldown = 400;
+                delay = 30;
+            }
+            if(cooldown != 0)
+            {
+                cooldown--;
+                if(delay == 0)
+                {
+                    this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibbleFixed"), 2), this.enemy.Sprite.location);
+                }
+                delay--;
+            }
+            
+        }
+
+        private void throwCutter()
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibbleThrowFixed"), 1), this.enemy.Sprite.location);
+            this.enemy.velocity.X = 0;
+            enemy.game.levelLoader.list.Add(factory.CreateBoomerang(new Vector2(this.enemy.position.X, this.enemy.position.Y), 0, true));
         }
     }
 
@@ -92,7 +152,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar /* or is projectile */)
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
             {
                 this.enemy.DeadStateChange();
             }
@@ -118,7 +178,7 @@ namespace KirbyGame
 
         public DeadWaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -167,7 +227,7 @@ namespace KirbyGame
 
         public DeadWaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDoo");
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -216,7 +276,7 @@ namespace KirbyGame
 
         public DeadSirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            texture = this.enemy.game.Content.Load<Texture2D>("SirKibbleFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -264,7 +324,7 @@ namespace KirbyGame
 
         public DeadAppleTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("Apple");
+            texture = this.enemy.game.Content.Load<Texture2D>("AppleFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -316,7 +376,7 @@ namespace KirbyGame
 
         public SuckWaddleDeeTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -382,7 +442,7 @@ namespace KirbyGame
 
         public SuckWaddleDooTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDee");
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -448,7 +508,7 @@ namespace KirbyGame
 
         public SuckSirKibbleTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            texture = this.enemy.game.Content.Load<Texture2D>("SirKibbleFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -513,7 +573,7 @@ namespace KirbyGame
 
         public SuckAppleTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("SirKibble");
+            texture = this.enemy.game.Content.Load<Texture2D>("AppleFixed");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
