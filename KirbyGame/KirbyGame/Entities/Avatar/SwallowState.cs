@@ -13,7 +13,7 @@ namespace KirbyGame
         public Avatar avatar;
         protected SwallowState previousState;
         public ActionState actionState;
-        public PowerUp power;
+        public IPowerUp power;
         protected SwallowState CurrentState { get { return avatar.swallowed; } set { avatar.swallowed = value; } }
 
         public SwallowState(Avatar avatar)
