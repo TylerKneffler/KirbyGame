@@ -13,6 +13,7 @@ namespace KirbyGame
         public Avatar avatar;
         protected SwallowState previousState;
         public ActionState actionState;
+        public PowerUp power;
         protected SwallowState CurrentState { get { return avatar.swallowed; } set { avatar.swallowed = value; } }
 
         public SwallowState(Avatar avatar)
@@ -93,10 +94,10 @@ namespace KirbyGame
             actionState.Update(gameTime);
         }
 
-        public void EmptyTransition(EmptyActionState actionState)
+        public void EmptyTransition()
         {
             CurrentState.Exit();
-            CurrentState = new EmptySwallowState(avatar, actionState);
+            CurrentState = new EmptySwallowState(avatar);
             CurrentState.Enter(this);
         }
 
@@ -104,6 +105,13 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new AirSwallowState(avatar);
+            CurrentState.Enter(this);
+        }
+
+        public void FullTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new FullSwallowState(avatar);
             CurrentState.Enter(this);
         }
     }
@@ -144,7 +152,7 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-
+            this.EmptyTransition();
         }
         public override void ReleaseTrigger()
         {
@@ -166,7 +174,7 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-
+            this.EmptyTransition();
         }
         public override void ReleaseTrigger()
         {
