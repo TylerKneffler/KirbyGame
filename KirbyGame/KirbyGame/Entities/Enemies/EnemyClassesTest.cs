@@ -10,6 +10,101 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
+    class WaddleDeeTest : EnemytypeTest
+    {
+        public WaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDee"), 2), location);
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if(collider is Avatar)
+            {
+                //fall off screen ded
+            }
+            else if(collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Projectile?)
+        }
+    }
+
+    class WaddleDooTest : EnemytypeTest
+    {
+        public WaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDoo"), 2), location);
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar)
+            {
+                //fall off screen ded
+            }
+            else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Projectile?)
+        }
+    }
+
+    class SirKibbleTest : EnemytypeTest
+    {
+        public SirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibble"), 2), location);
+            this.enemy.velocity.X = 0;
+        }
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar)
+            {
+                //fall off screen ded
+            }
+            else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+            }
+            //else if(collider is Projectile?)
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //check if Kirby in range, then throw boomerang on CD
+        }
+    }
+
+    class AppleTest : EnemytypeTest
+    {
+
+        private bool hitGround = false;
+        public AppleTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("Apple"), 2), location);
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar)
+            {
+                //fall off screen ded
+            }
+            //else if(collider is Projectile?)
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (hitGround)
+            {
+                this.enemy.velocity.X = -4;
+            }
+        }
+    }
+
     class GoombaTest : EnemytypeTest
     {
         public GoombaTest(EnemyTest enemy, Vector2 location) : base(enemy)

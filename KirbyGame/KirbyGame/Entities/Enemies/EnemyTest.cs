@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    class EnemyTest : Entity/*, IPointable*/
+    class EnemyTest : Entity
     {
         public EnemytypeTest enemytype;
         public int type;
@@ -71,6 +71,22 @@ namespace KirbyGame
             else if (enemyType == enemytypes.SQUISH_GOOMBA)
             {
                 enemytype = new SquishGoombaTest(this, location);
+            }
+            else if (enemyType == enemytypes.WADDLE_DEE)
+            {
+                enemytype = new WaddleDeeTest(this, location);
+            }
+            else if (enemyType == enemytypes.WADDLE_DOO)
+            {
+                enemytype = new WaddleDooTest(this, location);
+            }
+            else if (enemyType == enemytypes.SIR_KIBBLE)
+            {
+                enemytype = new SirKibbleTest(this, location);
+            }
+            else if (enemyType == enemytypes.APPLE)
+            {
+                enemytype = new AppleTest(this, location);
             }
 
         }
@@ -157,8 +173,8 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-
-            if (collider is Block && collision.CollisionDirection == Collision.Direction.Up && !(this.enemytype is ParanaTest))
+            //Apple is special case, need to make it's velocity be -4 if it hits a block
+            if (collider is Block && collision.CollisionDirection == Collision.Direction.Up)
             {
                 if (collision.CollisionDirection == Collision.Direction.Up && !(((Block)collider).blocktype is HiddenBlock) &&
                     !(((Block)collider).blocktype is BrokenBrickBlock) && !(((Block)collider).blocktype is Castle))
@@ -168,7 +184,7 @@ namespace KirbyGame
                     Y = collider.BoundingBox.Top - this.BoundingBox.Height;
                 }
 
-            }   else 
+            }   else
             {
                 enemytype.HandleCollision(collision, collider);
             }
@@ -193,7 +209,7 @@ namespace KirbyGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!(enemytype is DeadGoombaTest || enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
+            if (!(enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
             {
                 base.Draw(spriteBatch);
             }
