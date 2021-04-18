@@ -132,12 +132,20 @@ namespace KirbyGame
             swallowed.ReleaseLeft();
         }
 
+        public void Trigger()
+        {
+        }
+
+        public void releaseTrigger()
+        {
+        }
+
         //not sure what this does 
         /*public void HitBlock()
         {
             swallowed.Down();
         }*/
-        
+
         public void UpdateSprite()
         {
             this.Sprite = factory.createSprite(swallowed, new Vector2(X, Y), Sprite.Direction);

@@ -207,6 +207,32 @@ namespace KirbyGame
         }
     }
 
+    class AvatarTrigger : Command<Avatar>
+    {
+        public AvatarTrigger(Avatar control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.Trigger();
+        }
+    }
+
+    class AvatarReleaseTrigger : Command<Avatar>
+    {
+        public AvatarReleaseTrigger(Avatar control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.releaseTrigger();
+        }
+    }
+
     class BoundingBoxToggle : Command<Game1>
     {
         public BoundingBoxToggle(Game1 control)
