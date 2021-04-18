@@ -32,9 +32,9 @@ namespace KirbyGame
         private HudFactory factory;
         readonly SpriteFont font;
 
-        public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport) : base(camera,texture,location,viewport)
+        public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
         {
-           
+            factory = new HudFactory(game);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
