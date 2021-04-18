@@ -58,6 +58,7 @@
     <Compile Include="Entities\Avatar\AvatarData.cs" />
     <Compile Include="Entities\Avatar\KirbySpriteFactory.cs" />
     <Compile Include="Entities\Avatar\KirbyTexturesFactory.cs" />
+    <Compile Include="Entities\Avatar\PowerUps\SuckUp.cs" />
     <Compile Include="Entities\Avatar\PowerUps\IPowerUp.cs" />
     <Compile Include="Entities\Avatar\SwallowState.cs" />
     <Compile Include="Entities\Avatar\Transitions\Transition.cs" />
