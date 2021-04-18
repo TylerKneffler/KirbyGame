@@ -12,10 +12,11 @@ namespace KirbyGame
     public class SuckUp : IPowerUp
     {
         TextureDetails particle;
-        Avatar avatar;
-        List<AirParticle> particleEffects;
+        public Avatar avatar;
+        public List<AirParticle> particleEffects;
         bool powerOn;
         private int Timer;
+        Random rand;
         public SuckUp(Avatar avatar)
         {
             this.avatar = avatar;
@@ -23,6 +24,7 @@ namespace KirbyGame
             particleEffects = new List<AirParticle>();
             powerOn = false;
             Timer = 0;
+            rand = new Random();
         }
         public void Trigger()
         {
@@ -38,9 +40,13 @@ namespace KirbyGame
                 {
                     Timer -= 250;
                     //generate accurate random location
-                    Vector2 location = new Vector2(avatar.X - Timer, avatar.Y - Timer);
-                    particleEffects.Add(new AirParticle(avatar.game, location, particle));
+                    GenerateParticle();
+                    
                 }
+            }
+            foreach (AirParticle particle in particleEffects)
+            {
+                particle.Update(gameTime);
             }
         }
 
@@ -58,17 +64,40 @@ namespace KirbyGame
             powerOn = false;
         }
 
+        public void GenerateParticle()
+        {
+            int x = rand.Next(avatar.BoundingBox.Right + 24, avatar.BoundingBox.Right + 32);
+            int y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
+
+            Vector2 velocity = new Vector2((float)avatar.BoundingBox.Center.X - x, (float)avatar.BoundingBox.Center.Y - y);
+            velocity = Vector2.Normalize(velocity);
+            velocity = Vector2.Multiply(velocity, 3);
+            Vector2 location = new Vector2(x,y);
+            particleEffects.Add(new AirParticle(this, location, velocity, particle));
+        }
+
     }
 
     public class AirParticle : Entity
     {
-        public AirParticle(Game1 game, Vector2 location, TextureDetails particle) : base(new Sprite(particle, location))
+        public Avatar avatar;
+        public SuckUp powerUp;
+
+        public AirParticle(SuckUp powerUp, Vector2 location, Vector2 initVelocity, TextureDetails particle) : base(new Sprite(particle, location))
         {
-            this.game = game;
+            this.powerUp = powerUp;
+            this.avatar = powerUp.avatar;
+            this.game = this.avatar.game;
+            this.velocity = initVelocity;
+            game.map.Insert(this);
+            
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            
+            if(collider == avatar)
+            {
+                powerUp.particleEffects.Remove(this);
+            }
         }
     }
 }
