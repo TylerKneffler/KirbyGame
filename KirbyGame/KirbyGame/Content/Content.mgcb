@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:Apple.png
 
+#begin AppleFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AppleFixed.png
+
 #begin avatar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -180,6 +192,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Cutter.png
+
+#begin CutterFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:CutterFixed.png
 
 #begin Explosion.png
 /importer:TextureImporter
@@ -1102,6 +1126,18 @@
 /processorParam:TextureFormat=Color
 /build:SirKibble.png
 
+#begin SirKibbleFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SirKibbleFixed.png
+
 #begin SirKibbleThrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1113,6 +1149,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SirKibbleThrow.png
+
+#begin SirKibbleThrowFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SirKibbleThrowFixed.png
 
 #begin smb_enemies_sheet.jpg
 /importer:TextureImporter
@@ -1324,6 +1372,18 @@
 /processorParam:TextureFormat=Color
 /build:WaddleDee.png
 
+#begin WaddleDeeFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WaddleDeeFixed.png
+
 #begin WaddleDoo.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1335,4 +1395,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WaddleDoo.png
+
+#begin WaddleDooFixed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WaddleDooFixed.png
 

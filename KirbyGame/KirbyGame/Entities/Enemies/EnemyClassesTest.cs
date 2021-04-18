@@ -14,7 +14,7 @@ namespace KirbyGame
     {
         public WaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDee"), 2), location);
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed"), 2), location);
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
@@ -36,7 +36,7 @@ namespace KirbyGame
     {
         public WaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDoo"), 2), location);
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), location);
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
@@ -57,7 +57,7 @@ namespace KirbyGame
     {
         public SirKibbleTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibble"), 2), location);
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("SirKibbleFixed"), 2), location);
             this.enemy.velocity.X = 0;
         }
         public override void HandleCollision(Collision collision, Entity collider)
@@ -85,7 +85,7 @@ namespace KirbyGame
         private bool hitGround = false;
         public AppleTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("Apple"), 2), location);
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("AppleFixed"), 2), location);
             this.enemy.seen = true;
             this.enemy.velocity.X = 0;
         }
