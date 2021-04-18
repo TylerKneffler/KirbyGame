@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace KirbyGame
 {
-    interface IPowerUp
+    public interface IPowerUp
     {
         void Trigger();
         void ReleaseTrigger();
