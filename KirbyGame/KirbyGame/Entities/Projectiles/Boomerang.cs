@@ -79,7 +79,7 @@ namespace KirbyGame
             Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
 
-            if (collider is Block || collider is EnemyTest || collider is Avatar)
+            if (collider is Block || (collider is EnemyTest && hurtKirby == false) || (collider is Avatar && hurtKirby == true) )
             {
                 if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                 {
@@ -92,6 +92,14 @@ namespace KirbyGame
                 explode = true;
                 velocity = new Vector2(0, 0);
                 Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
+            }
+            else if(collider is Avatar && hurtKirby == false)
+            {
+                remove = true;
+            }
+            else if(collider is EnemyTest && ((EnemyTest)collider).enemytype is SirKibbleTest && hurtKirby == true)
+            {
+                remove = true;
             }
         }
     }
