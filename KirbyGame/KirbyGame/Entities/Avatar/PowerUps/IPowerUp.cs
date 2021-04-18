@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace KirbyGame
 {
@@ -10,5 +13,6 @@ namespace KirbyGame
     {
         void Trigger();
         void ReleaseTrigger();
+        void Update(GameTime gameTime);
     }
 }
