@@ -21,7 +21,7 @@ namespace KirbyGame
         public enum enemytypes
         {
             GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO, WADDLE_DEE, WADDLE_DOO, SIR_KIBBLE, APPLE,
-            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE
+            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE
         }
 
         public EnemyTest(enemytypes enemyType, Vector2 location, Game1 game)
@@ -170,6 +170,31 @@ namespace KirbyGame
             }
         }
 
+        //Handling all dead state changes in one method
+        public virtual void DeadStateChange()
+        {
+            if(type == 10)
+            {
+                type = 14;
+                this.enemytype = new DeadWaddleDeeTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 11)
+            {
+                type = 15;
+                this.enemytype = new DeadWaddleDooTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 12)
+            {
+                type = 16;
+                this.enemytype = new DeadSirKibbleTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if(type == 13)
+            {
+                type = 17;
+                this.enemytype = new DeadAppleTest(this, new Vector2(this.X, this.Y - 19));
+            }
+        }
+
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
@@ -183,8 +208,12 @@ namespace KirbyGame
                     acceleration.Y = 0;
                     Y = collider.BoundingBox.Top - this.BoundingBox.Height;
                 }
+                if(enemytype is AppleTest)
+                {
+                    velocity.X = -4;
+                }
 
-            }   else
+            } else
             {
                 enemytype.HandleCollision(collision, collider);
             }
