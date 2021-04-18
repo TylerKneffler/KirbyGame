@@ -561,6 +561,13 @@
 /processorParam:TextureFormat=Color
 /build:Kirby Tree level 1-4_32.png
 
+#begin Kirby_font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Kirby_font.spritefont
+
 #begin kirby-death-sound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

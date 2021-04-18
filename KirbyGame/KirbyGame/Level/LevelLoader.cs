@@ -17,6 +17,7 @@ namespace KirbyGame
         public List<Entity> list;
         private BlockFactory blockFactory;
         private ItemFactory itemFactory;
+        private HudFactory hudFactory;
         private CannonballFactory cannonballFactory;
         private int delay = 0;
 
@@ -144,7 +145,7 @@ namespace KirbyGame
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
                             Paral = reader.GetAttribute("Paral");
-                            _layers.Add(new Layer(game.camera, game.Content.Load<Texture2D>("Kirby hud"), new Vector2(int.Parse(Xpos), int.Parse(Ypos)), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            _layers.Add(new KirbyHud(game.camera, game.Content.Load<Texture2D>("Kirby hud"), new Vector2(int.Parse(Xpos), int.Parse(Ypos)), game._viewport) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
                         case "Level_1-1":
                             Xpos = reader.GetAttribute("Xpos");

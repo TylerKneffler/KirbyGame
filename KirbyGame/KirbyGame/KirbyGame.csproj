@@ -84,6 +84,12 @@
     <Compile Include="Entities\Items\SuperMushroom.cs" />
     <Compile Include="Game Core\KirbyGame.cs" />
     <Compile Include="GameTimer.cs" />
+    <Compile Include="HUD\Health.cs" />
+    <Compile Include="HUD\HudFactory.cs" />
+    <Compile Include="HUD\Lives.cs" />
+    <Compile Include="HUD\Score.cs" />
+    <Compile Include="IPointable.cs" />
+    <Compile Include="HUD\KirbyHud.cs" />
     <Compile Include="Hud.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Level\LevelLoader.cs" />
