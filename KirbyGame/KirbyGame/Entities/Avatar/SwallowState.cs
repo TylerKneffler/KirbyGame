@@ -30,6 +30,9 @@ namespace KirbyGame
 
         }
 
+        public abstract void Trigger();
+        public abstract void ReleaseTrigger();
+
         #region DEFERRED_COMMANDS
         public void PressFloat()
         {
@@ -116,6 +119,15 @@ namespace KirbyGame
         {
             this.actionState = new EmptyIdleState(this);
         }
+
+        public override void Trigger()
+        {
+
+        }
+        public override void ReleaseTrigger()
+        {
+
+        }
     }
 
     class AirSwallowState : SwallowState
@@ -129,6 +141,15 @@ namespace KirbyGame
         {
             this.actionState = new AirFloatingState(this);
         }
+
+        public override void Trigger()
+        {
+
+        }
+        public override void ReleaseTrigger()
+        {
+
+        }
     }
 
     class FullSwallowState : SwallowState
@@ -141,6 +162,15 @@ namespace KirbyGame
         public FullSwallowState(Avatar avatar) : base(avatar)
         {
             this.actionState = new FullIdleState(this);
+        }
+
+        public override void Trigger()
+        {
+
+        }
+        public override void ReleaseTrigger()
+        {
+
         }
 
     }

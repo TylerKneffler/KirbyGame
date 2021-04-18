@@ -134,10 +134,12 @@ namespace KirbyGame
 
         public void Trigger()
         {
+            swallowed.Trigger();
         }
 
         public void releaseTrigger()
         {
+            swallowed.ReleaseTrigger();
         }
 
         //not sure what this does 
