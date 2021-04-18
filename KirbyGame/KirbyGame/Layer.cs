@@ -25,6 +25,24 @@ public class Layer
         location.X += texture.Width * 2;//multipy by 2 to get full texture width
     }
 
+    public Layer(Camera camera, Vector2 location, Viewport viewport)
+    {
+        _layerSprites = new List<Sprite>();
+        _camera = camera;
+        Parallax = Vector2.One;
+        _viewport = viewport;
+    }
+
+    public void AddSprite(Sprite sprite)
+    {
+        _layerSprites.Add(sprite);
+    }
+
+    public void RemoveSprite(Sprite sprite)
+    {
+        _layerSprites.Remove(sprite);
+    }
+
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Begin(/*samplerState: SamplerState.LinearWrap,*/transformMatrix:_camera.GetViewMatrix(Parallax));

@@ -291,7 +291,7 @@
 /processorParam:TextureFormat=Color
 /build:Hidden_Block.png
 
-#begin HUD/Beam Power.png
+#begin HUD/Beam_power.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -301,9 +301,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Beam Power.png
+/build:HUD/Beam_power.png
 
-#begin HUD/Cutter Power.png
+#begin HUD/Cutter_power.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -313,9 +313,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Cutter Power.png
+/build:HUD/Cutter_power.png
 
-#begin HUD/HP color.png
+#begin HUD/HP_color.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -325,9 +325,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/HP color.png
+/build:HUD/HP_color.png
 
-#begin HUD/HP empty.png
+#begin HUD/HP_empty.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -337,9 +337,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/HP empty.png
+/build:HUD/HP_empty.png
 
-#begin HUD/HP white.png
+#begin HUD/HP_white.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -349,9 +349,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/HP white.png
+/build:HUD/HP_white.png
 
-#begin HUD/Kirby hp name.png
+#begin HUD/Kirby_hp_name.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -361,9 +361,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Kirby hp name.png
+/build:HUD/Kirby_hp_name.png
 
-#begin HUD/Kirby lives.png
+#begin HUD/Kirby_lives.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -373,9 +373,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Kirby lives.png
+/build:HUD/Kirby_lives.png
 
-#begin HUD/Kirby score name.png
+#begin HUD/Kirby_score_name.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -385,9 +385,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Kirby score name.png
+/build:HUD/Kirby_score_name.png
 
-#begin HUD/Normal Power.png
+#begin HUD/Normal_power.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -397,9 +397,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Normal Power.png
+/build:HUD/Normal_power.png
 
-#begin HUD/Nothing Power.png
+#begin HUD/Nothing_power.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -409,9 +409,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Nothing Power.png
+/build:HUD/Nothing_power.png
 
-#begin HUD/Uses left.png
+#begin HUD/Uses_left.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -421,7 +421,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HUD/Uses left.png
+/build:HUD/Uses_left.png
 
 #begin items.png
 /importer:TextureImporter

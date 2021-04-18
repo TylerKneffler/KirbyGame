@@ -106,5 +106,6 @@
 	</Layers>
 	<Hud>
     <BackgroundHud Xpos = "0" Ypos = "280" Paral = "0"/>
+		<KirbyHud Xpos = "0" Ypos = "280" Paral = "0"/>
 	</Hud>
 </Level>
