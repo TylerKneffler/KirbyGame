@@ -195,6 +195,31 @@ namespace KirbyGame
             }
         }
 
+        public virtual void SuckStateChange(int direction)
+        {
+            if (type == 10)
+            {
+                type = 18;
+                this.enemytype = new SuckWaddleDeeTest(this, new Vector2(this.X, this.Y /*- 19*/), direction);
+            }
+            else if (type == 11)
+            {
+                type = 19;
+                this.enemytype = new SuckWaddleDooTest(this, new Vector2(this.X, this.Y), direction);
+            }
+            else if (type == 12)
+            {
+                type = 20;
+                this.enemytype = new SuckSirKibbleTest(this, new Vector2(this.X, this.Y), direction);
+            }
+            else if (type == 13)
+            {
+                type = 21;
+                this.enemytype = new SuckAppleTest(this, new Vector2(this.X, this.Y), direction);
+            }
+
+        }
+
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
