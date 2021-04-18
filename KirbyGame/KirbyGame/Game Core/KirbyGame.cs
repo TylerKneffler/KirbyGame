@@ -109,6 +109,7 @@ namespace KirbyGame
             //hud = new Hud(mario);
             soundtrack = Content.Load<Song>("Kirby dream land theme song");
             MediaPlayer.Play(soundtrack);
+            MediaPlayer.Pause();
             MediaPlayer.IsRepeating = true;
 
 

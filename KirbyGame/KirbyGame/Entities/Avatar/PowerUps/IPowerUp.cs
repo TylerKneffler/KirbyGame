@@ -14,5 +14,6 @@ namespace KirbyGame
         void Trigger();
         void ReleaseTrigger();
         void Update(GameTime gameTime);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

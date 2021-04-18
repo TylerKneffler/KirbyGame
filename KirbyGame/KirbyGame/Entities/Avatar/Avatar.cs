@@ -55,6 +55,7 @@ namespace KirbyGame
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            swallowed.Draw(spriteBatch);
         }
 
         public bool canBreakBlocks()

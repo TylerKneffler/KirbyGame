@@ -31,9 +31,6 @@ namespace KirbyGame
 
         }
 
-        public abstract void Trigger();
-        public abstract void ReleaseTrigger();
-
         #region DEFERRED_COMMANDS
         public void PressFloat()
         {
@@ -83,15 +80,22 @@ namespace KirbyGame
             actionState.releaseLeft();
         }
 
+        public abstract void Trigger();
+        public abstract void ReleaseTrigger();
+
         public void HandleBlockCollision(Collision collision)
         {
             actionState.HandleBlockCollision(collision);
         }
         #endregion
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            power.Draw(spriteBatch);
+        }
         public void Update(GameTime gameTime)
         {
             actionState.Update(gameTime);
+            power.Update(gameTime);
         }
 
         public void EmptyTransition()
@@ -121,20 +125,22 @@ namespace KirbyGame
         public EmptySwallowState(Avatar avatar, EmptyActionState actionState) : base(avatar)
         {
             this.actionState = actionState;
+            power = new SuckUp(avatar);
         }
 
         public EmptySwallowState(Avatar avatar) : base(avatar)
         {
             this.actionState = new EmptyIdleState(this);
+            power = new SuckUp(avatar);
         }
 
         public override void Trigger()
         {
-
+            power.Trigger();
         }
         public override void ReleaseTrigger()
         {
-
+            power.ReleaseTrigger();
         }
     }
 

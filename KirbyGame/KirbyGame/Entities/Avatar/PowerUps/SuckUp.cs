@@ -38,9 +38,17 @@ namespace KirbyGame
                 {
                     Timer -= 250;
                     //generate accurate random location
-                    Vector2 location = new Vector2(avatar.X,avatar.Y);
-                    particleEffects.Add(new AirParticle(location, particle));
+                    Vector2 location = new Vector2(avatar.X - Timer, avatar.Y - Timer);
+                    particleEffects.Add(new AirParticle(avatar.game, location, particle));
                 }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (AirParticle particle in particleEffects)
+            {
+                particle.Draw(spriteBatch);
             }
         }
 
@@ -54,8 +62,9 @@ namespace KirbyGame
 
     public class AirParticle : Entity
     {
-        public AirParticle(Vector2 location, TextureDetails particle) : base(new Sprite(particle, location))
+        public AirParticle(Game1 game, Vector2 location, TextureDetails particle) : base(new Sprite(particle, location))
         {
+            this.game = game;
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
