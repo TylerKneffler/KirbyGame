@@ -4,7 +4,7 @@
   <Entities>
     <Mario Xpos ="2" Ypos = "3"></Mario>
 
-	  <Shotzo Xpos = " 17" Ypos ="6"></Shotzo>
+	  <Shotzo Xpos = " 21" Ypos ="6"></Shotzo>
     <Floor Xpos = "1" Ypos = "8" Length ="20"/>
 
     <WaddleDee Xpos = "10" Ypos = "5" />

@@ -1292,7 +1292,7 @@ namespace KirbyGame
         private readonly CannonballFactory cannonballFactory;
 
         private bool right = true;
-        public ShotzoTest(EnemyTest enemy, Vector2 location, Sprite.eDirection direction,Game1 game) : base(enemy)
+        public ShotzoTest(EnemyTest enemy, Vector2 location,Game1 game) : base(enemy)
         {
             enemy.velocity.X = 0;
             cannonballFactory = new CannonballFactory(game);
@@ -1306,7 +1306,7 @@ namespace KirbyGame
             Follow();
             enemy.acceleration.Y = 0; 
             base.Update(gameTime);
-            int displacement = (int)(enemy.game.levelLoader.getMario().position.X - _location.X - 10) ;
+            int displacement = (int)(enemy.game.levelLoader.getMario().position.X - _location.X - 5) ;
             Console.WriteLine("shotzo" + displacement);
 
 
@@ -1317,12 +1317,12 @@ namespace KirbyGame
                 {
                     if (right)
                     {
-                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X + enemy.Sprite.texture.size.X, _location.Y + 10), (int)Sprite.eDirection.Right));
+                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X + enemy.Sprite.texture.size.X, _location.Y + 9), (int)Sprite.eDirection.Right));
 
                     }
                     else
                     {
-                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X, _location.Y + 10), (int)Sprite.eDirection.Left));
+                        enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X, _location.Y + 9), (int)Sprite.eDirection.Left));
                     }
                     enemy.game.player.PlayShotSound();
                     delay = 0;

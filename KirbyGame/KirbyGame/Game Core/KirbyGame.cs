@@ -157,7 +157,7 @@ namespace KirbyGame
         protected override void Update(GameTime gameTime)
         {
             KInput.UpdateInput();
-            if (!isPaused)
+            if (!isPaused && !player.IsInTransition)
             {
                 map.updateTileMap(levelLoader.list);
                 Collision.PotentialCollisions(levelLoader.list, map);
@@ -176,7 +176,7 @@ namespace KirbyGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (!isPaused)
+            if (!isPaused && !player.IsInTransition)
             {
                 if (updateCamera) { camera.LookAt(new Vector2(mario.position.X, mario.position.Y)); }
                 GraphicsDevice.Clear(color);

@@ -66,6 +66,7 @@ namespace KirbyGame
 
         public override void Down()
         {
+            owner.EmptyTransition();
         }
 
         public override void HandleBlockCollision(Collision collision)
@@ -174,7 +175,7 @@ namespace KirbyGame
 
         public override void Down()
         {
-
+            owner.EmptyTransition();
         }
 
         public override void HandleBlockCollision(Collision collision)
@@ -314,6 +315,7 @@ namespace KirbyGame
 
         public override void Down()
         {
+            owner.EmptyTransition();
         }
 
         public override void HandleBlockCollision(Collision collision)
@@ -459,6 +461,7 @@ namespace KirbyGame
 
         public override void Down()
         {
+            owner.EmptyTransition();
         }
 
         public override void HandleBlockCollision(Collision collision)

@@ -205,6 +205,12 @@
 /processorParam:TextureFormat=Color
 /build:CutterFixed.png
 
+#begin enter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:enter.wav
+
 #begin Explosion.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1222,17 +1228,17 @@
 /processorParam:Quality=Best
 /build:SoundEffects/bump.wav
 
+#begin SoundEffects/enter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/enter.wav
+
 #begin SoundEffects/explosion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/explosion.wav
-
-#begin SoundEffects/jump.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/jump.wav
 
 #begin SoundEffects/jump.wav
 /importer:WavImporter
