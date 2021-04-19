@@ -221,6 +221,12 @@ namespace KirbyGame
                             list.Add(temp);
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
+                        case "Shotzo":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.SHOTZO, new Vector2(int.Parse(Xpos) * 32 + 16, int.Parse(Ypos) * 32)));
+                            Debug.WriteLine("Creating Goomba at:" + Xpos + ", " + Ypos);
+                            break;
                         case "WhispyWoods":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");

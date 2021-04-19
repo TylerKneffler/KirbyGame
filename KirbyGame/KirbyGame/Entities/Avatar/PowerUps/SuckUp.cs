@@ -48,9 +48,9 @@ namespace KirbyGame
             {
                 Timer += gameTime.ElapsedGameTime.Milliseconds;
 
-                if(Timer > 250)
+                if(Timer > 125)
                 {
-                    Timer -= 250;
+                    Timer -= 125;
                     
                     GenerateParticle();
                 }
@@ -58,10 +58,21 @@ namespace KirbyGame
                 {
                     particleEffects.RemoveAt(0);
                 }
+                if (avatar.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    this.X = avatar.BoundingBox.Right;
+                }
+                else
+                {
+                    this.X = avatar.BoundingBox.Left - this.BoundingBox.Width;
+                }
+                this.Y = avatar.Y;
             }
 
             foreach (AirParticle particle in particleEffects)
             {
+                Vector2 difference = Vector2.Normalize(Vector2.Add(new Vector2(particle.X, particle.Y), Vector2.Negate(new Vector2(avatar.X, avatar.Y))));
+                particle.acceleration = Vector2.Negate(difference);
                 particle.Update(gameTime);
             }
         }
@@ -83,6 +94,7 @@ namespace KirbyGame
 
         public void GenerateParticle()
         {
+            Vector2 velocity;
             int x, y;
             if(avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
@@ -93,11 +105,15 @@ namespace KirbyGame
             }
             y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
 
+            if(x > avatar.BoundingBox.Center.X)
+            {
+                velocity = new Vector2(-1, 2);
+            } else
+            {
+                velocity = new Vector2(-1, -2);
+            }
 
-
-            Vector2 velocity = new Vector2((float)avatar.BoundingBox.Center.X - x, (float)avatar.BoundingBox.Center.Y - y);
-            velocity = Vector2.Normalize(velocity);
-            velocity = Vector2.Multiply(velocity, 3);
+            
             Vector2 location = new Vector2(x,y);
             particleEffects.Add(new AirParticle(this, location, velocity, particle));
         }
