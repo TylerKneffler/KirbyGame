@@ -944,7 +944,6 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
-            avatar.velocity.Y = 1;
             delay++;
             if (delay >75)
             { 
