@@ -14,6 +14,7 @@ namespace KirbyGame
         public Avatar avatar;
         private BoomerangFactory factory;
         private bool powerOn;
+        private Boomerang boomerang;
 
         public Cutter(Avatar avatar)
         {
@@ -34,18 +35,23 @@ namespace KirbyGame
             if (powerOn)
             {
                 if (this.avatar.Sprite.Direction == Sprite.eDirection.Left) { 
-                    factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
+                    boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
+                    boomerang.Update(gametime);
                 }
                 else
                 {
                     factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
+                    boomerang.Update(gametime);
                 }
                 ReleaseTrigger();
             }
         }
         public void Draw(SpriteBatch spritebatch)
         {
-
+            if (powerOn)
+            {
+                boomerang.Draw(spritebatch);
+            }
         }
     }
    
