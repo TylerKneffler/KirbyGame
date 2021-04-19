@@ -18,7 +18,7 @@ namespace KirbyGame
         bool powerOn;
         private int Timer;
         Random rand;
-        public SuckUp(Avatar avatar) : base(new Sprite(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(150, 586, 37, 16), new Vector2(-1,-1), 1))
+        public SuckUp(Avatar avatar) : base(new Sprite(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(150, 586, 3, 16), new Vector2(-1,-1), 1))
         {
             this.game = avatar.game;
             this.avatar = avatar;
@@ -34,10 +34,12 @@ namespace KirbyGame
             if(avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
                 this.X = avatar.BoundingBox.Right;
+                this.velocity.X = 2;
             }
             else
             {
                 this.X = avatar.BoundingBox.Left - this.BoundingBox.Width;
+                this.velocity.X = -2;
             }
             this.Y = avatar.Y;
             powerOn = true;
@@ -45,6 +47,7 @@ namespace KirbyGame
 
         public void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             if (powerOn)
             {
                 Timer += gameTime.ElapsedGameTime.Milliseconds;
@@ -59,11 +62,11 @@ namespace KirbyGame
                 {
                     particleEffects.RemoveAt(0);
                 }
-                if (avatar.Sprite.Direction == Sprite.eDirection.Right)
+                if (avatar.Sprite.Direction == Sprite.eDirection.Right && this.BoundingBox.Right > avatar.BoundingBox.Right + 48)
                 {
-                    this.X = avatar.BoundingBox.Right;
+                    this.X = avatar.BoundingBox.Right;   
                 }
-                else
+                else if(this.BoundingBox.Left < avatar.BoundingBox.Left - 48)
                 {
                     this.X = avatar.BoundingBox.Left - this.BoundingBox.Width;
                 }
@@ -93,6 +96,7 @@ namespace KirbyGame
         public void ReleaseTrigger()
         {
             particleEffects.Clear();
+            velocity.X = 0;
             powerOn = false;
         }
 
@@ -112,11 +116,11 @@ namespace KirbyGame
 
             if (avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
-                x = rand.Next(avatar.BoundingBox.Right + this.BoundingBox.Width-24, avatar.BoundingBox.Right+ this.BoundingBox.Width);
+                x = rand.Next(avatar.BoundingBox.Right + 24, avatar.BoundingBox.Right+ 36);
                 velocity.X = -1;
             } else
             {
-                x = rand.Next(avatar.BoundingBox.Left - this.BoundingBox.Width, avatar.BoundingBox.Left - this.BoundingBox.Width +24);
+                x = rand.Next(avatar.BoundingBox.Left - 36, avatar.BoundingBox.Left - 24);
                 velocity.X = 1;
             }     
             Vector2 location = new Vector2(x,y);
