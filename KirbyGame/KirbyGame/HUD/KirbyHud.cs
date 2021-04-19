@@ -32,6 +32,7 @@ namespace KirbyGame
         private HudFactory factory;
         readonly SpriteFont font;
         private int livesLeft;
+        private Score score;
 
         public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
         {
@@ -62,7 +63,12 @@ namespace KirbyGame
             }
         }
 
-        public void DrawLives(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(font, "X" + score.GetScore().ToString(), new Vector2(156, 342), Color.White);
+        }
+
+        public void DrawLives()
         {
             for (int i =0; i<livesLeft; i++)
             {
