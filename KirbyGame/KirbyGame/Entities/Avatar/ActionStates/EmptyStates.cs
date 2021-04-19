@@ -45,7 +45,6 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFallingState(owner);
-            avatar.game.player.PlayLandSound();
             CurrentState.Enter(this);
         }
 
@@ -274,6 +273,7 @@ namespace KirbyGame
             avatar.velocity.Y = 0;
             avatar.acceleration.Y = 0;
 
+
         }
 
         public override void Exit()
@@ -392,6 +392,8 @@ namespace KirbyGame
             {
                 //this.FallingTransition();
                 avatar.velocity.Y = 0;
+
+
             }
             else if (collision.CollisionDirection != Collision.Direction.Up)
             {
@@ -527,11 +529,14 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
+
             }
             else
             {
                 avatar.velocity.X = 0;
                 avatar.acceleration.X = 0;
+
             }
         }
 
@@ -648,11 +653,14 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
+
             }
             else
             {
                 avatar.velocity.X = 0;
                 avatar.acceleration.X = 0;
+
             }
         }
 

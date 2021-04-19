@@ -63,6 +63,7 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
 
         }
@@ -169,6 +170,7 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
 
         }
@@ -274,6 +276,7 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
 
         }
