@@ -1288,7 +1288,6 @@ namespace KirbyGame
     class ShotzoTest : EnemytypeTest
     {
         private int delay = 0;
-        private SoundEffect player;
         private Vector2 _location;
         private readonly CannonballFactory cannonballFactory;
         private bool right = true;
@@ -1323,8 +1322,7 @@ namespace KirbyGame
                     {
                         enemy.game.levelLoader.list.Add(cannonballFactory.CreateCannonball(new Vector2(_location.X , _location.Y + 10), (int)Sprite.eDirection.Left));
                     }
-                    this.player = this.enemy.game.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
-                    this.player.Play();
+                    enemy.game.player.PlayShotSound();
                     delay = 0;
                 }
             }

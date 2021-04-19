@@ -245,4 +245,17 @@ namespace KirbyGame
             control.ToggleBoundingBoxes();
         }
     }
+    class ToggleMute : Command<Game1>
+    {
+        public ToggleMute(Game1 control)
+            : base(control)
+        {
+
+        }
+
+        public override void Execute()
+        {
+            control.ToggleMuteCommand();
+        }
+    }
 }

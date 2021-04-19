@@ -17,6 +17,7 @@ namespace KirbyGame
     /// </summary>
     public class Game1 : Game
     {
+        public SoundPlayer player;
         //Enteties: Enemies
 
         public Avatar mario;//made public
@@ -67,6 +68,7 @@ namespace KirbyGame
         /// </summary>
         protected override void Initialize()
         {
+            player = new SoundPlayer(false, this);
             // TODO: Add your initialization logic here
             KInput = new ControllerKeyboard();
             _viewport = GraphicsDevice.Viewport;
@@ -129,6 +131,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.C, new BoundingBoxToggle(this));
             KInput.addPressCommand(Keys.Z, new AvatarTrigger(mario));
             KInput.addReleaseCommand(Keys.Z, new AvatarReleaseTrigger(mario));
+            KInput.addPressCommand(Keys.M, new ToggleMute(this));
 
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
 
@@ -264,13 +267,16 @@ namespace KirbyGame
         public void ToggleMuteCommand()
         {
             isMuted = !isMuted;
+            player.IsMuted = !player.IsMuted;
             if (isMuted)
             {
                 MediaPlayer.IsMuted = true;
+                player.IsMuted = true;
             }
             else
             {
                 MediaPlayer.IsMuted = false; ;
+                player.IsMuted = false;
             }
         }
     }

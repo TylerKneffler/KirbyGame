@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Checkpoints.cs" />
     <Compile Include="Collision\Collision.cs" />
