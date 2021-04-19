@@ -233,6 +233,24 @@ namespace KirbyGame
                             list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.WHISPYWOODS, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32)));
                             Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
                             break;
+                        case "SirKibble":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.SIR_KIBBLE, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32)));
+                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
+                            break;
+                        case "WaddleDee":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.WADDLE_DEE, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32)));
+                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
+                            break;
+                        case "WaddleDoo":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            list.Add(enemyFactoryTest.createEnemy(EnemyTest.enemytypes.WADDLE_DOO, new Vector2((int.Parse(Xpos)) * 32, int.Parse(Ypos) * 32)));
+                            Debug.WriteLine("Creating FLOOR at:" + Xpos + ", " + Ypos);
+                            break;
                     }
                 }
             }

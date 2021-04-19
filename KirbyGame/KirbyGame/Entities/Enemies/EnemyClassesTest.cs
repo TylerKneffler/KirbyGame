@@ -1414,4 +1414,35 @@ namespace KirbyGame
             this.enemy.game.levelLoader.list.Add(factory.createEnemy(EnemyTest.enemytypes.APPLE, new Vector2(this.enemy.X - rnd.Next(50,400), this.enemy.Y - rnd.Next(100, 200))));
         }
     }
+
+    class DeadWhispyWoods : EnemytypeTest
+    {
+        private EnemyFactoryTest factory;
+        private int cooldown;
+        private int delay;
+        public int life = 3;
+
+        Random rnd = new Random();
+
+        public DeadWhispyWoods(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(92, 0), new Point(24, 80)), 1), location);
+            this.enemy.velocity.X = 0;
+            factory = new EnemyFactoryTest(this.enemy.game);
+            cooldown = 500;
+            delay = 0;
+
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            int rangeCheck = enemy.game.levelLoader.getMario().position.X;
+
+            this.enemy.acceleration.Y = 0;
+            this.enemy.velocity.Y = 0;
+            base.Update(gameTime);
+        }
+
+
+    }
 }
