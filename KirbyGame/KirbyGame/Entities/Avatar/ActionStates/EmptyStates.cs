@@ -520,6 +520,8 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) == 0)
                 {
                     this.IdleTransition();
+                    avatar.game.player.PlayLandSound();
+
                 }
                 else
                 {
