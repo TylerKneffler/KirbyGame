@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace KirbyGame
 {
-    abstract class EnemytypeTest : IPointable
+    public abstract class EnemytypeTest : IPointable
     {
 
         protected EnemyTest enemy;
