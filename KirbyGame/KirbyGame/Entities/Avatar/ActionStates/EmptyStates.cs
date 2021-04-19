@@ -60,6 +60,13 @@ namespace KirbyGame
             CurrentState = new EmptyFlyingState(owner);
             CurrentState.Enter(this);
         }
+
+        public void SuckingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new EmptySuckingState(owner);
+            CurrentState.Enter(this);
+        }
     }
     class EmptyIdleState : EmptyActionState
     {
@@ -145,6 +152,16 @@ namespace KirbyGame
         public override void ReleaseFloat()
         {
             
+        }
+
+        public override void Trigger()
+        {
+            this.SuckingTransition();
+        }
+
+        public override void ReleaseTrigger()
+        {
+
         }
     }
 
@@ -265,6 +282,16 @@ namespace KirbyGame
         }
 
         public override void ReleaseFloat()
+        {
+
+        }
+
+        public override void Trigger()
+        {
+            this.SuckingTransition();
+        }
+
+        public override void ReleaseTrigger()
         {
 
         }
@@ -457,6 +484,15 @@ namespace KirbyGame
 
         }
 
+        public override void Trigger()
+        {
+            this.SuckingTransition();
+        }
+
+        public override void ReleaseTrigger()
+        {
+
+        }
 
     }
 
@@ -559,6 +595,16 @@ namespace KirbyGame
         }
 
         public override void ReleaseFloat()
+        {
+
+        }
+
+        public override void Trigger()
+        {
+            this.SuckingTransition();
+        }
+
+        public override void ReleaseTrigger()
         {
 
         }
@@ -684,6 +730,16 @@ namespace KirbyGame
 
         }
 
+        public override void Trigger()
+        {
+            this.SuckingTransition();
+        }
+
+        public override void ReleaseTrigger()
+        {
+
+        }
+
     }
     class EmptyFlyingState : EmptyActionState
     {
@@ -785,6 +841,90 @@ namespace KirbyGame
 
         public override void ReleaseFloat()
         {
+        }
+
+        public override void Trigger()
+        {
+        }
+
+        public override void ReleaseTrigger()
+        {
+
+        }
+    }
+
+    public class EmptySuckingState : EmptyActionState
+    {
+        public EmptySuckingState(SwallowState owner) : base(owner)
+        {
+        }
+
+        public override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.velocity = new Vector2();
+            avatar.acceleration = new Vector2();
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void Float()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            //test
+        }
+
+        public override void Jump()
+        {
+        }
+
+        public override void Left()
+        {
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void ReleaseFloat()
+        {
+        }
+
+        public override void releaseJump()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+        }
+
+        public override void releaseRight()
+        {
+        }
+
+        public override void ReleaseTrigger()
+        {
+            this.IdleTransition();
+        }
+
+        public override void Right()
+        {
+        }
+
+        public override void Trigger()
+        {
+            //test
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+
+            avatar.velocity.Y = 1;
         }
     }
 }

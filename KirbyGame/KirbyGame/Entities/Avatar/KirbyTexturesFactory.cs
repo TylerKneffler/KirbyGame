@@ -16,6 +16,7 @@ namespace KirbyGame
         public enum spriteType
         {
             EMPTY_IDLE, EMPTY_RUNNING, EMPTY_JUMPING, EMPTY_FLIPPING, EMPTY_FALLING, EMPTY_FLYING, EMPTY_SUCKING_POWER,
+            AIR_SPITTING, FULL_SPITTING,
             FULL_IDLE, FULL_RUNNING, FULL_FLOATING, FULL_FLYING, FULL_EMPTYING, FULL_JUMPING, FULL_FALLING
         }
 
@@ -118,6 +119,27 @@ namespace KirbyGame
                         textureList.Add(type, details);
                         break;
                     }
+                case spriteType.EMPTY_SUCKING_POWER:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(26, 107, 16, 24), 1);
+                        textureList.Add(type, details);
+                        break;
+                    }
+                case spriteType.AIR_SPITTING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(160, 75, 24, 24), 1);
+                        details.AddFrame(new Rectangle(188, 75, 16, 24));
+                        textureList.Add(type, details);
+                        break;
+                    }
+                case spriteType.FULL_SPITTING:
+                    {
+                        TextureDetails details = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(185, 107, 24, 24), 1);
+                        details.AddFrame(new Rectangle(213, 107, 24, 24));
+                        details.AddFrame(new Rectangle(241, 107, 16, 24));
+                        textureList.Add(type, details);
+                        break;
+                    }
 
                 default: break;
             }
@@ -149,6 +171,9 @@ namespace KirbyGame
                 else if (action is EmptyFlyingState)
                 {
                     ret = spriteType.EMPTY_FLYING;
+                } else if(action is EmptySuckingState)
+                {
+                    ret = spriteType.EMPTY_SUCKING_POWER;
                 }
             } else if (swallowed is AirSwallowState)
             {
@@ -158,6 +183,9 @@ namespace KirbyGame
                 } else if (action is AirFlyingState)
                 {
                     ret = spriteType.FULL_FLYING;
+                } else if(action is AirExpellingState)
+                {
+                    ret = spriteType.AIR_SPITTING;
                 }
             } else if(swallowed is FullSwallowState)
             {

@@ -41,6 +41,10 @@ namespace KirbyGame
         public abstract void Down();
         public abstract void Float();
 
+        public abstract void Trigger();
+
+        public abstract void ReleaseTrigger();
+
         public abstract void ReleaseFloat();
 
         public abstract void releaseLeft();

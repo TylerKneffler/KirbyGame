@@ -13,14 +13,15 @@ namespace KirbyGame
     {
         private Texture2D texture;
 
-        private List<Rectangle> textureLocations;
-        private int currentTexture;
+        public List<Rectangle> textureLocations;
+        public int currentTexture;
 
         private Point frameSize;
         private int Time;
         public int Delay;
         public Color currentColor;
         int mod;
+        bool oneFrameMode;
 
         public Point size
         {
@@ -42,6 +43,7 @@ namespace KirbyGame
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
             currentColor = Color.White;
+            oneFrameMode = false;
         }
 
         public TextureDetails(Texture2D texture, Rectangle textureLocation, int numFrames)
@@ -59,6 +61,7 @@ namespace KirbyGame
             Delay = SpriteData.DEFAULT_DELAY;
             mod = SpriteData.DEFAULT_SIZE_MOD;
             currentColor = Color.White;
+            oneFrameMode = false;
         }
 
         public void AddFrame(Rectangle textureLocation)
@@ -88,7 +91,7 @@ namespace KirbyGame
                 if (currentFrame == maxFrames)
                     currentFrame = 0;
             }*/
-            if (textureLocations.Count > 1)
+            if (textureLocations.Count > 1 && !oneFrameMode)
             {
                 Time += gameTime.ElapsedGameTime.Milliseconds;
                 if (Time > Delay)
@@ -105,6 +108,18 @@ namespace KirbyGame
         public void SetCurrentFrame(int frame)
         {
             currentTexture = frame;
+        }
+
+        public void SetOnlyFrame(int frame)
+        {
+            oneFrameMode = true;
+            currentTexture = frame;
+        }
+
+        public void AllFrames()
+        {
+            oneFrameMode = false;
+            currentTexture = 0;
         }
     }
 

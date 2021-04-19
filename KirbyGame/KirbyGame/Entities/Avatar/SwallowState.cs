@@ -90,12 +90,12 @@ namespace KirbyGame
         #endregion
         public void Draw(SpriteBatch spriteBatch)
         {
-            power.Draw(spriteBatch);
+            power?.Draw(spriteBatch);
         }
         public void Update(GameTime gameTime)
         {
             actionState.Update(gameTime);
-            power.Update(gameTime);
+            power?.Update(gameTime);
         }
 
         public void EmptyTransition()
@@ -136,10 +136,12 @@ namespace KirbyGame
 
         public override void Trigger()
         {
+            actionState.Trigger();
             power.Trigger();
         }
         public override void ReleaseTrigger()
         {
+            actionState.ReleaseTrigger();
             power.ReleaseTrigger();
         }
     }
@@ -158,11 +160,14 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.EmptyTransition();
+            power = new AirPuff(avatar);
+            power.Trigger();
+            actionState.Trigger();
         }
         public override void ReleaseTrigger()
         {
-
+            power?.Trigger();
+            actionState.Trigger();
         }
     }
 

@@ -19,7 +19,9 @@ namespace KirbyGame
       
         public Sprite createSprite(SwallowState swallowed, Vector2 location, Sprite.eDirection direction)
         {
-            return new Sprite(textureFactory.createTextureDetails(swallowed.actionState, swallowed), location, direction);
+            TextureDetails details = textureFactory.createTextureDetails(swallowed.actionState, swallowed);
+            details.AllFrames();
+            return new Sprite(details, location, direction);
         }
 
         /*public Sprite createSprite(Vector2 location)

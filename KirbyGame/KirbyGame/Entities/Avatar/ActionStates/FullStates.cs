@@ -146,6 +146,16 @@ namespace KirbyGame
         {
 
         }
+
+        public override void Trigger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReleaseTrigger()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class FullRunningState : FullActionState
@@ -276,6 +286,15 @@ namespace KirbyGame
 
         }
 
+        public override void Trigger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReleaseTrigger()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class FullJumpingState : FullActionState
@@ -413,7 +432,15 @@ namespace KirbyGame
 
         }
 
+        public override void Trigger()
+        {
+            throw new NotImplementedException();
+        }
 
+        public override void ReleaseTrigger()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class FullFallingState : FullActionState
@@ -532,7 +559,14 @@ namespace KirbyGame
 
         }
 
+        public override void Trigger()
+        {
+            throw new NotImplementedException();
+        }
 
-
+        public override void ReleaseTrigger()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
