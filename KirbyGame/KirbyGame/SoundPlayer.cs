@@ -21,8 +21,8 @@ namespace KirbyGame
         private readonly Game1 kirbyGame;
         public SoundEffectPlayer(bool isMuted, Game1 game)
         {
-            controlledSuctionPlayer = new SoundPlayer(@"C:\Users\Jackson Jiang\source\repos\KirbyGame\KirbyGame\KirbyGame\Content\suction.wav");
-            controlledSuctionProgressPlayer = new SoundPlayer(@"C:\Users\Jackson Jiang\source\repos\KirbyGame\KirbyGame\KirbyGame\Content\suctionprogress3.wav");
+            controlledSuctionPlayer = new SoundPlayer(@".\suction.wav");
+            controlledSuctionProgressPlayer = new SoundPlayer(@".\suctionprogress3.wav");
             IsMuted = isMuted;
             kirbyGame = game;
         }
