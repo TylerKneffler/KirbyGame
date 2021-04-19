@@ -9,12 +9,12 @@ using System.Diagnostics;
 
 namespace KirbyGame
 {
-    class Star : Item
+    class MarioStar : Item
     {
         private int initialY;
         private int Timer;
 
-        public Star(Sprite sprite, Game1 game) : base(sprite, game)
+        public MarioStar(Sprite sprite, Game1 game) : base(sprite, game)
         {
             justSpawned = true;
             initialY = Y - 23;

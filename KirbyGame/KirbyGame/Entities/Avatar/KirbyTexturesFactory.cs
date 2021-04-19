@@ -204,6 +204,10 @@ namespace KirbyGame
                 {
                     ret = spriteType.FULL_FALLING;
                 }
+                else if (action is FullExpellingState)
+                {
+                    ret = spriteType.FULL_SPITTING;
+                }
             }
             return ret;
         }

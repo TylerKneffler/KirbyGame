@@ -46,6 +46,13 @@ namespace KirbyGame
             CurrentState = new FullFallingState(owner);
             CurrentState.Enter(this);
         }
+
+        public void ExpellingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new FullExpellingState(owner);
+            CurrentState.Enter(this);
+        }
     }
 
     class FullIdleState : FullActionState
@@ -149,12 +156,11 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            throw new NotImplementedException();
+            this.ExpellingTransition();
         }
 
         public override void ReleaseTrigger()
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -288,12 +294,11 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            throw new NotImplementedException();
+            this.ExpellingTransition();
         }
 
         public override void ReleaseTrigger()
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -434,12 +439,11 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            throw new NotImplementedException();
+            this.ExpellingTransition();
         }
 
         public override void ReleaseTrigger()
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -561,12 +565,108 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            throw new NotImplementedException();
+            this.ExpellingTransition();
         }
 
         public override void ReleaseTrigger()
         {
-            throw new NotImplementedException();
+        }
+    }
+
+    class FullExpellingState : FullActionState
+    {
+        bool finalFrameReached;
+        public FullExpellingState(SwallowState owner) : base(owner)
+        {
+            finalFrameReached = false;
+        }
+
+
+        public override void Down()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+        }
+
+        public override void Left()
+        {
+        }
+
+        public override void releaseDown()
+        {
+
+        }
+
+        public override void releaseLeft()
+        {
+        }
+
+        public override void releaseRight()
+        {
+        }
+
+        public override void releaseJump()
+        {
+        }
+
+        public override void Right()
+        {
+        }
+
+
+        public override void Jump()
+        {
+        }
+
+        public override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.velocity = new Vector2();
+            avatar.acceleration = new Vector2();
+
+        }
+
+        public override void Float()
+        {
+        }
+
+        public override void ReleaseFloat()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            avatar.velocity.X = MathHelper.Clamp(avatar.velocity.X, -AvatarData.MAX_FLOAT_SPEED, AvatarData.MAX_FLOAT_SPEED);
+            if (Math.Abs(avatar.acceleration.X) == 0)
+            {
+                avatar.velocity.X = avatar.velocity.X * AvatarData.AVATAR_FRICTION;
+                if (Math.Abs(avatar.velocity.X) < AvatarData.AVATAR_STOPPING_VELOCITY)
+                    avatar.velocity.X = 0;
+            }
+
+            if (avatar.velocity.X < 0 && avatar.Sprite.Direction == Sprite.eDirection.Right)
+                avatar.Sprite.Direction = Sprite.eDirection.Left;
+            else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
+                avatar.Sprite.Direction = Sprite.eDirection.Right;
+
+            if (avatar.Sprite.texture.currentTexture == 1)
+            {
+                finalFrameReached = true;
+            }
+            else if (avatar.Sprite.texture.currentTexture == 0 && finalFrameReached)
+            {
+                owner.EmptyTransition();
+            }
+        }
+
+        public override void Trigger()
+        {
+        }
+
+        public override void ReleaseTrigger()
+        {
         }
     }
 }

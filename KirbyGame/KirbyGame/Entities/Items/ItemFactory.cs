@@ -42,7 +42,7 @@ namespace KirbyGame
             }
             else if (type == Item.eItemType.STAR)
             {
-                ret = new Star(new Sprite(textureList[type], location), game);
+                ret = new MarioStar(new Sprite(textureList[type], location), game);
             }
             else if (type == Item.eItemType.POLE)
             {

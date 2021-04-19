@@ -166,8 +166,8 @@ namespace KirbyGame
         }
         public override void ReleaseTrigger()
         {
-            power?.Trigger();
-            actionState.Trigger();
+            power?.ReleaseTrigger();
+            actionState.ReleaseTrigger();
         }
     }
 
@@ -185,11 +185,14 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.EmptyTransition();
+            power = new Star(avatar);
+            power.Trigger();
+            actionState.Trigger();
         }
         public override void ReleaseTrigger()
         {
-
+            power?.ReleaseTrigger();
+            actionState.ReleaseTrigger();
         }
 
     }

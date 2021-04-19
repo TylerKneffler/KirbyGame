@@ -58,6 +58,7 @@
     <Compile Include="Entities\Avatar\AvatarData.cs" />
     <Compile Include="Entities\Avatar\KirbySpriteFactory.cs" />
     <Compile Include="Entities\Avatar\KirbyTexturesFactory.cs" />
+    <Compile Include="Entities\Avatar\PowerUps\Star.cs" />
     <Compile Include="Entities\Avatar\PowerUps\AirPuff.cs" />
     <Compile Include="Entities\Avatar\PowerUps\Cutter.cs" />
     <Compile Include="Entities\Avatar\PowerUps\SuckUp.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Entities\Items\ItemFactory.cs" />
     <Compile Include="Entities\Items\Pole.cs" />
     <Compile Include="Entities\Items\PoleTop.cs" />
-    <Compile Include="Entities\Items\Star.cs" />
+    <Compile Include="Entities\Items\OldStar.cs" />
     <Compile Include="Entities\Items\SuperMushroom.cs" />
     <Compile Include="Game Core\KirbyGame.cs" />
     <Compile Include="GameTimer.cs" />
