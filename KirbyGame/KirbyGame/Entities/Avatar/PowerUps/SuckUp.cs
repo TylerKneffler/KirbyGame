@@ -31,6 +31,8 @@ namespace KirbyGame
         }
         public void Trigger()
         {
+            avatar.game.map.Insert(this);
+            avatar.game.levelLoader.list.Add(this);
             if(avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
                 this.X = avatar.BoundingBox.Right;
@@ -98,6 +100,7 @@ namespace KirbyGame
             particleEffects.Clear();
             velocity.X = 0;
             powerOn = false;
+            avatar.game.map.Remove(this);
         }
 
         public void GenerateParticle()
