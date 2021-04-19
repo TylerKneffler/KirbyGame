@@ -867,6 +867,8 @@ namespace KirbyGame
             base.Enter(prevState);
             avatar.velocity = new Vector2();
             avatar.acceleration = new Vector2();
+            avatar.velocity.Y = -3;
+            avatar.acceleration.Y = AvatarData.GRAVITY/2;
         }
 
         public override void Down()

@@ -21,7 +21,7 @@ namespace KirbyGame
         public enum enemytypes
         {
             GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO, WADDLE_DEE, WADDLE_DOO, SIR_KIBBLE, APPLE,
-            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE
+            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE , WHISPYWOODS, DEADWHISPYWOODS
         }
 
         public EnemyTest(enemytypes enemyType, Vector2 location, Game1 game)
@@ -87,6 +87,10 @@ namespace KirbyGame
             else if (enemyType == enemytypes.APPLE)
             {
                 enemytype = new AppleTest(this, location);
+            }
+            else if (enemyType == enemytypes.WHISPYWOODS)
+            {
+                enemytype = new WhispyWoods(this, location);
             }
 
         }
@@ -192,6 +196,11 @@ namespace KirbyGame
             {
                 type = 17;
                 this.enemytype = new DeadAppleTest(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if (type == 22)
+            {
+                type = 23;
+                this.enemytype = new DeadWhispyWoods(this, new Vector2(this.X, this.Y - 19));
             }
         }
 
