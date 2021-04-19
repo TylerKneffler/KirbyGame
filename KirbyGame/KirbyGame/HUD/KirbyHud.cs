@@ -61,10 +61,6 @@ namespace KirbyGame
                 AddSprite(factory.createItem(hudType.HP_COLOR, new Vector2(156 + 16* i, 300)));
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
- 
-        }
 
         public void DrawLives(SpriteBatch spriteBatch)
         {
@@ -86,9 +82,5 @@ namespace KirbyGame
             AddSprite(factory.createItem(hudType.HP_EMPTY, new Vector2(140 + 6 * livesLeft, 305)));
         }
 
-        public void Update()
-        {
-
-        }
     }
 }
