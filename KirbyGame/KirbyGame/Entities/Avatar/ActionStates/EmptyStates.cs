@@ -826,7 +826,8 @@ namespace KirbyGame
         public override void Enter(ActionState prevState)
         {
             base.Enter(prevState);
-            avatar.acceleration.Y = AvatarData.GRAVITY;
+            avatar.velocity.Y = -3;
+            avatar.acceleration.Y = 0;
         }
 
         public override void Exit()
