@@ -1306,8 +1306,10 @@ namespace KirbyGame
             Follow();
             enemy.acceleration.Y = 0; 
             base.Update(gameTime);
-            int displacement = (int)(enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2);
-            Console.WriteLine("dis" + (enemy.game.levelLoader.getMario().position.X + enemy.game.levelLoader.getMario().boundingBoxSize.X / 2 - _location.X + enemy.Sprite.texture.size.X / 2));
+            int displacement = (int)(enemy.game.levelLoader.getMario().position.X - _location.X - 10) ;
+            Console.WriteLine("shotzo" + displacement);
+
+
             if (displacement < 300 && displacement > -300)
             {
                 delay++;
