@@ -51,9 +51,9 @@ public class Layer
         spriteBatch.End();
     }
 
-    public void Update()
+    public void Update(GameTime gameTime)
     {
-
-        
+        foreach (Sprite sprite in _layerSprites)
+            sprite.Update(gameTime);
     }
 }

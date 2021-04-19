@@ -13,7 +13,8 @@ namespace KirbyGame
         public Avatar avatar;
         protected SwallowState previousState;
         public ActionState actionState;
-        public IPowerUp power;
+        public IPowerUp currentPower;
+        public IPowerUp powerUp;
         protected SwallowState CurrentState { get { return avatar.swallowed; } set { avatar.swallowed = value; } }
 
         public SwallowState(Avatar avatar)
@@ -90,12 +91,12 @@ namespace KirbyGame
         #endregion
         public void Draw(SpriteBatch spriteBatch)
         {
-            power?.Draw(spriteBatch);
+            currentPower?.Draw(spriteBatch);
         }
         public void Update(GameTime gameTime)
         {
             actionState.Update(gameTime);
-            power?.Update(gameTime);
+            currentPower?.Update(gameTime);
         }
 
         public void EmptyTransition()
@@ -112,10 +113,10 @@ namespace KirbyGame
             CurrentState.Enter(this);
         }
 
-        public void FullTransition()
+        public void FullTransition(EnemyTest swallowed)
         {
             CurrentState.Exit();
-            CurrentState = new FullSwallowState(avatar);
+            CurrentState = new FullSwallowState(avatar, swallowed);
             CurrentState.Enter(this);
         }
     }
@@ -125,24 +126,33 @@ namespace KirbyGame
         public EmptySwallowState(Avatar avatar, EmptyActionState actionState) : base(avatar)
         {
             this.actionState = actionState;
-            power = new SuckUp(avatar);
+            currentPower = new SuckUp(avatar);
         }
 
         public EmptySwallowState(Avatar avatar) : base(avatar)
         {
             this.actionState = new EmptyIdleState(this);
-            power = new SuckUp(avatar);
+            currentPower = new SuckUp(avatar);
         }
 
         public override void Trigger()
         {
+            if (powerUp != null)
+                currentPower = powerUp;
+            else
+                currentPower = new SuckUp(avatar);
             actionState.Trigger();
-            power.Trigger();
+            currentPower.Trigger();
         }
         public override void ReleaseTrigger()
         {
             actionState.ReleaseTrigger();
-            power.ReleaseTrigger();
+            currentPower.ReleaseTrigger();
+            if (currentPower is SuckUp)
+            {
+                if(((SuckUp)currentPower).sucked != null)
+                 this.FullTransition(((SuckUp)currentPower).sucked);
+            }
         }
     }
 
@@ -160,38 +170,40 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            power = new AirPuff(avatar);
-            power.Trigger();
+            currentPower = new AirPuff(avatar);
+            currentPower.Trigger();
             actionState.Trigger();
         }
         public override void ReleaseTrigger()
         {
-            power?.ReleaseTrigger();
+            currentPower?.ReleaseTrigger();
             actionState.ReleaseTrigger();
         }
     }
 
     class FullSwallowState : SwallowState
     {
+        public EnemyTest swallowed;
         public FullSwallowState(Avatar avatar, FullActionState actionState) : base(avatar)
         {
             this.actionState = actionState;
         }
 
-        public FullSwallowState(Avatar avatar) : base(avatar)
+        public FullSwallowState(Avatar avatar, EnemyTest swallowed) : base(avatar)
         {
             this.actionState = new FullIdleState(this);
+            this.swallowed = swallowed;
         }
 
         public override void Trigger()
         {
-            power = new Star(avatar);
-            power.Trigger();
+            currentPower = new Star(avatar);
+            currentPower.Trigger();
             actionState.Trigger();
         }
         public override void ReleaseTrigger()
         {
-            power?.ReleaseTrigger();
+            currentPower?.ReleaseTrigger();
             actionState.ReleaseTrigger();
         }
 
