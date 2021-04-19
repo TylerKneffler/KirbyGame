@@ -261,5 +261,18 @@ namespace KirbyGame
             this.boundingBoxToggle = !boundingBoxToggle;
         }
 
+        public void ToggleMuteCommand()
+        {
+            isMuted = !isMuted;
+            if (isMuted)
+            {
+                MediaPlayer.IsMuted = true;
+            }
+            else
+            {
+                MediaPlayer.IsMuted = false; ;
+            }
+        }
     }
+
 }
