@@ -75,7 +75,7 @@ namespace KirbyGame
         //this method definitely needs to be optimizedc
         public void Remove(Entity entity)
         {
-            if(entity.velocity.X != 0 || entity.velocity.Y != 0)
+            /*if(entity.velocity.X != 0 || entity.velocity.Y != 0)
             {
                 int startX = entity.X / CELL_SIZE;
                 int startY = entity.Y / CELL_SIZE;
@@ -104,8 +104,16 @@ namespace KirbyGame
                             Map[i, j].Remove(entity);
                     }
                 }
+            }*/
+            for (int i = 0; i < xBound; i++)
+            {
+                for (int j = 0; j < yBound; j++)
+                {
+                    if (Map[i, j].Contains(entity))
+                        Map[i, j].Remove(entity);
+                }
             }
-            
+
         }
 
         public void updateTileMap(List<Entity> entities)

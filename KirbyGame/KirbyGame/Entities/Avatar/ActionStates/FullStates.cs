@@ -23,6 +23,7 @@ namespace KirbyGame
             CurrentState.Exit();
             CurrentState = new FullIdleState(owner);
             CurrentState.Enter(this);
+
         }
 
 
@@ -277,6 +278,7 @@ namespace KirbyGame
             avatar.velocity.Y = 0;
             avatar.acceleration.Y = 0;
 
+
         }
 
         public override void Exit()
@@ -330,6 +332,7 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
             }
             else
             {
@@ -474,6 +477,8 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
+
             }
             else
             {

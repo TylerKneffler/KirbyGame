@@ -1216,6 +1216,30 @@
 /processorParam:Quality=Best
 /build:SoundEffects/50 - Gunshot.wav
 
+#begin SoundEffects/bump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bump.wav
+
+#begin SoundEffects/explosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/explosion.wav
+
+#begin SoundEffects/jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/jump.wav
+
+#begin SoundEffects/jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/jump.wav
+
 #begin SoundEffects/Kirby dream land theme song.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -1227,6 +1251,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/kirby-death-sound.wav
+
+#begin SoundEffects/land.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/land.wav
 
 #begin SoundEffects/smb_1-up.wav
 /importer:WavImporter
@@ -1323,6 +1353,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/smb_warning.wav
+
+#begin SoundEffects/spit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/spit.wav
 
 #begin squishedKoopa.png
 /importer:TextureImporter
