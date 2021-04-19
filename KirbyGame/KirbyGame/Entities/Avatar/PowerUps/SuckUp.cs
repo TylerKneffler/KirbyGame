@@ -31,7 +31,14 @@ namespace KirbyGame
         }
         public void Trigger()
         {
-            this.X = avatar.X;
+            if(avatar.Sprite.Direction == Sprite.eDirection.Right)
+            {
+                this.X = avatar.BoundingBox.Right;
+            }
+            else
+            {
+                this.X = avatar.BoundingBox.Left - this.BoundingBox.Width;
+            }
             this.Y = avatar.Y;
             powerOn = true;
         }
@@ -41,14 +48,19 @@ namespace KirbyGame
             if (powerOn)
             {
                 Timer += gameTime.ElapsedGameTime.Milliseconds;
+
                 if(Timer > 250)
                 {
                     Timer -= 250;
-                    //generate accurate random location
-                    GenerateParticle();
                     
+                    GenerateParticle();
+                }
+                if (particleEffects.Count > 2)
+                {
+                    particleEffects.RemoveAt(0);
                 }
             }
+
             foreach (AirParticle particle in particleEffects)
             {
                 particle.Update(gameTime);
@@ -75,10 +87,10 @@ namespace KirbyGame
             int x, y;
             if(avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
-                x = rand.Next(avatar.BoundingBox.Right + 24, avatar.BoundingBox.Right + 32);
+                x = rand.Next(avatar.BoundingBox.Right + this.BoundingBox.Width-24, avatar.BoundingBox.Right+ this.BoundingBox.Width);
             } else
             {
-                x = rand.Next(avatar.BoundingBox.Left - 32, avatar.BoundingBox.Left - 24);
+                x = rand.Next(avatar.BoundingBox.Left - this.BoundingBox.Width, avatar.BoundingBox.Left - this.BoundingBox.Width +24);
             }
             y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
 
@@ -112,10 +124,6 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if(collider == avatar)
-            {
-                powerUp.particleEffects.Remove(this);
-            }
         }
     }
 }
