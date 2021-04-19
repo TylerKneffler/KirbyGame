@@ -106,7 +106,7 @@ namespace KirbyGame
         }
         public SpriteFont loadFont()
         {
-            return game.Content.Load<SpriteFont>("font");
+            return game.Content.Load<SpriteFont>("Kirby_font");
         }
     }
 }

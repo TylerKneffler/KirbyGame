@@ -35,12 +35,14 @@ namespace KirbyGame
         public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
         {
             factory = new HudFactory(game);
+            font = factory.loadFont();
             Initzialize();
         }
 
         public KirbyHud(Camera camera, Vector2 location, Viewport viewport, Game1 game) : base(camera, location, viewport)
         {
             factory = new HudFactory(game);
+            font = factory.loadFont();
             Initzialize();
         }
 
