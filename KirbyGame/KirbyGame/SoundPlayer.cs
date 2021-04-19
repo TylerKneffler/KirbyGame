@@ -19,12 +19,14 @@ namespace KirbyGame
         private SoundPlayer controlledSuctionPlayer;
         private SoundPlayer controlledSuctionProgressPlayer;
         private readonly Game1 kirbyGame;
+        public bool IsInTransition { get; set; }
         public SoundEffectPlayer(bool isMuted, Game1 game)
         {
             controlledSuctionPlayer = new SoundPlayer(@".\suction.wav");
             controlledSuctionProgressPlayer = new SoundPlayer(@".\suctionprogress3.wav");
             IsMuted = isMuted;
             kirbyGame = game;
+            IsInTransition = false;
         }
         public void PlaySuckStartSound()
         {
@@ -93,6 +95,15 @@ namespace KirbyGame
             if (!IsMuted)
             {
                 this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/land");
+                this.player.Play();
+            }
+        }
+
+        public void PlayEnterSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/enter");
                 this.player.Play();
             }
         }

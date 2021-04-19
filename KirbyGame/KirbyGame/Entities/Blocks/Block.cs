@@ -174,9 +174,14 @@ namespace KirbyGame
             game.levelLoader.list.Add(me);
             game.map.Insert(me);
         }
-
+        
         public virtual void HiddenStateChange()
         {
+            
+            game.player.PlayEnterSound();
+            game.player.IsInTransition = true;
+            System.Threading.Thread.Sleep(1000);
+            game.player.IsInTransition = false;
             /*
             if (type == 4)
             {

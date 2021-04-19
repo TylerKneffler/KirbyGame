@@ -46,7 +46,7 @@ namespace KirbyGame
             }
             else if (enemyType == enemytypes.SHOTZO)
             {
-                enemytype = new ShotzoTest(this, location, direction, game);
+                enemytype = new ShotzoTest(this, location, game);
             }
             else if (enemyType == enemytypes.DEAD_PARANA)
             {
