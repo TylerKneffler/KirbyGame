@@ -66,8 +66,17 @@ namespace KirbyGame
 
         public void GenerateParticle()
         {
-            int x = rand.Next(avatar.BoundingBox.Right + 24, avatar.BoundingBox.Right + 32);
-            int y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
+            int x, y;
+            if(avatar.Sprite.Direction == Sprite.eDirection.Right)
+            {
+                x = rand.Next(avatar.BoundingBox.Right + 24, avatar.BoundingBox.Right + 32);
+            } else
+            {
+                x = rand.Next(avatar.BoundingBox.Left - 32, avatar.BoundingBox.Left - 24);
+            }
+            y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
+
+
 
             Vector2 velocity = new Vector2((float)avatar.BoundingBox.Center.X - x, (float)avatar.BoundingBox.Center.Y - y);
             velocity = Vector2.Normalize(velocity);
