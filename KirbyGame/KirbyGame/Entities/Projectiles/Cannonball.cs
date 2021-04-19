@@ -46,25 +46,29 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            collision.A.Timer = 180;
-            collision.B.Timer = 180;
-            collision.A.boundingColor = Color.Orange;
-            collision.B.boundingColor = Color.Orange;
-            Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
-            Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-            if (collider is Block || collider is EnemyTest || collider is Avatar)
+            if (!explode)
             {
-                if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
+                collision.A.Timer = 180;
+                collision.B.Timer = 180;
+                collision.A.boundingColor = Color.Orange;
+                collision.B.boundingColor = Color.Orange;
+                Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
+                Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
+                if (collider is Block || collider is EnemyTest || collider is Avatar)
                 {
-                    X = collision.B.BoundingBox.Left;
+                    if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
+                    {
+                        X = collision.B.BoundingBox.Left;
+                    }
+                    if (collider is Avatar && CollisionDirection == Collision.Direction.Right)
+                    {
+                        X = collision.B.BoundingBox.Right;
+                    }
+                    game.player.PlayExplosionSound();
+                    explode = true;
+                    velocity = new Vector2(0, 0);
+                    Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
                 }
-                if (collider is Avatar && CollisionDirection == Collision.Direction.Right)
-                {
-                    X = collision.B.BoundingBox.Right;
-                }
-                explode = true;
-                velocity = new Vector2(0, 0);
-                Sprite.texture = new TextureDetails(game.Content.Load<Texture2D>("Explosion"), 3);
             }
         }
     }

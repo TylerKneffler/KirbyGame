@@ -37,6 +37,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyJumpingState(owner);
+            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -44,6 +45,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFallingState(owner);
+            avatar.game.player.PlayLandSound();
             CurrentState.Enter(this);
         }
 
@@ -58,6 +60,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFlyingState(owner);
+            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 

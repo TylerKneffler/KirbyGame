@@ -23,6 +23,7 @@ namespace KirbyGame
             CurrentState.Exit();
             CurrentState = new FullIdleState(owner);
             CurrentState.Enter(this);
+
         }
 
 

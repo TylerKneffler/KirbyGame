@@ -26,14 +26,6 @@ namespace KirbyGame
             IsMuted = isMuted;
             kirbyGame = game;
         }
-        public void PlayShotSound()
-        {
-            if (!IsMuted)
-            {
-                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
-                this.player.Play();
-            }
-        }
         public void PlaySuckStartSound()
         {
             if (!IsMuted)
@@ -62,6 +54,49 @@ namespace KirbyGame
             canPlay = true;
 
         }
+        public void PlayShotSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
+                this.player.Play();
+            }
+        }
+        public void PlayExplosionSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/explosion");
+                this.player.Play();
+            }
+        }
+
+        public void PlayJumpSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/jump");
+                this.player.Play();
+            }
+        }
+
+        public void PlaySpitSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/spit");
+                this.player.Play();
+            }
+        }
+        public void PlayLandSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/land");
+                this.player.Play();
+            }
+        }
+
 
     }
 }
