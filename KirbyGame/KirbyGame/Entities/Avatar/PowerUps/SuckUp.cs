@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace KirbyGame
 {
-    public class SuckUp : IPowerUp
+    public class SuckUp : Entity, IPowerUp
     {
         TextureDetails particle;
         public Avatar avatar;
@@ -17,17 +17,22 @@ namespace KirbyGame
         bool powerOn;
         private int Timer;
         Random rand;
-        public SuckUp(Avatar avatar)
+        Game1 gamel;
+        public SuckUp(Avatar avatar) : base(new Sprite(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(150, 586, 37, 16), new Vector2(-1,-1), 1))
         {
+            this.game = avatar.game;
             this.avatar = avatar;
-            this.particle = new TextureDetails(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(49,115,2,4), 1);
+            this.particle = new TextureDetails(game.Content.Load<Texture2D>("avatar"), new Rectangle(49,115,2,4), 1);
             particleEffects = new List<AirParticle>();
             powerOn = false;
             Timer = 0;
             rand = new Random();
+            this.boundingColor = Color.Red;
         }
         public void Trigger()
         {
+            this.X = avatar.X;
+            this.Y = avatar.Y;
             powerOn = true;
         }
 
@@ -52,6 +57,7 @@ namespace KirbyGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
             foreach (AirParticle particle in particleEffects)
             {
                 particle.Draw(spriteBatch);
@@ -85,6 +91,9 @@ namespace KirbyGame
             particleEffects.Add(new AirParticle(this, location, velocity, particle));
         }
 
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+        }
     }
 
     public class AirParticle : Entity
