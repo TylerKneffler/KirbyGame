@@ -11,6 +11,7 @@ namespace KirbyGame
 {
     public class SuckUp : Entity, IPowerUp
     {
+        public EnemyTest sucked;
         TextureDetails particle;
         public Avatar avatar;
         public List<AirParticle> particleEffects;
@@ -71,8 +72,11 @@ namespace KirbyGame
 
             foreach (AirParticle particle in particleEffects)
             {
-                Vector2 difference = Vector2.Normalize(Vector2.Add(new Vector2(particle.X, particle.Y), Vector2.Negate(new Vector2(avatar.X, avatar.Y))));
+                Vector2 difference = Vector2.Normalize(Vector2.Add(new Vector2(particle.X, particle.Y), Vector2.Negate(new Vector2(avatar.BoundingBox.Center.X, avatar.BoundingBox.Center.Y))));
                 particle.acceleration = Vector2.Negate(difference);
+                acceleration.X = acceleration.X * 3F;
+                acceleration.Y = acceleration.Y * 3F;
+
                 particle.Update(gameTime);
             }
         }
@@ -96,30 +100,38 @@ namespace KirbyGame
         {
             Vector2 velocity;
             int x, y;
-            if(avatar.Sprite.Direction == Sprite.eDirection.Right)
+            y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
+            if (y > avatar.BoundingBox.Center.Y)
+            {
+                velocity.Y = -2;
+            }
+            else
+            {
+                velocity.Y = 2;
+            }
+
+            if (avatar.Sprite.Direction == Sprite.eDirection.Right)
             {
                 x = rand.Next(avatar.BoundingBox.Right + this.BoundingBox.Width-24, avatar.BoundingBox.Right+ this.BoundingBox.Width);
+                velocity.X = -1;
             } else
             {
                 x = rand.Next(avatar.BoundingBox.Left - this.BoundingBox.Width, avatar.BoundingBox.Left - this.BoundingBox.Width +24);
-            }
-            y = rand.Next(avatar.BoundingBox.Top, avatar.BoundingBox.Bottom);
-
-            if(x > avatar.BoundingBox.Center.X)
-            {
-                velocity = new Vector2(-1, 2);
-            } else
-            {
-                velocity = new Vector2(-1, -2);
-            }
-
-            
+                velocity.X = 1;
+            }     
             Vector2 location = new Vector2(x,y);
             particleEffects.Add(new AirParticle(this, location, velocity, particle));
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
+            if (sucked == null)
+            {
+                if (collider is EnemyTest)
+                {
+                    sucked = (EnemyTest)collider;
+                }
+            }
         }
     }
 

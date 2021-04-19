@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    class EnemyTest : Entity
+    public class EnemyTest : Entity
     {
         public EnemytypeTest enemytype;
         public int type;
