@@ -36,8 +36,10 @@ namespace KirbyGame
                     this.enemy.Sprite.Direction = Sprite.eDirection.Right;
                 }
             }
-            //else if(collider is Succ)
-            // this.enemy.SuckStateChange(getdirection (check collision for left or right);
+            else if (collider is SuckUp)
+            {
+                this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
         }
     }
 
@@ -67,7 +69,10 @@ namespace KirbyGame
                     this.enemy.Sprite.Direction = Sprite.eDirection.Right;
                 }
             }
-            //else if(collider is Succ)
+            else if (collider is SuckUp)
+            {
+                this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
         }
     }
 
@@ -105,7 +110,10 @@ namespace KirbyGame
                 
             }
 
-            //else if(collider is Succ)
+            else if (collider is SuckUp)
+            {
+                this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -156,7 +164,10 @@ namespace KirbyGame
             {
                 this.enemy.DeadStateChange();
             }
-            //else if(collider is Succ)
+            else if (collider is SuckUp)
+            {
+                this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -386,13 +397,13 @@ namespace KirbyGame
             this.Direction = direction;
             
 
-            if (Direction == 1)
+            if (Direction == 0)
             {
                 this.enemy.acceleration = new Vector2(-1, 0);
                 this.enemy.velocity.X = -1;
 
             }
-            else if(Direction == 2)
+            else if(Direction == 1)
             {
                 this.enemy.acceleration = new Vector2(1, 0);
                 this.enemy.velocity.X = 1;
@@ -452,13 +463,13 @@ namespace KirbyGame
             this.Direction = direction;
 
 
-            if (Direction == 1)
+            if (Direction == 0)
             {
                 this.enemy.acceleration = new Vector2(-1, 0);
                 this.enemy.velocity.X = -1;
 
             }
-            else if (Direction == 2)
+            else if (Direction == 1)
             {
                 this.enemy.acceleration = new Vector2(1, 0);
                 this.enemy.velocity.X = 1;
@@ -518,13 +529,13 @@ namespace KirbyGame
             this.Direction = direction;
 
 
-            if (Direction == 1)
+            if (Direction == 0)
             {
                 this.enemy.acceleration = new Vector2(-1, 0);
                 this.enemy.velocity.X = -1;
 
             }
-            else if (Direction == 2)
+            else if (Direction == 1)
             {
                 this.enemy.acceleration = new Vector2(1, 0);
                 this.enemy.velocity.X = 1;
@@ -583,13 +594,13 @@ namespace KirbyGame
             this.Direction = direction;
 
 
-            if (Direction == 1)
+            if (Direction == 0)
             {
                 this.enemy.acceleration = new Vector2(-1, 0);
                 this.enemy.velocity.X = -1;
 
             }
-            else if (Direction == 2)
+            else if (Direction == 1)
             {
                 this.enemy.acceleration = new Vector2(1, 0);
                 this.enemy.velocity.X = 1;
@@ -678,7 +689,7 @@ namespace KirbyGame
             {
                 if (collider.velocity.X == 0 && CollisionDirection == Collision.Direction.Left)
                 {
-                    Debug.WriteLine("Collision Detected!");
+                    //Debug.WriteLine("Collision Detected!");
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
                 }
                 else if (collider.velocity.X == 0 && CollisionDirection == Collision.Direction.Right)
@@ -775,7 +786,7 @@ namespace KirbyGame
             {
                 if (collider.velocity.X == 0 && CollisionDirection == Collision.Direction.Left)
                 {
-                    Debug.WriteLine("Collision Detected!");
+                    //Debug.WriteLine("Collision Detected!");
                     this.enemy.velocity.X = this.enemy.velocity.X * -1;
                 }
                 else if (collider.velocity.X == 0 && CollisionDirection == Collision.Direction.Right)
@@ -945,15 +956,15 @@ namespace KirbyGame
             //Avatar collisions
             if (collider is Avatar)
             {
-                Debug.WriteLine("Velocity is " + this.enemy.velocity.X);
+                //Debug.WriteLine("Velocity is " + this.enemy.velocity.X);
                 if (CollisionDirection == Collision.Direction.Right && this.enemy.velocity.X == 0)
                 {
-                    Debug.WriteLine("Increasing velocity");
+                   // Debug.WriteLine("Increasing velocity");
                     base.enemy.velocity.X = -2;
                 }
                 else if (CollisionDirection == Collision.Direction.Left && base.enemy.velocity.X == 0)
                 {
-                    Debug.WriteLine("Increasing velocity");
+                    //Debug.WriteLine("Increasing velocity");
                     base.enemy.velocity.X = 2;
                 }
                 else if (CollisionDirection == Collision.Direction.Up)
