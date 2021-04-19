@@ -17,7 +17,6 @@ namespace KirbyGame
         bool powerOn;
         private int Timer;
         Random rand;
-        Game1 gamel;
         public SuckUp(Avatar avatar) : base(new Sprite(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(150, 586, 37, 16), new Vector2(-1,-1), 1))
         {
             this.game = avatar.game;
