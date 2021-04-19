@@ -17,7 +17,7 @@ namespace KirbyGame
     /// </summary>
     public class Game1 : Game
     {
-        public SoundPlayer player;
+        public SoundEffectPlayer player;
         //Enteties: Enemies
 
         public Avatar mario;//made public
@@ -68,7 +68,7 @@ namespace KirbyGame
         /// </summary>
         protected override void Initialize()
         {
-            player = new SoundPlayer(false, this);
+            player = new SoundEffectPlayer(false, this);
             // TODO: Add your initialization logic here
             KInput = new ControllerKeyboard();
             _viewport = GraphicsDevice.Viewport;

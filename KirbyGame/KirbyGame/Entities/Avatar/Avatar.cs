@@ -49,6 +49,7 @@ namespace KirbyGame
         {
             base.Update(gameTime);
             swallowed.Update(gameTime);
+            
 
 
         }

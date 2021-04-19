@@ -1348,6 +1348,30 @@
 /processorParam:TextureFormat=Color
 /build:starproj.png
 
+#begin suction.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:suction.wav
+
+#begin suctioninprogress.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:suctioninprogress.wav
+
+#begin suctionprogress3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:suctionprogress3.wav
+
+#begin suctionstart3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:suctionstart3.wav
+
 #begin SuperMushroom.png
 /importer:TextureImporter
 /processor:TextureProcessor
