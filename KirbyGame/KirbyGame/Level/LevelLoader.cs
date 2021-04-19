@@ -308,7 +308,7 @@ namespace KirbyGame
             ///Update layers
             foreach (Layer layerSprite in _layers)
             {
-                layerSprite.Update();
+                layerSprite.Update(gameTime);
             }
 
             //Hud.Update(gameTime);

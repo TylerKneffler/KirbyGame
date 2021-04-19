@@ -65,6 +65,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptySuckingState(owner);
+            avatar.game.player.PlaySuckStartSound();
             CurrentState.Enter(this);
         }
     }
@@ -856,6 +857,7 @@ namespace KirbyGame
 
     public class EmptySuckingState : EmptyActionState
     {
+        private int delay = 10;
         public EmptySuckingState(SwallowState owner) : base(owner)
         {
         }
@@ -913,6 +915,9 @@ namespace KirbyGame
         public override void ReleaseTrigger()
         {
             this.IdleTransition();
+            avatar.game.player.StopSuckStartSound();
+            avatar.game.player.StopSuckProggressSound();
+
         }
 
         public override void Right()
@@ -926,6 +931,13 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
+            avatar.velocity.Y = 1;
+            delay++;
+            if (delay >75)
+            { 
+                avatar.game.player.PlaySuckInProgressSound();
+            }
+
         }
     }
 }

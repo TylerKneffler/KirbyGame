@@ -31,16 +31,21 @@ namespace KirbyGame
 
         private HudFactory factory;
         readonly SpriteFont font;
+        private int livesLeft;
 
         public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
         {
             factory = new HudFactory(game);
+            font = factory.loadFont();
+            livesLeft = 6;
             Initzialize();
         }
 
         public KirbyHud(Camera camera, Vector2 location, Viewport viewport, Game1 game) : base(camera, location, viewport)
         {
             factory = new HudFactory(game);
+            font = factory.loadFont();
+            livesLeft = 6;
             Initzialize();
         }
 
@@ -49,10 +54,36 @@ namespace KirbyGame
             AddSprite(factory.createItem(hudType.NAME_KIRBY, new Vector2(48, 305)));
             AddSprite(factory.createItem(hudType.NAME_SCORE, new Vector2(48, 342)));
             AddSprite(factory.createItem(hudType.NAME_USES, new Vector2(385, 311)));
+            AddSprite(factory.createItem(hudType.LIVES, new Vector2(385, 335)));
+
+            for (int i = 0; i < livesLeft; i++)
+            {
+                AddSprite(factory.createItem(hudType.HP_COLOR, new Vector2(156 + 16* i, 300)));
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+ 
+        }
 
+        public void DrawLives(SpriteBatch spriteBatch)
+        {
+            for (int i =0; i<livesLeft; i++)
+            {
+                AddSprite(factory.createItem(hudType.NAME_KIRBY, new Vector2(140+6*i, 305)));
+            }
+            for (int i = 0; i < livesLeft; i++)
+            {
+                AddSprite(factory.createItem(hudType.NAME_KIRBY, new Vector2(140 + 6 * i, 305)));
+            }
+
+        }
+
+        public void LostHealth()
+        {
+            livesLeft--;
+            RemoveSprite(factory.createItem(hudType.HP_COLOR, new Vector2(140 + 6 * livesLeft, 305)));
+            AddSprite(factory.createItem(hudType.HP_EMPTY, new Vector2(140 + 6 * livesLeft, 305)));
         }
 
         public void Update()
