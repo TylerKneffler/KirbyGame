@@ -7,7 +7,7 @@
 	  <Shotzo Xpos = " 17" Ypos ="6"></Shotzo>
     <Floor Xpos = "1" Ypos = "8" Length ="20"/>
 
-    <WaddleDee Xpos = "15" Ypos = "5" />
+    <WaddleDee Xpos = "10" Ypos = "5" />
     <WaddleDoo Xpos = "30" Ypos = "5" />
     <SirKibble Xpos = "50" Ypos = "5" />
 
