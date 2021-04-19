@@ -15,6 +15,11 @@ namespace KirbyGame
             score = 0;
         }
 
+        public Score(int startingScore)
+        {
+            score = startingScore;
+        }
+
         public int GetScore()
         {
             return score;

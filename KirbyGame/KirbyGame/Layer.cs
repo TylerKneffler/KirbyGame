@@ -38,12 +38,23 @@ public class Layer
         _layerSprites.Add(sprite);
     }
 
+    public Camera GetCamera()
+    {
+        return _camera;
+    }
+
+    public List<Sprite> GetSpriteList()
+    {
+        return _layerSprites;
+    }
+
+
     public void RemoveSprite(Sprite sprite)
     {
         _layerSprites.Remove(sprite);
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public virtual void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Begin(/*samplerState: SamplerState.LinearWrap,*/transformMatrix:_camera.GetViewMatrix(Parallax));
         foreach (Sprite sprite in _layerSprites)

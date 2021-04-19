@@ -112,6 +112,7 @@
     <Compile Include="Sprite\SpriteData.cs" />
     <Compile Include="Sprite\SpriteFactory.cs" />
     <Compile Include="Sprite\TextureDetails.cs" />
+    <Compile Include="StringData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

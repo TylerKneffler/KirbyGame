@@ -38,19 +38,21 @@ namespace KirbyGame
         {
             factory = new HudFactory(game);
             font = factory.loadFont();
+            score = new Score(0);
             livesLeft = 6;
-            Initzialize();
+            Initialize();
         }
 
         public KirbyHud(Camera camera, Vector2 location, Viewport viewport, Game1 game) : base(camera, location, viewport)
         {
             factory = new HudFactory(game);
+            score = new Score(0);
             font = factory.loadFont();
             livesLeft = 6;
-            Initzialize();
+            Initialize();
         }
 
-        public void Initzialize()
+        public void Initialize()
         {
             AddSprite(factory.createItem(hudType.NAME_KIRBY, new Vector2(48, 305)));
             AddSprite(factory.createItem(hudType.NAME_SCORE, new Vector2(48, 342)));
@@ -63,9 +65,14 @@ namespace KirbyGame
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "X" + score.GetScore().ToString(), new Vector2(156, 342), Color.White);
+            spriteBatch.Begin(/*samplerState: SamplerState.LinearWrap,*/transformMatrix: GetCamera().GetViewMatrix(Parallax));
+            foreach (Sprite sprite in GetSpriteList())
+                sprite.Draw(spriteBatch);
+
+            spriteBatch.DrawString(font, score.GetScore().ToString(), new Vector2(156, 342), Color.Black);
+            spriteBatch.End();
         }
 
         public void DrawLives()
