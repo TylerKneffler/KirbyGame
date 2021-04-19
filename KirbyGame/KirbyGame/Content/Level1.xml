@@ -97,7 +97,7 @@
     <Door Xpos = "276" Ypos = "5" Stage ="1"/>
     
     <Floor Xpos = "143" Ypos = "8" Length ="20"/>
-    
+    <WhispyWoods Xpos = "154" Ypos = "3"/>
 	</Entities>
 	<Layers>
 		<Level_1-1 Xpos = "0" Ypos = "-32" Paral = "1"/>
