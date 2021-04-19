@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KirbyGame.HUD
+namespace KirbyGame
 {
     public class Score
     {
