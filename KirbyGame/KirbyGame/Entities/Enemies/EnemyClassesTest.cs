@@ -1505,7 +1505,7 @@ namespace KirbyGame
         private EnemyFactoryTest factory;
         private int cooldown;
         private int delay;
-        public int life = 1;
+        public int life = 10;
 
         Random rnd = new Random();
 

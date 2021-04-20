@@ -57,15 +57,10 @@ namespace KirbyGame
         {
             base.Update(gameTime);
             swallowed.Update(gameTime);
-            
-            if (_damageTimer > 0)
-            {
-                DamageColorUpdate(gameTime);
-            }
 
-
-
+            DamageColorUpdate(gameTime);
         }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
@@ -205,6 +200,8 @@ namespace KirbyGame
 
             if (collider is EnemyTest)
             {
+                
+                TakeDamage();
                 if (((EnemyTest)collider).enemytype is WhispyWoods || ((EnemyTest)collider).enemytype is DeadWhispyWoods)
                 {
                     if (CollisionDirection is Collision.Direction.Up)
@@ -284,8 +281,16 @@ namespace KirbyGame
 
         public void TakeDamage()
         {
-            swallowed.powerUp = null;
+            if(_damageTimer == 0) { 
+            OnTakeDamage(EventArgs.Empty);
+            this.ClearPowerUp();
             _damageTimer = 1000;
+                }
+        }
+
+        public void ClearPowerUp()
+        {
+            swallowed.powerUp = null;
         }
 
         protected virtual void OnCollisionEvent(Collision collision)
@@ -300,24 +305,31 @@ namespace KirbyGame
 
         public void DamageColorUpdate(GameTime gameTime)
         {
-            _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
-            _colorTimer -= gameTime.ElapsedGameTime.Milliseconds;
-            if (_colorTimer < 0)
+            //oh yeah there is a better way to do this but running out of time
+            if (_damageTimer > 0)
             {
-                if (Sprite.texture.currentColor == Color.White)
+                _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                _colorTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                if (_colorTimer < 0)
                 {
-                    Sprite.texture.currentColor = Color.Magenta;
+                    if (Sprite.texture.currentColor == Color.White)
+                    {
+                        Sprite.texture.currentColor = Color.Magenta;
+                    }
+                    else
+                    {
+                        Sprite.texture.currentColor = Color.White;
+                    }
+                    _colorTimer = 250;
                 }
-                else
+                if (_damageTimer <= 0)
                 {
+                    _damageTimer = 0;
+                    _colorTimer = 0;
                     Sprite.texture.currentColor = Color.White;
                 }
-                _colorTimer = 250;
-            }
-            if (_damageTimer <= 0)
+            } else
             {
-                _damageTimer = 0;
-                _colorTimer = 0;
                 Sprite.texture.currentColor = Color.White;
             }
         }

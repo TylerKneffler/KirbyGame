@@ -49,6 +49,7 @@ namespace KirbyGame
             if(delay > 10 || timer == 0)
             {
                 this.game.levelLoader.list.Remove(this);
+                this.game.map.Remove(this);
 
             }
             if (direction == 1)

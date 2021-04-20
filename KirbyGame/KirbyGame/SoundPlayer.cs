@@ -155,6 +155,14 @@ namespace KirbyGame
 
             }
         }
+        public void PlayCopySound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/copy");
+                this.player.Play();
 
+            }
+        }
     }
 }
