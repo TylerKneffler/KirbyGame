@@ -53,6 +53,7 @@ namespace KirbyGame
                 Debug.WriteLine("Collision enemy!");
                 Debug.WriteLine("Health Pre: "+_health);
                 _health--;
+                OnTakeDamage(EventArgs.Empty);
                 Debug.WriteLine("Health Post: " + _health);
             }
             if (collision.B is EnemyTest && collision.A is Avatar)
@@ -60,6 +61,7 @@ namespace KirbyGame
                 Debug.WriteLine("Collision enemy!");
                 Debug.WriteLine("Health Pre: " + _health);
                 _health--;
+                OnTakeDamage(EventArgs.Empty);
                 Debug.WriteLine("Health Post: " + _health);
             }
 
