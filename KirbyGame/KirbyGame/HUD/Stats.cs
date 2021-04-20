@@ -46,24 +46,11 @@ namespace KirbyGame
                 temp = (IPointable)collision.B;
                 _score += temp.Points();
             }
+        }
 
-            if (collision.A is EnemyTest && collision.B is Avatar)
-            {
-                Debug.WriteLine("Collision enemy!");
-                Debug.WriteLine("Health Pre: "+_health);
-                _health--;
-                OnTakeDamage(EventArgs.Empty);
-                Debug.WriteLine("Health Post: " + _health);
-            }
-            if (collision.B is EnemyTest && collision.A is Avatar)
-            {
-                Debug.WriteLine("Collision enemy!");
-                Debug.WriteLine("Health Pre: " + _health);
-                _health--;
-                OnTakeDamage(EventArgs.Empty);
-                Debug.WriteLine("Health Post: " + _health);
-            }
-
+        public void mario_TakeDamage(object sender, EventArgs e)
+        {
+            _health--;
             if (_health <= 0)
             {
                 OnLifeLost(EventArgs.Empty);
@@ -87,15 +74,10 @@ namespace KirbyGame
         {
             return _health;
         }
-        protected virtual void OnTakeDamage(EventArgs e)
-        {
-            TakeDamage?.Invoke(this, e);
-        }
         protected virtual void OnLifeLost(EventArgs e)
         {
             //Insert reset game event or call here
             _lives--;
-            _health = 6;
 
             if (_lives <= 0)
             {
@@ -103,9 +85,16 @@ namespace KirbyGame
             }
 
         }
+
+        public void ResetHealth()
+        {
+            _health = 6;
+        }
         protected virtual void OnZeroLives(EventArgs e)
         {
             ZeroLives?.Invoke(this, e);
+            ResetHealth();
+
         }
 
         //public class Lives

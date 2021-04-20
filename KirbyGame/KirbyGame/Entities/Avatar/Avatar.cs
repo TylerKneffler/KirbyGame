@@ -22,6 +22,7 @@ namespace KirbyGame
         private SoundEffect player;
 
         public event EventHandler<Collision> CollisionEvent;
+        public event EventHandler TakeDamage;
         public event EventHandler<Stats.ePower> PowerUpChange;
 
         public bool IsDead { get; set; }        
@@ -257,6 +258,11 @@ namespace KirbyGame
         public virtual void OnPowerUpChange(Stats.ePower power)
         {
             PowerUpChange?.Invoke(this, power);
+        }
+
+        public virtual void OnTakeDamage(EventArgs e)
+        {
+            TakeDamage?.Invoke(this, e);
         }
     }
 }
