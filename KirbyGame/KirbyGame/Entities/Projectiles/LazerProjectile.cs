@@ -4,7 +4,7 @@ using System;
 
 namespace KirbyGame
 {
-    public class LazerProjectile : Entity
+    public class LazerProjectile : Entity, IProjectile
     {
         private bool explode;
         private int delay;
@@ -33,6 +33,11 @@ namespace KirbyGame
                 velocity = new Vector2(2, (float)1);
                 acceleration = new Vector2((float)-.5, (float).5);
             }
+        }
+
+        public bool canHurtKirby()
+        {
+            return this.hurtKirby;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

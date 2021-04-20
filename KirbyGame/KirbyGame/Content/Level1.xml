@@ -2,7 +2,7 @@
 <Level>
   <Size XBound ="330" YBound ="32"/>
   <Entities>
-    <Mario Xpos ="2" Ypos = "3"></Mario>
+    <Mario Xpos ="3" Ypos = "3"></Mario>
 
     <Floor Xpos = "1" Ypos = "8" Length ="20"/>
 
