@@ -16,7 +16,7 @@ namespace KirbyGame
         public EnemytypeTest(EnemyTest enemy)
         {
             this.enemy = enemy;
-
+            this.points = 100;
         }
 
         public virtual void Update(GameTime gameTime)
