@@ -214,7 +214,13 @@ namespace KirbyGame
                 }
 
             }
-
+            if(collider is IProjectile)
+            {
+                if (((IProjectile)collider).canHurtKirby())
+                {
+                    TakeDamage();
+                }
+            }
             if (collider is EnemyTest)
             {
                 TakeDamage();
