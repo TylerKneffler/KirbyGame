@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    public class EnemyTest : Entity
+    public class EnemyTest : Entity, IPointable
     {
         public EnemytypeTest enemytype;
         public int type;
@@ -301,7 +301,8 @@ namespace KirbyGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!(enemytype is DeadWaddleDooTest || enemytype is DeadWaddleDeeTest || enemytype is DeadAppleTest || enemytype is DeadSirKibbleTest || enemytype is DeadWaddleBeeTest))
+            if (!(enemytype is DeadWaddleDooTest || enemytype is DeadWaddleDeeTest || enemytype is DeadAppleTest || enemytype is DeadSirKibbleTest || enemytype is DeadWaddleBeeTest || enemytype is SuckWaddleDeeTest
+                || enemytype is SuckWaddleDooTest || enemytype is SuckWaddleBeeTest || enemytype is SuckSirKibbleTest || enemytype is SuckAppleTest))
             {
                 base.Draw(spriteBatch);
             }
@@ -313,7 +314,7 @@ namespace KirbyGame
 
         public int Points()
         {
-            return enemytype.Points();
+            return 100;
         }
 
     }
