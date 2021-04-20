@@ -8,8 +8,11 @@
 
     <WaddleDee Xpos = "10" Ypos = "5" />
     <WaddleDoo Xpos = "30" Ypos = "5" />
+    <WaddleDee Xpos = "35" Ypos = "5" />
+    <WaddleDee Xpos = "40" Ypos = "5" />
     <SirKibble Xpos = "50" Ypos = "5" />
-
+    <WaddleBee Xpos = "35" Ypos = "1" />
+    
     <FloorBlock Xpos = "624" Ypos = "224"/>
 		<Floor Xpos = "20" Ypos = "7" Length ="45"/>
 
@@ -54,10 +57,12 @@
     <Platform Xpos = "115" Ypos = "2"/>
     <Platform Xpos = "117" Ypos = "2"/>
 
+    <SirKibble Xpos = "58" Ypos = "0" />
+    <WaddleDoo Xpos = "58" Ypos = "5" />
+    
     <Door Xpos = "115" Ypos = "2" Stage ="0"/>
+    <Door Xpos = "115" Ypos = "1" Stage ="0"/>
 
-    
-    
     <Floor Xpos = "64" Ypos = "7" Length ="28"/>
     
     <Floor Xpos = "63" Ypos = "6" Length ="1"/>
@@ -96,8 +101,27 @@
     <Floor Xpos = "135" Ypos = "3" Length ="1"/>
     <Floor Xpos = "135" Ypos = "2" Length ="1"/>
     <FloorBlock Xpos = "4336" Ypos = "96" Length ="1"/>
+
+    <SirKibble Xpos = "115" Ypos = "0" />
+    <WaddleDoo Xpos = "100" Ypos = "5" />
+    <WaddleDee Xpos = "90" Ypos = "5" />
+    <WaddleDee Xpos = "96" Ypos = "5" />
+    <WaddleDee Xpos = "99" Ypos = "5" />
+    <SirKibble Xpos = "83" Ypos = "4" />
+    <WaddleDee Xpos = "88" Ypos = "5" />
+
+
+    <WaddleBee Xpos = "76" Ypos = "1" />
+    <WaddleBee Xpos = "79" Ypos = "0" />
+
+    <Shotzo Xpos = "120" Ypos = "1" />
+    <Shotzo Xpos = "135" Ypos = "1" />
+    <WaddleDee Xpos = "135" Ypos = "5" />
+
+    <WaddleBee Xpos = "138" Ypos = "3" />
     
     <Door Xpos = "276" Ypos = "5" Stage ="1"/>
+    <Door Xpos = "276" Ypos = "4" Stage ="1"/>
     
     <Floor Xpos = "143" Ypos = "8" Length ="20"/>
     <WhispyWoods Xpos = "154" Ypos = "3"/>

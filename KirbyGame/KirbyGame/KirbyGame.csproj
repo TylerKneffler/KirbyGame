@@ -147,6 +147,7 @@
     <Content Include="Content\suction.wav" />
     <Content Include="Content\suctionprogress3.wav" />
     <Content Include="Content\TestLevel.xml" />
+    <Content Include="Content\WaddleBee.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
