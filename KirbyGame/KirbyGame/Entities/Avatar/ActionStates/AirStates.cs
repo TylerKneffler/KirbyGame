@@ -28,6 +28,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new AirFlyingState(owner);
+            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -35,6 +36,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new AirExpellingState(owner);
+            avatar.game.player.PlaySpitSound();
             CurrentState.Enter(this);
         }
     }
@@ -61,7 +63,9 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
+
         }
 
         public override void Left()
@@ -166,7 +170,9 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
+
         }
 
         public override void Left()
@@ -270,7 +276,9 @@ namespace KirbyGame
             {
                 avatar.velocity.Y = 0;
                 avatar.acceleration.Y = 0;
+
             }
+
         }
 
         public override void Left()

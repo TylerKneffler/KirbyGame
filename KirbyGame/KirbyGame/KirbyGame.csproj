@@ -41,10 +41,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
     <Compile Include="Entities\Projectiles\StarProjectile.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
     <Compile Include="Entities\Projectiles\StarProjectileFactory.cs" />
+    <Compile Include="HUD\Stats.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Checkpoints.cs" />
@@ -96,10 +98,7 @@
     <Compile Include="Entities\Items\SuperMushroom.cs" />
     <Compile Include="Game Core\KirbyGame.cs" />
     <Compile Include="GameTimer.cs" />
-    <Compile Include="HUD\Health.cs" />
     <Compile Include="HUD\HudFactory.cs" />
-    <Compile Include="HUD\Lives.cs" />
-    <Compile Include="HUD\Score.cs" />
     <Compile Include="IPointable.cs" />
     <Compile Include="HUD\KirbyHud.cs" />
     <Compile Include="Hud.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="Sprite\SpriteData.cs" />
     <Compile Include="Sprite\SpriteFactory.cs" />
     <Compile Include="Sprite\TextureDetails.cs" />
+    <Compile Include="StringData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -14,25 +14,20 @@ namespace KirbyGame
     {
         public bool IsMuted { get; set; }
         private  bool canPlay = true;
-        public bool Stop { get; set; }
+        public bool FirstCollision { get; set; }
         private SoundEffect player;
         private SoundPlayer controlledSuctionPlayer;
         private SoundPlayer controlledSuctionProgressPlayer;
         private readonly Game1 kirbyGame;
+        public bool IsInTransition { get; set; }
         public SoundEffectPlayer(bool isMuted, Game1 game)
         {
             controlledSuctionPlayer = new SoundPlayer(@".\suction.wav");
             controlledSuctionProgressPlayer = new SoundPlayer(@".\suctionprogress3.wav");
             IsMuted = isMuted;
             kirbyGame = game;
-        }
-        public void PlayShotSound()
-        {
-            if (!IsMuted)
-            {
-                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
-                this.player.Play();
-            }
+            IsInTransition = false;
+            FirstCollision = true;
         }
         public void PlaySuckStartSound()
         {
@@ -62,6 +57,60 @@ namespace KirbyGame
             canPlay = true;
 
         }
+        public void PlayShotSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/50 - Gunshot");
+                this.player.Play();
+            }
+        }
+        public void PlayExplosionSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/explosion");
+                this.player.Play();
+            }
+        }
+
+        public void PlayJumpSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/jump");
+                this.player.Play();
+            }
+        }
+
+        public void PlaySpitSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/spit");
+                this.player.Play();
+            }
+        }
+        public void PlayLandSound()
+        {
+            if (!IsMuted && FirstCollision)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/land");
+                this.player.Play();
+                FirstCollision = false;
+            }
+        }
+
+        public void PlayEnterSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/enter");
+                this.player.Play();
+
+            }
+        }
+
 
     }
 }

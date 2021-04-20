@@ -22,6 +22,8 @@ namespace KirbyGame
 
         public Avatar mario;//made public
 
+        public Stats stats;
+
         public LevelLoader levelLoader;
 
 
@@ -81,7 +83,7 @@ namespace KirbyGame
             Hud = new Hud(this);
             points = new Points(Hud);
 
-
+            stats = new Stats(2, 6, 0);
 
             base.Initialize();
         }
@@ -104,6 +106,8 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
+            mario.CollisionEvent += stats.cl_CollisionEvent;
+
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
 
@@ -111,7 +115,7 @@ namespace KirbyGame
             //hud = new Hud(mario);
             soundtrack = Content.Load<Song>("Kirby dream land theme song");
             MediaPlayer.Play(soundtrack);
-            MediaPlayer.Pause();
+            //MediaPlayer.Pause();
             MediaPlayer.IsRepeating = true;
 
 
@@ -157,7 +161,7 @@ namespace KirbyGame
         protected override void Update(GameTime gameTime)
         {
             KInput.UpdateInput();
-            if (!isPaused)
+            if (!isPaused && !player.IsInTransition)
             {
                 map.updateTileMap(levelLoader.list);
                 Collision.PotentialCollisions(levelLoader.list, map);
@@ -176,7 +180,7 @@ namespace KirbyGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (!isPaused)
+            if (!isPaused && !player.IsInTransition)
             {
                 if (updateCamera) { camera.LookAt(new Vector2(mario.position.X, mario.position.Y)); }
                 GraphicsDevice.Clear(color);
@@ -252,10 +256,17 @@ namespace KirbyGame
         }
         public void pause()
         {
+            Layer pauseScreen = new Layer(camera, this.Content.Load<Texture2D>("kirby_pause"), gameBounds, _viewport);
             if (isPaused)
+            {
                 MediaPlayer.Resume();
+                levelLoader.RemoveLayer(pauseScreen);
+            }
             else
+            {
                 MediaPlayer.Pause();
+                levelLoader.AddLayer(pauseScreen);
+            }
             isPaused = !isPaused;
         }
 

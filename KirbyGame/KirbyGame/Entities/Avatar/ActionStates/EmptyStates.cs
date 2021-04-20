@@ -37,6 +37,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyJumpingState(owner);
+            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -44,6 +45,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFallingState(owner);
+            avatar.game.player.FirstCollision = true;
             CurrentState.Enter(this);
         }
 
@@ -58,6 +60,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFlyingState(owner);
+            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -271,6 +274,7 @@ namespace KirbyGame
             avatar.velocity.Y = 0;
             avatar.acceleration.Y = 0;
 
+
         }
 
         public override void Exit()
@@ -389,6 +393,8 @@ namespace KirbyGame
             {
                 //this.FallingTransition();
                 avatar.velocity.Y = 0;
+
+
             }
             else if (collision.CollisionDirection != Collision.Direction.Up)
             {
@@ -515,6 +521,7 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) == 0)
                 {
                     this.IdleTransition();
+
                 }
                 else
                 {
@@ -524,11 +531,14 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
+
             }
             else
             {
                 avatar.velocity.X = 0;
                 avatar.acceleration.X = 0;
+
             }
         }
 
@@ -645,11 +655,14 @@ namespace KirbyGame
             else if (collision.CollisionDirection == Collision.Direction.Down)
             {
                 avatar.velocity.Y = 0;
+
+
             }
             else
             {
                 avatar.velocity.X = 0;
                 avatar.acceleration.X = 0;
+
             }
         }
 
@@ -931,7 +944,6 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
-            avatar.velocity.Y = 1;
             delay++;
             if (delay >75)
             { 

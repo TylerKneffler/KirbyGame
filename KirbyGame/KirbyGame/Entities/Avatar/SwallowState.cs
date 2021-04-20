@@ -25,6 +25,7 @@ namespace KirbyGame
         protected virtual void Enter(SwallowState previousState)
         {
             this.previousState = previousState;
+            this.powerUp = previousState.powerUp;
             avatar.UpdateSprite();
         }
         protected virtual void Exit()
@@ -47,7 +48,7 @@ namespace KirbyGame
         {
             actionState.Jump();
         }
-        public void PressDown()
+        public virtual void PressDown()
         {
             actionState.Down();
         }
@@ -121,7 +122,7 @@ namespace KirbyGame
         }
     }
 
-    class EmptySwallowState : SwallowState
+    public class EmptySwallowState : SwallowState
     {
         public EmptySwallowState(Avatar avatar, EmptyActionState actionState) : base(avatar)
         {
@@ -156,7 +157,7 @@ namespace KirbyGame
         }
     }
 
-    class AirSwallowState : SwallowState
+    public class AirSwallowState : SwallowState
     {
         public AirSwallowState(Avatar avatar, AirActionState actionState) : base(avatar)
         {
@@ -181,7 +182,7 @@ namespace KirbyGame
         }
     }
 
-    class FullSwallowState : SwallowState
+    public class FullSwallowState : SwallowState
     {
         public EnemyTest swallowed;
         public FullSwallowState(Avatar avatar, FullActionState actionState) : base(avatar)
@@ -207,6 +208,15 @@ namespace KirbyGame
             actionState.ReleaseTrigger();
         }
 
-    }
+        public override void PressDown()
+        {
+            this.setPower(swallowed);
+            this.EmptyTransition();
+        }
 
+        public void setPower(EnemyTest type)
+        {
+            powerUp = PowerUpFactory.PowerUp(type, avatar);
+        }
+    }
 }

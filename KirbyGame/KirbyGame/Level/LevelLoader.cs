@@ -314,8 +314,6 @@ namespace KirbyGame
             //Hud.Update(gameTime);
         }
 
-       
-
         public void LevelDraw(SpriteBatch spriteBatch)
         {
             foreach (Entity entity in list)
@@ -330,6 +328,16 @@ namespace KirbyGame
             {
                 layer.Draw(spriteBatch);
             }
+        }
+
+        public void AddLayer(Layer layer)
+        {
+            _layers.Add(layer);
+        }
+
+        public void RemoveLayer(Layer layer)
+        {
+            _layers.Remove(layer);
         }
 
         //public void HudDraw(SpriteBatch spriteBatch)

@@ -21,6 +21,8 @@ namespace KirbyGame
         //public int numLives;
         private SoundEffect player;
 
+        public event EventHandler<Collision> CollisionEvent;
+
         public bool IsDead { get; set; }        
         public Avatar(Game1 game, Vector2 location) : base(Color.Yellow)
         {
@@ -158,6 +160,7 @@ namespace KirbyGame
         //UNTESTED
         public override void HandleCollision(Collision collision, Entity collider)
         {
+            OnCollisionEvent(collision);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
             if(collider is Block)
             {
@@ -167,7 +170,9 @@ namespace KirbyGame
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
                     swallowed.HandleBlockCollision(collision);
-                } else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
+                    game.player.PlayLandSound();
+                }
+                else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
                 {
                     swallowed.HandleBlockCollision(collision);
                     if (((Block)collider).blocktype is HiddenBlock)
@@ -186,6 +191,11 @@ namespace KirbyGame
                 }
 
             }
+        }
+
+        protected virtual void OnCollisionEvent(Collision collision)
+        {
+            CollisionEvent?.Invoke(this, collision);
         }
     }
 }
