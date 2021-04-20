@@ -34,6 +34,7 @@ namespace KirbyGame
         private int livesLeft;
         private int score;
         private int health;
+        private Game1 kirbyGame;
 
 
         public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
@@ -43,7 +44,7 @@ namespace KirbyGame
             health = 0;
             factory = new HudFactory(game);
             font = factory.loadFont();
-
+            kirbyGame = game;
             livesLeft = 6;
             Initialize();
         }
@@ -96,7 +97,9 @@ namespace KirbyGame
 
         public void LostHealth(object sender, EventArgs e)
         {
+            
             livesLeft--;
+            //kirbyGame.player.PlayDamageSound();
             RemoveSprite(factory.createItem(hudType.HP_COLOR, new Vector2(140 + 6 * livesLeft, 305)));
             AddSprite(factory.createItem(hudType.HP_EMPTY, new Vector2(140 + 6 * livesLeft, 305)));
         }
