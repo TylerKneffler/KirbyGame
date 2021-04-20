@@ -19,7 +19,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -52,7 +52,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -91,7 +91,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -160,7 +160,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
