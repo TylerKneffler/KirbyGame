@@ -109,7 +109,7 @@ namespace KirbyGame
             mario = levelLoader.getMario();
             mario.CollisionEvent += stats.mario_CollisionEvent;
             mario.PowerUpChange += stats.mario_PowerUpChange;
-            mario.TakeDamage += stats.mario_TakeDamage;
+            mario.KirbyHurt += stats.mario_TakeDamage;
 
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();

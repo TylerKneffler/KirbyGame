@@ -24,7 +24,7 @@ namespace KirbyGame
         private int _colorTimer;
 
         public event EventHandler<Collision> CollisionEvent;
-        public event EventHandler TakeDamage;
+        public event EventHandler KirbyHurt;
         public event EventHandler<Stats.ePower> PowerUpChange;
 
         public bool IsDead { get; set; }        
@@ -324,7 +324,7 @@ namespace KirbyGame
 
         public virtual void OnTakeDamage(EventArgs e)
         {
-            TakeDamage?.Invoke(this, e);
+            KirbyHurt?.Invoke(this, e);
         }
     }
 }
