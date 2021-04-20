@@ -129,6 +129,7 @@
     <Content Include="bin\Windows\x86\Debug\suction.wav" />
     <Content Include="bin\Windows\x86\Debug\suctionprogress3.wav" />
     <Content Include="bin\Windows\x86\Debug\TestLevel.xml" />
+    <Content Include="Code Reviews\TylerCodeReview.txt" />
     <Content Include="Code Reviews\ConnorCodeReview.txt" />
     <Content Include="Content\Floor_Block.png" />
     <Content Include="Content\Hidden_Block.png" />
