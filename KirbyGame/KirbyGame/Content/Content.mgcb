@@ -73,6 +73,12 @@
 /processorParam:TextureFormat=Color
 /build:blackbackground.png;BlackBackground.png
 
+#begin boss.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:boss.mp3
+
 #begin Brick_block.png
 /importer:TextureImporter
 /processor:TextureProcessor

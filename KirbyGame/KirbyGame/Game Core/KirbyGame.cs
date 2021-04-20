@@ -17,6 +17,7 @@ namespace KirbyGame
     /// </summary>
     public class Game1 : Game
     {
+        public int level;
         public SoundEffectPlayer player;
         //Enteties: Enemies
 
@@ -45,7 +46,7 @@ namespace KirbyGame
 
         public Viewport _viewport;
         private bool isMuted = false;
-        private Song soundtrack;
+        public Song soundtrack;
         public Boolean boundingBoxToggle;
         private Boolean isPaused = false;
         public Hud Hud;
@@ -82,7 +83,7 @@ namespace KirbyGame
             camera.Limits = new Rectangle(new Point(36, -32), new Point(62 * 32, graphics.PreferredBackBufferHeight - 64));
             Hud = new Hud(this);
             points = new Points(Hud);
-
+            level = 1;
             stats = new Stats(2, 6, 0);
 
             base.Initialize();
