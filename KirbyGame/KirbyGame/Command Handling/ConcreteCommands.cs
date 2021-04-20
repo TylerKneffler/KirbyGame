@@ -271,4 +271,17 @@ namespace KirbyGame
             control.ToggleMuteCommand();
         }
     }
+    class TogglePause : Command<Game1>
+    {
+        public TogglePause(Game1 control)
+            : base(control)
+        {
+
+        }
+
+        public override void Execute()
+        {
+            control.TogglePause();
+        }
+    }
 }

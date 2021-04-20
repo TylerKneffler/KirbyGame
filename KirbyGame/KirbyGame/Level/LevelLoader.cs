@@ -156,6 +156,13 @@ namespace KirbyGame
                             Paral = reader.GetAttribute("Paral");
                             _layers.Add(new KirbyHud(game.camera, new Vector2(int.Parse(Xpos), int.Parse(Ypos)), game._viewport, game) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
                             break;
+
+                        case "GameScreen":
+                            Xpos = reader.GetAttribute("Xpos");
+                            Ypos = reader.GetAttribute("Ypos");
+                            Paral = reader.GetAttribute("Paral");
+                            _layers.Add(new GameScreen(game.camera, new Vector2(int.Parse(Xpos), int.Parse(Ypos)), game._viewport, game) { Parallax = new Vector2(float.Parse(Paral), 1.0f) });
+                            break;
                         case "Level_1-1":
                             Xpos = reader.GetAttribute("Xpos");
                             Ypos = reader.GetAttribute("Ypos");
@@ -354,6 +361,18 @@ namespace KirbyGame
             foreach(var hud in queryHud)
             {
                 hud.Draw(spriteBatch, stat);
+            }
+        }
+
+        public void ScreenDraw(SpriteBatch spriteBatch, bool pause, bool win, bool lose)
+        {
+            var queryScreen = from layer in _layers
+                           where layer is GameScreen
+                           select layer;
+
+            foreach (var screen in queryScreen)
+            {
+                screen.Draw(spriteBatch, pause,win,lose);
             }
         }
 

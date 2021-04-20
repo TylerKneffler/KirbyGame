@@ -112,7 +112,7 @@ namespace KirbyGame
             {
                 this.player = this.marioGame.Content.Load<SoundEffect>("SoundEffects/smb_gameover");
                 this.player.Play();
-                marioGame.pause(); //Might not be the best place to put this
+                //marioGame.pause(); //Might not be the best place to put this
                 spriteBatch.Draw(marioGame.Content.Load<Texture2D>("BlackBackground"), new Rectangle(0, 0, 800, 480), Color.Black);
                 spriteBatch.DrawString(font, "GAME OVER", GameOverPos, Color.White);
                 spriteBatch.DrawString(font, "Press Q to Retry", RetryPos, Color.White);
@@ -121,7 +121,7 @@ namespace KirbyGame
 
             if (DisplayWinner)
             {
-                marioGame.pause(); //Might not be the best place to put this
+                //marioGame.pause(); //Might not be the best place to put this
                 spriteBatch.Draw(marioGame.Content.Load<Texture2D>("BlackBackground"), new Rectangle(0, 0, 800, 480), Color.Black);
                 spriteBatch.DrawString(font, "YOU WIN!", GameOverPos, Color.White);
                 spriteBatch.DrawString(font, "Press Q to Play Again", RetryPos, Color.White);
