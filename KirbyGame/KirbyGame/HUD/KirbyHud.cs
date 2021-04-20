@@ -45,6 +45,9 @@ namespace KirbyGame
             AddSprite(factory.createItem(hudType.NAME_SCORE, new Vector2(48, 342)));
             AddSprite(factory.createItem(hudType.NAME_USES, new Vector2(385, 311)));
             AddSprite(factory.createItem(hudType.LIVES, new Vector2(385, 335)));
+            AddSprite(factory.createItem(hudType.POWER_NORMAL, new Vector2(288, 296)));
+            AddSprite(factory.createItem(hudType.POWER_CUTTER, new Vector2(288, 296)));
+            AddSprite(factory.createItem(hudType.POWER_BEAM, new Vector2(288, 296)));
 
             for (int i = 0; i < 6; i++)
             {
@@ -64,16 +67,65 @@ namespace KirbyGame
             spriteBatch.Begin(/*samplerState: SamplerState.LinearWrap,*/transformMatrix: GetCamera().GetViewMatrix(Parallax));
             foreach (Sprite sprite in GetSpriteList())
             {
-                if (sprite.zDepth != 0)
+                switch (sprite.zDepth)
                 {
-                    int hp = stats.GetHealth();
-                    for(int i = 6; i > hp; i--)
-                    {
-                        if(sprite.X == (156 + 16 * (i-1)))
+                    case 0:
                         {
-                            sprite.SetVisibility(false);
+                            break;
                         }
-                    }
+                    case 1F:
+                        {
+                            int hp = stats.GetHealth();
+                            for (int i = 6; i > hp; i--)
+                            {
+                                if (sprite.X == (156 + 16 * (i - 1)))
+                                {
+                                    sprite.SetVisibility(false);
+                                }
+                            }
+                            break;
+                        }
+                    case 0.1F:
+                        {
+                           // if (stats.GetPower != )
+                            break;
+                        }
+                    case 0.2F:
+                        {
+                            if (stats.GetPower() != Stats.ePower.NORMAL)
+                            {
+                                sprite.SetVisibility(false);
+                            }
+                            else
+                            {
+                                sprite.SetVisibility(true);
+                            }
+                            break;
+                        }
+                    case 0.3F:
+                        {
+                            if (stats.GetPower() != Stats.ePower.CUTTER)
+                            {
+                                sprite.SetVisibility(false);
+                            }
+                            else
+                            {
+                                sprite.SetVisibility(true);
+                            }
+                            break;
+                        }
+                    case 0.4F:
+                        {
+                            if (stats.GetPower() != Stats.ePower.BEAM)
+                            {
+                                sprite.SetVisibility(false);
+                            }
+                            else
+                            {
+                                sprite.SetVisibility(true);
+                            }
+                            break;
+                        }
                 }
 
                 sprite.DrawVisable(spriteBatch);

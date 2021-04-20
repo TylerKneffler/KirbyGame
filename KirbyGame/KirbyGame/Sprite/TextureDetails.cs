@@ -78,7 +78,7 @@ namespace KirbyGame
                 spriteBatch.Draw(texture, location, textureLocations[currentTexture], currentColor, 0, new Vector2(0, 0),mod,  SpriteEffects.None, 0);
         }
 
-        public void DrawDepth(SpriteBatch spriteBatch, Vector2 location, Sprite.eDirection direction, int depth)
+        public void DrawDepth(SpriteBatch spriteBatch, Vector2 location, Sprite.eDirection direction, float depth)
         {
 
             if (direction == Sprite.eDirection.Left)

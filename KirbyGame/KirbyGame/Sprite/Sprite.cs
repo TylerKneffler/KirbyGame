@@ -19,7 +19,7 @@ namespace KirbyGame
         public TextureDetails texture;
         public Vector2 location;//made public
         public bool isVisable;
-        public int zDepth;
+        public float zDepth;
 
         public Sprite(TextureDetails texture, Vector2 location, eDirection direction)
         {
@@ -39,7 +39,7 @@ namespace KirbyGame
             this.zDepth = 0;
         }
 
-        public Sprite(int depth, TextureDetails texture, Vector2 location)
+        public Sprite(float depth, TextureDetails texture, Vector2 location)
         {
             this.texture = texture;
             this.location = location;
