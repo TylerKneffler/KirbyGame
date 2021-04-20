@@ -45,6 +45,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFallingState(owner);
+            avatar.game.player.FirstCollision = true;
             CurrentState.Enter(this);
         }
 
@@ -520,7 +521,6 @@ namespace KirbyGame
                 if (Math.Abs(avatar.velocity.X) == 0)
                 {
                     this.IdleTransition();
-                    avatar.game.player.PlayLandSound();
 
                 }
                 else

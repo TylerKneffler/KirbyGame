@@ -170,7 +170,9 @@ namespace KirbyGame
                     acceleration.Y = 0;
                     Y = collider.Y - this.BoundingBox.Height;
                     swallowed.HandleBlockCollision(collision);
-                } else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
+                    game.player.PlayLandSound();
+                }
+                else if (CollisionDirection is Collision.Direction.Down && !(((Block)collider).blocktype is StairBlock))
                 {
                     swallowed.HandleBlockCollision(collision);
                     if (((Block)collider).blocktype is HiddenBlock)

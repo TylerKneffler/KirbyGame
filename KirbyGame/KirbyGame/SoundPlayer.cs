@@ -14,7 +14,7 @@ namespace KirbyGame
     {
         public bool IsMuted { get; set; }
         private  bool canPlay = true;
-        public bool Stop { get; set; }
+        public bool FirstCollision { get; set; }
         private SoundEffect player;
         private SoundPlayer controlledSuctionPlayer;
         private SoundPlayer controlledSuctionProgressPlayer;
@@ -27,6 +27,7 @@ namespace KirbyGame
             IsMuted = isMuted;
             kirbyGame = game;
             IsInTransition = false;
+            FirstCollision = true;
         }
         public void PlaySuckStartSound()
         {
@@ -92,10 +93,11 @@ namespace KirbyGame
         }
         public void PlayLandSound()
         {
-            if (!IsMuted)
+            if (!IsMuted && FirstCollision)
             {
                 this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/land");
                 this.player.Play();
+                FirstCollision = false;
             }
         }
 
@@ -105,6 +107,7 @@ namespace KirbyGame
             {
                 this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/enter");
                 this.player.Play();
+
             }
         }
 
