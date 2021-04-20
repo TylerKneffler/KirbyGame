@@ -25,7 +25,9 @@ namespace KirbyGame
             CurrentState.Enter(this);
         }
 
-
+        /**
+         * Needs random logic added to State.Enter
+         */
         public void RunningTransition()
         {
             CurrentState.Exit();
@@ -69,6 +71,13 @@ namespace KirbyGame
             CurrentState.Exit();
             CurrentState = new EmptySuckingState(owner);
             avatar.game.player.PlaySuckStartSound();
+            CurrentState.Enter(this);
+        }
+
+        public void PowerTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new EmptyPowerState(owner);
             CurrentState.Enter(this);
         }
     }
@@ -134,7 +143,7 @@ namespace KirbyGame
 
         public override void Update(GameTime gameTime)
         {
-            if(avatar.velocity.Y > 0)
+            if (avatar.velocity.Y > 0)
             {
                 this.FallingTransition();
             }
@@ -155,12 +164,11 @@ namespace KirbyGame
 
         public override void ReleaseFloat()
         {
-            
+
         }
 
         public override void Trigger()
         {
-            this.SuckingTransition();
         }
 
         public override void ReleaseTrigger()
@@ -293,7 +301,6 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.SuckingTransition();
         }
 
         public override void ReleaseTrigger()
@@ -492,7 +499,6 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.SuckingTransition();
         }
 
         public override void ReleaseTrigger()
@@ -611,7 +617,6 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.SuckingTransition();
         }
 
         public override void ReleaseTrigger()
@@ -745,7 +750,6 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            this.SuckingTransition();
         }
 
         public override void ReleaseTrigger()
@@ -829,9 +833,10 @@ namespace KirbyGame
             if (textCount == 0)
             {
                 owner.AirTransition();
-            } else if (textCount == 2 && !check)
+            }
+            else if (textCount == 2 && !check)
             {
-                avatar.Y = avatar.Y-12;
+                avatar.Y = avatar.Y - 12;
                 check = true;
             }
         }
@@ -880,7 +885,7 @@ namespace KirbyGame
             avatar.velocity = new Vector2();
             avatar.acceleration = new Vector2();
             avatar.velocity.Y = -3;
-            avatar.acceleration.Y = AvatarData.GRAVITY/2;
+            avatar.acceleration.Y = AvatarData.GRAVITY / 2;
         }
 
         public override void Down()
@@ -927,6 +932,7 @@ namespace KirbyGame
         public override void ReleaseTrigger()
         {
             this.IdleTransition();
+            //should be moved to exit logic
             avatar.game.player.StopSuckStartSound();
             avatar.game.player.StopSuckProggressSound();
 
@@ -944,11 +950,91 @@ namespace KirbyGame
         public override void Update(GameTime gameTime)
         {
             delay++;
-            if (delay >75)
-            { 
+            if (delay > 75)
+            {
                 avatar.game.player.PlaySuckInProgressSound();
             }
 
+        }
+
+
+    }
+    public class EmptyPowerState : EmptyActionState
+    {
+        private int delay = 10;
+        public EmptyPowerState(SwallowState owner) : base(owner)
+        {
+        }
+
+        public override void Enter(ActionState prevState)
+        {
+            base.Enter(prevState);
+            avatar.velocity = new Vector2();
+            avatar.acceleration = new Vector2();
+
+        }
+
+        public override void Down()
+        {
+        }
+
+        public override void Float()
+        {
+        }
+
+        public override void HandleBlockCollision(Collision collision)
+        {
+            //test
+        }
+
+        public override void Jump()
+        {
+        }
+
+        public override void Left()
+        {
+        }
+
+        public override void releaseDown()
+        {
+        }
+
+        public override void ReleaseFloat()
+        {
+        }
+
+        public override void releaseJump()
+        {
+        }
+
+        public override void releaseLeft()
+        {
+        }
+
+        public override void releaseRight()
+        {
+        }
+
+        public override void ReleaseTrigger()
+        {
+            this.IdleTransition();
+        }
+
+        public override void Right()
+        {
+        }
+
+        public override void Trigger()
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (avatar.velocity.Y > 0)
+            {
+                this.FallingTransition();
+            }
+            avatar.velocity.Y = 1;
         }
     }
 }

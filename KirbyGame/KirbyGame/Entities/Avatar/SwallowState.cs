@@ -149,10 +149,14 @@ namespace KirbyGame
 
         public override void Trigger()
         {
-            if (powerUp != null)
+            if (powerUp != null) { 
                 currentPower = powerUp;
-            else
+                ((EmptyActionState)actionState).PowerTransition();
+            }
+            else { 
                 currentPower = new SuckUp(avatar);
+                ((EmptyActionState)actionState).SuckingTransition();
+            }
             actionState.Trigger();
             currentPower.Trigger();
         }
