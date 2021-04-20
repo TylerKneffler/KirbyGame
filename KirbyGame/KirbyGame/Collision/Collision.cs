@@ -12,13 +12,13 @@ namespace KirbyGame
 {
     public class Collision
     {
-        public delegate void PointsEventHandler(object source, Collision collision);
+        //public delegate void PointsEventHandler(object source, Collision collision);
 
-        public event PointsEventHandler AddPoints;
+        //public event PointsEventHandler AddPoints;
 
-        public event EventHandler<Collision> CollisionEvent;
+        //public event EventHandler<Collision> CollisionEvent;
 
-        public event EventHandler LostHealth;
+        //public event EventHandler LostHealth;
 
         private int CELL_SIZE = 32;
         public bool collidedFromLeft;
@@ -212,7 +212,7 @@ namespace KirbyGame
             int debugCounter = 1;
             List<Collision> collisions = new List<Collision>();
             foreach (Entity entity in entities.Where(e => e.velocity.X != 0.0 || e.velocity.Y != 0.0))
-            {
+            { 
 
                 int startX = entity.X / TileMap.CELL_SIZE;
                 int startY = entity.Y / TileMap.CELL_SIZE;
@@ -294,8 +294,8 @@ namespace KirbyGame
                     collisions[index].B.HandleCollision(collisions[index], collisions[index].A);
                     //collisions[index].AddPoints += collisions[index].A.game.points.OnAddPoints;
                     //Notify
-                    collisions[index].OnAddPoints(collisions[index]);
-                    collisions[index].OnCollisionEvent(collisions[index]);
+                    //collisions[index].OnAddPoints(collisions[index]);
+                    //collisions[index].OnCollisionEvent(collisions[index]);
 
                     //collisions[index].AddPoints -= collisions[index].A.game.points.OnAddPoints;
 
@@ -336,23 +336,23 @@ namespace KirbyGame
             }
         }
 
-        protected virtual void OnAddPoints(Collision collision)
-        {
-            if(AddPoints != null)
-            {
-                AddPoints(this, collision);
-            }
-        }
+        //protected virtual void OnAddPoints(Collision collision)
+        //{
+        //    if(AddPoints != null)
+        //    {
+        //        AddPoints(this, collision);
+        //    }
+        //}
 
-        protected virtual void OnLostHealth(EventArgs e)
-        {
-            LostHealth?.Invoke(this, e);
-        }
+        //protected virtual void OnLostHealth(EventArgs e)
+        //{
+        //    LostHealth?.Invoke(this, e);
+        //}
 
-        protected virtual void OnCollisionEvent(Collision collision)
-        {
-            CollisionEvent?.Invoke(this, collision);
-        }
+        //protected virtual void OnCollisionEvent(Collision collision)
+        //{
+        //    CollisionEvent?.Invoke(this, collision);
+        //}
     }
 
 }

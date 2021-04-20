@@ -22,6 +22,8 @@ namespace KirbyGame
 
         public Avatar mario;//made public
 
+        public Stats stats;
+
         public LevelLoader levelLoader;
 
 
@@ -81,7 +83,7 @@ namespace KirbyGame
             Hud = new Hud(this);
             points = new Points(Hud);
 
-
+            stats = new Stats(2, 6, 0);
 
             base.Initialize();
         }
@@ -104,6 +106,8 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
+            mario.CollisionEvent += stats.cl_CollisionEvent;
+
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
 

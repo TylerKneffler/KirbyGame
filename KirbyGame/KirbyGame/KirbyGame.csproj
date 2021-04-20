@@ -44,6 +44,7 @@
     <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
     <Compile Include="Entities\Projectiles\StarProjectile.cs" />
     <Compile Include="Entities\Projectiles\StarProjectileFactory.cs" />
+    <Compile Include="HUD\Stats.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Checkpoints.cs" />
@@ -95,10 +96,7 @@
     <Compile Include="Entities\Items\SuperMushroom.cs" />
     <Compile Include="Game Core\KirbyGame.cs" />
     <Compile Include="GameTimer.cs" />
-    <Compile Include="HUD\Health.cs" />
     <Compile Include="HUD\HudFactory.cs" />
-    <Compile Include="HUD\Lives.cs" />
-    <Compile Include="HUD\Score.cs" />
     <Compile Include="IPointable.cs" />
     <Compile Include="HUD\KirbyHud.cs" />
     <Compile Include="Hud.cs" />

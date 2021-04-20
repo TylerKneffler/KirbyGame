@@ -32,21 +32,27 @@ namespace KirbyGame
         private HudFactory factory;
         readonly SpriteFont font;
         private int livesLeft;
-        private Score score;
+        private int score;
+        private int health;
+
 
         public KirbyHud(Camera camera, Texture2D texture, Vector2 location, Viewport viewport, Game1 game) : base(camera,texture,location,viewport)
         {
+            livesLeft = 2;
+            score = 0;
+            health = 0;
             factory = new HudFactory(game);
             font = factory.loadFont();
-            score = new Score(0);
+
             livesLeft = 6;
             Initialize();
         }
 
         public KirbyHud(Camera camera, Vector2 location, Viewport viewport, Game1 game) : base(camera, location, viewport)
         {
+
             factory = new HudFactory(game);
-            score = new Score(0);
+
             font = factory.loadFont();
             livesLeft = 6;
             Initialize();
@@ -59,7 +65,7 @@ namespace KirbyGame
             AddSprite(factory.createItem(hudType.NAME_USES, new Vector2(385, 311)));
             AddSprite(factory.createItem(hudType.LIVES, new Vector2(385, 335)));
 
-            for (int i = 0; i < livesLeft; i++)
+            for (int i = 0; i < 6; i++)
             {
                 AddSprite(factory.createItem(hudType.HP_COLOR, new Vector2(156 + 16* i, 300)));
             }
@@ -71,7 +77,7 @@ namespace KirbyGame
             foreach (Sprite sprite in GetSpriteList())
                 sprite.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, score.GetScore().ToString(), new Vector2(156, 342), Color.Black);
+            spriteBatch.DrawString(font, health.ToString(), new Vector2(156, 342), Color.Black);
             spriteBatch.End();
         }
 
@@ -86,11 +92,6 @@ namespace KirbyGame
                 AddSprite(factory.createItem(hudType.NAME_KIRBY, new Vector2(140 + 6 * i, 305)));
             }
 
-        }
-
-        public void LostHealth()
-        {
-            
         }
 
         public void LostHealth(object sender, EventArgs e)

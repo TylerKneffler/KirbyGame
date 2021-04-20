@@ -314,8 +314,6 @@ namespace KirbyGame
             //Hud.Update(gameTime);
         }
 
-       
-
         public void LevelDraw(SpriteBatch spriteBatch)
         {
             foreach (Entity entity in list)
