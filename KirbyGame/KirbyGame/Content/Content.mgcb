@@ -724,18 +724,6 @@
 /processorParam:TextureFormat=Color
 /build:Lazer.png
 
-#begin Lazer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Lazer.png
-
 #begin mario.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1270,6 +1258,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/50 - Gunshot.wav
 
+#begin SoundEffects/boomerang.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/boomerang.wav
+
 #begin SoundEffects/bump.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1414,6 +1408,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/spit.wav
 
+#begin SoundEffects/swallow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/swallow.wav
+
+#begin SoundEffects/whip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/whip.wav
+
 #begin squishedKoopa.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1485,6 +1491,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SuperMushroom.png
+
+#begin swallow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:swallow.wav
 
 #begin UsedQuestion_Block.png
 /importer:TextureImporter

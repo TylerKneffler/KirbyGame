@@ -54,7 +54,7 @@ namespace KirbyGame
                 collision.B.boundingColor = Color.Orange;
                 Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
                 Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-                if (collider is Block || collider is EnemyTest || collider is Avatar)
+                if (collider is Block || collider is EnemyTest || collider is Avatar || collider is AirPuff || collider is Star)
                 {
                     if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                     {

@@ -118,6 +118,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new FullSwallowState(avatar, swallowed);
+            avatar.game.player.PlaySwallowSound();
             CurrentState.Enter(this);
         }
     }

@@ -92,7 +92,12 @@ namespace KirbyGame
             {
                 tempX = enemy.velocity.X;
                 this.enemy.velocity.X = 0;
-                Attack();
+                if (this.enemy.position.X - rangeCheck <= 200 && this.enemy.position.X - rangeCheck >= 0 && cooldown == 0)
+                {
+                    Attack();
+                    cooldown = 400;
+                    delay = 30;
+                }
                 cooldown = 100;
                 delay = 30;
             }
@@ -1420,7 +1425,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is StarProjectile || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff && delay == 0)
+            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff && delay == 0)
             {
                 TakeDamage();
                 delay = 50;
