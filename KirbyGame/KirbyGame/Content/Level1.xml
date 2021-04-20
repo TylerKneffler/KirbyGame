@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-  <Size XBound ="320" YBound ="32"/>
+  <Size XBound ="330" YBound ="32"/>
   <Entities>
     <Mario Xpos ="2" Ypos = "3"></Mario>
 

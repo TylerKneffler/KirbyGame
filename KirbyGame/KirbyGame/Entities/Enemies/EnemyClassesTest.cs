@@ -1411,7 +1411,7 @@ namespace KirbyGame
         private EnemyFactoryTest factory;
         private int cooldown;
         private int delay;
-        public int life = 5;
+        public int life = 1;
 
         Random rnd = new Random();
 
@@ -1426,7 +1426,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff && delay == 0)
+            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), new Vector2(enemy.X, enemy.Y));
                 TakeDamage();
@@ -1447,7 +1447,6 @@ namespace KirbyGame
             }
             if (cooldown == 0 && this.enemy.position.X - rangeCheck <= 600 && this.enemy.position.X - rangeCheck >= -600)
             {
-                Attack();
                 Attack();
                 Attack(); 
                 this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(0, 0), new Point(24, 80)), 1), new Vector2(enemy.X, enemy.Y));
@@ -1470,7 +1469,7 @@ namespace KirbyGame
 
         public void Attack()
         {
-            this.enemy.game.levelLoader.list.Add(factory.createEnemy(EnemyTest.enemytypes.APPLE, new Vector2(this.enemy.X - rnd.Next(50,400), this.enemy.Y - rnd.Next(100, 200))));
+            this.enemy.game.levelLoader.list.Add(factory.createEnemy(EnemyTest.enemytypes.APPLE, new Vector2(this.enemy.X - rnd.Next(10,300), this.enemy.Y - rnd.Next(100, 150))));
         }
     }
 
