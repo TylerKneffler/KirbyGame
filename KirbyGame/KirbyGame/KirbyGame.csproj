@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Avatar\PowerUps\Lazer.cs" />
     <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
