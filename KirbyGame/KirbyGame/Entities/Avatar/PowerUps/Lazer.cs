@@ -24,7 +24,6 @@ namespace KirbyGame
             this.avatar = avatar;
             factory = new LazerProjectileFactory(avatar.game);
             powerOn = false;
-            lazer = new List<LazerProjectile>();
             
         }
         public void Trigger()
@@ -46,6 +45,7 @@ namespace KirbyGame
         }
         private void Attack()
         {
+            lazer = new List<LazerProjectile>();
             if (this.avatar.Sprite.Direction == Sprite.eDirection.Left)
             {
                 lazer.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X - 16), (this.avatar.position.Y - 0)), 0, false));
