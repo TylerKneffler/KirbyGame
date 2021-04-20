@@ -45,6 +45,7 @@ namespace KirbyGame
         }
         private void Attack()
         {
+            avatar.game.player.PlayWhipSound();
             lazer = new List<LazerProjectile>();
             if (this.avatar.Sprite.Direction == Sprite.eDirection.Left)
             {

@@ -165,6 +165,7 @@ namespace KirbyGame
         }
         private void Attack()
         {
+            enemy.game.player.PlayWhipSound();
             this.enemy.velocity.X = 0;
             if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
             {
