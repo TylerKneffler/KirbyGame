@@ -22,6 +22,7 @@ namespace KirbyGame
         private SoundEffect player;
         private int _damageTimer;
         private int _colorTimer;
+        private int _powerTimer;
 
         public event EventHandler<Collision> CollisionEvent;
         public event EventHandler KirbyHurt;
@@ -42,6 +43,7 @@ namespace KirbyGame
             IsDead = false;
             _colorTimer = 0;
             _damageTimer = 0;
+            _powerTimer = 0;
         }
 
         public Avatar(Avatar avatar) : base(Color.Yellow)
@@ -59,6 +61,14 @@ namespace KirbyGame
             swallowed.Update(gameTime);
 
             DamageColorUpdate(gameTime);
+            if (_powerTimer > 0)
+            {
+                _powerTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                if(_powerTimer < 0)
+                {
+                    _powerTimer = 0;
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -144,12 +154,19 @@ namespace KirbyGame
 
         public void Trigger()
         {
-            swallowed.Trigger();
+            if (_powerTimer == 0)
+            {
+                swallowed.Trigger();
+            }
         }
 
         public void releaseTrigger()
         {
             swallowed.ReleaseTrigger();
+            if (_powerTimer == 0)
+            {
+                _powerTimer = 600;
+            }
         }
 
         //not sure what this does 
@@ -200,7 +217,6 @@ namespace KirbyGame
 
             if (collider is EnemyTest)
             {
-                
                 TakeDamage();
                 if (((EnemyTest)collider).enemytype is WhispyWoods || ((EnemyTest)collider).enemytype is DeadWhispyWoods)
                 {
@@ -282,10 +298,10 @@ namespace KirbyGame
         public void TakeDamage()
         {
             if(_damageTimer == 0) { 
-            OnTakeDamage(EventArgs.Empty);
-            this.ClearPowerUp();
-            _damageTimer = 1000;
-                }
+                OnTakeDamage(EventArgs.Empty);
+                ClearPowerUp();
+                _damageTimer = 1000;
+            }
         }
 
         public void ClearPowerUp()
