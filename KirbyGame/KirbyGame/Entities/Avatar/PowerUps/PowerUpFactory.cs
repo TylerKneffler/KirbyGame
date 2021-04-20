@@ -14,7 +14,7 @@ namespace KirbyGame
             if(enemy.enemytype is SuckSirKibbleTest)
             {
                 ret = new Cutter(avatar);
-            }else if (enemy.enemytype is WaddleDooTest)
+            }else if (enemy.enemytype is SuckWaddleDooTest)
             {
                 ret = new Lazer(avatar);
             }
