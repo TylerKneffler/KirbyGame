@@ -1469,7 +1469,11 @@ namespace KirbyGame
             life--;
             if (life <= 0)
             {
+                enemy.game.player.PlayKillingBlowSound();
                 this.enemy.DeadStateChange();
+                enemy.game.soundtrack = enemy.game.Content.Load<Song>("win");
+                MediaPlayer.Play(enemy.game.soundtrack);
+                MediaPlayer.IsRepeating = true;
             }
         }
 
