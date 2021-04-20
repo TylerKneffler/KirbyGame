@@ -165,6 +165,7 @@ namespace KirbyGame
         }
         private void Attack()
         {
+            enemy.game.player.PlayWhipSound();
             this.enemy.velocity.X = 0;
             if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
             {
@@ -298,7 +299,7 @@ namespace KirbyGame
 
         public DeadWaddleBeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleBee");
             maxFrames = 2;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
@@ -536,6 +537,73 @@ namespace KirbyGame
     }
 
     //These classes are for when an enemy gets sucked into Kirby. direction will be 1 for left, 2 for right.
+
+    class SuckWaddleBeeTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+        private int Direction;
+        private int check = 0;
+
+        public SuckWaddleBeeTest(EnemyTest enemy, Vector2 location, int direction) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleBee");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.Direction = direction;
+
+
+            if (Direction == 0)
+            {
+                this.enemy.acceleration = new Vector2(-1, 0);
+                this.enemy.velocity.X = -1;
+
+            }
+            else if (Direction == 1)
+            {
+                this.enemy.acceleration = new Vector2(1, 0);
+                this.enemy.velocity.X = 1;
+            }
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (check < 25)
+            {
+                Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+                spriteBatch.Draw(texture, new Vector2(this.location.X, this.location.Y + 19), sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+            }
+            check++;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1 && check < 50)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.X += this.enemy.velocity.X;
+            check++;
+        }
+    }
     class SuckWaddleDeeTest : EnemytypeTest
     {
         public Vector2 location;
@@ -577,11 +645,12 @@ namespace KirbyGame
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            while (check < 50)
+            if (check < 25)
             {
                 Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Vector2(this.location.X, this.location.Y + 19), sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             }
+            check++;
         }
 
         public override void Update(GameTime gameTime)
@@ -643,11 +712,12 @@ namespace KirbyGame
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            while (check < 50)
+            if (check < 25)
             {
                 Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Vector2(this.location.X, this.location.Y + 19), sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             }
+            check++;
         }
 
         public override void Update(GameTime gameTime)
@@ -709,11 +779,12 @@ namespace KirbyGame
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            while (check < 50)
+            if (check < 25)
             {
                 Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Vector2(this.location.X, this.location.Y + 19), sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             }
+            check++;
         }
 
         public override void Update(GameTime gameTime)
@@ -774,11 +845,12 @@ namespace KirbyGame
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            while (check < 50)
+            if (check < 25)
             {
                 Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
-                spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Vector2(this.location.X, this.location.Y + 19), sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             }
+            check++;
         }
 
         public override void Update(GameTime gameTime)
