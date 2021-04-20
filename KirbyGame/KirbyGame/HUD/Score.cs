@@ -8,15 +8,20 @@ namespace KirbyGame
 {
     public class Score
     {
+        Collision cl;
         private int score;
 
         public Score()
         {
+            cl = new Collision();
+            cl.CollisionEvent += cl_CollisionEvent;
             score = 0;
         }
 
         public Score(int startingScore)
         {
+            cl = new Collision();
+            cl.CollisionEvent += cl_CollisionEvent;
             score = startingScore;
         }
 
@@ -25,15 +30,7 @@ namespace KirbyGame
             return score;
         }
 
-        //public void OnAddScore(object source, Collision collision)
-        //{
-        //    if (collision.A is IPointable)
-        //        score += collision.A.Points();
-        //    if (collision.B is IPointable)
-        //        score += collision.B.Points();
-        //}
-
-        public void OnAddScore(object source, Collision collision)
+        public void cl_CollisionEvent(object sender, Collision collision)
         {
             IPointable temp;
             if (collision.A is IPointable)

@@ -16,6 +16,10 @@ namespace KirbyGame
 
         public event PointsEventHandler AddPoints;
 
+        public event EventHandler<Collision> CollisionEvent;
+
+        public event EventHandler LostHealth;
+
         private int CELL_SIZE = 32;
         public bool collidedFromLeft;
         public bool collidedFromRight;
@@ -291,6 +295,7 @@ namespace KirbyGame
                     //collisions[index].AddPoints += collisions[index].A.game.points.OnAddPoints;
                     //Notify
                     collisions[index].OnAddPoints(collisions[index]);
+                    collisions[index].OnCollisionEvent(collisions[index]);
 
                     //collisions[index].AddPoints -= collisions[index].A.game.points.OnAddPoints;
 
@@ -337,6 +342,16 @@ namespace KirbyGame
             {
                 AddPoints(this, collision);
             }
+        }
+
+        protected virtual void OnLostHealth(EventArgs e)
+        {
+            LostHealth?.Invoke(this, e);
+        }
+
+        protected virtual void OnCollisionEvent(Collision collision)
+        {
+            CollisionEvent?.Invoke(this, collision);
         }
     }
 

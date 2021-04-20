@@ -90,6 +90,11 @@ namespace KirbyGame
 
         public void LostHealth()
         {
+            
+        }
+
+        public void LostHealth(object sender, EventArgs e)
+        {
             livesLeft--;
             RemoveSprite(factory.createItem(hudType.HP_COLOR, new Vector2(140 + 6 * livesLeft, 305)));
             AddSprite(factory.createItem(hudType.HP_EMPTY, new Vector2(140 + 6 * livesLeft, 305)));
