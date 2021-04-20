@@ -21,7 +21,7 @@ namespace KirbyGame
             this.location = location;
             explode = false;
             this.hurtKirby = hurtKirby;
-            timer = 10;
+            timer = 20;
             if (direction == 0)
             {
                 velocity = new Vector2(-2, (float)1);
@@ -59,7 +59,7 @@ namespace KirbyGame
             {
                 acceleration.X -= (float).01 * (location.X - X);
             }
-            acceleration.Y -= (float).001 * (Y - (location.Y));
+            acceleration.Y -= (float).001 * (Y - (location.Y)+16);
             base.Update(gameTime);
             timer--;
         }

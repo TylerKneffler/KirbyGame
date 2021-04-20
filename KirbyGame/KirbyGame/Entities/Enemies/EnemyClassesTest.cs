@@ -1427,8 +1427,9 @@ namespace KirbyGame
         {
             if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff && delay == 0)
             {
+                this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), new Vector2(enemy.X, enemy.Y));
                 TakeDamage();
-                delay = 50;
+                delay = 10;
             }
         }
 

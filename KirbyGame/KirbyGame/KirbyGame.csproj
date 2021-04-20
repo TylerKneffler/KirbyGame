@@ -160,7 +160,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)Content\Level1.xml" "$(TargetDir)"
-copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"</PostBuildEvent>
+copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"
+copy "$(ProjectDir)Content\suction.wav" "$(TargetDir)"
+copy "$(ProjectDir)Content\suctionprogress3.wav" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
