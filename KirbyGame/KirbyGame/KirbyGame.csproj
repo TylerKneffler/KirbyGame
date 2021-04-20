@@ -41,7 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
     <Compile Include="Entities\Projectiles\StarProjectile.cs" />
+    <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
     <Compile Include="Entities\Projectiles\StarProjectileFactory.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
@@ -136,6 +138,7 @@
     <Content Include="Content\Kirby Tree level 1-3_32.png" />
     <Content Include="Content\Kirby Tree level 1-4.png" />
     <Content Include="Content\Kirby Tree level 1-4_32.png" />
+    <Content Include="Content\Lazer.png" />
     <Content Include="Content\Level 1, Act 4 - Mephea.png" />
     <Content Include="Content\Level1.xml" />
     <Content Include="Content\Level1Bonous.xml" />

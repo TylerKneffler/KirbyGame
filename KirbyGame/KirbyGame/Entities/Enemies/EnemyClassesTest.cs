@@ -45,9 +45,17 @@ namespace KirbyGame
 
     class WaddleDooTest : EnemytypeTest
     {
+        private LazerProjectileFactory factory;
+        private int cooldown;
+        private int delay;
+        private float tempX;
+        
         public WaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), location);
+            factory = new LazerProjectileFactory(enemy.game);
+            cooldown = 0;
+            delay = 0;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
@@ -72,6 +80,51 @@ namespace KirbyGame
             else if (collider is SuckUp)
             {
                 this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            int rangeCheck = enemy.game.levelLoader.getMario().position.X;
+
+            base.Update(gameTime);
+            if (this.enemy.position.X - rangeCheck <= 100 && this.enemy.position.X - rangeCheck <= 100 && cooldown == 0)
+            {
+                tempX = enemy.velocity.X;
+                this.enemy.velocity.X = 0;
+                Attack();
+                cooldown = 100;
+                delay = 30;
+            }
+            if (cooldown != 0)
+            {
+                cooldown--;
+                if (delay == 0)
+                {
+                    this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), this.enemy.Sprite.location);
+                    this.enemy.velocity.X = tempX;
+                }
+                delay--;
+            }
+
+        }
+        private void Attack()
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.enemy.Sprite.location);
+            this.enemy.velocity.X = 0;
+            if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 16),(this.enemy.position.Y - 0)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 32), (this.enemy.position.Y - 16)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 48), (this.enemy.position.Y - 32)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 64), (this.enemy.position.Y - 48)), 0, true));
+            }
+            else
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 48), (this.enemy.position.Y - 0)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 64), (this.enemy.position.Y - 16)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 80), (this.enemy.position.Y - 32)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 96), (this.enemy.position.Y - 48)), 0, true));
             }
         }
     }
@@ -1356,7 +1409,7 @@ namespace KirbyGame
         private EnemyFactoryTest factory;
         private int cooldown;
         private int delay;
-        public int life = 3;
+        public int life = 5;
 
         Random rnd = new Random();
 
@@ -1371,9 +1424,10 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is StarProjectile || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) && delay == 0)
             {
                 TakeDamage();
+                delay = 50;
             }
         }
 
@@ -1397,6 +1451,7 @@ namespace KirbyGame
                 cooldown = 200;
             }
             cooldown--;
+            delay--;
         }
 
 
@@ -1417,10 +1472,6 @@ namespace KirbyGame
 
     class DeadWhispyWoods : EnemytypeTest
     {
-        private EnemyFactoryTest factory;
-        private int cooldown;
-        private int delay;
-        public int life = 3;
 
         Random rnd = new Random();
 
