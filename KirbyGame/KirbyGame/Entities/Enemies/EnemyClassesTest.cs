@@ -1574,23 +1574,29 @@ namespace KirbyGame
 
     class DeadWhispyWoods : EnemytypeTest
     {
-
+        private LazerProjectileFactory factory;
         Random rnd = new Random();
+        private int delay = 10;
 
         public DeadWhispyWoods(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), location);
             this.enemy.velocity.X = 0;
-
+            factory = new LazerProjectileFactory(enemy.game);
         }
 
         public override void Update(GameTime gameTime)
         {
             int rangeCheck = enemy.game.levelLoader.getMario().position.X;
-
+            if (this.enemy.position.X - rangeCheck <= 600 && this.enemy.position.X - rangeCheck >= -200 && delay == 0)
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2(this.enemy.X - rnd.Next(10, 300), this.enemy.Y - rnd.Next(100, 150)), rnd.Next(0, 1), false));
+                delay = 10;
+            }
             this.enemy.acceleration.Y = 0;
             this.enemy.velocity.Y = 0;
             base.Update(gameTime);
+            delay--;
         }
 
 
