@@ -314,7 +314,7 @@ namespace KirbyGame
 
         public int Points()
         {
-            return enemytype.Points();
+            return 100;
         }
 
     }
