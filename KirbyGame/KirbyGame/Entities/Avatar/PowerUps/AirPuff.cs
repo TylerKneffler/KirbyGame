@@ -12,17 +12,17 @@ namespace KirbyGame
     class AirPuff : Entity, IPowerUp
     {
         private Avatar avatar;
-        private int Timer;
+        private int removeTimer;
         public AirPuff(Avatar avatar) : base(new Sprite(avatar.game.Content.Load<Texture2D>("avatar"), new Rectangle(248, 83, 16, 16), new Vector2(-16, -16), 1))
         {
             this.game = avatar.game;
             this.avatar = avatar;
             this.boundingColor = Color.Red;
-            Timer = 0;
+            removeTimer = 0;
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            
+
         }
 
         public void ReleaseTrigger()
@@ -33,8 +33,8 @@ namespace KirbyGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Timer += gameTime.ElapsedGameTime.Milliseconds;
-            if (Timer > 1000)
+            removeTimer += gameTime.ElapsedGameTime.Milliseconds;
+            if (removeTimer > 1000)
             {
                 game.levelLoader.RemoveEntity(this);
                 game.map.Remove(this);
