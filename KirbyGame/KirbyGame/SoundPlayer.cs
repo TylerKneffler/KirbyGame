@@ -137,7 +137,15 @@ namespace KirbyGame
 
             }
         }
+        public void PlayDamageSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/damage");
+                this.player.Play();
 
+            }
+        }
 
     }
 }

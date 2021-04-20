@@ -1460,6 +1460,7 @@ namespace KirbyGame
 
         public void TakeDamage()
         {
+            enemy.game.player.PlayDamageSound();
             life--;
             if (life <= 0)
             {

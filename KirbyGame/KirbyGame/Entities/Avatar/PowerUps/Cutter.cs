@@ -36,22 +36,18 @@ namespace KirbyGame
             {
                 if (this.avatar.Sprite.Direction == Sprite.eDirection.Left) { 
                     boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
-                    boomerang.Update(gametime);
                 }
                 else
                 {
                     boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
-                    boomerang.Update(gametime);
                 }
                 ReleaseTrigger();
             }
+            boomerang?.Update(gametime);
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            if (powerOn)
-            {
-                boomerang.Draw(spritebatch);
-            }
+            boomerang?.Draw(spritebatch);
         }
     }
    

@@ -1276,6 +1276,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/bump.wav
 
+#begin SoundEffects/damage.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/damage.wav
+
 #begin SoundEffects/enter.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
