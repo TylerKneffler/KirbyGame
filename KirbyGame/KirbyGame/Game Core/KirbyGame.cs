@@ -53,6 +53,8 @@ namespace KirbyGame
         public Points points;
         public Checkpoints checkpoints;
 
+        public EventHandler Pause;
+
 
 
         public Game1()
@@ -85,6 +87,7 @@ namespace KirbyGame
             points = new Points(Hud);
             level = 1;
             stats = new Stats(2, 6, 0);
+            stats.ZeroLives += stats_ZeroLives;
 
             base.Initialize();
         }
@@ -139,6 +142,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Z, new AvatarTrigger(mario));
             KInput.addReleaseCommand(Keys.Z, new AvatarReleaseTrigger(mario));
             KInput.addPressCommand(Keys.M, new ToggleMute(this));
+            KInput.addPressCommand(Keys.P, new TogglePause(this));
             KInput.addPressCommand(Keys.LeftShift, new AvatarClearPower(mario));
 
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
@@ -256,23 +260,35 @@ namespace KirbyGame
 
                 Hud.ResetHud();
 
-                pause();
+                TogglePause();
             }
         }
-        public void pause()
+        public void TogglePause()
         {
-            Layer pauseScreen = new Layer(camera, this.Content.Load<Texture2D>("kirby_pause"), gameBounds, _viewport);
+            levelLoader.ScreenDraw(spriteBatch, true, false, false);
             if (isPaused)
             {
+                onPause(EventArgs.Empty);
                 MediaPlayer.Resume();
-                levelLoader.RemoveLayer(pauseScreen);
             }
             else
             {
+                onPause(EventArgs.Empty);
                 MediaPlayer.Pause();
-                levelLoader.AddLayer(pauseScreen);
             }
             isPaused = !isPaused;
+        }
+
+        public void stats_ZeroLives(object sender, EventArgs e)
+        {
+            
+            TogglePause();
+            levelLoader.ScreenDraw(spriteBatch, false, false, true);
+        }
+
+        public void onPause(EventArgs e)
+        {
+            Pause?.Invoke(this, e);
         }
 
         public void ToggleBoundingBoxes()

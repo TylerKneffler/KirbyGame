@@ -45,6 +45,7 @@
     <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
+    <Compile Include="HUD\GameScreen.cs" />
     <Compile Include="HUD\Stats.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
