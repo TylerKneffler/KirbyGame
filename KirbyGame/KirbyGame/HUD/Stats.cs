@@ -14,8 +14,7 @@ namespace KirbyGame
         private int _health;
         private ePower _power;
 
-        
-
+       
         public enum ePower
         {
             NORMAL,
