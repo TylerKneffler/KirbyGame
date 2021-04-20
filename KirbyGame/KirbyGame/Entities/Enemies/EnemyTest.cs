@@ -96,6 +96,26 @@ namespace KirbyGame
             {
                 enemytype = new WaddleBee(this, location);
             }
+            else if (enemyType == enemytypes.DEAD_WADDLE_DEE)
+            {
+                enemytype = new DeadWaddleDeeTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_WADDLE_DOO)
+            {
+                enemytype = new DeadWaddleDooTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_SIR_KIBBLE)
+            {
+                enemytype = new DeadSirKibbleTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_APPLE)
+            {
+                enemytype = new DeadAppleTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_WADDL_EBEE)
+            {
+                enemytype = new DeadWaddleBeeTest(this, location);
+            }
 
         }
 
@@ -281,7 +301,7 @@ namespace KirbyGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!(enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
+            if (!(enemytype is DeadWaddleDooTest || enemytype is DeadWaddleDeeTest || enemytype is DeadAppleTest || enemytype is DeadSirKibbleTest || enemytype is DeadWaddleBeeTest))
             {
                 base.Draw(spriteBatch);
             }
