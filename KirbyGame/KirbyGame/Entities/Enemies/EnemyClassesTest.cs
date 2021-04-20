@@ -44,6 +44,48 @@ namespace KirbyGame
         }
     }
 
+    class WaddleBee : EnemytypeTest
+    {
+        private float fly;
+        private int delay = 30;
+        public WaddleBee(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleBee"), 2), location);
+            this.enemy.velocity.Y = 1;
+            this.enemy.acceleration.Y = (float)-.1;
+            fly = -1;
+        }
+
+        public override void HandleCollision(Collision collision, Entity collider)
+        {
+            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            {
+                this.enemy.DeadStateChange();
+            }
+            else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
+            {
+                this.enemy.velocity.X = this.enemy.velocity.X * -1;
+
+                if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Left;
+                }
+                else
+                {
+                    this.enemy.Sprite.Direction = Sprite.eDirection.Right;
+                }
+            }
+            else if (collider is SuckUp)
+            {
+                this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
+        }
+        public override void Update(GameTime gameTime)
+        {
+            enemy.acceleration.Y = 0;
+        }
+    }
+
     class WaddleDooTest : EnemytypeTest
     {
         private LazerProjectileFactory factory;
@@ -118,7 +160,7 @@ namespace KirbyGame
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.enemy.Sprite.location);
             this.enemy.velocity.X = 0;
-            if (this.enemy.Sprite.Direction == Sprite.eDirection.Left)
+            if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
             {
                 enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 16),(this.enemy.position.Y - 0)), 0, true));
                 enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 32), (this.enemy.position.Y - 16)), 0, true));
@@ -236,6 +278,55 @@ namespace KirbyGame
     }
 
     //Next 4 classes are for when enemies run into kirby or are hit by a projectile.
+    class DeadWaddleBeeTest : EnemytypeTest
+    {
+        public Vector2 location;
+        Texture2D texture;
+        private int maxFrames;
+        private int currentFrame;
+        private Point frameSize;
+        private int Time;
+        private int Delay;
+
+        public DeadWaddleBeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
+        {
+            texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
+            maxFrames = 2;
+            currentFrame = 0;
+            frameSize = new Point(texture.Width / maxFrames, texture.Height);
+            Time = 0;
+            Delay = 200;
+            this.location = location;
+            this.enemy.acceleration = new Vector2(0, 1);
+            this.enemy.velocity.Y = 1;
+
+            this.enemy.boundingBoxSize = new Point();
+            this.enemy.position = new Point();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle sourceRectangle = new Rectangle(frameSize.X * currentFrame, 0, frameSize.X, frameSize.Y);
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 180, new Vector2(0, 0), 2, SpriteEffects.FlipHorizontally, 0);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (maxFrames > 1)
+            {
+                Time += gameTime.ElapsedGameTime.Milliseconds;
+                if (Time > Delay)
+                {
+                    Time -= Delay;
+                    currentFrame++;
+                }
+                if (currentFrame == maxFrames)
+                    currentFrame = 0;
+            }
+            location.Y += this.enemy.velocity.Y;
+        }
+    }
+
     class DeadWaddleDeeTest : EnemytypeTest
     {
         public Vector2 location;
@@ -1481,7 +1572,7 @@ namespace KirbyGame
 
         public DeadWhispyWoods(EnemyTest enemy, Vector2 location) : base(enemy)
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(92, 0), new Point(24, 80)), 1), location);
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), location);
             this.enemy.velocity.X = 0;
 
         }
