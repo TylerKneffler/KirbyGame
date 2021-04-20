@@ -150,7 +150,7 @@ namespace KirbyGame
             spriteType ret = 0;
             if (swallowed is EmptySwallowState)
             {
-                if (action is EmptyIdleState)
+                if (action is EmptyIdleState || action is EmptyPowerState)
                 {
                     ret = spriteType.EMPTY_IDLE;
                 } else if (action is EmptyRunningState)

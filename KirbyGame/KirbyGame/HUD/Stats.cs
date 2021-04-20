@@ -73,6 +73,10 @@ namespace KirbyGame
         {
             return _health;
         }
+        public ePower GetPower()
+        {
+            return _power;
+        }
         protected virtual void OnLifeLost(EventArgs e)
         {
             //Insert reset game event or call here

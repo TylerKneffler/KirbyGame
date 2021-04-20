@@ -233,6 +233,19 @@ namespace KirbyGame
         }
     }
 
+    class AvatarClearPower : Command<Avatar>
+    {
+        public AvatarClearPower(Avatar control)
+            : base(control)
+        {
+
+        }
+        public override void Execute()
+        {
+            control.ClearPowerUp();
+        }
+    }
+
     class BoundingBoxToggle : Command<Game1>
     {
         public BoundingBoxToggle(Game1 control)

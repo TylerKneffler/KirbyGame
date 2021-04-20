@@ -139,6 +139,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Z, new AvatarTrigger(mario));
             KInput.addReleaseCommand(Keys.Z, new AvatarReleaseTrigger(mario));
             KInput.addPressCommand(Keys.M, new ToggleMute(this));
+            KInput.addPressCommand(Keys.LeftShift, new AvatarClearPower(mario));
 
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
 
