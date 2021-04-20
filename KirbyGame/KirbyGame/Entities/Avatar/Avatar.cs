@@ -201,7 +201,6 @@ namespace KirbyGame
             if (collider is EnemyTest)
             {
                 
-                TakeDamage();
                 if (((EnemyTest)collider).enemytype is WhispyWoods || ((EnemyTest)collider).enemytype is DeadWhispyWoods)
                 {
                     if (CollisionDirection is Collision.Direction.Up)
@@ -282,10 +281,10 @@ namespace KirbyGame
         public void TakeDamage()
         {
             if(_damageTimer == 0) { 
-            OnTakeDamage(EventArgs.Empty);
-            this.ClearPowerUp();
-            _damageTimer = 1000;
-                }
+                OnTakeDamage(EventArgs.Empty);
+                ClearPowerUp();
+                _damageTimer = 1000;
+            }
         }
 
         public void ClearPowerUp()

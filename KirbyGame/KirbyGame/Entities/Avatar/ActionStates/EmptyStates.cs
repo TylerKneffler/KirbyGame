@@ -39,7 +39,6 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyJumpingState(owner);
-            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -47,7 +46,6 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFallingState(owner);
-            avatar.game.player.FirstCollision = true;
             CurrentState.Enter(this);
         }
 
@@ -62,7 +60,6 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptyFlyingState(owner);
-            avatar.game.player.PlayJumpSound();
             CurrentState.Enter(this);
         }
 
@@ -70,7 +67,6 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new EmptySuckingState(owner);
-            avatar.game.player.PlaySuckStartSound();
             CurrentState.Enter(this);
         }
 
@@ -472,6 +468,7 @@ namespace KirbyGame
         {
             base.Enter(prevState);
             avatar.velocity.Y = AvatarData.INIT_JUMP_VELOCITY;
+            avatar.game.player.PlayJumpSound();
             /*if (this.avatar.powerState is MarioSmallState)
             {
                 this.player = this.avatar.game.Content.Load<SoundEffect>("SoundEffects/smb_jump-small");
@@ -598,6 +595,7 @@ namespace KirbyGame
         {
             base.Enter(prevState);
             avatar.acceleration.Y = AvatarData.GRAVITY;
+            avatar.game.player.FirstCollision = true;
         }
 
         public override void Exit()
@@ -846,6 +844,7 @@ namespace KirbyGame
             base.Enter(prevState);
             avatar.velocity.Y = -3;
             avatar.acceleration.Y = 0;
+            avatar.game.player.PlayJumpSound();
         }
 
         public override void Exit()
@@ -886,6 +885,7 @@ namespace KirbyGame
             avatar.acceleration = new Vector2();
             avatar.velocity.Y = -3;
             avatar.acceleration.Y = AvatarData.GRAVITY / 2;
+            avatar.game.player.PlaySuckStartSound();
         }
 
         public override void Down()
