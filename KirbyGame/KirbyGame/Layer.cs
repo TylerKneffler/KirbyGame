@@ -66,6 +66,10 @@ public class Layer
     {
 
     }
+    public virtual void Draw(SpriteBatch spriteBatch, bool pause, bool win, bool lose)
+    {
+
+    }
 
     public void Update(GameTime gameTime)
     {
