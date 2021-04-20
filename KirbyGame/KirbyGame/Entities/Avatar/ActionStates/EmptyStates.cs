@@ -424,8 +424,7 @@ namespace KirbyGame
 
         public override void releaseJump()
         {
-            //add flip transition
-            //this.FallingTransition();
+            this.FlippingTransition();
         }
 
         public override void Right()

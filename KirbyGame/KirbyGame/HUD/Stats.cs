@@ -48,6 +48,25 @@ namespace KirbyGame
             }
         }
 
+            if (collision.A is EnemyTest && collision.B is Avatar)
+            {
+                Debug.WriteLine("Collision enemy!");
+                Debug.WriteLine("Health Pre: "+_health);
+                _health--;
+                OnTakeDamage(EventArgs.Empty);
+                Debug.WriteLine("Health Post: " + _health);
+                ((Avatar)collision.B).TakeDamage();
+            }
+            if (collision.B is EnemyTest && collision.A is Avatar)
+            {
+                Debug.WriteLine("Collision enemy!");
+                Debug.WriteLine("Health Pre: " + _health);
+                _health--;
+                OnTakeDamage(EventArgs.Empty);
+                Debug.WriteLine("Health Post: " + _health);
+                ((Avatar)collision.A).TakeDamage();
+            }
+
         public void mario_TakeDamage(object sender, EventArgs e)
         {
             _health--;
