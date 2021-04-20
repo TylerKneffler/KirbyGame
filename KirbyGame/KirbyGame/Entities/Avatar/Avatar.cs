@@ -20,6 +20,8 @@ namespace KirbyGame
         private KirbySpriteFactory factory;
         //public int numLives;
         private SoundEffect player;
+        private int _damageTimer;
+        private int _colorTimer;
 
         public event EventHandler<Collision> CollisionEvent;
         public event EventHandler<Stats.ePower> PowerUpChange;
@@ -37,6 +39,8 @@ namespace KirbyGame
 
             //numLives = AvatarData.INIT_NUM_LIVES;
             IsDead = false;
+            _colorTimer = 0;
+            _damageTimer = 0;
         }
 
         public Avatar(Avatar avatar) : base(Color.Yellow)
@@ -53,6 +57,11 @@ namespace KirbyGame
             base.Update(gameTime);
             swallowed.Update(gameTime);
             
+            if (_damageTimer > 0)
+            {
+                DamageColorUpdate(gameTime);
+            }
+
 
 
         }
@@ -275,6 +284,7 @@ namespace KirbyGame
         public void TakeDamage()
         {
             swallowed.powerUp = null;
+            _damageTimer = 1000;
         }
 
         protected virtual void OnCollisionEvent(Collision collision)
@@ -285,6 +295,30 @@ namespace KirbyGame
         public virtual void OnPowerUpChange(Stats.ePower power)
         {
             PowerUpChange?.Invoke(this, power);
+        }
+
+        public void DamageColorUpdate(GameTime gameTime)
+        {
+            _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
+            _colorTimer -= gameTime.ElapsedGameTime.Milliseconds;
+            if (_colorTimer < 0)
+            {
+                if (Sprite.texture.currentColor == Color.White)
+                {
+                    Sprite.texture.currentColor = Color.Magenta;
+                }
+                else
+                {
+                    Sprite.texture.currentColor = Color.White;
+                }
+                _colorTimer = 250;
+            }
+            if (_damageTimer <= 0)
+            {
+                _damageTimer = 0;
+                _colorTimer = 0;
+                Sprite.texture.currentColor = Color.White;
+            }
         }
     }
 }
