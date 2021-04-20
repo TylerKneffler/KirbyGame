@@ -252,10 +252,17 @@ namespace KirbyGame
         }
         public void pause()
         {
+            Layer pauseScreen = new Layer(camera, this.Content.Load<Texture2D>("kirby_pause"), gameBounds, _viewport);
             if (isPaused)
+            {
                 MediaPlayer.Resume();
+                levelLoader.RemoveLayer(pauseScreen);
+            }
             else
+            {
                 MediaPlayer.Pause();
+                levelLoader.AddLayer(pauseScreen);
+            }
             isPaused = !isPaused;
         }
 
