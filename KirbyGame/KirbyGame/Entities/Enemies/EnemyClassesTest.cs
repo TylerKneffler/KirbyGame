@@ -134,11 +134,11 @@ namespace KirbyGame
             int rangeCheck = enemy.game.levelLoader.getMario().position.X;
 
             base.Update(gameTime);
-            if (this.enemy.position.X - rangeCheck <= 100 && this.enemy.position.X - rangeCheck <= 100 && cooldown == 0)
+            if (cooldown == 0)
             {
                 tempX = enemy.velocity.X;
                 this.enemy.velocity.X = 0;
-                if (this.enemy.position.X - rangeCheck <= 200 && this.enemy.position.X - rangeCheck >= 0 && cooldown == 0)
+                if (this.enemy.position.X - rangeCheck <= 200 && this.enemy.position.X - rangeCheck >= -200)
                 {
                     Attack();
                     cooldown = 400;
@@ -152,7 +152,6 @@ namespace KirbyGame
                 cooldown--;
                 if (delay == 0)
                 {
-                    this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), this.enemy.Sprite.location);
                     this.enemy.velocity.X = tempX;
                 }
                 delay--;
@@ -161,7 +160,6 @@ namespace KirbyGame
         }
         private void Attack()
         {
-            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.enemy.Sprite.location);
             this.enemy.velocity.X = 0;
             if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
             {
