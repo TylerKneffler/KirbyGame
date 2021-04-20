@@ -1475,9 +1475,6 @@ namespace KirbyGame
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(92, 0), new Point(24, 80)), 1), location);
             this.enemy.velocity.X = 0;
-            factory = new EnemyFactoryTest(this.enemy.game);
-            cooldown = 500;
-            delay = 0;
 
         }
 
