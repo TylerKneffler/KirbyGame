@@ -330,6 +330,18 @@ namespace KirbyGame
             }
         }
 
+        public void HudDraw(SpriteBatch spriteBatch, Stats stat)
+        {
+            var queryHud = from layer in _layers
+                           where layer is KirbyHud
+                           select layer;
+            
+            foreach(var hud in queryHud)
+            {
+                hud.Draw(spriteBatch, stat);
+            }
+        }
+
         public void AddLayer(Layer layer)
         {
             _layers.Add(layer);

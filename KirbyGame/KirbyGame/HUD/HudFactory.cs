@@ -25,7 +25,14 @@ namespace KirbyGame
             if (!textureList.ContainsKey(type))
                 loadTexture(type);
 
-            ret = new Sprite(textureList[type], location);
+            if(type == KirbyHud.hudType.HP_COLOR)
+            {
+                ret = new Sprite(1, textureList[type], location);
+            }
+            else
+            {
+                ret = new Sprite(textureList[type], location);
+            }
 
             return ret;
         }

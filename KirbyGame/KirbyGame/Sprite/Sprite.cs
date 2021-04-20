@@ -18,12 +18,16 @@ namespace KirbyGame
         private eDirection direction;
         public TextureDetails texture;
         public Vector2 location;//made public
+        public bool isVisable;
+        public int zDepth;
 
         public Sprite(TextureDetails texture, Vector2 location, eDirection direction)
         {
             this.texture = texture;
             this.location = location;
             this.direction = direction;
+            this.isVisable = true;
+            this.zDepth = 0;
         }
 
         public Sprite(TextureDetails texture, Vector2 location)
@@ -31,6 +35,17 @@ namespace KirbyGame
             this.texture = texture;
             this.location = location;
             this.direction = eDirection.Right;
+            this.isVisable = true;
+            this.zDepth = 0;
+        }
+
+        public Sprite(int depth, TextureDetails texture, Vector2 location)
+        {
+            this.texture = texture;
+            this.location = location;
+            this.direction = eDirection.Right;
+            this.isVisable = true;
+            this.zDepth = depth;
         }
 
         public Sprite(Texture2D texture, Vector2 location, int numFrames)
@@ -38,6 +53,8 @@ namespace KirbyGame
             this.direction = eDirection.Right;
             this.location = location;
             this.texture = new TextureDetails(texture, numFrames);
+            this.isVisable = true;
+            this.zDepth = 0;
         }
 
         public Sprite(Texture2D texture, Rectangle textureLocation, Vector2 location, int numFrames)
@@ -45,6 +62,8 @@ namespace KirbyGame
             this.direction = eDirection.Right;
             this.location = location;
             this.texture = new TextureDetails(texture, textureLocation, numFrames);
+            this.isVisable = true;
+            this.zDepth = 0;
         }
 
         public float X
@@ -73,6 +92,17 @@ namespace KirbyGame
         public void Draw(SpriteBatch spriteBatch)
         {
             texture.Draw(spriteBatch, location, direction);     
+        }
+
+        public void DrawVisable(SpriteBatch spriteBatch)
+        {
+            if(isVisable)
+                texture.DrawDepth(spriteBatch, location, direction, zDepth);
+        }
+
+        public void SetVisibility(bool visibility)
+        {
+            isVisable = visibility;
         }
     }
 }

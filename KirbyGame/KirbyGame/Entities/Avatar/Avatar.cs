@@ -22,6 +22,7 @@ namespace KirbyGame
         private SoundEffect player;
 
         public event EventHandler<Collision> CollisionEvent;
+        public event EventHandler<Stats.ePower> PowerUpChange;
 
         public bool IsDead { get; set; }        
         public Avatar(Game1 game, Vector2 location) : base(Color.Yellow)
@@ -196,6 +197,11 @@ namespace KirbyGame
         protected virtual void OnCollisionEvent(Collision collision)
         {
             CollisionEvent?.Invoke(this, collision);
+        }
+
+        protected virtual void OnPowerUpChange(Stats.ePower power)
+        {
+            PowerUpChange?.Invoke(this, power);
         }
     }
 }

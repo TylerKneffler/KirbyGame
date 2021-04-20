@@ -62,6 +62,11 @@ public class Layer
         spriteBatch.End();
     }
 
+    public virtual void Draw(SpriteBatch spriteBatch, Stats stat)
+    {
+
+    }
+
     public void Update(GameTime gameTime)
     {
         foreach (Sprite sprite in _layerSprites)

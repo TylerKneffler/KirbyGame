@@ -67,19 +67,45 @@ namespace KirbyGame
 
             for (int i = 0; i < 6; i++)
             {
-                AddSprite(factory.createItem(hudType.HP_COLOR, new Vector2(156 + 16* i, 300)));
+                AddSprite(factory.createItem(hudType.HP_EMPTY, new Vector2(156 + 16 * i, 300)));
+                AddSprite(factory.createItem(hudType.HP_COLOR, new Vector2(156 + 16 * i, 300)));
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, Stats stats)
+        {
+
             spriteBatch.Begin(/*samplerState: SamplerState.LinearWrap,*/transformMatrix: GetCamera().GetViewMatrix(Parallax));
             foreach (Sprite sprite in GetSpriteList())
-                sprite.Draw(spriteBatch);
+            {
+                if (sprite.zDepth != 0)
+                {
+                    int hp = stats.GetHealth();
+                    for(int i = 6; i > hp; i--)
+                    {
+                        if(sprite.X == (156 + 16 * (i-1)))
+                        {
+                            sprite.SetVisibility(false);
+                        }
+                    }
+                }
 
-            spriteBatch.DrawString(font, health.ToString(), new Vector2(156, 342), Color.Black);
+                sprite.DrawVisable(spriteBatch);
+            }
+
+            spriteBatch.DrawString(font, stats.GetScore().ToString(), new Vector2(156, 342), Color.Black);
+            spriteBatch.DrawString(font, stats.GetLives().ToString(), new Vector2(415, 342), Color.Black);
+            spriteBatch.DrawString(font, stats.GetHealth().ToString(), new Vector2(415, 320), Color.Black);
             spriteBatch.End();
+
+            
         }
+
 
         public void DrawLives()
         {
