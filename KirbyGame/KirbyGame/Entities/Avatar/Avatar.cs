@@ -254,7 +254,7 @@ namespace KirbyGame
             CollisionEvent?.Invoke(this, collision);
         }
 
-        protected virtual void OnPowerUpChange(Stats.ePower power)
+        public virtual void OnPowerUpChange(Stats.ePower power)
         {
             PowerUpChange?.Invoke(this, power);
         }
