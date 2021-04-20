@@ -42,12 +42,15 @@ namespace KirbyGame
                     boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 1, false);
                 }
                 ReleaseTrigger();
+                avatar.game.levelLoader.list.Add(boomerang);
+                avatar.game.map.Insert(boomerang);
             }
-            boomerang?.Update(gametime);
+            
+            //boomerang?.Update(gametime);
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            boomerang?.Draw(spritebatch);
+            //boomerang?.Draw(spritebatch);
         }
     }
    
