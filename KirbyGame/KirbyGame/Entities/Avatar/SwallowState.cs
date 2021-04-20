@@ -222,6 +222,7 @@ namespace KirbyGame
         public override void PressDown()
         {
             this.setPower(swallowed);
+            avatar.game.player.PlayCopySound();
             this.EmptyTransition();
         }
 
