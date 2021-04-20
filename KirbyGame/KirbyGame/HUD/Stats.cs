@@ -13,7 +13,9 @@ namespace KirbyGame
         private int _score;
         private int _health;
         private ePower _power;
+
         
+
         public enum ePower
         {
             NORMAL,
@@ -21,6 +23,7 @@ namespace KirbyGame
             CUTTER
         }
         public event EventHandler ZeroLives;
+        public event EventHandler TakeDamage;
 
         public Stats(int lifeTotal, int healthTotal, int startingScore)
         {
@@ -83,7 +86,10 @@ namespace KirbyGame
         {
             return _health;
         }
-
+        protected virtual void OnTakeDamage(EventArgs e)
+        {
+            TakeDamage?.Invoke(this, e);
+        }
         protected virtual void OnLifeLost(EventArgs e)
         {
             //Insert reset game event or call here
