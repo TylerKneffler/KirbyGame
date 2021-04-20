@@ -83,7 +83,7 @@ namespace KirbyGame
             Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
 
-            if (collider is Block || (collider is EnemyTest && hurtKirby == false) || (collider is Avatar && hurtKirby == true) )
+            if (collider is Block && hurtKirby == false || (collider is EnemyTest && hurtKirby == false) || (collider is Avatar && hurtKirby == true) )
             {
                 if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                 {
