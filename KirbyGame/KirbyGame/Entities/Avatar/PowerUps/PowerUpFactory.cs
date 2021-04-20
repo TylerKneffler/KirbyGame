@@ -19,6 +19,19 @@ namespace KirbyGame
                 ret = new Lazer(avatar);
             }
             return ret;
-        } 
+        }
+        
+        public static Stats.ePower EnumGenerator(IPowerUp power)
+        {
+            Stats.ePower ret = Stats.ePower.NORMAL;
+            if(power is Cutter)
+            {
+                ret = Stats.ePower.CUTTER;
+            } else if(power is Lazer)
+            {
+                ret = Stats.ePower.BEAM;
+            }
+            return ret;
+        }
     }
 }

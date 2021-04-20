@@ -14,7 +14,16 @@ namespace KirbyGame
         protected SwallowState previousState;
         public ActionState actionState;
         public IPowerUp currentPower;
-        public IPowerUp powerUp;
+        private IPowerUp _powerUp;
+        public IPowerUp powerUp
+        {
+            get { return _powerUp; }
+            set
+            {
+                _powerUp = value;
+                avatar.OnPowerUpChange(PowerUpFactory.EnumGenerator(_powerUp));
+            }
+        }
         protected SwallowState CurrentState { get { return avatar.swallowed; } set { avatar.swallowed = value; } }
 
         public SwallowState(Avatar avatar)
@@ -218,7 +227,7 @@ namespace KirbyGame
 
         public void setPower(EnemyTest type)
         {
-            powerUp = PowerUpFactory.PowerUp(type, avatar);
+            this.powerUp = PowerUpFactory.PowerUp(type, avatar);
         }
     }
 }
