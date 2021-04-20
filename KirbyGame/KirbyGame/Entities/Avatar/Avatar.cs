@@ -272,6 +272,11 @@ namespace KirbyGame
             }
         }
 
+        public void TakeDamage()
+        {
+            swallowed.powerUp = null;
+        }
+
         protected virtual void OnCollisionEvent(Collision collision)
         {
             CollisionEvent?.Invoke(this, collision);
