@@ -133,7 +133,7 @@ namespace KirbyGame
 
             spriteBatch.DrawString(font, stats.GetScore().ToString(), new Vector2(156, 342), Color.Black);
             spriteBatch.DrawString(font, stats.GetLives().ToString(), new Vector2(415, 342), Color.Black);
-            spriteBatch.DrawString(font, stats.GetHealth().ToString(), new Vector2(415, 320), Color.Black);
+            spriteBatch.DrawString(font, "--", new Vector2(415, 320), Color.Black);
             spriteBatch.End();
 
             
