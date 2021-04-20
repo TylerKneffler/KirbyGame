@@ -115,6 +115,11 @@
     <WaddleBee Xpos = "79" Ypos = "0" />
 
     <Shotzo Xpos = "120" Ypos = "1" />
+
+    <WaddleDee Xpos = "120" Ypos = "5" />
+    <WaddleDee Xpos = "140" Ypos = "5" />
+    <WaddleDee Xpos = "143" Ypos = "5" />
+    
     <Shotzo Xpos = "135" Ypos = "1" />
     <WaddleDee Xpos = "135" Ypos = "5" />
 
