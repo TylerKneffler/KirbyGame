@@ -45,6 +45,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new FullFallingState(owner);
+            avatar.game.player.FirstCollision = true;
             CurrentState.Enter(this);
         }
 
