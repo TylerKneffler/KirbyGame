@@ -23,6 +23,7 @@ namespace KirbyGame
         public Boomerang CreateBoomerang(Vector2 location, int direction, bool canHurtKirby)
         {
             //this.player.Play();
+            game.player.PlayBoomerangSound();
             return new Boomerang(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("CutterFixed"), 4), location), direction, game, canHurtKirby);
         }
 

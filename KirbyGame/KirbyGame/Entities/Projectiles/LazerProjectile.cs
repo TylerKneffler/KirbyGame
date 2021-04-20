@@ -4,24 +4,34 @@ using System;
 
 namespace KirbyGame
 {
-    public class StarProjectile : Entity
+    public class LazerProjectile : Entity
     {
         private bool explode;
         private int delay;
-        public StarProjectile(Sprite sprite, int direction, Game1 game) : base(sprite)
+        private int direction;
+        private int timer;
+        private Vector2 location;
+        public bool hurtKirby;
+        public LazerProjectile(Sprite sprite, Vector2 location, int direction, bool hurtKirby, Game1 game) : base(sprite)
         {
             this.game = game;
             defaultColor = Color.Yellow;
             boundingColor = defaultColor;
+            this.direction = direction;
+            this.location = location;
             explode = false;
+            this.hurtKirby = hurtKirby;
+            timer = 20;
             if (direction == 0)
             {
-                velocity = new Vector2(-5, 0);
+                velocity = new Vector2(-2, (float)1);
+                acceleration = new Vector2((float).5, (float).5);
 
             }
             else
             {
-                velocity = new Vector2(5, 0);
+                velocity = new Vector2(2, (float)1);
+                acceleration = new Vector2((float)-.5, (float).5);
             }
         }
 
@@ -36,13 +46,22 @@ namespace KirbyGame
             {
                 delay++;
             }
-            if(delay > 10)
+            if(delay > 10 || timer == 0)
             {
                 this.game.levelLoader.list.Remove(this);
 
             }
+            if (direction == 1)
+            {
+                acceleration.X += (float).01 * (X - location.X);
+            }
+            else
+            {
+                acceleration.X -= (float).01 * (location.X - X);
+            }
+            acceleration.Y -= (float).001 * (Y - (location.Y));
             base.Update(gameTime);
-
+            timer--;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)

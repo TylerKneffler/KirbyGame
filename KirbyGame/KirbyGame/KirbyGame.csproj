@@ -41,9 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Avatar\PowerUps\Lazer.cs" />
     <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
-    <Compile Include="Entities\Projectiles\StarProjectile.cs" />
-    <Compile Include="Entities\Projectiles\StarProjectileFactory.cs" />
+    <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
+    <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
     <Compile Include="HUD\Stats.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="Camera.cs" />
@@ -123,6 +124,8 @@
   <ItemGroup>
     <Content Include="bin\Windows\x86\Debug\Level1.xml" />
     <Content Include="bin\Windows\x86\Debug\Level1Bonous.xml" />
+    <Content Include="bin\Windows\x86\Debug\suction.wav" />
+    <Content Include="bin\Windows\x86\Debug\suctionprogress3.wav" />
     <Content Include="bin\Windows\x86\Debug\TestLevel.xml" />
     <Content Include="Content\Floor_Block.png" />
     <Content Include="Content\Hidden_Block.png" />
@@ -136,12 +139,11 @@
     <Content Include="Content\Kirby Tree level 1-3_32.png" />
     <Content Include="Content\Kirby Tree level 1-4.png" />
     <Content Include="Content\Kirby Tree level 1-4_32.png" />
+    <Content Include="Content\Lazer.png" />
     <Content Include="Content\Level 1, Act 4 - Mephea.png" />
     <Content Include="Content\Level1.xml" />
     <Content Include="Content\Level1Bonous.xml" />
     <Content Include="Content\Pyramid_Block.png" />
-    <Content Include="bin\Windows\x86\Debug\suction.wav" />
-    <Content Include="bin\Windows\x86\Debug\suctionprogress3.wav" />
     <Content Include="Content\suction.wav" />
     <Content Include="Content\suctionprogress3.wav" />
     <Content Include="Content\TestLevel.xml" />
@@ -159,7 +161,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)Content\Level1.xml" "$(TargetDir)"
-copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"</PostBuildEvent>
+copy "$(ProjectDir)Content\Level1Bonous.xml" "$(TargetDir)"
+copy "$(ProjectDir)Content\suction.wav" "$(TargetDir)"
+copy "$(ProjectDir)Content\suctionprogress3.wav" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

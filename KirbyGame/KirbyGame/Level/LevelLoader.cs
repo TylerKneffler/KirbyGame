@@ -31,6 +31,8 @@ namespace KirbyGame
         private Avatar mario;
         int timer;
 
+        public List<Entity> removeList;
+
         public Avatar getMario()
         {
             return mario;
@@ -49,6 +51,7 @@ namespace KirbyGame
             enemyFactoryTest = new EnemyFactoryTest(game);
             this.game = game;
             _layers = new List<Layer>();
+            removeList = new List<Entity>();
   
         }
 
@@ -258,9 +261,10 @@ namespace KirbyGame
 
         public void LevelUpdate(GameTime gameTime, Camera camera, TileMap map)
         {
+            List<Entity> copy = new List<Entity>();
 
             timer += gameTime.ElapsedGameTime.Milliseconds;
-            List<Entity> copy = new List<Entity>();
+            
             foreach (Entity entity in list.ToList()){
                 entity.Update(gameTime);
                 copy.Add(entity);
@@ -305,6 +309,11 @@ namespace KirbyGame
                     }
                 }
             }
+            foreach (Entity entity in removeList)
+            {
+                list.Remove(entity);
+            }
+            removeList = new List<Entity>();
             ///Update layers
             foreach (Layer layerSprite in _layers)
             {
@@ -356,5 +365,10 @@ namespace KirbyGame
         //{
         //    Hud.Draw(spriteBatch);
         //}
+
+        public void RemoveEntity(Entity item)
+        {
+            removeList.Add(item);
+        }
     }
 }

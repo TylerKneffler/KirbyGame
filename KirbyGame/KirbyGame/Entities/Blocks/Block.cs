@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System;
 using System.Media;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace KirbyGame
 {
@@ -177,11 +178,17 @@ namespace KirbyGame
         
         public virtual void HiddenStateChange()
         {
-            
+            game.level++;
             game.player.PlayEnterSound();
             game.player.IsInTransition = true;
             System.Threading.Thread.Sleep(1000);
             game.player.IsInTransition = false;
+            if(game.level == 3)
+            {
+                game.soundtrack = game.Content.Load<Song>("boss");
+                MediaPlayer.Play(game.soundtrack);
+                MediaPlayer.IsRepeating = true;
+            }
             /*
             if (type == 4)
             {

@@ -192,6 +192,61 @@ namespace KirbyGame
                 }
 
             }
+
+            if (collider is EnemyTest)
+            {
+                if (((EnemyTest)collider).enemytype is WhispyWoods)
+                {
+
+                }
+                if (((EnemyTest)collider).enemytype is ShotzoTest)
+                {
+
+                    if (CollisionDirection is Collision.Direction.Up)
+                    {
+                        velocity.Y = 0;
+                        acceleration.Y = 0;
+                        Y = collider.Y - this.BoundingBox.Height;
+                        swallowed.HandleBlockCollision(collision);
+                        game.player.PlayLandSound();
+                    }
+                    else if (CollisionDirection is Collision.Direction.Down) 
+                    { 
+
+                        swallowed.HandleBlockCollision(collision);
+                    Y = collider.Y + collider.BoundingBox.Height;
+                    }
+                    else if (CollisionDirection is Collision.Direction.Right)
+                    {
+                        swallowed.HandleBlockCollision(collision);
+                        X = collider.BoundingBox.Right;
+                    }
+                    else if (CollisionDirection is Collision.Direction.Left)
+                    {
+                        swallowed.HandleBlockCollision(collision);
+                        X = collider.BoundingBox.Left - this.BoundingBox.Width;
+                    }
+            
+                }
+
+                if (CollisionDirection is Collision.Direction.Up)
+                {
+                        Y = collider.Y - this.BoundingBox.Height;
+                }
+                else if (CollisionDirection is Collision.Direction.Down)
+                {
+                        Y = collider.Y + collider.BoundingBox.Height;
+                }
+                else if (CollisionDirection is Collision.Direction.Right)
+                {
+                        X = collider.BoundingBox.Right;
+                }
+                else if (CollisionDirection is Collision.Direction.Left)
+                {
+                        X = collider.BoundingBox.Left - this.BoundingBox.Width;
+                }
+
+            }
         }
 
         protected virtual void OnCollisionEvent(Collision collision)

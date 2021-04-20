@@ -9,20 +9,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbyGame
 {
-    class StarProjectileFactory
+    class LazerProjectileFactory
     {
         private Game1 game;
         private SoundEffect player;
 
-        public StarProjectileFactory(Game1 game)
+        public LazerProjectileFactory(Game1 game)
         {
             this.game = game;
         }
 
-        public StarProjectile CreateStarProjectile(Vector2 location, int direction)
+        public LazerProjectile CreateLazerProjectile(Vector2 location, int direction, bool canHurtKirby)
         {
-            //this.player.Play();
-            return new StarProjectile(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("starproj"), 4) , location), direction, game);
+            game.player.PlayWhipSound();
+            return new LazerProjectile(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("Lazer"), 1) , location), location, direction,canHurtKirby, game);
         }
 
     }

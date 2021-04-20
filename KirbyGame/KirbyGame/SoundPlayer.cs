@@ -110,7 +110,51 @@ namespace KirbyGame
 
             }
         }
+        public void PlayBoomerangSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/boomerang");
+                this.player.Play();
 
+            }
+        }
+        public void PlayWhipSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/whip");
+                this.player.Play();
+
+            }
+        }
+        public void PlaySwallowSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/swallow");
+                this.player.Play();
+
+            }
+        }
+        public void PlayDamageSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/damage");
+                this.player.Play();
+
+            }
+        }
+        public void PlayKillingBlowSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/killingblow");
+                this.player.Play();
+
+            }
+        }
 
     }
 }

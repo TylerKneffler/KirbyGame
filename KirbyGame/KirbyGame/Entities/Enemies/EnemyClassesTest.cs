@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace KirbyGame
 {
@@ -21,6 +22,8 @@ namespace KirbyGame
         {
             if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
+                enemy.game.player.PlayDamageSound();
+
                 this.enemy.DeadStateChange();
             }
             else if(collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
@@ -45,15 +48,24 @@ namespace KirbyGame
 
     class WaddleDooTest : EnemytypeTest
     {
+        private LazerProjectileFactory factory;
+        private int cooldown;
+        private int delay;
+        private float tempX;
+        
         public WaddleDooTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), location);
+            factory = new LazerProjectileFactory(enemy.game);
+            cooldown = 0;
+            delay = 0;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
             if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
+                enemy.game.player.PlayDamageSound();
                 this.enemy.DeadStateChange();
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
@@ -72,6 +84,56 @@ namespace KirbyGame
             else if (collider is SuckUp)
             {
                 this.enemy.SuckStateChange((int)Collision.normalizeDirection(collision, collider));
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            int rangeCheck = enemy.game.levelLoader.getMario().position.X;
+
+            base.Update(gameTime);
+            if (this.enemy.position.X - rangeCheck <= 100 && this.enemy.position.X - rangeCheck <= 100 && cooldown == 0)
+            {
+                tempX = enemy.velocity.X;
+                this.enemy.velocity.X = 0;
+                if (this.enemy.position.X - rangeCheck <= 200 && this.enemy.position.X - rangeCheck >= 0 && cooldown == 0)
+                {
+                    Attack();
+                    cooldown = 400;
+                    delay = 30;
+                }
+                cooldown = 100;
+                delay = 30;
+            }
+            if (cooldown != 0)
+            {
+                cooldown--;
+                if (delay == 0)
+                {
+                    this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), this.enemy.Sprite.location);
+                    this.enemy.velocity.X = tempX;
+                }
+                delay--;
+            }
+
+        }
+        private void Attack()
+        {
+            this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.enemy.Sprite.location);
+            this.enemy.velocity.X = 0;
+            if (this.enemy.Sprite.Direction == Sprite.eDirection.Left)
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 16),(this.enemy.position.Y - 0)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 32), (this.enemy.position.Y - 16)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 48), (this.enemy.position.Y - 32)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 64), (this.enemy.position.Y - 48)), 0, true));
+            }
+            else
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 48), (this.enemy.position.Y - 0)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 64), (this.enemy.position.Y - 16)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 80), (this.enemy.position.Y - 32)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 96), (this.enemy.position.Y - 48)), 1, true));
             }
         }
     }
@@ -94,6 +156,8 @@ namespace KirbyGame
             if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
+                enemy.game.player.PlayDamageSound();
+
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
             {
@@ -1352,7 +1416,7 @@ namespace KirbyGame
         private EnemyFactoryTest factory;
         private int cooldown;
         private int delay;
-        public int life = 3;
+        public int life = 1;
 
         Random rnd = new Random();
 
@@ -1367,9 +1431,11 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false))
+            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
+                this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), new Vector2(enemy.X, enemy.Y));
                 TakeDamage();
+                delay = 10;
             }
         }
 
@@ -1387,36 +1453,38 @@ namespace KirbyGame
             if (cooldown == 0 && this.enemy.position.X - rangeCheck <= 600 && this.enemy.position.X - rangeCheck >= -600)
             {
                 Attack();
-                Attack();
                 Attack(); 
                 this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(0, 0), new Point(24, 80)), 1), new Vector2(enemy.X, enemy.Y));
                 cooldown = 200;
             }
             cooldown--;
+            delay--;
+         
         }
 
 
         public void TakeDamage()
         {
+            enemy.game.player.PlayDamageSound();
             life--;
-            if (life == 0)
+            if (life <= 0)
             {
+                enemy.game.player.PlayKillingBlowSound();
                 this.enemy.DeadStateChange();
+                enemy.game.soundtrack = enemy.game.Content.Load<Song>("win");
+                MediaPlayer.Play(enemy.game.soundtrack);
+                MediaPlayer.IsRepeating = true;
             }
         }
 
         public void Attack()
         {
-            this.enemy.game.levelLoader.list.Add(factory.createEnemy(EnemyTest.enemytypes.APPLE, new Vector2(this.enemy.X - rnd.Next(50,400), this.enemy.Y - rnd.Next(100, 200))));
+            this.enemy.game.levelLoader.list.Add(factory.createEnemy(EnemyTest.enemytypes.APPLE, new Vector2(this.enemy.X - rnd.Next(10,300), this.enemy.Y - rnd.Next(100, 150))));
         }
     }
 
     class DeadWhispyWoods : EnemytypeTest
     {
-        private EnemyFactoryTest factory;
-        private int cooldown;
-        private int delay;
-        public int life = 3;
 
         Random rnd = new Random();
 
@@ -1424,9 +1492,6 @@ namespace KirbyGame
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(92, 0), new Point(24, 80)), 1), location);
             this.enemy.velocity.X = 0;
-            factory = new EnemyFactoryTest(this.enemy.game);
-            cooldown = 500;
-            delay = 0;
 
         }
 

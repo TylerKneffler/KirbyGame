@@ -33,6 +33,7 @@ namespace KirbyGame
 
         public void Trigger()
         {
+            game.player.PlaySpitSound();
             this.Y = avatar.Y;
             if(avatar.Sprite.Direction == Sprite.eDirection.Left)
             {

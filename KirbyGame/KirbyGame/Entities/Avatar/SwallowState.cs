@@ -109,6 +109,7 @@ namespace KirbyGame
 
         public void AirTransition()
         {
+            avatar.game.player.PlayBoomerangSound();
             CurrentState.Exit();
             CurrentState = new AirSwallowState(avatar);
             CurrentState.Enter(this);
@@ -118,6 +119,7 @@ namespace KirbyGame
         {
             CurrentState.Exit();
             CurrentState = new FullSwallowState(avatar, swallowed);
+            avatar.game.player.PlaySwallowSound();
             CurrentState.Enter(this);
         }
     }
