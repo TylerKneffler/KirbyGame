@@ -22,6 +22,8 @@ namespace KirbyGame
         {
             if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
+                enemy.game.player.PlayDamageSound();
+
                 this.enemy.DeadStateChange();
             }
             else if(collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
@@ -63,6 +65,7 @@ namespace KirbyGame
         {
             if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
+                enemy.game.player.PlayDamageSound();
                 this.enemy.DeadStateChange();
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
@@ -153,6 +156,8 @@ namespace KirbyGame
             if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
+                enemy.game.player.PlayDamageSound();
+
             }
             else if (collider is Block && (collision.CollisionDirection == Collision.Direction.Right || collision.CollisionDirection == Collision.Direction.Left))
             {
