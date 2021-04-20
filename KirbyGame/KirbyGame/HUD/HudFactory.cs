@@ -25,13 +25,64 @@ namespace KirbyGame
             if (!textureList.ContainsKey(type))
                 loadTexture(type);
 
-            if(type == KirbyHud.hudType.HP_COLOR)
+            switch (type)
             {
-                ret = new Sprite(1, textureList[type], location);
-            }
-            else
-            {
-                ret = new Sprite(textureList[type], location);
+                case KirbyHud.hudType.POWER_BEAM:
+                    {
+                        ret = new Sprite(0.4F, textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.POWER_CUTTER:
+                    {
+                        ret = new Sprite(0.3F, textureList[type], location);
+                        break;
+                    }
+
+                case KirbyHud.hudType.POWER_NORMAL:
+                    {
+                        ret = new Sprite(0.2F, textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.POWER_NOTHING:
+                    {
+                        ret = new Sprite(0.1F, textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.HP_COLOR:
+                    {
+                        ret = new Sprite(1F, textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.HP_WHITE:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.HP_EMPTY:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.NAME_KIRBY:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.NAME_SCORE:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.NAME_USES:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
+                case KirbyHud.hudType.LIVES:
+                    {
+                        ret = new Sprite(textureList[type], location);
+                        break;
+                    }
             }
 
             return ret;
