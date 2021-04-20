@@ -1420,7 +1420,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is StarProjectile || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) && delay == 0)
+            if ((collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is StarProjectile || (collider is LazerProjectile && ((LazerProjectile)collider).hurtKirby == false) || collider is Star || collider is AirPuff && delay == 0)
             {
                 TakeDamage();
                 delay = 50;
@@ -1454,7 +1454,7 @@ namespace KirbyGame
         public void TakeDamage()
         {
             life--;
-            if (life == 0)
+            if (life <= 0)
             {
                 this.enemy.DeadStateChange();
             }
