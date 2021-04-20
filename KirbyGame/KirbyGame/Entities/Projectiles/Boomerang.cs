@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbyGame
 {
-    public class Boomerang : Entity
+    public class Boomerang : Entity, IProjectile
     {
         private int delay;
         public bool hurtKirby;
@@ -35,6 +35,10 @@ namespace KirbyGame
             {
                 velocity = new Vector2(5, 0);
             }
+        }
+        public bool canHurtKirby()
+        {
+            return this.hurtKirby;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
