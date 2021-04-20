@@ -307,9 +307,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -348,7 +349,7 @@ namespace KirbyGame
         public DeadWaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
-            maxFrames = 2;
+            maxFrames = 1;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
             Time = 0;
@@ -356,9 +357,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -405,9 +407,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -454,9 +457,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -502,9 +506,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
