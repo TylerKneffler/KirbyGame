@@ -13,9 +13,11 @@ namespace KirbyGame
 {
     class WaddleDeeTest : EnemytypeTest
     {
+        private int points;
         public WaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed"), 2), location);
+            points = 100;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
@@ -50,12 +52,14 @@ namespace KirbyGame
     {
         private float fly;
         private int delay = 30;
+        private int points;
         public WaddleBee(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleBee"), 2), location);
             this.enemy.velocity.Y = 1;
             this.enemy.acceleration.Y = (float)-.1;
             fly = -1;
+            points = 100;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
@@ -86,6 +90,7 @@ namespace KirbyGame
         {
             enemy.acceleration.Y = 0;
         }
+
     }
 
     class WaddleDooTest : EnemytypeTest
