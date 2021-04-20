@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entities\Avatar\PowerUps\Lazer.cs" />
     <Compile Include="Entities\Avatar\PowerUps\PowerUpFactory.cs" />
+    <Compile Include="Entities\Projectiles\IProjectile.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectile.cs" />
     <Compile Include="Entities\Projectiles\LazerProjectileFactory.cs" />
     <Compile Include="HUD\Stats.cs" />

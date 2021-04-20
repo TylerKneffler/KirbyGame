@@ -4,13 +4,15 @@ using System;
 
 namespace KirbyGame
 {
-    public class Cannonball : Entity
+    public class Cannonball : Entity, IProjectile
     {
         private bool explode;
         private int delay;
+        private bool hurtKirby;
         public Cannonball(Sprite sprite, int direction, Game1 game) : base(sprite)
         {
             this.game = game;
+            hurtKirby = true;
             defaultColor = Color.Yellow;
             boundingColor = defaultColor;
             explode = false;
@@ -23,6 +25,10 @@ namespace KirbyGame
             {
                 velocity = new Vector2(5, 0);
             }
+        }
+        public bool canHurtKirby()
+        {
+            return this.hurtKirby;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

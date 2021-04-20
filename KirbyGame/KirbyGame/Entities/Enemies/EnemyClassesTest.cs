@@ -20,7 +20,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if(collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 enemy.game.player.PlayDamageSound();
 
@@ -60,7 +60,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -105,7 +105,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 enemy.game.player.PlayDamageSound();
                 this.enemy.DeadStateChange();
@@ -193,7 +193,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
                 enemy.game.player.PlayDamageSound();
@@ -264,7 +264,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
