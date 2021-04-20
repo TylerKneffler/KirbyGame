@@ -118,7 +118,7 @@ namespace KirbyGame
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.enemy.Sprite.location);
             this.enemy.velocity.X = 0;
-            if (this.enemy.Sprite.Direction == Sprite.eDirection.Right)
+            if (this.enemy.Sprite.Direction == Sprite.eDirection.Left)
             {
                 enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 16),(this.enemy.position.Y - 0)), 0, true));
                 enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X - 32), (this.enemy.position.Y - 16)), 0, true));
@@ -127,10 +127,10 @@ namespace KirbyGame
             }
             else
             {
-                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 48), (this.enemy.position.Y - 0)), 0, true));
-                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 64), (this.enemy.position.Y - 16)), 0, true));
-                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 80), (this.enemy.position.Y - 32)), 0, true));
-                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 96), (this.enemy.position.Y - 48)), 0, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 48), (this.enemy.position.Y - 0)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 64), (this.enemy.position.Y - 16)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 80), (this.enemy.position.Y - 32)), 1, true));
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.enemy.position.X + 96), (this.enemy.position.Y - 48)), 1, true));
             }
         }
     }

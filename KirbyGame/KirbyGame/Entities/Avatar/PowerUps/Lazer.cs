@@ -24,6 +24,7 @@ namespace KirbyGame
             this.avatar = avatar;
             factory = new LazerProjectileFactory(avatar.game);
             powerOn = false;
+            
         }
         public void Trigger()
         {
@@ -36,35 +37,15 @@ namespace KirbyGame
         public void Update(GameTime gameTime)
         {
 
-            if (cooldown == 0)
+            if (powerOn)
             {
-                tempX = avatar.velocity.X;
-                if (cooldown == 0)
-                {
-                    Attack();
-                    cooldown = 400;
-                    delay = 30;
-                }
-                cooldown = 100;
-                delay = 30;
+                Attack();
             }
-            if (cooldown != 0)
-            {
-                cooldown--;
-                if (delay == 0)
-                {
-                    this.avatar.Sprite = new Sprite(new TextureDetails(this.avatar.game.Content.Load<Texture2D>("WaddleDooFixed"), 2), this.avatar.Sprite.location);
-                    this.avatar.velocity.X = tempX;
-                }
-                delay--;
-            }
-
+            ReleaseTrigger();
         }
         private void Attack()
         {
-            this.avatar.Sprite = new Sprite(new TextureDetails(this.avatar.game.Content.Load<Texture2D>("WaddleDooFixed"), new Rectangle(new Point(16, 0), new Point(16, 16)), 1), this.avatar.Sprite.location);
-            this.avatar.velocity.X = 0;
-            if (this.avatar.Sprite.Direction == Sprite.eDirection.Right)
+            if (this.avatar.Sprite.Direction == Sprite.eDirection.Left)
             {
                 avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X - 16), (this.avatar.position.Y - 0)), 0, false));
                 avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X - 32), (this.avatar.position.Y - 16)), 0, false));
@@ -73,10 +54,10 @@ namespace KirbyGame
             }
             else
             {
-                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 48), (this.avatar.position.Y - 0)), 0, false));
-                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 64), (this.avatar.position.Y - 16)), 0, false));
-                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 80), (this.avatar.position.Y - 32)), 0, false));
-                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 96), (this.avatar.position.Y - 48)), 0, false));
+                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 48), (this.avatar.position.Y - 0)), 1, false));
+                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 64), (this.avatar.position.Y - 16)), 1, false));
+                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 80), (this.avatar.position.Y - 32)), 1, false));
+                avatar.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2((this.avatar.position.X + 96), (this.avatar.position.Y - 48)), 1, false));
             }
         }
         public void Draw(SpriteBatch spritebatch)

@@ -59,7 +59,7 @@ namespace KirbyGame
             {
                 acceleration.X -= (float).01 * (location.X - X);
             }
-            acceleration.Y -= (float).001 * (Y - (location.Y)+16);
+            acceleration.Y -= (float).001 * (Y - (location.Y));
             base.Update(gameTime);
             timer--;
         }
@@ -72,7 +72,7 @@ namespace KirbyGame
             collision.B.boundingColor = Color.Orange;
             Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
-            if (collider is EnemyTest || collider is Avatar)
+            if (collider is Block || collider is EnemyTest || collider is Avatar)
             {
                 if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                 {

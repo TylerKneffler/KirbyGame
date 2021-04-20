@@ -39,7 +39,7 @@ namespace KirbyGame
                 }
                 else
                 {
-                    boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 0, false);
+                    boomerang = factory.CreateBoomerang(new Vector2(this.avatar.position.X, this.avatar.position.Y), 1, false);
                 }
                 ReleaseTrigger();
             }
