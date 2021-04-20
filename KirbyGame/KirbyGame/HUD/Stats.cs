@@ -9,71 +9,96 @@ namespace KirbyGame
 {
     public class Stats
     {
-        private Lives _lives;
-        private Score _score;
-        private Health _health;
+        private int _lives;
+        private int _score;
+        private int _health;
+        private ePower _power;
 
+        
+
+        public enum ePower
+        {
+            NORMAL,
+            BEAM,
+            CUTTER
+        }
         public event EventHandler ZeroLives;
+        public event EventHandler TakeDamage;
 
         public Stats(int lifeTotal, int healthTotal, int startingScore)
         {
-            _lives = new Lives(lifeTotal);
-            _score = new Score(startingScore);
-            _health = new Health(healthTotal);
+            _lives = lifeTotal;
+            _score = startingScore;
+            _health = healthTotal;
+            _power = ePower.NORMAL;
         }
 
-        public Stats()
+        public void mario_CollisionEvent(object sender, Collision collision)
         {
-
-        }
-
-        public void cl_CollisionEvent(object sender, Collision collision)
-        {
+            //Debug.WriteLine("Collision Event!");
             IPointable temp;
             if (collision.A is IPointable)
             {
                 temp = (IPointable)collision.A;
-                _score.Add(temp.Points());
+                _score+= temp.Points();
             }
             if (collision.B is IPointable)
             {
                 temp = (IPointable)collision.B;
-                _score.Add(temp.Points());
+                _score += temp.Points();
             }
 
             if (collision.A is EnemyTest && collision.B is Avatar)
             {
-                _health.RemoveOne();
+                Debug.WriteLine("Collision enemy!");
+                Debug.WriteLine("Health Pre: "+_health);
+                _health--;
+                OnTakeDamage(EventArgs.Empty);
+                Debug.WriteLine("Health Post: " + _health);
             }
             if (collision.B is EnemyTest && collision.A is Avatar)
             {
-                _health.RemoveOne();
+                Debug.WriteLine("Collision enemy!");
+                Debug.WriteLine("Health Pre: " + _health);
+                _health--;
+                OnTakeDamage(EventArgs.Empty);
+                Debug.WriteLine("Health Post: " + _health);
             }
 
-            if (_health.GetHealth() <= 0)
+            if (_health <= 0)
             {
                 OnLifeLost(EventArgs.Empty);
             }
         }
+        public void mario_PowerUpChange(object sender, ePower power)
+        {
+            //do something
+            _power = power;
+        }
 
-        public Lives GetLives()
+        public int GetLives()
         {
             return _lives;
         }
-        public Score GetScore()
+        public int GetScore()
         {
             return _score;
         }
-        public Health GetHealth()
+        public int GetHealth()
         {
             return _health;
         }
-
+        protected virtual void OnTakeDamage(EventArgs e)
+        {
+            TakeDamage?.Invoke(this, e);
+        }
         protected virtual void OnLifeLost(EventArgs e)
         {
-            _lives.RemoveOne();
+            //Insert reset game event or call here
+            _lives--;
+            _health = 6;
 
-            if (_lives.GetLives() <= 0)
+            if (_lives <= 0)
             {
                 OnZeroLives(EventArgs.Empty);
             }
@@ -84,68 +109,68 @@ namespace KirbyGame
             ZeroLives?.Invoke(this, e);
         }
 
-        public class Lives
-        {
-            private int lifeTotal;
+        //public class Lives
+        //{
+        //    private int lifeTotal;
 
-            public Lives(int lives)
-            {
-                lifeTotal = lives;
-            }
+        //    public Lives(int lives)
+        //    {
+        //        lifeTotal = lives;
+        //    }
 
-            public int GetLives()
-            {
-                return lifeTotal;
-            }
-            public void RemoveOne()
-            {
-                lifeTotal--;
-            }
-        }
-        public class Score
-        {
-            private int score;
-            public Score()
-            {
-                score = 0;
-            }
-            public Score(int startingScore)
-            {
-                score = startingScore;
-            }
-            public int GetScore()
-            {
-                return score;
-            }
-            public void Add(int x)
-            {
-                score += x;
-            }
-        }
-        public class Health
-        {
-            private int healthBars;
+        //    public int GetLives()
+        //    {
+        //        return lifeTotal;
+        //    }
+        //    public void RemoveOne()
+        //    {
+        //        lifeTotal--;
+        //    }
+        //}
+        //public class Score
+        //{
+        //    private int score;
+        //    public Score()
+        //    {
+        //        score = 0;
+        //    }
+        //    public Score(int startingScore)
+        //    {
+        //        score = startingScore;
+        //    }
+        //    public int GetScore()
+        //    {
+        //        return score;
+        //    }
+        //    public void Add(int x)
+        //    {
+        //        score += x;
+        //    }
+        //}
+        //public class Health
+        //{
+        //    private int healthBars;
 
 
-            public Health()
-            {
-                healthBars = 6;
-            }
+        //    public Health()
+        //    {
+        //        healthBars = 6;
+        //    }
 
-            public Health(int healthTotal)
-            {
-                healthBars = healthTotal;
-            }
+        //    public Health(int healthTotal)
+        //    {
+        //        healthBars = healthTotal;
+        //    }
 
-            public int GetHealth()
-            {
-                return healthBars;
-            }
+        //    public int GetHealth()
+        //    {
+        //        return healthBars;
+        //    }
             
-            public void RemoveOne()
-            {
-                healthBars--;
-            }
-        }
+        //    public void RemoveOne()
+        //    {
+        //        healthBars--;
+        //    }
+        //}
     }
 }

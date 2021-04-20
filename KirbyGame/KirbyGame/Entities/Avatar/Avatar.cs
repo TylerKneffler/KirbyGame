@@ -22,6 +22,7 @@ namespace KirbyGame
         private SoundEffect player;
 
         public event EventHandler<Collision> CollisionEvent;
+        public event EventHandler<Stats.ePower> PowerUpChange;
 
         public bool IsDead { get; set; }        
         public Avatar(Game1 game, Vector2 location) : base(Color.Yellow)
@@ -194,7 +195,40 @@ namespace KirbyGame
 
             if (collider is EnemyTest)
             {
-                if(((EnemyTest)collider).enemytype is WhispyWoods)
+                if (((EnemyTest)collider).enemytype is WhispyWoods)
+                {
+
+                }
+                if (((EnemyTest)collider).enemytype is ShotzoTest)
+                {
+
+                    if (CollisionDirection is Collision.Direction.Up)
+                    {
+                        velocity.Y = 0;
+                        acceleration.Y = 0;
+                        Y = collider.Y - this.BoundingBox.Height;
+                        swallowed.HandleBlockCollision(collision);
+                        game.player.PlayLandSound();
+                    }
+                    else if (CollisionDirection is Collision.Direction.Down) 
+                    { 
+
+                        swallowed.HandleBlockCollision(collision);
+                    Y = collider.Y + collider.BoundingBox.Height;
+                    }
+                    else if (CollisionDirection is Collision.Direction.Right)
+                    {
+                        swallowed.HandleBlockCollision(collision);
+                        X = collider.BoundingBox.Right;
+                    }
+                    else if (CollisionDirection is Collision.Direction.Left)
+                    {
+                        swallowed.HandleBlockCollision(collision);
+                        X = collider.BoundingBox.Left - this.BoundingBox.Width;
+                    }
+            
+                }
+
                 if (CollisionDirection is Collision.Direction.Up)
                 {
                         Y = collider.Y - this.BoundingBox.Height;
@@ -218,6 +252,11 @@ namespace KirbyGame
         protected virtual void OnCollisionEvent(Collision collision)
         {
             CollisionEvent?.Invoke(this, collision);
+        }
+
+        protected virtual void OnPowerUpChange(Stats.ePower power)
+        {
+            PowerUpChange?.Invoke(this, power);
         }
     }
 }

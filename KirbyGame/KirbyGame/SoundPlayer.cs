@@ -146,6 +146,15 @@ namespace KirbyGame
 
             }
         }
+        public void PlayKillingBlowSound()
+        {
+            if (!IsMuted)
+            {
+                this.player = this.kirbyGame.Content.Load<SoundEffect>("SoundEffects/killingblow");
+                this.player.Play();
+
+            }
+        }
 
     }
 }

@@ -107,7 +107,8 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
-            mario.CollisionEvent += stats.cl_CollisionEvent;
+            mario.CollisionEvent += stats.mario_CollisionEvent;
+            mario.PowerUpChange += stats.mario_PowerUpChange;
 
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
@@ -187,6 +188,7 @@ namespace KirbyGame
                 GraphicsDevice.Clear(color);
 
                 levelLoader.LayerDraw(spriteBatch);
+                levelLoader.HudDraw(spriteBatch,stats);
 
                 spriteBatch.Begin(samplerState: SamplerState.PointClamp/*makes game look nicer*/, transformMatrix: camera.GetViewMatrix(new Vector2(1)));
                 //Drawing Sprites
