@@ -283,9 +283,14 @@ namespace KirbyGame
         {
             if(_damageTimer == 0) { 
             OnTakeDamage(EventArgs.Empty);
-            swallowed.powerUp = null;
+            this.ClearPowerUp();
             _damageTimer = 1000;
                 }
+        }
+
+        public void ClearPowerUp()
+        {
+            swallowed.powerUp = null;
         }
 
         protected virtual void OnCollisionEvent(Collision collision)
