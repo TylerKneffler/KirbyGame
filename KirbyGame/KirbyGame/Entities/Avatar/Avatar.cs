@@ -282,10 +282,10 @@ namespace KirbyGame
         public void TakeDamage()
         {
             if(_damageTimer == 0) { 
-            OnTakeDamage(EventArgs.Empty);
-            this.ClearPowerUp();
-            _damageTimer = 1000;
-                }
+                OnTakeDamage(EventArgs.Empty);
+                ClearPowerUp();
+                _damageTimer = 1000;
+            }
         }
 
         public void ClearPowerUp()
