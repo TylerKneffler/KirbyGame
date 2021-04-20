@@ -2,7 +2,7 @@
 <Level>
   <Size XBound ="330" YBound ="32"/>
   <Entities>
-    <Mario Xpos ="2" Ypos = "3"></Mario>
+    <Mario Xpos ="3" Ypos = "3"></Mario>
 
     <Floor Xpos = "1" Ypos = "8" Length ="20"/>
 
@@ -115,6 +115,11 @@
     <WaddleBee Xpos = "79" Ypos = "0" />
 
     <Shotzo Xpos = "120" Ypos = "1" />
+
+    <WaddleDee Xpos = "120" Ypos = "5" />
+    <WaddleDee Xpos = "140" Ypos = "5" />
+    <WaddleDee Xpos = "143" Ypos = "5" />
+    
     <Shotzo Xpos = "135" Ypos = "1" />
     <WaddleDee Xpos = "135" Ypos = "5" />
 
@@ -134,5 +139,6 @@
 	<Hud>
     <BackgroundHud Xpos = "0" Ypos = "280" Paral = "0"/>
 		<KirbyHud Xpos = "0" Ypos = "280" Paral = "0"/>
+		<GameScreen Xpos ="0" Ypos ="0" Paral ="0"/>
 	</Hud>
 </Level>

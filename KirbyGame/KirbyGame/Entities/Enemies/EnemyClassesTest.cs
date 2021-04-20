@@ -13,14 +13,16 @@ namespace KirbyGame
 {
     class WaddleDeeTest : EnemytypeTest
     {
+        private int points;
         public WaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed"), 2), location);
+            points = 100;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if(collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if(collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 enemy.game.player.PlayDamageSound();
 
@@ -50,17 +52,19 @@ namespace KirbyGame
     {
         private float fly;
         private int delay = 30;
+        private int points;
         public WaddleBee(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WaddleBee"), 2), location);
             this.enemy.velocity.Y = 1;
             this.enemy.acceleration.Y = (float)-.1;
             fly = -1;
+            points = 100;
         }
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -86,6 +90,7 @@ namespace KirbyGame
         {
             enemy.acceleration.Y = 0;
         }
+
     }
 
     class WaddleDooTest : EnemytypeTest
@@ -105,7 +110,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 enemy.game.player.PlayDamageSound();
                 this.enemy.DeadStateChange();
@@ -193,7 +198,7 @@ namespace KirbyGame
         }
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
                 enemy.game.player.PlayDamageSound();
@@ -264,7 +269,7 @@ namespace KirbyGame
 
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            if (collider is Avatar || (collider is Boomerang && ((Boomerang)collider).hurtKirby == false) || collider is Star || collider is AirPuff)
+            if (collider is Avatar || (collider is IProjectile && !((IProjectile)collider).canHurtKirby()) || collider is Star || collider is AirPuff)
             {
                 this.enemy.DeadStateChange();
             }
@@ -302,9 +307,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -343,7 +349,7 @@ namespace KirbyGame
         public DeadWaddleDeeTest(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             texture = this.enemy.game.Content.Load<Texture2D>("WaddleDeeFixed");
-            maxFrames = 2;
+            maxFrames = 1;
             currentFrame = 0;
             frameSize = new Point(texture.Width / maxFrames, texture.Height);
             Time = 0;
@@ -351,9 +357,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -400,9 +407,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -449,9 +457,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -497,9 +506,10 @@ namespace KirbyGame
             this.location = location;
             this.enemy.acceleration = new Vector2(0, 1);
             this.enemy.velocity.Y = 1;
+            this.enemy.velocity.X = 0;
 
             this.enemy.boundingBoxSize = new Point();
-            this.enemy.position = new Point();
+            //this.enemy.position = new Point();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -1574,23 +1584,29 @@ namespace KirbyGame
 
     class DeadWhispyWoods : EnemytypeTest
     {
-
+        private LazerProjectileFactory factory;
         Random rnd = new Random();
+        private int delay = 10;
 
         public DeadWhispyWoods(EnemyTest enemy, Vector2 location) : base(enemy)
         {
             this.enemy.Sprite = new Sprite(new TextureDetails(this.enemy.game.Content.Load<Texture2D>("WhispyWoods"), new Rectangle(new Point(24, 0), new Point(24, 80)), 1), location);
             this.enemy.velocity.X = 0;
-
+            factory = new LazerProjectileFactory(enemy.game);
         }
 
         public override void Update(GameTime gameTime)
         {
             int rangeCheck = enemy.game.levelLoader.getMario().position.X;
-
+            if (this.enemy.position.X - rangeCheck <= 600 && this.enemy.position.X - rangeCheck >= -200 && delay == 0)
+            {
+                enemy.game.levelLoader.list.Add(factory.CreateLazerProjectile(new Vector2(this.enemy.X - rnd.Next(10, 300), this.enemy.Y - rnd.Next(100, 150)), rnd.Next(0, 1), false));
+                delay = 10;
+            }
             this.enemy.acceleration.Y = 0;
             this.enemy.velocity.Y = 0;
             base.Update(gameTime);
+            delay--;
         }
 
 

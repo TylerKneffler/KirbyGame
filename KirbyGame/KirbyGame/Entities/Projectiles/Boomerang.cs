@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbyGame
 {
-    public class Boomerang : Entity
+    public class Boomerang : Entity, IProjectile
     {
         private int delay;
         public bool hurtKirby;
@@ -35,6 +35,10 @@ namespace KirbyGame
             {
                 velocity = new Vector2(5, 0);
             }
+        }
+        public bool canHurtKirby()
+        {
+            return this.hurtKirby;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -79,7 +83,7 @@ namespace KirbyGame
             Rectangle.Intersect(BoundingBox, collision.B.BoundingBox);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
 
-            if (collider is Block || (collider is EnemyTest && hurtKirby == false) || (collider is Avatar && hurtKirby == true) )
+            if (collider is Block && hurtKirby == false || (collider is EnemyTest && hurtKirby == false) || (collider is Avatar && hurtKirby == true) )
             {
                 if (collider is Avatar && CollisionDirection == Collision.Direction.Left)
                 {
