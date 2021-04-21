@@ -96,6 +96,7 @@ namespace KirbyGame
         protected virtual void OnZeroLives(EventArgs e)
         {
             ZeroLives?.Invoke(this, e);
+            
             ResetHealth();
 
         }

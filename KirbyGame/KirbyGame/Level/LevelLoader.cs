@@ -332,7 +332,7 @@ namespace KirbyGame
             {
                 layerSprite.Update(gameTime);
             }
-
+            
             //Hud.Update(gameTime);
         }
 

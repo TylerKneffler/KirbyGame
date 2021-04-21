@@ -303,6 +303,7 @@ namespace KirbyGame
 
         public void TakeDamage()
         {
+            game.player.PlayDamageSound();
             if(_damageTimer == 0) { 
                 OnTakeDamage(EventArgs.Empty);
                 ClearPowerUp();
