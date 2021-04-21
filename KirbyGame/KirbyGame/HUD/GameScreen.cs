@@ -64,14 +64,14 @@ namespace KirbyGame
             if (_win)
             {
                 spriteBatch.Draw(win, new Rectangle(0, 0, 500, 420), Color.White);
-                spriteBatch.DrawString(font, "Press R to Play Again", new Vector2(300,200), Color.Black);
-                spriteBatch.DrawString(font, "Press Q to Exit", new Vector2(300, 260), Color.White);
+                spriteBatch.DrawString(font, "Press R to Play Again", new Vector2(150,150), Color.Black);
+                spriteBatch.DrawString(font, "Press Q to Exit", new Vector2(150, 200), Color.White);
             }
             else if (_lose)
             {
                 spriteBatch.Draw(lose, new Rectangle(0, 0, 500, 420), Color.White);
-                spriteBatch.DrawString(font, "Press R to Retry", new Vector2(300, 200), Color.Black);
-                spriteBatch.DrawString(font, "Press Q to Exit", new Vector2(300, 260), Color.White);
+                spriteBatch.DrawString(font, "Press R to Retry", new Vector2(150, 150), Color.Black);
+                spriteBatch.DrawString(font, "Press Q to Exit", new Vector2(150, 200), Color.White);
             }
             spriteBatch.End();
         }
