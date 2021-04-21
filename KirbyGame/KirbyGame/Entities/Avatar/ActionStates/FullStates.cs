@@ -12,10 +12,8 @@ namespace KirbyGame
 {
     public abstract class FullActionState : ActionState
     {
-        protected int ColorTimer;
         public FullActionState(SwallowState owner) : base(owner)
         {
-            ColorTimer = 0;
         }
 
         public void IdleTransition()
@@ -124,19 +122,6 @@ namespace KirbyGame
             {
                 this.FallingTransition();
             }
-            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if(ColorTimer > 200)
-            {
-                if (avatar.Sprite.texture.currentColor == Color.White)
-                {
-                    avatar.Sprite.texture.currentColor = Color.Pink;
-                }
-                else
-                {
-                    avatar.Sprite.texture.currentColor = Color.White;
-                }
-                ColorTimer -= 250;
-            }
             avatar.velocity.Y = 1;
             
         }
@@ -244,19 +229,6 @@ namespace KirbyGame
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
             else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
-            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (ColorTimer > 200)
-            {
-                if (avatar.Sprite.texture.currentColor == Color.White)
-                {
-                    avatar.Sprite.texture.currentColor = Color.Pink;
-                }
-                else
-                {
-                    avatar.Sprite.texture.currentColor = Color.White;
-                }
-                ColorTimer -= 250;
-            }
         }
 
         public override void Enter(ActionState prevState)
@@ -400,19 +372,6 @@ namespace KirbyGame
                     this.FallingTransition();
                 }
             }
-            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (ColorTimer > 200)
-            {
-                if (avatar.Sprite.texture.currentColor == Color.White)
-                {
-                    avatar.Sprite.texture.currentColor = Color.Pink;
-                }
-                else
-                {
-                    avatar.Sprite.texture.currentColor = Color.White;
-                }
-                ColorTimer -= 250;
-            }
 
         }
         public override void Enter(ActionState prevState)
@@ -536,20 +495,6 @@ namespace KirbyGame
                 avatar.Sprite.Direction = Sprite.eDirection.Left;
             else if (avatar.velocity.X > 0 && avatar.Sprite.Direction == Sprite.eDirection.Left)
                 avatar.Sprite.Direction = Sprite.eDirection.Right;
-
-            ColorTimer += gameTime.ElapsedGameTime.Milliseconds;
-            if (ColorTimer > 200)
-            {
-                if (avatar.Sprite.texture.currentColor == Color.White)
-                {
-                    avatar.Sprite.texture.currentColor = Color.Pink;
-                }
-                else
-                {
-                    avatar.Sprite.texture.currentColor = Color.White;
-                }
-                ColorTimer -= 250;
-            }
         }
 
         public override void Enter(ActionState prevState)

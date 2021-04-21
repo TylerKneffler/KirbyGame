@@ -20,6 +20,8 @@ namespace KirbyGame
         public Vector2 location;//made public
         public bool isVisable;
         public float zDepth;
+        public Color tint;
+        public int _tintTimer;
 
         public Sprite(TextureDetails texture, Vector2 location, eDirection direction)
         {
@@ -28,6 +30,8 @@ namespace KirbyGame
             this.direction = direction;
             this.isVisable = true;
             this.zDepth = 0;
+            tint = Color.White;
+            _tintTimer = 0;
         }
 
         public Sprite(TextureDetails texture, Vector2 location)
@@ -37,6 +41,8 @@ namespace KirbyGame
             this.direction = eDirection.Right;
             this.isVisable = true;
             this.zDepth = 0;
+            tint = Color.White;
+            _tintTimer = 0;
         }
 
         public Sprite(float depth, TextureDetails texture, Vector2 location)
@@ -46,6 +52,8 @@ namespace KirbyGame
             this.direction = eDirection.Right;
             this.isVisable = true;
             this.zDepth = depth;
+            tint = Color.White;
+            _tintTimer = 0;
         }
 
         public Sprite(Texture2D texture, Vector2 location, int numFrames)
@@ -55,6 +63,8 @@ namespace KirbyGame
             this.texture = new TextureDetails(texture, numFrames);
             this.isVisable = true;
             this.zDepth = 0;
+            tint = Color.White;
+            _tintTimer = 0;
         }
 
         public Sprite(Texture2D texture, Rectangle textureLocation, Vector2 location, int numFrames)
@@ -64,6 +74,8 @@ namespace KirbyGame
             this.texture = new TextureDetails(texture, textureLocation, numFrames);
             this.isVisable = true;
             this.zDepth = 0;
+            tint = Color.White;
+            _tintTimer = 0;
         }
 
         public float X
@@ -87,6 +99,21 @@ namespace KirbyGame
         public void Update(GameTime gameTime)
         {
             texture.Update(gameTime);
+            if(tint != Color.White)
+            {
+                _tintTimer += gameTime.ElapsedGameTime.Milliseconds;
+                if(_tintTimer > 200)
+                {
+                    if(texture.currentColor == tint)
+                    {
+                        texture.currentColor = Color.White;
+                    } else
+                    {
+                        texture.currentColor = tint;
+                    }
+                    _tintTimer -= 200;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

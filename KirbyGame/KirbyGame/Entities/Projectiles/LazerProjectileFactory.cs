@@ -21,7 +21,6 @@ namespace KirbyGame
 
         public LazerProjectile CreateLazerProjectile(Vector2 location, int direction, bool canHurtKirby)
         {
-            game.player.PlayWhipSound();
             return new LazerProjectile(new Sprite(new TextureDetails(game.Content.Load<Texture2D>("Lazer"), 1) , location), location, direction,canHurtKirby, game);
         }
 

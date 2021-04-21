@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace KirbyGame
 {
-    public class EnemyTest : Entity
+    public class EnemyTest : Entity, IPointable
     {
         public EnemytypeTest enemytype;
         public int type;
@@ -97,6 +97,26 @@ namespace KirbyGame
             else if (enemyType == enemytypes.WADDLE_BEE)
             {
                 enemytype = new WaddleBee(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_WADDLE_DEE)
+            {
+                enemytype = new DeadWaddleDeeTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_WADDLE_DOO)
+            {
+                enemytype = new DeadWaddleDooTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_SIR_KIBBLE)
+            {
+                enemytype = new DeadSirKibbleTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_APPLE)
+            {
+                enemytype = new DeadAppleTest(this, location);
+            }
+            else if (enemyType == enemytypes.DEAD_WADDL_EBEE)
+            {
+                enemytype = new DeadWaddleBeeTest(this, location);
             }
 
         }
@@ -286,7 +306,8 @@ namespace KirbyGame
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!(enemytype is DeadKoopaTest || enemytype is DeadKoopaShellTest || enemytype is SquishGoombaTest))
+            if (!(enemytype is DeadWaddleDooTest || enemytype is DeadWaddleDeeTest || enemytype is DeadAppleTest || enemytype is DeadSirKibbleTest || enemytype is DeadWaddleBeeTest || enemytype is SuckWaddleDeeTest
+                || enemytype is SuckWaddleDooTest || enemytype is SuckWaddleBeeTest || enemytype is SuckSirKibbleTest || enemytype is SuckAppleTest))
             {
                 base.Draw(spriteBatch);
             }
@@ -298,7 +319,7 @@ namespace KirbyGame
 
         public int Points()
         {
-            return enemytype.Points();
+            return 100;
         }
 
         protected virtual void OnGameWin(EventArgs e)
