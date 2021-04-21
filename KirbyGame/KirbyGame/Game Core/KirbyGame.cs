@@ -265,7 +265,7 @@ namespace KirbyGame
             stats = new Stats(2, 6, 0);
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
-            TogglePause();
+
         }
         public void TogglePause()
         {
