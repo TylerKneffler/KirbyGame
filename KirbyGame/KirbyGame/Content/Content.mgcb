@@ -339,6 +339,12 @@
 /processorParam:TextureFormat=Color
 /build:game_over.png
 
+#begin gameover.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:gameover.mp3
+
 #begin goomba.png
 /importer:TextureImporter
 /processor:TextureProcessor
