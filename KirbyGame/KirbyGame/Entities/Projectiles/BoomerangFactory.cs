@@ -12,7 +12,6 @@ namespace KirbyGame
     class BoomerangFactory
     {
         private Game1 game;
-        private SoundEffect player;
 
         public BoomerangFactory(Game1 game)
         {
