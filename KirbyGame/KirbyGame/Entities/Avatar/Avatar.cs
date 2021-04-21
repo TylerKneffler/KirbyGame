@@ -306,7 +306,7 @@ namespace KirbyGame
             if(_damageTimer == 0) { 
                 OnTakeDamage(EventArgs.Empty);
                 ClearPowerUp();
-                _damageTimer = 1000;
+                _damageTimer = 100;
             }
         }
 
@@ -330,7 +330,7 @@ namespace KirbyGame
             //oh yeah there is a better way to do this but running out of time
             if (_damageTimer > 0)
             {
-                if (_damageTimer == 1000) { 
+                if (_damageTimer == 100) { 
                     Sprite.tint = Color.Magenta;
                 }
                 _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
