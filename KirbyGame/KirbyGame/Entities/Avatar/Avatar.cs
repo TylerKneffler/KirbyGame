@@ -57,7 +57,7 @@ namespace KirbyGame
         {
             base.Update(gameTime);
             swallowed.Update(gameTime);
-
+                
             DamageColorUpdate(gameTime);
         }
 

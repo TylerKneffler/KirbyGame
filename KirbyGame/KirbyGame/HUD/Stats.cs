@@ -34,15 +34,17 @@ namespace KirbyGame
 
         public void mario_CollisionEvent(object sender, Collision collision)
         {
-            //Debug.WriteLine("Collision Event!");
+            
             IPointable temp;
             if (collision.A is IPointable)
             {
+                Debug.WriteLine("Collision Event!");
                 temp = (IPointable)collision.A;
                 _score+= temp.Points();
             }
             if (collision.B is IPointable)
             {
+                Debug.WriteLine("Collision Event!");
                 temp = (IPointable)collision.B;
                 _score += temp.Points();
             }
@@ -57,7 +59,6 @@ namespace KirbyGame
         }
         public void mario_PowerUpChange(object sender, ePower power)
         {
-            //do something
             _power = power;
         }
 
