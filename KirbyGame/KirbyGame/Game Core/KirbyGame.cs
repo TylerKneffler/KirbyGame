@@ -285,12 +285,15 @@ namespace KirbyGame
 
         public void stats_ZeroLives(object sender, EventArgs e)
         {
-            
+
             TogglePause();
             KInput.clearCommands();
             KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
             KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
+            soundtrack = Content.Load<Song>("gameover");
+            MediaPlayer.Play(soundtrack);
+            MediaPlayer.IsRepeating = true;
         }
 
         public void _WinGame(object sender, EventArgs e)
@@ -300,6 +303,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
             KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, true, false);
+            
         }
 
         public void onPause(EventArgs e)
