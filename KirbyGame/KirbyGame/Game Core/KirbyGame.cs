@@ -110,7 +110,6 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
-            mario.CollisionEvent += stats.mario_CollisionEvent;
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
 
@@ -118,6 +117,7 @@ namespace KirbyGame
             {
                 if (entity is EnemyTest)
                 {
+                    ((EnemyTest)entity).DeathPoints += stats.AddEnemyDeathPoints;
                     if (((EnemyTest)entity).enemytype is WhispyWoods)
                     {
                         ((EnemyTest)entity).GameWin += _WinGame;

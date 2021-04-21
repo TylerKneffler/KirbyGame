@@ -18,6 +18,7 @@ namespace KirbyGame
         private SoundEffect player;
 
         public EventHandler GameWin;
+        public EventHandler DeathPoints;
 
 
         public enum enemytypes
@@ -234,6 +235,7 @@ namespace KirbyGame
                 type = 25;
                 this.enemytype = new DeadWaddleBeeTest(this, new Vector2(this.X, this.Y - 19));
             }
+            EnemyDeath(EventArgs.Empty);
         }
 
         public virtual void SuckStateChange(int direction)
@@ -325,7 +327,11 @@ namespace KirbyGame
         protected virtual void OnGameWin(EventArgs e)
         {
             GameWin?.Invoke(this, e);
+        }
 
+        protected virtual void EnemyDeath(EventArgs e)
+        {
+            DeathPoints?.Invoke(this, e);
         }
     }
 }

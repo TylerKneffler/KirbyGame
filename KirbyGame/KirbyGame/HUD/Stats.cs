@@ -32,23 +32,12 @@ namespace KirbyGame
             _power = ePower.NORMAL;
         }
 
-        public void mario_CollisionEvent(object sender, Collision collision)
+        public void AddEnemyDeathPoints(object sender, EventArgs e)
         {
-            
-            IPointable temp;
-            if (collision.A is IPointable)
-            {
-                Debug.WriteLine("Collision Event!");
-                temp = (IPointable)collision.A;
-                _score+= temp.Points();
-            }
-            if (collision.B is IPointable)
-            {
-                Debug.WriteLine("Collision Event!");
-                temp = (IPointable)collision.B;
-                _score += temp.Points();
-            }
+            IPointable enemy = (IPointable)sender;
+            _score += enemy.Points();
         }
+
         public void mario_TakeDamage(object sender, EventArgs e)
         {
             _health--;
