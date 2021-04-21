@@ -284,4 +284,32 @@ namespace KirbyGame
             control.TogglePause();
         }
     }
+
+    class ExitCommand : Command<Game1>
+    {
+        public ExitCommand(Game1 control)
+            : base(control)
+        {
+
+        }
+
+        public override void Execute()
+        {
+            control.ExitCommand();
+        }
+    }
+
+    class ResetCommand : Command<Game1>
+    {
+        public ResetCommand(Game1 control)
+            : base(control)
+        {
+
+        }
+
+        public override void Execute()
+        {
+            control.ExitCommand();
+        }
+    }
 }

@@ -293,12 +293,25 @@ namespace KirbyGame
         public void _WinGame(object sender, EventArgs e)
         {
             TogglePause();
+            KInput.clearCommands();
+            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
+            KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, true, false);
         }
 
         public void onPause(EventArgs e)
         {
             Pause?.Invoke(this, e);
+        }
+
+        public void ExitCommand()
+        {
+            Exit();
+        }
+
+        public void ResetCommand()
+        {
+            Exit();
         }
 
         public void ToggleBoundingBoxes()
