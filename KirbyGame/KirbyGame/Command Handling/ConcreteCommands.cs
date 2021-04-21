@@ -309,7 +309,7 @@ namespace KirbyGame
 
         public override void Execute()
         {
-            control.ExitCommand();
+            control.HardReset();
         }
     }
 }
