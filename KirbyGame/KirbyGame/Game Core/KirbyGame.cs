@@ -289,6 +289,7 @@ namespace KirbyGame
             TogglePause();
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
             soundtrack = Content.Load<Song>("gameover");
+            System.Threading.Thread.Sleep(1000);
             MediaPlayer.Play(soundtrack);
             MediaPlayer.IsRepeating = true;
         }
