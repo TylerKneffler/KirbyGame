@@ -243,7 +243,7 @@ namespace KirbyGame
             map.Insert(levelLoader.list);
 
             //checkpoints = new Checkpoints(mario, this);
-
+            camera.Limits = new Rectangle(new Point(36, -32), new Point(62 * 32, graphics.PreferredBackBufferHeight - 64));
 
             stats = new Stats(2, 6, 0);
             mario.PowerUpChange += stats.mario_PowerUpChange;
