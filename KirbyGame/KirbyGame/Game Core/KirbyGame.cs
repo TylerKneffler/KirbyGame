@@ -118,10 +118,9 @@ namespace KirbyGame
             {
                 if (entity is EnemyTest)
                 {
-                    EnemyTest temp = (EnemyTest)entity;
-                    if (temp.enemytype is WhispyWoods)
+                    if (((EnemyTest)entity).enemytype is WhispyWoods)
                     {
-                        temp.GameWin += _WinGame;
+                        ((EnemyTest)entity).GameWin += _WinGame;
                     }
                 }
             }
