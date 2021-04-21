@@ -165,7 +165,7 @@ namespace KirbyGame
             swallowed.ReleaseTrigger();
             if (_powerTimer == 0)
             {
-                _powerTimer = 600;
+                _powerTimer = 400;
             }
         }
 
