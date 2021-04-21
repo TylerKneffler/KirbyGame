@@ -265,7 +265,9 @@ namespace KirbyGame
             stats = new Stats(2, 6, 0);
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
-            TogglePause();
+            soundtrack = Content.Load<Song>("Kirby dream land theme song");
+            MediaPlayer.Play(soundtrack);
+            MediaPlayer.IsRepeating = true;
         }
         public void TogglePause()
         {
@@ -301,8 +303,8 @@ namespace KirbyGame
         {
             TogglePause();
             KInput.clearCommands();
-            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
-            KInput.addPressCommand(Keys.Q, new ResetCommand(this));
+            KInput.addPressCommand(Keys.Q, new ExitCommand(this));
+            KInput.addPressCommand(Keys.R, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, true, false);
             
         }
