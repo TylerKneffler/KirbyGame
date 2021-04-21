@@ -59,7 +59,7 @@ namespace KirbyGame
         {
             base.Update(gameTime);
             swallowed.Update(gameTime);
-
+                
             DamageColorUpdate(gameTime);
             if (_powerTimer > 0)
             {
@@ -165,7 +165,7 @@ namespace KirbyGame
             swallowed.ReleaseTrigger();
             if (_powerTimer == 0)
             {
-                _powerTimer = 600;
+                _powerTimer = 400;
             }
         }
 

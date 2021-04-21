@@ -114,6 +114,17 @@ namespace KirbyGame
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
 
+            foreach (Entity entity in levelLoader.list)
+            {
+                if (entity is EnemyTest)
+                {
+                    if (((EnemyTest)entity).enemytype is WhispyWoods)
+                    {
+                        ((EnemyTest)entity).GameWin += _WinGame;
+                    }
+                }
+            }
+
             map.Insert(levelLoader.list);
             List<int> checkpointList = new List<int>();
 
@@ -206,13 +217,6 @@ namespace KirbyGame
 
         public void resetLevel()
         {
-
-            if (Hud.IsGameOver())
-            {
-                // Put everything below in this if statement when ready to lose reset functionality except when game is over
-
-            }
-
             levelLoader = new LevelLoader(this);
 
             levelLoader.LevelInit(levelLoader.reader, this);
@@ -286,9 +290,28 @@ namespace KirbyGame
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
         }
 
+        public void _WinGame(object sender, EventArgs e)
+        {
+            TogglePause();
+            KInput.clearCommands();
+            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
+            KInput.addPressCommand(Keys.Q, new ResetCommand(this));
+            levelLoader.ScreenDraw(spriteBatch, false, true, false);
+        }
+
         public void onPause(EventArgs e)
         {
             Pause?.Invoke(this, e);
+        }
+
+        public void ExitCommand()
+        {
+            Exit();
+        }
+
+        public void ResetCommand()
+        {
+            Exit();
         }
 
         public void ToggleBoundingBoxes()

@@ -17,11 +17,13 @@ namespace KirbyGame
         Sprite.eDirection direction;
         private SoundEffect player;
 
+        public EventHandler GameWin;
+
 
         public enum enemytypes
         {
             GOOMBA, KOOPA, KOOPA_SHELL, DEAD_KOOPA, DEAD_SHELL, DEAD_GOOMBA, SQUISH_GOOMBA, PARANA, DEAD_PARANA, SHOTZO, WADDLE_DEE, WADDLE_DOO, SIR_KIBBLE, APPLE,
-            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE , WHISPYWOODS, DEADWHISPYWOODS, WADDLE_BEE, DEAD_WADDL_EBEE
+            DEAD_WADDLE_DEE, DEAD_WADDLE_DOO, DEAD_SIR_KIBBLE, DEAD_APPLE, SUCK_WADDLE_DEE, SUCK_WADDLE_DOO, SUCK_SIR_KIBBLE, SUCK_APPLE, WHISPYWOODS, DEADWHISPYWOODS, WADDLE_BEE, DEAD_WADDL_EBEE
         }
 
         public EnemyTest(enemytypes enemyType, Vector2 location, Game1 game)
@@ -38,11 +40,11 @@ namespace KirbyGame
 
             if (enemyType == enemytypes.GOOMBA)
             {
-                enemytype = new GoombaTest(this, location); 
+                enemytype = new GoombaTest(this, location);
             }
             else if (enemyType == enemytypes.KOOPA)
             {
-                enemytype = new KoopaTest(this, location, direction); 
+                enemytype = new KoopaTest(this, location, direction);
             }
             else if (enemyType == enemytypes.SHOTZO)
             {
@@ -54,11 +56,11 @@ namespace KirbyGame
             }
             else if (enemyType == enemytypes.KOOPA_SHELL)
             {
-                enemytype = new KoopaShellTest(this, location, direction); 
+                enemytype = new KoopaShellTest(this, location, direction);
             }
             else if (enemyType == enemytypes.DEAD_KOOPA)
             {
-                enemytype = new DeadKoopaTest(this, location); 
+                enemytype = new DeadKoopaTest(this, location);
             }
             else if (enemyType == enemytypes.DEAD_SHELL)
             {
@@ -179,7 +181,7 @@ namespace KirbyGame
         //Need a way to assign the sprite direction
         public virtual void ShellStateChange()
         {
- 
+
             if (type == 2)
             {
                 type = 1;
@@ -201,22 +203,22 @@ namespace KirbyGame
         //Handling all dead state changes in one method
         public virtual void DeadStateChange()
         {
-            if(type == 10)
+            if (type == 10)
             {
                 type = 14;
                 this.enemytype = new DeadWaddleDeeTest(this, new Vector2(this.X, this.Y - 19));
             }
-            else if(type == 11)
+            else if (type == 11)
             {
                 type = 15;
                 this.enemytype = new DeadWaddleDooTest(this, new Vector2(this.X, this.Y - 19));
             }
-            else if(type == 12)
+            else if (type == 12)
             {
                 type = 16;
                 this.enemytype = new DeadSirKibbleTest(this, new Vector2(this.X, this.Y - 19));
             }
-            else if(type == 13)
+            else if (type == 13)
             {
                 type = 17;
                 this.enemytype = new DeadAppleTest(this, new Vector2(this.X, this.Y - 19));
@@ -225,6 +227,7 @@ namespace KirbyGame
             {
                 type = 23;
                 this.enemytype = new DeadWhispyWoods(this, new Vector2(this.X, this.Y - 19));
+                OnGameWin(EventArgs.Empty);
             }
             else if (type == 24)
             {
@@ -271,12 +274,13 @@ namespace KirbyGame
                     acceleration.Y = 0;
                     Y = collider.BoundingBox.Top - this.BoundingBox.Height;
                 }
-                if(enemytype is AppleTest)
+                if (enemytype is AppleTest)
                 {
                     velocity.X = -4;
                 }
 
-            } else
+            }
+            else
             {
                 enemytype.HandleCollision(collision, collider);
             }
@@ -292,7 +296,8 @@ namespace KirbyGame
                 {
                     acceleration.Y = 1;
                 }
-                else { 
+                else
+                {
                     acceleration.Y = AvatarData.GRAVITY;
                 }
                 enemytype.Update(gameTime);
@@ -308,7 +313,7 @@ namespace KirbyGame
             }
             else
             {
-               enemytype.Draw(spriteBatch);    
+                enemytype.Draw(spriteBatch);
             }
         }
 
@@ -317,5 +322,10 @@ namespace KirbyGame
             return 100;
         }
 
+        protected virtual void OnGameWin(EventArgs e)
+        {
+            GameWin?.Invoke(this, e);
+
+        }
     }
 }
