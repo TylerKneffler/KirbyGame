@@ -155,7 +155,8 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.M, new ToggleMute(this));
             KInput.addPressCommand(Keys.P, new TogglePause(this));
             KInput.addPressCommand(Keys.LeftShift, new AvatarClearPower(mario));
-
+            KInput.addPressCommand(Keys.Q, new ExitCommand(this));
+            KInput.addPressCommand(Keys.R, new ResetCommand(this));
             KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
 
             //Enemies
