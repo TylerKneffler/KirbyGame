@@ -1,1 +1,41 @@
-﻿
+﻿Code Review:
+John Meyer
+4/20/21
+Sprint 5
+Time: 
+
+Filename: EnemyClassesTest.cs
+Author: Connor
+
+The biggest issue is repeated code. The first example I see of this is that all the enemies have a field points which is set to 100, this could be done in a base class.
+
+One second note, this variable isn't even used, so it can be removed. 
+
+The constructors avoid the repeated code by effectively using the EnemytypeTest base class.
+
+The HandleCollision method seems essentially the same for each type. It could be 
+done in the base Enemytypetest HandleCollision in the same manner as you used the
+base constructor. The one inconsistincy I see is that in one of the Collision 
+Handlers, enemy.game.player.PlayDamageSound() is not called while it is in all
+the others. I suspect this was unintentional, and could have been solved by
+implementing HandleCollision in the base class. 
+
+I don't have time to go through every class in this list, so I'm going to take a
+deeper dive into WaddleDooTest specifically. This file is 1700 lines with 27 class 
+definitions. Way too much for one file. Way way way too much.
+
+
+WaddleDooTest Notes
+
+lines 149/150 set cooldown/delay respectively, and lines 152/153 overwrite the 
+assignment. 149/150 not doing anything.
+
+The check on line 155 is unnecessary. If cooldown == 0 at the beginning, it runs 
+through lines 143-154 the end of which set the cooldown to 100, which sends execution
+into lines 156-163. It should be obvious that if cooldown != 0 at the beginning
+behavior will be the same.
+
+It seems a little strange to decrement cooldown once on each update cycle. The 
+purpose of passing gameTime in an update method is to be able to use actual time
+values to control things. The way it is currently implemented would result in variable 
+behavior if an update cycle takes longer than expected. 
