@@ -71,5 +71,28 @@ namespace KirbyGame
             KeyPressMap.Clear();
             KeyReleaseMap.Clear();
         }
+
+        public void LoadDefaultCommands(Avatar mario, Game1 game)
+        {
+            addPressCommand(Keys.X, new MarioPressJump(mario));
+            addPressCommand(Keys.Left, new MarioPressLeft(mario));
+            addPressCommand(Keys.Down, new MarioPressDown(mario));
+            addPressCommand(Keys.Right, new MarioPressRight(mario));
+            addPressCommand(Keys.Up, new MarioPressFloat(mario));
+            addReleaseCommand(Keys.X, new MarioReleaseJump(mario));
+            addReleaseCommand(Keys.Left, new MarioReleaseLeft(mario));
+            addReleaseCommand(Keys.Down, new MarioReleaseDown(mario));
+            addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
+            addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
+            addPressCommand(Keys.C, new BoundingBoxToggle(game));
+            addPressCommand(Keys.Z, new AvatarTrigger(mario));
+            addReleaseCommand(Keys.Z, new AvatarReleaseTrigger(mario));
+            addPressCommand(Keys.M, new ToggleMute(game));
+            addPressCommand(Keys.P, new TogglePause(game));
+            addPressCommand(Keys.LeftShift, new AvatarClearPower(mario));
+            addPressCommand(Keys.Q, new ExitCommand(game));
+            addPressCommand(Keys.R, new ResetCommand(game));
+            addPressCommand(Keys.Space, new MarioFireBall(mario));
+        }
     }
 }

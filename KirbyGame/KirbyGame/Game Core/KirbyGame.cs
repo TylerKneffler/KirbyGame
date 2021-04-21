@@ -139,25 +139,7 @@ namespace KirbyGame
             //load commands to controller
 
 
-            KInput.addPressCommand(Keys.X, new MarioPressJump(mario));
-            KInput.addPressCommand(Keys.Left, new MarioPressLeft(mario));
-            KInput.addPressCommand(Keys.Down, new MarioPressDown(mario));
-            KInput.addPressCommand(Keys.Right, new MarioPressRight(mario));
-            KInput.addPressCommand(Keys.Up, new MarioPressFloat(mario));
-            KInput.addReleaseCommand(Keys.X, new MarioReleaseJump(mario));
-            KInput.addReleaseCommand(Keys.Left, new MarioReleaseLeft(mario));
-            KInput.addReleaseCommand(Keys.Down, new MarioReleaseDown(mario));
-            KInput.addReleaseCommand(Keys.Right, new MarioReleaseRight(mario));
-            KInput.addReleaseCommand(Keys.Up, new MarioReleaseFloat(mario));
-            KInput.addPressCommand(Keys.C, new BoundingBoxToggle(this));
-            KInput.addPressCommand(Keys.Z, new AvatarTrigger(mario));
-            KInput.addReleaseCommand(Keys.Z, new AvatarReleaseTrigger(mario));
-            KInput.addPressCommand(Keys.M, new ToggleMute(this));
-            KInput.addPressCommand(Keys.P, new TogglePause(this));
-            KInput.addPressCommand(Keys.LeftShift, new AvatarClearPower(mario));
-            KInput.addPressCommand(Keys.Q, new ExitCommand(this));
-            KInput.addPressCommand(Keys.R, new ResetCommand(this));
-            KInput.addPressCommand(Keys.Space, new MarioFireBall(mario));
+            KInput.LoadDefaultCommands(mario, this);
 
             //Enemies
 
@@ -245,27 +227,8 @@ namespace KirbyGame
 
         public void HardReset()
         {
-            levelLoader = new LevelLoader(this);
-
-            levelLoader.LevelInit(levelLoader.reader, this);
-
-            mario.position = levelLoader.getMario().position;
-            levelLoader.list.Remove(levelLoader.getMario());
-            levelLoader.list.Add(mario);
-
-            //mario.setStateSmall();
-            mario.IsDead = false;
-
-            map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
-            map.Insert(levelLoader.list);
-
-            //checkpoints = new Checkpoints(mario, this);
-
-
-            stats = new Stats(2, 6, 0);
-            mario.PowerUpChange += stats.mario_PowerUpChange;
-            mario.KirbyHurt += stats.mario_TakeDamage;
-            TogglePause();
+            this.Initialize();
+            this.LoadContent();
         }
         public void TogglePause()
         {
