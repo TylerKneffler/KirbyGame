@@ -21,7 +21,12 @@ namespace KirbyGame
         {
             TextureDetails details = textureFactory.createTextureDetails(swallowed.actionState, swallowed);
             details.AllFrames();
-            return new Sprite(details, location, direction);
+            Sprite sprite = new Sprite(details, location, direction);
+            if (swallowed is FullSwallowState)
+            {
+                sprite.tint = Color.Pink;
+            }
+            return sprite;
         }
 
         /*public Sprite createSprite(Vector2 location)

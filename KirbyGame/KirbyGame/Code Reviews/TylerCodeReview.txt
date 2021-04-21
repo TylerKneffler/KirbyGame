@@ -1,0 +1,20 @@
+﻿Code Review:
+By, Tyler Kneffler
+Date: 4/20/2021
+Sprint 4
+Time: 15 min
+
+Filenames: SwallowState.cs
+Author : Dinnis, Jackson, Connor
+
+Review:
+My inital understanding of this is that it allows kirby to eat enemies and take their abilities. You are using the state command pattern to deal with deciding which "state" kirby is in. 
+Specifically this code is aimed at his eating of enemies states. I really like how concise and explicit your methods are with only having a view lines and dealing with their behavior very 
+well. The sound effects probably shouldn't be handled in this class and should be handled using the events command pattern. I also see you did a similar state pattern with the powerups in 
+this class and it works really well in deciding and changing his powerup from normal to some other powered state.
+
+Recomnedations:
+First I recommend handling all of the sound effects through events rather than hard coding it into individual classes. The states are starting to get really messy with the sheer mount of states kirby can be in
+other than the swallow state that I am reviewing. So, I reccommend Identifying commen states and grouping them into seperate files, more than you already have as your other state classes are getting pretty long.
+
+

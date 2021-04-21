@@ -1302,7 +1302,6 @@ namespace KirbyGame
             }
             location.Y += this.enemy.velocity.Y;
         }
-
     }
 
     class DeadKoopaShellTest : EnemytypeTest
