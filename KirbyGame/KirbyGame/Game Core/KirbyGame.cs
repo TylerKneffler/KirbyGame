@@ -265,6 +265,9 @@ namespace KirbyGame
             stats = new Stats(2, 6, 0);
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
+            soundtrack = Content.Load<Song>("Kirby dream land theme song");
+            MediaPlayer.Play(soundtrack);
+            MediaPlayer.IsRepeating = true;
             TogglePause();
         }
         public void TogglePause()
