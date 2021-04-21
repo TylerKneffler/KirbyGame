@@ -331,7 +331,9 @@ namespace KirbyGame
             //oh yeah there is a better way to do this but running out of time
             if (_damageTimer > 0)
             {
-                Sprite.tint = Color.Magenta;
+                if (_damageTimer == 1000) { 
+                    Sprite.tint = Color.Magenta;
+                }
                 _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
                 if (_damageTimer <= 0)
                 {
