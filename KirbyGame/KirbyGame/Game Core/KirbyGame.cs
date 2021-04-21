@@ -110,7 +110,6 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
-            mario.CollisionEvent += stats.mario_CollisionEvent;
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
 
@@ -118,6 +117,7 @@ namespace KirbyGame
             {
                 if (entity is EnemyTest)
                 {
+                    ((EnemyTest)entity).DeathPoints += stats.AddEnemyDeathPoints;
                     if (((EnemyTest)entity).enemytype is WhispyWoods)
                     {
                         ((EnemyTest)entity).GameWin += _WinGame;
@@ -242,30 +242,29 @@ namespace KirbyGame
 
         }
 
-        public void hardReset()
+        public void HardReset()
         {
-            if (Hud.IsGameOver())
-            {
-                levelLoader = new LevelLoader(this);
+            levelLoader = new LevelLoader(this);
 
-                levelLoader.LevelInit(levelLoader.reader, this);
+            levelLoader.LevelInit(levelLoader.reader, this);
 
-                mario.position = levelLoader.getMario().position;
-                levelLoader.list.Remove(levelLoader.getMario());
-                levelLoader.list.Add(mario);
+            mario.position = levelLoader.getMario().position;
+            levelLoader.list.Remove(levelLoader.getMario());
+            levelLoader.list.Add(mario);
 
-                //mario.setStateSmall();
-                mario.IsDead = false;
+            //mario.setStateSmall();
+            mario.IsDead = false;
 
-                map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
-                map.Insert(levelLoader.list);
+            map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
+            map.Insert(levelLoader.list);
 
-                checkpoints = new Checkpoints(mario, this);
+            //checkpoints = new Checkpoints(mario, this);
 
-                Hud.ResetHud();
 
-                TogglePause();
-            }
+            stats = new Stats(2, 6, 0);
+            mario.PowerUpChange += stats.mario_PowerUpChange;
+            mario.KirbyHurt += stats.mario_TakeDamage;
+            TogglePause();
         }
         public void TogglePause()
         {
@@ -287,6 +286,9 @@ namespace KirbyGame
         {
 
             TogglePause();
+            KInput.clearCommands();
+            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
+            KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
             soundtrack = Content.Load<Song>("gameover");
             System.Threading.Thread.Sleep(1000);
@@ -316,7 +318,7 @@ namespace KirbyGame
 
         public void ResetCommand()
         {
-            Exit();
+            HardReset();
         }
 
         public void ToggleBoundingBoxes()

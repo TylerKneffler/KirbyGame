@@ -183,7 +183,6 @@ namespace KirbyGame
         //UNTESTED
         public override void HandleCollision(Collision collision, Entity collider)
         {
-            OnCollisionEvent(collision);
             Collision.Direction CollisionDirection = Collision.normalizeDirection(collision, this);
             if(collider is Block)
             {
@@ -316,10 +315,10 @@ namespace KirbyGame
             swallowed.powerUp = null;
         }
 
-        protected virtual void OnCollisionEvent(Collision collision)
+        /*protected virtual void OnCollisionEvent(Collision collision)
         {
             CollisionEvent?.Invoke(this, collision);
-        }
+        }*/
 
         public virtual void OnPowerUpChange(Stats.ePower power)
         {
@@ -331,7 +330,9 @@ namespace KirbyGame
             //oh yeah there is a better way to do this but running out of time
             if (_damageTimer > 0)
             {
-                Sprite.tint = Color.Magenta;
+                if (_damageTimer == 1000) { 
+                    Sprite.tint = Color.Magenta;
+                }
                 _damageTimer -= gameTime.ElapsedGameTime.Milliseconds;
                 if (_damageTimer <= 0)
                 {
