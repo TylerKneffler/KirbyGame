@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Media;
 
 namespace KirbyGame
 {
@@ -27,7 +28,7 @@ namespace KirbyGame
 
             game.Pause += this.mario_PauseScreen;
             game.stats.ZeroLives += this.mario_LoseScreen;
-
+    
             isPause = false;
             isWin = false;
             isLose = false;
