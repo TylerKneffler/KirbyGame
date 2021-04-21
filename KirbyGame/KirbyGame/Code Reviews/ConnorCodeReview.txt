@@ -1,1 +1,34 @@
-﻿
+﻿Code Review:
+Connor Michetti
+4/20/21
+Sprint 5
+Time: 15-20 mins
+
+Filename(s): IProjectile.cs, EnemyClassesTest.cs (specifically Shotzo), Cannonball.cs, and CannonballFactory.cs
+Author: Jackson Jiang
+
+Review:
+Starting with IProjectile, this is very self explanatory. It is simply an interface that is for Projectiles in the Kirby game, and each projectile must implement it's own Update, Draw, and HandleCollision, as well as a 
+method that returns a bool called canHurtKirby. 
+Jumping next into Cannonball. I see that the constructor for Cannonball is typical for a game entity. It'll take a sprite and the game it's being passed to. The different 
+thing here is that it also takes an int called direction. Upon looking further into the constructor, it can be seen that the direction int that's passed in is to determine which way the cannonball is firing.
+canHurtKirby always seems to return true for a cannonball which makes sense since there is no "cannon kirby" so there's never a worry of Kirby hurting himself with his own cannonball and there's no point in time
+where Kirby should *not* be hurt by a cannonball (unless there's invincibility directly after being hit). Continuing, draw just calls the base draw method (entity). Update is also self explanitory, it's just a short
+timer followed by setting a bool called remove to true, presumably to remove the cannonball from the entity list. Otherwise, this method just calls the base update - again self explanatory. The detect collision method 
+seems to upon collision flash the cannonball's bounding box. It the determines which side a cannonball collided from before setting explode to true and playing a sound effect/loading an explosion texture. This makes
+it apparent  what "explode" was used for in Update - it shows when the cannonball needs to blow up.
+Moving on to the Cannonball factory. This is a short piece of code that simply returns a new cannonball - exactly what you'd think a factory would do.
+Last, looking at Shotzo. Shotzo inherits EnemytypeTest so even though obvious, it is apparent that this is a type of enemy. It loads itself a CannonballFactory so we know that it will be firing cannonballs. Another
+notable field is the bool called "right" which is initially set to true. The constructor takes an enemy, location, and game, which is obvious so that the game knows where and what to put. It sets the enemies velocity
+to 0 meaning Shotzo isnt moving. And finally it calls a method called Follow() though it's not clear what this does yet. Going to update we see Shotzo implements its own update method where it once again calls Follow
+as well as the base class (EnemytypeTest, which inherits EnemyTest). A displacement variable is declared in update that seems (albeight through a lot of coupling) to grab the Avatar's position and compare it to the Shotzo's
+position. Then if the displacement is in a certain range, the cannonballFactory is invoked and a cannonball is fired based on the bool "right" to determine whether the shot is firing right or left. Finally moving to
+the follow method, we see that the method gets the Avatar's position and Shotzo's position to determine whether Shotzo should face left or right to "follow" the Avatar and change the texture accordingly.
+
+Comments:
+IProjectile, Cannonball, and CannonballFactory are all written very cleanly. Even with the distinct lack of comments, it's very clear what is happening in the classes. There isn't a bunch of coupling and I'd say these files
+have one job and it does them well so very well done there. Shotzo is mostly clean. It handles a lot of it's own stuff which is really good. The only places it gets dicey are when the Avatar's position is being checked.
+There's a high amount of coupling with very long and potentially confusing strings of code. I wonder if it'd have been easier to just make the follow method a subscriber to Avatar so it gets notified whenever the Avatar
+is within a certain range. That way Shotzo would never need to know anything about Avatar or it's location, it'd just get notified and know to fire a cannonball. Other than this I think that comments could also really
+help make these aforementioned long lines of code a lot more digestable. Overall though I think that it's a simple and concisely written class that is easy to understand and performs it's job decently well - with just
+that one part with checking Avatar's position getting a little "smelly".
