@@ -222,6 +222,7 @@ namespace KirbyGame
             }
             if (collider is EnemyTest)
             {
+                TakeDamage();
                 if (((EnemyTest)collider).enemytype is WhispyWoods || ((EnemyTest)collider).enemytype is DeadWhispyWoods)
                 {
                     if (CollisionDirection is Collision.Direction.Up)
