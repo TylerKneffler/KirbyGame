@@ -227,6 +227,7 @@ namespace KirbyGame
 
         public void HardReset()
         {
+
             levelLoader = new LevelLoader(this);
 
             levelLoader.LevelInit(levelLoader.reader, this);
