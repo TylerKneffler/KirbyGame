@@ -242,30 +242,30 @@ namespace KirbyGame
 
         }
 
-        public void hardReset()
+        public void HardReset()
         {
-            if (Hud.IsGameOver())
-            {
-                levelLoader = new LevelLoader(this);
+            levelLoader = new LevelLoader(this);
 
-                levelLoader.LevelInit(levelLoader.reader, this);
+            levelLoader.LevelInit(levelLoader.reader, this);
 
-                mario.position = levelLoader.getMario().position;
-                levelLoader.list.Remove(levelLoader.getMario());
-                levelLoader.list.Add(mario);
+            mario.position = levelLoader.getMario().position;
+            levelLoader.list.Remove(levelLoader.getMario());
+            levelLoader.list.Add(mario);
 
-                //mario.setStateSmall();
-                mario.IsDead = false;
+            //mario.setStateSmall();
+            mario.IsDead = false;
 
-                map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
-                map.Insert(levelLoader.list);
+            map = new TileMap(levelLoader.Xbound, levelLoader.Ybound);
+            map.Insert(levelLoader.list);
 
-                checkpoints = new Checkpoints(mario, this);
+            //checkpoints = new Checkpoints(mario, this);
 
-                Hud.ResetHud();
 
-                TogglePause();
-            }
+            stats = new Stats(2, 6, 0);
+            mario.CollisionEvent += stats.mario_CollisionEvent;
+            mario.PowerUpChange += stats.mario_PowerUpChange;
+            mario.KirbyHurt += stats.mario_TakeDamage;
+            TogglePause();
         }
         public void TogglePause()
         {
@@ -285,9 +285,15 @@ namespace KirbyGame
 
         public void stats_ZeroLives(object sender, EventArgs e)
         {
-            
+
             TogglePause();
+            KInput.clearCommands();
+            KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
+            KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
+            soundtrack = Content.Load<Song>("gameover");
+            MediaPlayer.Play(soundtrack);
+            MediaPlayer.IsRepeating = true;
         }
 
         public void _WinGame(object sender, EventArgs e)
@@ -297,6 +303,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Escape, new ExitCommand(this));
             KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, true, false);
+            
         }
 
         public void onPause(EventArgs e)
@@ -311,7 +318,7 @@ namespace KirbyGame
 
         public void ResetCommand()
         {
-            Exit();
+            HardReset();
         }
 
         public void ToggleBoundingBoxes()

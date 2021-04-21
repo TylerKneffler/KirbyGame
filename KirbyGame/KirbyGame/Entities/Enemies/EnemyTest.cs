@@ -228,6 +228,9 @@ namespace KirbyGame
             {
                 type = 23;
                 this.enemytype = new DeadWhispyWoods(this, new Vector2(this.X, this.Y - 19));
+            }
+            else if (type == 23)
+            {
                 OnGameWin(EventArgs.Empty);
             }
             else if (type == 24)

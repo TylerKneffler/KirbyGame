@@ -2,15 +2,14 @@
 By, Dennis Miller
 Date: 4/20/2021
 Sprint 4
-Time: 15 min
+Time: 10 min
 
-Filenames: 
-Author : 
+Filenames: EnemyTest.cs
+Author : Tyler, Conner
 
-Review:
-
-
-Recomnedations:
+Review: Enenmy test has a lot going on, it not only controls all the state changes for all the different enemy types, but also decalres each enemy using the file EnemyClassesTest. EnemyTypeTest seems to be a useless method?
+perhaps enemytest could implement IPointable instead? The code however is organized well, and it's easy to tell what is going on specifically to this file. It's hard to track everything when bouncing through the different
+enemy files though.
 
 
 

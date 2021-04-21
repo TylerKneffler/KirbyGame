@@ -1658,6 +1658,7 @@ namespace KirbyGame
         private LazerProjectileFactory factory;
         Random rnd = new Random();
         private int delay = 10;
+        private int partytime = 500;
 
         public DeadWhispyWoods(EnemyTest enemy, Vector2 location) : base(enemy)
         {
@@ -1678,6 +1679,11 @@ namespace KirbyGame
             this.enemy.velocity.Y = 0;
             base.Update(gameTime);
             delay--;
+            if(partytime < 0)
+            {
+                this.enemy.DeadStateChange();
+            }
+            partytime--;
         }
 
 
