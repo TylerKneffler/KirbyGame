@@ -16,6 +16,8 @@ namespace KirbyGame
         Texture2D win;
         Texture2D lose;
 
+        readonly SpriteFont font;
+
 
         bool isPause;
         bool isWin;
@@ -25,6 +27,7 @@ namespace KirbyGame
             pause = game.Content.Load<Texture2D>("kirby_pause");
             win = game.Content.Load<Texture2D>("kirby_win");
             lose = game.Content.Load<Texture2D>("game_over");
+            font = game.Content.Load<SpriteFont>("Kirby_font");
 
             game.Pause += this.mario_PauseScreen;
             game.stats.ZeroLives += this.mario_LoseScreen;
@@ -61,10 +64,14 @@ namespace KirbyGame
             if (_win)
             {
                 spriteBatch.Draw(win, new Rectangle(0, 0, 500, 420), Color.White);
+                spriteBatch.DrawString(font, "Press Q to Play Again", new Vector2(300,200), Color.Black);
+                spriteBatch.DrawString(font, "Press ESC to Exit", new Vector2(300, 260), Color.White);
             }
             else if (_lose)
             {
                 spriteBatch.Draw(lose, new Rectangle(0, 0, 500, 420), Color.White);
+                spriteBatch.DrawString(font, "Press Q to Retry", new Vector2(300, 200), Color.Black);
+                spriteBatch.DrawString(font, "Press ESC to Exit", new Vector2(300, 260), Color.White);
             }
             spriteBatch.End();
         }
