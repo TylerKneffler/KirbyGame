@@ -110,7 +110,6 @@ namespace KirbyGame
             gameBounds = new Vector2(levelLoader.Xbound, levelLoader.Ybound);
 
             mario = levelLoader.getMario();
-            mario.CollisionEvent += stats.mario_CollisionEvent;
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
 
@@ -118,6 +117,7 @@ namespace KirbyGame
             {
                 if (entity is EnemyTest)
                 {
+                    ((EnemyTest)entity).DeathPoints += stats.AddEnemyDeathPoints;
                     if (((EnemyTest)entity).enemytype is WhispyWoods)
                     {
                         ((EnemyTest)entity).GameWin += _WinGame;
@@ -262,7 +262,6 @@ namespace KirbyGame
 
 
             stats = new Stats(2, 6, 0);
-            mario.CollisionEvent += stats.mario_CollisionEvent;
             mario.PowerUpChange += stats.mario_PowerUpChange;
             mario.KirbyHurt += stats.mario_TakeDamage;
             TogglePause();
@@ -292,6 +291,7 @@ namespace KirbyGame
             KInput.addPressCommand(Keys.Q, new ResetCommand(this));
             levelLoader.ScreenDraw(spriteBatch, false, false, true);
             soundtrack = Content.Load<Song>("gameover");
+            System.Threading.Thread.Sleep(1000);
             MediaPlayer.Play(soundtrack);
             MediaPlayer.IsRepeating = true;
         }

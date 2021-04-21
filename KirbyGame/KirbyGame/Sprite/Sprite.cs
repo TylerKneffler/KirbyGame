@@ -20,7 +20,20 @@ namespace KirbyGame
         public Vector2 location;//made public
         public bool isVisable;
         public float zDepth;
-        public Color tint;
+        private Color _tint;
+        public Color tint
+        {
+            get
+            {
+                return _tint;
+            }
+            set
+            {
+                _tint = value;
+                texture.currentColor = value;
+                _tintTimer = 0;
+            }
+        }
         public int _tintTimer;
 
         public Sprite(TextureDetails texture, Vector2 location, eDirection direction)

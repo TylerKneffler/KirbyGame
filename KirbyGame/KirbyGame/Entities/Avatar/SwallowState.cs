@@ -213,6 +213,7 @@ namespace KirbyGame
 
         public override void Trigger()
         {
+            swallowed.DeadStateChange();
             currentPower = new Star(avatar);
             currentPower.Trigger();
             actionState.Trigger();
@@ -226,6 +227,7 @@ namespace KirbyGame
         public override void PressDown()
         {
             this.setPower(swallowed);
+            swallowed.DeadStateChange();
             avatar.game.player.PlayCopySound();
             this.EmptyTransition();
         }

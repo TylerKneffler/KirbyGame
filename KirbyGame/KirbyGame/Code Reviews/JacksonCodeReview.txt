@@ -1,0 +1,24 @@
+﻿Code Review:
+Jackson Jiang
+4/20/21
+Sprint 5
+Time: 15 mins
+
+Filename: Boomerang.cs
+Author: Connor
+
+Review:
+Starting off by looking at the fieldsI see that there are many things that the boomerange needs to know,
+such as the delay when it gets removed, whether it can hurt kirby, where it has exploded, starting locations
+and direction, which are all pretty standard.  It also seems that it needs a parameter passed in to know
+if it can hurt kirby.  The collision code is pretty standard as well.
+
+Comments:
+So the code at first glance is easy to understand, however there was one thing that kind of 
+confused me, which is the canHurtKirby method.  It took me a while to understand what it meant,
+but its basically a getter kind of method, which is pretty normal.  Also the direction was kind of hard 
+to understand at first but it seemed you associated directions with numbers.  And there are two cases
+where this projectile will be removed which is when it can hurt kirby
+or can't hurt kirby, which would be more understandable with comments, but I'm guessing
+one is where kirby thrwos the boomerang and where sir kirble throws it.  Overall
+very good simple effective implemintation.
